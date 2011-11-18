@@ -38,12 +38,6 @@
 
 	<dependencies>
 
-<!-- 		<dependency>
-			<groupId>de.2011.skysail</groupId>
-			<artifactId>skysail.server.osgi</artifactId>
-			<version>[0.0.1,0.2.0)</version>
-		</dependency>
- -->
 		<dependency>
 			<groupId>jgroups</groupId>
 			<artifactId>jgroups</artifactId>
