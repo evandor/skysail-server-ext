@@ -16,9 +16,12 @@
 	</properties>
 
 	<scm>
-		<connection>scm:git:git://javaforge.com/skysail-server-ext</connection>
-		<url>scm:git:http://javaforge.com/git/skysail-server-ext</url>
-		<developerConnection>scm:git:[fetch=]http://javaforge.com/git/skysail-server-ext[push=]http://javaforge.com/git/skysail-server-ext</developerConnection>
+		<!-- read access -->
+		<connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
+		<!-- write access -->
+		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
+		<!-- A publicly browsable repository. For example, via ViewCVS. -->
+		<url>https://github.com/evandor/skysail-server-ext</url>
 	</scm>
 
 	<artifactId>skysail.server.ext.dbviewer</artifactId>
