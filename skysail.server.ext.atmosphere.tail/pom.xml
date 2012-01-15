@@ -1,0 +1,157 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.twenty11.skysail</groupId>
+		<artifactId>skysail.build.maven.parentPom</artifactId>
+		<version>0.1.0</version>
+	</parent>
+
+	<artifactId>skysail.server.ext.atmosphere.tail</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>skysail server atmosphere tail</name>
+	<packaging>bundle</packaging>
+
+	<scm>
+		<!-- read access -->
+		<connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
+		<!-- write access -->
+		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
+		<!-- A publicly browsable repository. For example, via ViewCVS. -->
+		<url>https://github.com/evandor/skysail-server-ext</url>
+	</scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>2.3.4</version>
+				<configuration>
+					<instructions>
+						<_include>-osgi.bnd</_include>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>de.twenty11.skysail</groupId>
+			<artifactId>skysail.server</artifactId>
+			<version>[0.1.6,0.2)</version>
+			<type>bundle</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-runtime</artifactId>
+			<version>0.8.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-jersey</artifactId>
+			<version>0.8.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-annotations</artifactId>
+			<version>0.8.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>com.springsource.javax.ws.rs</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.catalina</groupId>
+			<artifactId>com.springsource.org.apache.catalina</artifactId>
+			<version>6.0.24</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation</artifactId>
+			<version>1.1.0.v201105051105</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>com.springsource.javax.ejb</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.rpc</groupId>
+			<artifactId>com.springsource.javax.xml.rpc</artifactId>
+			<version>1.1.0.v20110517</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.soap</groupId>
+			<artifactId>com.springsource.javax.xml.soap</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>com.springsource.javax.activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>com.springsource.javax.mail</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>com.springsource.javax.persistence</artifactId>
+			<version>1.99.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>com.springsource.javax.xml.ws</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>com.springsource.javax.xml.bind</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.stream</groupId>
+			<artifactId>com.springsource.javax.xml.stream</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.coyote</groupId>
+			<artifactId>com.springsource.org.apache.coyote</artifactId>
+			<version>6.0.24</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.catalina</groupId>
+			<artifactId>com.springsource.org.apache.catalina</artifactId>
+			<version>6.0.24</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.juli</groupId>
+			<artifactId>com.springsource.org.apache.juli.extras</artifactId>
+			<version>6.0.24</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.cometd.java</groupId> <artifactId>cometd-java-server</artifactId> 
+			<version>2.4.0.RC2</version> </dependency> -->
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+	</dependencies>
+
+</project>
