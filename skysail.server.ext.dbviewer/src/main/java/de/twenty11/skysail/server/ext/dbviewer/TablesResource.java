@@ -43,7 +43,6 @@ public class TablesResource extends SkysailServerResource<GridData> {
     private static final String[] fields = { "name" };
 
     public TablesResource() {
-        super("Tables");
         setTemplate("skysail.server.ext.dbviewer:tables.ftl");
     }
 

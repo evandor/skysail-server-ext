@@ -46,7 +46,6 @@ public class DataResource extends SkysailServerResource<GridData> {
     private static final String[] fields = { "name" };
 
     public DataResource() {
-        super("Data");
         setTemplate("skysail.server.ext.dbviewer:data.ftl");
     }
 

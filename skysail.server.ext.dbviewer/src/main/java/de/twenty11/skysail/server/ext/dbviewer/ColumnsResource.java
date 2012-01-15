@@ -43,7 +43,6 @@ public class ColumnsResource extends SkysailServerResource<GridData> {
     private static final String[] fields = { "typeName", "ColSize", "ColName", "DataType" };
 
     public ColumnsResource() {
-        super("Columns");
         setTemplate("skysail.server.ext.dbviewer:columns.ftl");
     }
 

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +34,6 @@ public class ConnectionsResource extends SkysailServerResource<GridData> {
     }
     
     public ConnectionsResource() {
-        super("Datasources");
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");
     }
 
