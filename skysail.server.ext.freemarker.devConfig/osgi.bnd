@@ -1,0 +1,4 @@
+Bundle-Activator: de.twenty11.skysail.server.ext.freemarker.devConfig.internal.Activator
+Bundle-SymbolicName: skysail.server.freemarker.devConfig
+Service-Component: OSGI-INF/*.xml
+
