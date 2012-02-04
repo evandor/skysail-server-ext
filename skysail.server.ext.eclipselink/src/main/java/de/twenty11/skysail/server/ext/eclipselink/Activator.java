@@ -17,17 +17,16 @@
 
 package de.twenty11.skysail.server.ext.eclipselink;
 
-import java.sql.Connection;
-import java.sql.Statement;
-import java.util.Properties;
+import java.util.HashMap;
 
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
+import org.eclipse.persistence.config.PersistenceUnitProperties;
+import org.eclipse.persistence.jpa.osgi.PersistenceProvider;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-
-import org.osgi.service.jdbc.DataSourceFactory;
 
 /**
  * The bundles activator, taking care of creating a new restlet component,
@@ -38,51 +37,86 @@ import org.osgi.service.jdbc.DataSourceFactory;
  */
 public class Activator implements BundleActivator {
 
-	/**
-	 * bundles life cycle start method, creating a new restlet component, a
-	 * restlet application and the urlMapping listener.
-	 * 
-	 * @param context
-	 *            the osgi bundle context
-	 * @throws Exception
-	 *             starting the component may trigger an Exception
-	 * 
-	 */
-	public final void start(final BundleContext context) throws Exception {
+    private static final String PU_NAME = "LoginEvent";
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    
+    /**
+     * bundles life cycle start method, creating a new restlet component, a
+     * restlet application and the urlMapping listener.
+     * 
+     * @param context
+     *            the osgi bundle context
+     * @throws Exception
+     *             starting the component may trigger an Exception
+     * 
+     */
+    public final void start(final BundleContext context) throws Exception {
 
-		ServiceReference[] serviceReferences = context.getServiceReferences(
-				DataSourceFactory.class.toString(), "("
-						+ DataSourceFactory.OSGI_JDBC_DRIVER_CLASS
-						+ "=org.apache.derby.jdbc.EmbeddedDriver)");
-		if (serviceReferences != null) {
-			DataSourceFactory dsf = (DataSourceFactory) context
-					.getService(serviceReferences[0]);
-			Properties props = new Properties();
-			props.put(DataSourceFactory.JDBC_URL,
-					"jdbc:derby:derbyDB;create=true");
+        // ServiceReference[] serviceReferences = context.getServiceReferences(
+        // DataSourceFactory.class.toString(), "("
+        // + DataSourceFactory.OSGI_JDBC_DRIVER_CLASS
+        // + "=org.apache.derby.jdbc.EmbeddedDriver)");
+        // if (serviceReferences != null) {
+        // DataSourceFactory dsf = (DataSourceFactory) context
+        // .getService(serviceReferences[0]);
+        // Properties props = new Properties();
+        // props.put(DataSourceFactory.JDBC_URL,
+        // "jdbc:derby:derbyDB;create=true");
+        //
+        // DataSource ds = dsf.createDataSource(props);
+        //
+        // Connection conn = ds.getConnection();
+        // Statement stat = conn.createStatement();
+        // stat.execute("INSERT INTO event-log VALUES (1, \"123\")");
+        // stat.close();
+        // conn.close();
+        //
+        // }
 
-			DataSource ds = dsf.createDataSource(props);
+//        ServiceReference[] serviceReferences = context.getServiceReferences(EntityManagerFactory.class.toString(),
+//                        null);
+//        if (serviceReferences != null) {
+//            EntityManagerFactory emf = (EntityManagerFactory)context.getService(serviceReferences[0]);
+            
+//        }
+    }
+    
+    private EntityManager getEntityManager() {
+        if (em == null) {
+            em = getEntityManagerFactory().createEntityManager();
+        }
+        return em;
+    }
+    
+    private EntityManagerFactory getEntityManagerFactory() {
+        if (emf == null) {
+            HashMap properties = new HashMap();
+            properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
+            emf = new PersistenceProvider().createEntityManagerFactory(
+                    PU_NAME, 
+                    properties);
+        }
+        return emf;
+    }
 
-			Connection conn = ds.getConnection();
-			Statement stat = conn.createStatement();
-			stat.execute("INSERT INTO event-log VALUES (1, \"123\")");
-			stat.close();
-			conn.close();
-
-		}
-	}
-
-	/**
-	 * stop lifecycle method, removing the urlMapping listener and stopping the
-	 * component.
-	 * 
-	 * @param context
-	 *            the bundleContext
-	 * @throws Exception
-	 *             stopping the component might trigger an exception
-	 * 
-	 */
-	public final void stop(final BundleContext context) throws Exception {
-	}
+    /**
+     * stop lifecycle method, removing the urlMapping listener and stopping the
+     * component.
+     * 
+     * @param context
+     *            the bundleContext
+     * @throws Exception
+     *             stopping the component might trigger an exception
+     * 
+     */
+    public final void stop(final BundleContext context) throws Exception {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(new LoginEvent());
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
 
 }

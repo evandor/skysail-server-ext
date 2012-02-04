@@ -33,7 +33,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<_include>-bnd.bnd</_include>
+						<_include>-osgi.bnd</_include>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -44,19 +44,44 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>2.2.0</version>
+			<artifactId>javax.persistence</artifactId>
+			<version>2.0.3</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>com.springsource.javax.persistence</artifactId>
-			<version>2.0.0</version>
-		</dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.core</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.antlr</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.asm</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.osgi</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.oracle</artifactId>
+            <version>2.2.0</version>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>10.8.2.2</version>
+			<artifactId>com.springsource.org.apache.derby</artifactId>
+			<version>10.5.1000001.764942</version>
 		</dependency>
 		<dependency>
 			<groupId>de.twenty11.skysail</groupId>
@@ -64,12 +89,12 @@
 			<version>[0.1.8-SNAPSHOT,0.2)</version>
 			<type>bundle</type>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>osgi.enterprise</groupId>
 			<artifactId>osgi.enterprise</artifactId>
 			<version>4.2.0.201003190513</version>
 			<type>bundle</type>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 
 </project>
