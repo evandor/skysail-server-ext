@@ -5,7 +5,7 @@
 	This file creates the config.ini files
 	</description>
 
-	<target name="createConfigurations">
+	<target name="createConfigurations" depends="cleanConfigurations">
 		<copy file="src-gen/config.ini" tofile="build/osgiRuntime/configuration/config.ini" overwrite="true"/>
 	</target>
 
