@@ -10,7 +10,11 @@ depends on
     group "/org/eclipse/persistence"    artifact "org.eclipse.persistence.asm"          version "2.2.0" starting yes,
     group "/org/eclipse/persistence"    artifact "org.eclipse.persistence.osgi"         version "2.2.0" starting yes,
  	group "/osgi/enterprise"            artifact "osgi.enterprise"                      version "4.2.0.201003190513" starting yes,
-    group "/mysql"                       artifact "skysail.bundles.mysql-connector-java" version "5.1.6" starting yes
+    group "/mysql"                       artifact "skysail.bundles.mysql-connector-java" version "5.1.6" starting yes,
+
+    // to use declarative services 	
+    group "/org/eclipse/equinox"        artifact "org.eclipse.equinox.ds"                       version "1.2.1"     starting level_1,
+    group "/org/eclipse/equinox"        artifact "org.eclipse.equinox.util"                     version "1.0.200"   starting yes
  	
 
 found in "file:///home/carsten/.m2/repository"

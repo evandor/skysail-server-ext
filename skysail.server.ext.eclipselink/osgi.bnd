@@ -3,5 +3,6 @@ Meta-Persistence: META-INF/persistence.xml
 Import-Package: com.mysql.jdbc,\
  javax.persistence;version="1.1.0";jpa="2.0",\
  *
+Service-Component: OSGI-INF/*.xml 
 Bundle-Activator: de.twenty11.skysail.server.ext.eclipselink.Activator
 
