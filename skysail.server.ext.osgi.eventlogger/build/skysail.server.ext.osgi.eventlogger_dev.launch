@@ -18,7 +18,7 @@
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="${workspace_loc} -os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} &#10;-consoleLog  &#10;-console &#10;-configuration ${workspace_loc:skysail.server.ext.eclipselink/build/osgiRuntime/configuration} &#10;-install ${workspace_loc:skysail.server.ext.eclipselink/build/osgiRuntime}"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="${workspace_loc} -os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} &#10;-consoleLog  &#10;-console &#10;-configuration ${workspace_loc:skysail.server.ext.osgi.eventlogger/build/osgiRuntime/configuration} &#10;-install ${workspace_loc:skysail.skysail.server.ext.osgi.eventlogger/build/osgiRuntime}"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.library.path=/usr/lib/jni &#10;-Dosgi.requiredJavaVersion=1.5 -XX:MaxPermSize=256m -Xms40m -Xmx512m &#10;-Declipse.ignoreApp=true &#10;-Dosgi.noShutdown=true &#10;-Dskysail.port=2011&#10;-Djetty.home.bundle=skysail.product.osgimonitor&#10;-Dorg.osgi.service.http.port=8091&#10;-Dskysail.confDir=&quot;/home/carsten/workspaces/skysail2/skysail.server.restlet/conf&quot;&#10;-Dequinox.ds.print=true"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:skysail.product.osgimonitor}"/>
