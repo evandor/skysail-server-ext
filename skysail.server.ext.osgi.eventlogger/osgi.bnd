@@ -1,0 +1,4 @@
+Include-Resource: {maven-resources}
+Import-Package: *
+Service-Component: OSGI-INF/*.xml 
+
