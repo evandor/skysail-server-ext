@@ -19,6 +19,9 @@ package de.twenty11.skysail.server.ext.osgi.eventlogger;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleListener;
+
+import de.twenty11.skysail.server.ext.osgi.eventlogger.internal.EventLoggerBundleListener;
 
 /**
  * The bundles activator, taking care of creating a new restlet component,
@@ -28,6 +31,10 @@ import org.osgi.framework.BundleContext;
  * 
  */
 public class Activator implements BundleActivator {
+
+    private BundleListener localBundleListener = new EventLoggerBundleListener();
+
+
 
     /**
      * bundles life cycle start method, creating a new restlet component, a
@@ -40,7 +47,7 @@ public class Activator implements BundleActivator {
      * 
      */
     public final void start(final BundleContext context) throws Exception {
-
+        context.addBundleListener(localBundleListener);
     }
     
   
@@ -56,6 +63,7 @@ public class Activator implements BundleActivator {
      * 
      */
     public final void stop(final BundleContext context) throws Exception {
+        context.removeBundleListener(localBundleListener);
     }
 
 }

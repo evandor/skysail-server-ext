@@ -1,4 +1,7 @@
 Include-Resource: {maven-resources}
 Import-Package: *
+Bundle-Activator: de.twenty11.skysail.server.ext.osgi.eventlogger.Activator
+JPA-PersistenceUnits: skysail.server.ext.osgi.eventlogger
+DynamicImport-Package: *
 Service-Component: OSGI-INF/*.xml 
 

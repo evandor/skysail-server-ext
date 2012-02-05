@@ -19,6 +19,11 @@ package de.twenty11.skysail.server.ext.osgi.eventlogger.internal;
 
 import de.twenty11.skysail.server.ext.eclipselink.service.definition.IEntityManagerProvider;
 
+/**
+ * provides central access to the OSGi services.
+ * @author carsten
+ *
+ */
 public class ServiceProvider {
 
     private static IEntityManagerProvider entityManagerService;
