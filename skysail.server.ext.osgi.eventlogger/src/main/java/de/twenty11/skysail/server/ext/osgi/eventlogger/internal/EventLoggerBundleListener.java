@@ -18,6 +18,7 @@
 package de.twenty11.skysail.server.ext.osgi.eventlogger.internal;
 
 import java.util.HashMap;
+import java.util.Properties;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,6 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.ext.eclipselink.service.definition.IEntityManagerProvider;
 import de.twenty11.skysail.server.ext.osgi.eventlogger.EventLoggerBundleEvent;
+import de.twenty11.skysail.server.servicedefinitions.ConfigService;
 
 /**
  * listener for bundle events.
@@ -54,25 +56,20 @@ public class EventLoggerBundleListener implements BundleListener {
         bundleEvent.setSymbolicName(bundle.getSymbolicName());
 
         try {
+            ConfigService configService = ServiceProvider.getConfigService();
+            Properties properties = configService.getProperties("skysail.defaultDb.", true);
             
-            HashMap<String, Object> properties = new HashMap<String, Object>();
+            //HashMap<String, Object> properties = new HashMap<String, Object>();
             properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
-            properties.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
-            properties.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/skysail");
-            properties.put("javax.persistence.jdbc.user", "root");
-            properties.put("eclipselink.ddl-generation", "create-tables");
+//            properties.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
+//            properties.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/skysail");
+//            properties.put("javax.persistence.jdbc.user", "root");
+//            properties.put("eclipselink.ddl-generation", "create-tables");
             
             EntityManagerFactory emf = new PersistenceProvider().createEntityManagerFactory(
                     "skysail.server.ext.osgi.eventlogger", 
                     properties);
             
-            //IEntityManagerProvider emProvider = ServiceProvider.getEntityManagerProvider();
-//             emf = Persistence
-//                            .createEntityManagerFactory();
-//            if (emProvider == null) {
-//                logger.warn("EntityManager Service Provider not available, could not persist bundleEvent '{}'", bundleEvent);
-//                return;
-//            }
             EntityManager em = emf.createEntityManager();
             if (em == null) {
                 logger.warn("EntityManager not available, could not persist bundleEvent '{}'", bundleEvent);
