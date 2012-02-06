@@ -19,8 +19,21 @@ package de.twenty11.skysail.server.ext.eclipselink.service.definition;
 
 import javax.persistence.EntityManager;
 
+/**
+ * The definition of a service providing a JPA EntityManager.
+ * 
+ * This is not defined in skysail.server in order to not have skysail.server depend
+ * on javax.persistence.
+ * 
+ * @author carsten
+ *
+ */
 public interface IEntityManagerProvider {
 
+    /**
+     * @param persistenceUnit
+     * @return
+     */
     EntityManager getEntityManager(String persistenceUnit);
     
 }

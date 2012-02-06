@@ -42,6 +42,8 @@ public class EntityManagerProvider implements IEntityManagerProvider {
         HashMap properties = new HashMap();
         properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
         EntityManagerFactory emf = new PersistenceProvider().createEntityManagerFactory(unit, properties);
+        emf.getProperties();
+//        emf.createEntityManager().get
         return emf.createEntityManager();
     }
 }

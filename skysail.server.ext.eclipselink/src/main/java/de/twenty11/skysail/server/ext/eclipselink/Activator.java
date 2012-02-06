@@ -37,7 +37,7 @@ import org.osgi.framework.ServiceReference;
  */
 public class Activator implements BundleActivator {
 
-    private static final String PU_NAME = "LoginEvent";
+    private static final String PU_NAME = "SkysailDefaultPU";
     private EntityManagerFactory emf;
     private EntityManager em;
     
@@ -53,33 +53,6 @@ public class Activator implements BundleActivator {
      */
     public final void start(final BundleContext context) throws Exception {
 
-        // ServiceReference[] serviceReferences = context.getServiceReferences(
-        // DataSourceFactory.class.toString(), "("
-        // + DataSourceFactory.OSGI_JDBC_DRIVER_CLASS
-        // + "=org.apache.derby.jdbc.EmbeddedDriver)");
-        // if (serviceReferences != null) {
-        // DataSourceFactory dsf = (DataSourceFactory) context
-        // .getService(serviceReferences[0]);
-        // Properties props = new Properties();
-        // props.put(DataSourceFactory.JDBC_URL,
-        // "jdbc:derby:derbyDB;create=true");
-        //
-        // DataSource ds = dsf.createDataSource(props);
-        //
-        // Connection conn = ds.getConnection();
-        // Statement stat = conn.createStatement();
-        // stat.execute("INSERT INTO event-log VALUES (1, \"123\")");
-        // stat.close();
-        // conn.close();
-        //
-        // }
-
-//        ServiceReference[] serviceReferences = context.getServiceReferences(EntityManagerFactory.class.toString(),
-//                        null);
-//        if (serviceReferences != null) {
-//            EntityManagerFactory emf = (EntityManagerFactory)context.getService(serviceReferences[0]);
-            
-//        }
     }
     
     private EntityManager getEntityManager() {
