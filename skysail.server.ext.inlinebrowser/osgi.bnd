@@ -1,0 +1,5 @@
+Bundle-SymbolicName: skysail.server.ext.inlinebrowser
+FtlTemplates: /freemarker/ftls/
+Include-Resource: {maven-resources}
+Service-Component: OSGI-INF/*.xml 
+
