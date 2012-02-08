@@ -19,7 +19,11 @@ package de.twenty11.skysail.server.ext.inlinebrowser.internal;
 
 import org.osgi.service.component.ComponentContext;
 
+import freemarker.template.Configuration;
+
 public class ServiceProvider {
+
+    private static Configuration freemarkerConfig;
 
     protected void activate (ComponentContext context) {
         
@@ -27,6 +31,14 @@ public class ServiceProvider {
 
     protected void deactivate (ComponentContext context) {
         
+    }
+    
+    protected void setFreemarkerConf(Configuration config ) {
+        ServiceProvider.freemarkerConfig = config;
+    }
+    
+    public static Configuration getFreemarkerConfig() {
+        return freemarkerConfig;
     }
 
 }
