@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import de.twenty11.skysail.server.ext.inlinebrowser.BrowserResource;
 import de.twenty11.skysail.server.servicedefinitions.UrlMapper;
 
 /**

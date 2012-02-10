@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.inlinebrowser.internal;
+package de.twenty11.skysail.server.ext.inlinebrowser;
 
 import org.restlet.data.MediaType;
 import org.restlet.ext.freemarker.TemplateRepresentation;
@@ -7,6 +7,8 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.twenty11.skysail.server.ext.inlinebrowser.internal.ServiceProvider;
 
 import freemarker.template.Template;
 

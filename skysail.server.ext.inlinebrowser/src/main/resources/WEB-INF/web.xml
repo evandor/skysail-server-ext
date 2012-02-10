@@ -10,7 +10,7 @@
 		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
 		<init-param>
 			<param-name>org.restlet.component</param-name>
-			<param-value>de.twenty11.skysail.product.osgimonitor.OsgiMonitorComponent</param-value>
+			<param-value>de.twenty11.skysail.server.ext.inlinebrowser.internal.InlineBrowserComponent</param-value>
 		</init-param>
 	</servlet>
 

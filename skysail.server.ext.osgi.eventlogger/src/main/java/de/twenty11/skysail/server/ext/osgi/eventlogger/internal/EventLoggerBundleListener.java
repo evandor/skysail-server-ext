@@ -32,7 +32,7 @@ import org.osgi.framework.BundleListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.ext.eclipselink.service.definition.IEntityManagerProvider;
+import de.twenty11.skysail.server.eclipselink.service.definition.IEntityManagerProvider;
 import de.twenty11.skysail.server.ext.osgi.eventlogger.EventLoggerBundleEvent;
 import de.twenty11.skysail.server.servicedefinitions.ConfigService;
 
@@ -57,7 +57,7 @@ public class EventLoggerBundleListener implements BundleListener {
 
         try {
             ConfigService configService = ServiceProvider.getConfigService();
-            Properties properties = configService.getProperties("skysail.defaultDb.", true);
+            Properties properties = configService.getProperties("skysail.defaultDb.");
             
             //HashMap<String, Object> properties = new HashMap<String, Object>();
             properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());

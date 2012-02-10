@@ -17,7 +17,7 @@
 
 package de.twenty11.skysail.server.ext.osgi.eventlogger.internal;
 
-import de.twenty11.skysail.server.ext.eclipselink.service.definition.IEntityManagerProvider;
+import de.twenty11.skysail.server.eclipselink.service.definition.IEntityManagerProvider;
 import de.twenty11.skysail.server.servicedefinitions.ConfigService;
 
 /**

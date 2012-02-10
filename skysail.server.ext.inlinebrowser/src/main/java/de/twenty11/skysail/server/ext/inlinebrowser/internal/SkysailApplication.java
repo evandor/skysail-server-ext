@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.RestletOsgiApplication;
-import de.twenty11.skysail.server.UrlMappingServiceListener;
+import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 
 /**
  * @author carsten

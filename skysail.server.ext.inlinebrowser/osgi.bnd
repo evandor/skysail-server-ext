@@ -1,3 +1,5 @@
+Import-Package: !com.google.common.base,
+ *
 DynamicImport-Package: *
 FtlTemplates: /freemarker/ftls/
 Bundle-Activator: de.twenty11.skysail.server.ext.inlinebrowser.internal.Activator

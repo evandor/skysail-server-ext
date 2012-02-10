@@ -22,7 +22,7 @@ import org.restlet.data.Protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.UrlMappingServiceListener;
+import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 
 /**
  * Concurrency note from parent class: instances of this class or its subclasses
@@ -33,12 +33,12 @@ import de.twenty11.skysail.server.UrlMappingServiceListener;
  * @author carsten
  * 
  */
-public class OsgiMonitorComponent extends Component {
+public class InlineBrowserComponent extends Component {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
     
-    public OsgiMonitorComponent() {
+    public InlineBrowserComponent() {
         //getServers().add(Protocol.HTTP, port);
         getClients().add(Protocol.CLAP);
 
