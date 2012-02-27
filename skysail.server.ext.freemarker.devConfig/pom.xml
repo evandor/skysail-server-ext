@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>skysail.server.freemarker.devConfig</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>skysail server freemarker configuration to be used during development</name>
 	<packaging>bundle</packaging>
 
