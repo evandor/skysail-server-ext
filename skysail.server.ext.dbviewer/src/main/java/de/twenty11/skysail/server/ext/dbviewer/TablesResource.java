@@ -28,57 +28,50 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.RowData;
+import de.twenty11.skysail.common.grids.ColumnsBuilder;
+import de.twenty11.skysail.common.grids.RowData;
 import de.twenty11.skysail.common.messages.GridData;
-import de.twenty11.skysail.common.messages.GridInfo;
+import de.twenty11.skysail.server.GridDataServerResource;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.osgi.SkysailUtils;
-import de.twenty11.skysail.server.restletosgi.SkysailServerResource;
 
-public class TablesResource extends SkysailServerResource<GridData> {
+public class TablesResource extends GridDataServerResource {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String[] fields = { "name" };
-
     public TablesResource() {
+        super(new GridData());
         setTemplate("skysail.server.ext.dbviewer:tables.ftl");
     }
 
     @Override
-    public GridData getData() {
+    public void configureColumns(ColumnsBuilder builder) {
+        builder.addColumn("Table");
+
+    }
+
+    @Override
+    public void filterData() {
         String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         BasicDataSource ds = ConnectionsResource.datasources.get(connectionName);
-        GridInfo fieldsList = SkysailUtils.createFieldList(fields);
-        GridData grid = new GridData(fieldsList.getColumns());
-
+        GridData grid = getSkysailData();
+        Connection connection;
         try {
-            Connection connection = ds.getConnection();
+            connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
-            
-            ResultSet tables = meta.getTables(null, null, null, new String[] {"TABLE"});
+
+            ResultSet tables = meta.getTables(null, null, null, new String[]{"TABLE"});
             while (tables.next()) {
                 RowData rowData = new RowData();
                 List<Object> cols = new ArrayList<Object>();
                 cols.add(tables.getString("TABLE_NAME"));
                 rowData.setColumnData(cols);
-                grid.addRowData(rowData );
+                grid.addRowData(rowData);
             }
-
-            //            ResultSet schemas = meta.getSchemas(null, null);
-            //            while (schemas.next()) {
-            //                RowData rowData = new RowData();
-            //                List<Object> cols = new ArrayList<Object>();
-            //                cols.add(schemas.getString(0));
-            //                rowData.setColumnData(cols);
-            //                grid.addRowData(rowData );
-            //
-            //            }
         } catch (SQLException e) {
-            throw new RuntimeException("Exception when trying to retrieve metadata", e);
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        return grid;
     }
 
 }

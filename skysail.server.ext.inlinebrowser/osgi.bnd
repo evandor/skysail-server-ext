@@ -1,0 +1,8 @@
+Import-Package: !com.google.common.base,
+ *
+DynamicImport-Package: *
+FtlTemplates: /freemarker/ftls/
+Bundle-Activator: de.twenty11.skysail.server.ext.inlinebrowser.internal.Activator
+Bundle-SymbolicName: skysail.server.ext.inlinebrowser
+Service-Component: OSGI-INF/*.xml
+Web-ContextPath: /

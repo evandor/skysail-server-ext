@@ -41,27 +41,42 @@ public class WorkspaceUrlTemplateLoader extends URLTemplateLoader {
 
         String[] packageParts = templateIdentifier.getPackageParts();
         String repIdentifier = "dev.gitRepPath." + packageParts[0] + "." + packageParts[1];
+        if (packageParts.length > 2 && packageParts[2].equals("ext")) {
+            repIdentifier = "dev.gitRepPath." + packageParts[0] + "." + packageParts[1] + ".ext";
+        }
         String gitRepPath = ConfigServiceProvider.getConfigString(repIdentifier);
         if (gitRepPath == null) {
             gitRepPath = "";
         }
-        File restletOsgiFtlDir = workspaceDirectory.append("../../../").append(gitRepPath)
-                        .append("/" + templateIdentifier.getBundleName() + "/src/main/resources/freemarker/ftls")
+        File templateFile = workspaceDirectory.append("../../../").append(gitRepPath)
+                        .append("/" + templateIdentifier.getBundleName() + "/src/main/resources/freemarker/" + templateIdentifier.getTemplateName())
                         .toFile();
-        String[] ftlDirListing = restletOsgiFtlDir.list();
-        for (String filename : ftlDirListing) {
-            if (filename.endsWith(templateIdentifier.getTemplateName())) {
-                try {
-                    String filepath = ("file:///" + restletOsgiFtlDir + File.separator + filename).replace("\\", "/");
-                    return new URL(filepath);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return null;
-                }
-            }
+        try {
+            String filepath = ("file:///" + templateFile).replace("\\", "/");
+            return new URL(filepath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+        
+//        
+//        File restletOsgiFtlDir = workspaceDirectory.append("../../../").append(gitRepPath)
+//                        .append("/" + templateIdentifier.getBundleName() + "/src/main/resources/freemarker")
+//                        .toFile();
+//        String[] ftlDirListing = restletOsgiFtlDir.list();
+//        for (String filename : ftlDirListing) {
+//            if (filename.endsWith(templateIdentifier.getTemplateName())) {
+//                try {
+//                    String filepath = ("file:///" + restletOsgiFtlDir + File.separator + filename).replace("\\", "/");
+//                    return new URL(filepath);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    return null;
+//                }
+//            }
+//        }
 
-        return null;
+//        return null;
     }
 
     /**
@@ -69,7 +84,8 @@ public class WorkspaceUrlTemplateLoader extends URLTemplateLoader {
      * and template names.
      * 
      * @throws IllegalArgumentException
-     *             when the identifier is null, empty or not of the form 'a.b*:c'
+     *             when the identifier is null, empty or not of the form
+     *             'a.b*:c'
      * @author carsten
      * 
      */
@@ -84,12 +100,15 @@ public class WorkspaceUrlTemplateLoader extends URLTemplateLoader {
          */
         private String templateName;
 
-        /** the bundlename's package parts, i.e. [a,b] for a bundlename like a.b. */
+        /**
+         * the bundlename's package parts, i.e. [a,b] for a bundlename like a.b.
+         */
         private String[] packageParts;
 
         /**
          * getting an identifier expected in the form of
-         * <bundlename>:<templatename>. The bundlename must at least have one ".".
+         * <bundlename>:<templatename>. The bundlename must at least have one
+         * ".".
          * 
          * @param identifier
          *            a string to be split into bundleName and templateName.
@@ -126,7 +145,8 @@ public class WorkspaceUrlTemplateLoader extends URLTemplateLoader {
         }
 
         /**
-         * @return a list of the parts which form the bundle name (split by dots ".").
+         * @return a list of the parts which form the bundle name (split by dots
+         *         ".").
          */
         public String[] getPackageParts() {
             return packageParts;

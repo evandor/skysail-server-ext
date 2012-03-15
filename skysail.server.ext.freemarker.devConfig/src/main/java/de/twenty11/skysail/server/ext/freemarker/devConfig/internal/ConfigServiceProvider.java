@@ -17,7 +17,7 @@
 
 package de.twenty11.skysail.server.ext.freemarker.devConfig.internal;
 
-import de.twenty11.skysail.server.service.definition.ConfigService;
+import de.twenty11.skysail.server.servicedefinitions.ConfigService;
 
 /**
  * class to access the configuration service.
