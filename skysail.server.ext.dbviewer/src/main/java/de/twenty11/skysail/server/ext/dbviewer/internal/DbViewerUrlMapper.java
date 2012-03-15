@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import de.twenty11.skysail.server.UrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
 import de.twenty11.skysail.server.ext.dbviewer.DataResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
+import de.twenty11.skysail.server.servicedefinitions.UrlMapper;
 
 public class DbViewerUrlMapper implements UrlMapper {
 

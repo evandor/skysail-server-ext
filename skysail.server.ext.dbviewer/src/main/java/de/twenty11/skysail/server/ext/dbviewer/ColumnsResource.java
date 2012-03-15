@@ -28,33 +28,36 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.RowData;
+import de.twenty11.skysail.common.grids.ColumnsBuilder;
+import de.twenty11.skysail.common.grids.RowData;
 import de.twenty11.skysail.common.messages.GridData;
-import de.twenty11.skysail.common.messages.GridInfo;
+import de.twenty11.skysail.server.GridDataServerResource;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.osgi.SkysailUtils;
-import de.twenty11.skysail.server.restletosgi.SkysailServerResource;
 
-public class ColumnsResource extends SkysailServerResource<GridData> {
+public class ColumnsResource extends GridDataServerResource {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String[] fields = { "typeName", "ColSize", "ColName", "DataType" };
-
     public ColumnsResource() {
+        super(new GridData());
         setTemplate("skysail.server.ext.dbviewer:columns.ftl");
+    }
+    
+    @Override
+    public void configureColumns(ColumnsBuilder builder) {
+        builder.addColumn("typeName").addColumn("ColSize").addColumn("ColName").addColumn("DataType");
+        
     }
 
     @Override
-    public GridData getData() {
+    public void filterData() {
         
         String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         String tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
 
         BasicDataSource ds = ConnectionsResource.datasources.get(connectionName);
-        GridInfo fieldsList = SkysailUtils.createFieldList(fields);
-        GridData grid = new GridData(fieldsList.getColumns());
+        GridData grid = getSkysailData();
 
         Connection connection;
         try {
@@ -71,10 +74,10 @@ public class ColumnsResource extends SkysailServerResource<GridData> {
                 rowData.setColumnData(cols);
                 grid.addRowData(rowData);
             }
-            return grid;
         } catch (SQLException e) {
             throw new RuntimeException("could not execute select statement",e);
         }
     }
+
 
 }
