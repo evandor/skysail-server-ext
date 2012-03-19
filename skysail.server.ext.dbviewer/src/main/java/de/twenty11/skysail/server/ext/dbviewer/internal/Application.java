@@ -18,12 +18,11 @@
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
 import de.twenty11.skysail.common.app.SkysailApplication;
-import de.twenty11.skysail.common.app.Version;
 import de.twenty11.skysail.server.servicedefinitions.ApplicationService;
 
 public class Application implements ApplicationService {
     @Override
     public SkysailApplication getApplication() {
-        return new SkysailApplication("dbviewer", new Version("0.0.3.SNAPSHOT"), "skysail dbviewer", "dbviewer");
+        return new SkysailApplication("dbviewer",  "skysail dbviewer", "dbviewer");
     }
 }

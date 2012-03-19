@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
-import de.twenty11.skysail.common.messages.GridData;
+import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.server.GridDataServerResource;
 
 public class DataResource extends GridDataServerResource {
