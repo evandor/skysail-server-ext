@@ -58,7 +58,7 @@ public class DataResource extends GridDataServerResource {
     }
 
     @Override
-    public void filterData() {
+    public void buildGrid() {
         // TODO Auto-generated method stub
         
     }

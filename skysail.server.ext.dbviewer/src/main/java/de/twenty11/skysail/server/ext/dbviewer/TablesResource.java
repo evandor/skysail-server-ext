@@ -51,7 +51,7 @@ public class TablesResource extends GridDataServerResource {
     }
 
     @Override
-    public void filterData() {
+    public void buildGrid() {
         String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         BasicDataSource ds = ConnectionsResource.datasources.get(connectionName);
         GridData grid = getSkysailData();
@@ -62,11 +62,9 @@ public class TablesResource extends GridDataServerResource {
 
             ResultSet tables = meta.getTables(null, null, null, new String[]{"TABLE"});
             while (tables.next()) {
-                RowData rowData = new RowData();
-                List<Object> cols = new ArrayList<Object>();
-                cols.add(tables.getString("TABLE_NAME"));
-                rowData.setColumnData(cols);
-                grid.addRowData(rowData);
+                RowData row = new RowData(getSkysailData().getColumns());
+                row.add(tables.getString("TABLE_NAME"));
+                grid.addRowData(getSkysailData().getFilter(), row);
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

@@ -51,7 +51,7 @@ public class ColumnsResource extends GridDataServerResource {
     }
 
     @Override
-    public void filterData() {
+    public void buildGrid() {
         
         String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         String tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
@@ -65,14 +65,12 @@ public class ColumnsResource extends GridDataServerResource {
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet columns = meta.getColumns(null, null, tableName, null);
             while (columns.next()) {
-                RowData rowData = new RowData();
-                List<Object> cols = new ArrayList<Object>();
-                cols.add(columns.getString("TYPE_NAME"));
-                cols.add(columns.getString("COLUMN_SIZE"));
-                cols.add(columns.getString("COLUMN_NAME"));
-                cols.add(columns.getString("DATA_TYPE"));
-                rowData.setColumnData(cols);
-                grid.addRowData(rowData);
+                RowData row = new RowData(getSkysailData().getColumns());
+                row.add(columns.getString("TYPE_NAME"));
+                row.add(columns.getString("COLUMN_SIZE"));
+                row.add(columns.getString("COLUMN_NAME"));
+                row.add(columns.getString("DATA_TYPE"));
+                grid.addRowData(getSkysailData().getFilter(), row);
             }
         } catch (SQLException e) {
             throw new RuntimeException("could not execute select statement",e);

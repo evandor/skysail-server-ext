@@ -1,8 +1,6 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -36,24 +34,28 @@ public class ConnectionsResource extends GridDataServerResource {
     }
 
     @Override
-    public void filterData() {
+    public void buildGrid() {
         GridData grid = getSkysailData();
         for (String dsName : datasources.keySet()) {
             BasicDataSource ds = datasources.get(dsName);
-            RowData rowData = new RowData();
-            List<Object> cols = new ArrayList<Object>();
-            cols.add(dsName);
-            cols.add(ds.getUrl());
-            cols.add(ds.getUsername());
-            cols.add(ds.getDriverClassName());
-            rowData.setColumnData(cols);
-            grid.addRowData(rowData);
+            RowData row = new RowData(getSkysailData().getColumns());
+            // @formatter:Off
+            row
+                .add(dsName)
+                .add(ds.getUrl())
+                .add(ds.getUsername())
+                .add(ds.getDriverClassName());
+            // @formatter:On
+            grid.addRowData(getSkysailData().getFilter(), row);
         }
     }
 
     @Override
     public void configureColumns(ColumnsBuilder builder) {
         builder.addColumn("connectionName");
+        builder.addColumn("url");
+        builder.addColumn("user");
+        builder.addColumn("driver");
     }
 
 }
