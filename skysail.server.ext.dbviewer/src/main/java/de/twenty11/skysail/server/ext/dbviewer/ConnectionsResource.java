@@ -24,30 +24,12 @@ public class ConnectionsResource extends GridDataServerResource {
         defaultDS.setDriverClassName("com.mysql.jdbc.Driver");
         defaultDS.setUsername("root");
         defaultDS.setPassword("");
-        defaultDS.setUrl("jdbc:mysql://localhost/skysail");
+        defaultDS.setUrl("jdbc:mysql://localhost/skysailosgi");
         datasources.put("default", defaultDS);
     }
 
     public ConnectionsResource() {
-        super(new GridData());
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");
-    }
-
-    @Override
-    public void buildGrid() {
-        GridData grid = getSkysailData();
-        for (String dsName : datasources.keySet()) {
-            BasicDataSource ds = datasources.get(dsName);
-            RowData row = new RowData(getSkysailData().getColumns());
-            // @formatter:Off
-            row
-                .add(dsName)
-                .add(ds.getUrl())
-                .add(ds.getUsername())
-                .add(ds.getDriverClassName());
-            // @formatter:On
-            grid.addRowData(getSkysailData().getFilter(), row);
-        }
     }
 
     @Override
@@ -58,4 +40,17 @@ public class ConnectionsResource extends GridDataServerResource {
         builder.addColumn("driver");
     }
 
+    @Override
+    public void buildGrid() {
+        GridData grid = getSkysailData();
+        for (String dsName : datasources.keySet()) {
+            BasicDataSource ds = datasources.get(dsName);
+            RowData row = new RowData(getSkysailData().getColumns());
+            row.add(dsName);
+            row.add(ds.getUrl());
+            row.add(ds.getUsername());
+            row.add(ds.getDriverClassName());
+            grid.addRowData(getSkysailData().getFilter(), row);
+        }
+    }
 }

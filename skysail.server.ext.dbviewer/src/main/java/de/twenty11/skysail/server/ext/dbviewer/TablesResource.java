@@ -21,8 +21,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
@@ -40,7 +38,6 @@ public class TablesResource extends GridDataServerResource {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public TablesResource() {
-        super(new GridData());
         setTemplate("skysail.server.ext.dbviewer:tables.ftl");
     }
 
@@ -67,8 +64,7 @@ public class TablesResource extends GridDataServerResource {
                 grid.addRowData(getSkysailData().getFilter(), row);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        	throw new RuntimeException("Database Problem: " + e.getMessage(), e);
         }
     }
 

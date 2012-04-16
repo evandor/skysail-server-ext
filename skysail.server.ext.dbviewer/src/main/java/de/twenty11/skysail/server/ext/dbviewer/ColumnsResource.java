@@ -21,8 +21,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
@@ -40,13 +38,15 @@ public class ColumnsResource extends GridDataServerResource {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public ColumnsResource() {
-        super(new GridData());
         setTemplate("skysail.server.ext.dbviewer:columns.ftl");
     }
     
     @Override
     public void configureColumns(ColumnsBuilder builder) {
-        builder.addColumn("typeName").addColumn("ColSize").addColumn("ColName").addColumn("DataType");
+        builder.addColumn("typeName");
+        builder.addColumn("colSize");
+        builder.addColumn("ColName");
+        builder.addColumn("DataType");
         
     }
 
@@ -73,7 +73,7 @@ public class ColumnsResource extends GridDataServerResource {
                 grid.addRowData(getSkysailData().getFilter(), row);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("could not execute select statement",e);
+            throw new RuntimeException("could not execute select statement: " + e.getMessage(),e);
         }
     }
 
