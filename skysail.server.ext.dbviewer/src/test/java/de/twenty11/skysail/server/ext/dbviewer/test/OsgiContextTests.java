@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
+import static org.junit.Assert.*;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
@@ -59,6 +60,7 @@ public class OsgiContextTests {
      */
     @Test
     public final void testLimitedQueue(final BundleContext bc) throws IOException {
+    	assertTrue(true);
     }
 
 }
