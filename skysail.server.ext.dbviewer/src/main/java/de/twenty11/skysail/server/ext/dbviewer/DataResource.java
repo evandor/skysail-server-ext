@@ -17,19 +17,10 @@
 
 package de.twenty11.skysail.server.ext.dbviewer;
 
-import java.util.List;
-
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
-import org.restlet.representation.Representation;
-import org.restlet.resource.ClientResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.grids.ColumnsBuilder;
-import de.twenty11.skysail.common.grids.GridData;
-import de.twenty11.skysail.common.grids.RowData;
-import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.GridDataServerResource;
 
 public class DataResource extends GridDataServerResource {
@@ -41,57 +32,60 @@ public class DataResource extends GridDataServerResource {
     private final ObjectMapper mapper = new ObjectMapper();
 
 	public DataResource() {
-	    sysout
-        super(new ColumnsBuilder() {
-
-            @Override
-            public void configure() {
-                try {
-
-                    // ClientResource columns2 = new ClientResource(
-                    // "http://localhost:8099/rest/osgi/services/");
-                    // Representation representation2 = columns2.get();
-                    // SkysailResponse<GridData> response2 =
-                    // mapper.readValue(representation2.getText(),
-                    // new TypeReference<SkysailResponse<GridData>>() { });
-                    // GridData payload2 = response2.getData();
-                    // List<RowData> gridData2 = payload2.getGridData();
-                    // List<String> result = new ArrayList<String>();
-                    // for (RowData rowData : gridData2) {
-                    // List<Object> columnData = rowData.getColumnData();
-                    // result.add((String)columnData.get(1));
-                    // }
-
-                    // get (dynamic) Columns definition by
-                    // "eating our own dogfood"
-                    ClientResource columns = new ClientResource("riap://application/dbviewer/default/my_notes/columns/");
-                    columns.setChallengeResponse(getChallengeResponse());
-                    Representation representation = columns.get();// .write(System.out);
-                    SkysailResponse<GridData> response = mapper.readValue(representation.getText(),
-                            new TypeReference<SkysailResponse<GridData>>() {
-                            });
-                    GridData payload = response.getData();
-                    List<RowData> gridData = payload.getGrid();
-                    for (RowData rowData : gridData) {
-                        List<Object> columnData = rowData.getColumnData();
-                        // builder.addColumn(rowData.get().get(0).toString());
-                    }
-                } catch (Exception e) {
-                    throw new RuntimeException("Connectivity Problem: " + e.getMessage(), e);
-                }
-
-                // works as well:
-                // ClientResource columns = new ClientResource(
-                // "http://localhost:8099/rest/dbviewer/default/my_notes/columns/");
-                // try {
-                // columns.get().write(System.out);
-                // } catch (Exception e) {
-                // throw new RuntimeException("Connectivity Problem: " +
-                // e.getMessage(), e);
-                // }
-                addColumn("test");
-            }
-        });
+        System.out.println("test");
+        // super(new ColumnsBuilder() {
+        //
+        // @Override
+        // public void configure() {
+        // try {
+        //
+        // // ClientResource columns2 = new ClientResource(
+        // // "http://localhost:8099/rest/osgi/services/");
+        // // Representation representation2 = columns2.get();
+        // // SkysailResponse<GridData> response2 =
+        // // mapper.readValue(representation2.getText(),
+        // // new TypeReference<SkysailResponse<GridData>>() { });
+        // // GridData payload2 = response2.getData();
+        // // List<RowData> gridData2 = payload2.getGridData();
+        // // List<String> result = new ArrayList<String>();
+        // // for (RowData rowData : gridData2) {
+        // // List<Object> columnData = rowData.getColumnData();
+        // // result.add((String)columnData.get(1));
+        // // }
+        //
+        // // get (dynamic) Columns definition by
+        // // "eating our own dogfood"
+        // ClientResource columns = new
+        // ClientResource("riap://application/dbviewer/default/my_notes/columns/");
+        // columns.setChallengeResponse(getChallengeResponse());
+        // Representation representation = columns.get();// .write(System.out);
+        // SkysailResponse<GridData> response =
+        // mapper.readValue(representation.getText(),
+        // new TypeReference<SkysailResponse<GridData>>() {
+        // });
+        // GridData payload = response.getData();
+        // List<RowData> gridData = payload.getGrid();
+        // for (RowData rowData : gridData) {
+        // List<Object> columnData = rowData.getColumnData();
+        // // builder.addColumn(rowData.get().get(0).toString());
+        // }
+        // } catch (Exception e) {
+        // throw new RuntimeException("Connectivity Problem: " + e.getMessage(),
+        // e);
+        // }
+        //
+        // // works as well:
+        // // ClientResource columns = new ClientResource(
+        // // "http://localhost:8099/rest/dbviewer/default/my_notes/columns/");
+        // // try {
+        // // columns.get().write(System.out);
+        // // } catch (Exception e) {
+        // // throw new RuntimeException("Connectivity Problem: " +
+        // // e.getMessage(), e);
+        // // }
+        // addColumn("test");
+        // }
+        // });
 		setTemplate("skysail.server.ext.dbviewer:data.ftl");
 	}
 
