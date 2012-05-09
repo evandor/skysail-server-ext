@@ -38,18 +38,18 @@ public class ColumnsResource extends GridDataServerResource {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public ColumnsResource() {
+        super(new ColumnsBuilder() {
+            @Override
+            public void configure() {
+                addColumn("typeName");
+                addColumn("colSize");
+                addColumn("ColName");
+                addColumn("DataType");
+            }
+        });
         setTemplate("skysail.server.ext.dbviewer:columns.ftl");
     }
     
-    @Override
-    public void configureColumns(ColumnsBuilder builder) {
-        builder.addColumn("typeName");
-        builder.addColumn("colSize");
-        builder.addColumn("ColName");
-        builder.addColumn("DataType");
-        
-    }
-
     @Override
     public void buildGrid() {
         
@@ -70,7 +70,8 @@ public class ColumnsResource extends GridDataServerResource {
                 row.add(columns.getString("COLUMN_SIZE"));
                 row.add(columns.getString("COLUMN_NAME"));
                 row.add(columns.getString("DATA_TYPE"));
-                grid.addRowData(getSkysailData().getFilter(), row);
+                // grid.addRowData(getSkysailData().getFilter(), row);
+                grid.addRowData(row);
             }
         } catch (SQLException e) {
             throw new RuntimeException("could not execute select statement: " + e.getMessage(),e);

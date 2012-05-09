@@ -38,13 +38,14 @@ public class TablesResource extends GridDataServerResource {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public TablesResource() {
+        super(new ColumnsBuilder() {
+            
+            @Override
+            public void configure() {
+                addColumn("Table");
+            }
+        });
         setTemplate("skysail.server.ext.dbviewer:tables.ftl");
-    }
-
-    @Override
-    public void configureColumns(ColumnsBuilder builder) {
-        builder.addColumn("Table");
-
     }
 
     @Override
@@ -61,7 +62,7 @@ public class TablesResource extends GridDataServerResource {
             while (tables.next()) {
                 RowData row = new RowData(getSkysailData().getColumns());
                 row.add(tables.getString("TABLE_NAME"));
-                grid.addRowData(getSkysailData().getFilter(), row);
+                grid.addRowData(row);
             }
         } catch (SQLException e) {
         	throw new RuntimeException("Database Problem: " + e.getMessage(), e);

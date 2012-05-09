@@ -29,15 +29,17 @@ public class ConnectionsResource extends GridDataServerResource {
     }
 
     public ConnectionsResource() {
-        setTemplate("skysail.server.ext.dbviewer:connections.ftl");
-    }
+        super(new ColumnsBuilder() {
 
-    @Override
-    public void configureColumns(ColumnsBuilder builder) {
-        builder.addColumn("connectionName");
-        builder.addColumn("url");
-        builder.addColumn("user");
-        builder.addColumn("driver");
+            @Override
+            public void configure() {
+                addColumn("connectionName");
+                addColumn("url");
+                addColumn("user");
+                addColumn("driver");
+            }
+        });
+        setTemplate("skysail.server.ext.dbviewer:connections.ftl");
     }
 
     @Override
@@ -50,7 +52,7 @@ public class ConnectionsResource extends GridDataServerResource {
             row.add(ds.getUrl());
             row.add(ds.getUsername());
             row.add(ds.getDriverClassName());
-            grid.addRowData(getSkysailData().getFilter(), row);
+            grid.addRowData(row);
         }
     }
 }
