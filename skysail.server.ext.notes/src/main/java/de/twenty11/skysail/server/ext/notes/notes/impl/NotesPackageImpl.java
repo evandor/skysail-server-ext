@@ -182,7 +182,7 @@ public class NotesPackageImpl extends EPackageImpl implements NotesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getFolder_Children() {
+    public EReference getFolder_Subfolders() {
         return (EReference)folderEClass.getEStructuralFeatures().get(3);
     }
 
@@ -224,7 +224,7 @@ public class NotesPackageImpl extends EPackageImpl implements NotesPackage {
         createEAttribute(folderEClass, FOLDER__NAME);
         createEAttribute(folderEClass, FOLDER__PATH);
         createEReference(folderEClass, FOLDER__NOTES);
-        createEReference(folderEClass, FOLDER__CHILDREN);
+        createEReference(folderEClass, FOLDER__SUBFOLDERS);
     }
 
     /**
@@ -267,7 +267,7 @@ public class NotesPackageImpl extends EPackageImpl implements NotesPackage {
         initEAttribute(getFolder_Name(), ecorePackage.getEString(), "name", null, 0, 1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFolder_Path(), ecorePackage.getEString(), "path", null, 0, 1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getFolder_Notes(), this.getNote(), null, "notes", null, 0, -1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getFolder_Children(), this.getFolder(), null, "children", null, 0, -1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getFolder_Subfolders(), this.getFolder(), null, "subfolders", null, 0, -1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

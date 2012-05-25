@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.impl.FolderImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.impl.FolderImpl#getPath <em>Path</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.impl.FolderImpl#getNotes <em>Notes</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.impl.FolderImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.impl.FolderImpl#getSubfolders <em>Subfolders</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,14 +91,14 @@ public class FolderImpl extends EObjectImpl implements Folder {
     protected EList<Note> notes;
 
     /**
-     * The cached value of the '{@link #getChildren() <em>Children</em>}' reference list.
+     * The cached value of the '{@link #getSubfolders() <em>Subfolders</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getChildren()
+     * @see #getSubfolders()
      * @generated
      * @ordered
      */
-    protected EList<Folder> children;
+    protected EList<Folder> subfolders;
 
     /**
      * <!-- begin-user-doc -->
@@ -178,11 +178,11 @@ public class FolderImpl extends EObjectImpl implements Folder {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<Folder> getChildren() {
-        if (children == null) {
-            children = new EObjectResolvingEList<Folder>(Folder.class, this, NotesPackage.FOLDER__CHILDREN);
+    public EList<Folder> getSubfolders() {
+        if (subfolders == null) {
+            subfolders = new EObjectContainmentEList<Folder>(Folder.class, this, NotesPackage.FOLDER__SUBFOLDERS);
         }
-        return children;
+        return subfolders;
     }
 
     /**
@@ -195,6 +195,8 @@ public class FolderImpl extends EObjectImpl implements Folder {
         switch (featureID) {
             case NotesPackage.FOLDER__NOTES:
                 return ((InternalEList<?>)getNotes()).basicRemove(otherEnd, msgs);
+            case NotesPackage.FOLDER__SUBFOLDERS:
+                return ((InternalEList<?>)getSubfolders()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -213,8 +215,8 @@ public class FolderImpl extends EObjectImpl implements Folder {
                 return getPath();
             case NotesPackage.FOLDER__NOTES:
                 return getNotes();
-            case NotesPackage.FOLDER__CHILDREN:
-                return getChildren();
+            case NotesPackage.FOLDER__SUBFOLDERS:
+                return getSubfolders();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -238,9 +240,9 @@ public class FolderImpl extends EObjectImpl implements Folder {
                 getNotes().clear();
                 getNotes().addAll((Collection<? extends Note>)newValue);
                 return;
-            case NotesPackage.FOLDER__CHILDREN:
-                getChildren().clear();
-                getChildren().addAll((Collection<? extends Folder>)newValue);
+            case NotesPackage.FOLDER__SUBFOLDERS:
+                getSubfolders().clear();
+                getSubfolders().addAll((Collection<? extends Folder>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -263,8 +265,8 @@ public class FolderImpl extends EObjectImpl implements Folder {
             case NotesPackage.FOLDER__NOTES:
                 getNotes().clear();
                 return;
-            case NotesPackage.FOLDER__CHILDREN:
-                getChildren().clear();
+            case NotesPackage.FOLDER__SUBFOLDERS:
+                getSubfolders().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -284,8 +286,8 @@ public class FolderImpl extends EObjectImpl implements Folder {
                 return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
             case NotesPackage.FOLDER__NOTES:
                 return notes != null && !notes.isEmpty();
-            case NotesPackage.FOLDER__CHILDREN:
-                return children != null && !children.isEmpty();
+            case NotesPackage.FOLDER__SUBFOLDERS:
+                return subfolders != null && !subfolders.isEmpty();
         }
         return super.eIsSet(featureID);
     }

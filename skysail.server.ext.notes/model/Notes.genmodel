@@ -16,7 +16,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Folder/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Folder/path"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Notes.ecore#//Folder/notes"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Notes.ecore#//Folder/children"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Notes.ecore#//Folder/subfolders"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.Folder#getName <em>Name</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.Folder#getPath <em>Path</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.Folder#getNotes <em>Notes</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.Folder#getChildren <em>Children</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.notes.Folder#getSubfolders <em>Subfolders</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,19 +95,19 @@ public interface Folder extends EObject {
     EList<Note> getNotes();
 
     /**
-     * Returns the value of the '<em><b>Children</b></em>' reference list.
+     * Returns the value of the '<em><b>Subfolders</b></em>' containment reference list.
      * The list contents are of type {@link de.twenty11.skysail.server.ext.notes.notes.Folder}.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Children</em>' reference list isn't clear,
+     * If the meaning of the '<em>Subfolders</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Children</em>' reference list.
-     * @see de.twenty11.skysail.server.ext.notes.notes.NotesPackage#getFolder_Children()
-     * @model
+     * @return the value of the '<em>Subfolders</em>' containment reference list.
+     * @see de.twenty11.skysail.server.ext.notes.notes.NotesPackage#getFolder_Subfolders()
+     * @model containment="true"
      * @generated
      */
-    EList<Folder> getChildren();
+    EList<Folder> getSubfolders();
 
 } // Folder

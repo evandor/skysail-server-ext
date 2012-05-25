@@ -148,13 +148,13 @@ public interface NotesPackage extends EPackage {
     int FOLDER__NOTES = 2;
 
     /**
-     * The feature id for the '<em><b>Children</b></em>' reference list.
+     * The feature id for the '<em><b>Subfolders</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FOLDER__CHILDREN = 3;
+    int FOLDER__SUBFOLDERS = 3;
 
     /**
      * The number of structural features of the '<em>Folder</em>' class.
@@ -264,15 +264,15 @@ public interface NotesPackage extends EPackage {
     EReference getFolder_Notes();
 
     /**
-     * Returns the meta object for the reference list '{@link de.twenty11.skysail.server.ext.notes.notes.Folder#getChildren <em>Children</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.server.ext.notes.notes.Folder#getSubfolders <em>Subfolders</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Children</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.notes.Folder#getChildren()
+     * @return the meta object for the containment reference list '<em>Subfolders</em>'.
+     * @see de.twenty11.skysail.server.ext.notes.notes.Folder#getSubfolders()
      * @see #getFolder()
      * @generated
      */
-    EReference getFolder_Children();
+    EReference getFolder_Subfolders();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -373,12 +373,12 @@ public interface NotesPackage extends EPackage {
         EReference FOLDER__NOTES = eINSTANCE.getFolder_Notes();
 
         /**
-         * The meta object literal for the '<em><b>Children</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Subfolders</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference FOLDER__CHILDREN = eINSTANCE.getFolder_Children();
+        EReference FOLDER__SUBFOLDERS = eINSTANCE.getFolder_Subfolders();
 
     }
 

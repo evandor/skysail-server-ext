@@ -79,7 +79,7 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_ttnakaaEEeGbUtpOZWUOPQ" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_ttnakqaEEeGbUtpOZWUOPQ" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="Notes.ecore#//Folder/children"/>
+    <element xmi:type="ecore:EReference" href="Notes.ecore#//Folder/subfolders"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ttnak6aEEeGbUtpOZWUOPQ" points="[41, 7, 133, 25]$[149, 24, 241, 42]$[149, 108, 241, 126]$[-92, 108, 0, 126]$[-92, 37, 0, 55]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y5r20KaEEeGbUtpOZWUOPQ" id="(0.846441947565543,0.6696428571428571)"/>
   </edges>
