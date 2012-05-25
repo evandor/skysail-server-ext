@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/skysail.server.ext.notes/src/main/java" editDirectory="/skysail.server.ext.notes.edit/src"
+    modelPluginID="skysail.server.ext.notes" modelName="Notes" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>Notes.ecore</foreignModel>
+  <genPackages prefix="Notes" basePackage="de.twenty11.skysail.server.ext.notes" disposableProviderFactory="true"
+      ecorePackage="Notes.ecore#/">
+    <genClasses ecoreClass="Notes.ecore#//Note">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/created"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/changed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/content"/>
+    </genClasses>
+    <genClasses ecoreClass="Notes.ecore#//Folder">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Folder/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Folder/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Notes.ecore#//Folder/notes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Notes.ecore#//Folder/children"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
