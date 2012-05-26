@@ -1,15 +1,31 @@
 Manifest-Version: 1.0
+Service-Component: OSGI-INF/*.xml
+Export-Package: de.twenty11.skysail.server.ext.notes;uses:="org.eclips
+ e.emf.ecore,org.eclipse.emf.common.util",de.twenty11.skysail.server.e
+ xt.notes.util;uses:="org.eclipse.emf.ecore,de.twenty11.skysail.server
+ .ext.notes,org.eclipse.emf.common.notify,org.eclipse.emf.common.notif
+ y.impl,org.eclipse.emf.ecore.util",de.twenty11.skysail.server.ext;use
+ s:="org.osgi.framework,org.eclipse.persistence.jpa.osgi,de.twenty11.s
+ kysail.server.servicedefinitions,org.slf4j,org.osgi.service.component
+ ,javax.persistence"
+Built-By: carsten
+Tool: Bnd-1.15.0
+Bundle-Name: skysail notes server extension
+Created-By: Apache Maven Bundle Plugin
+JPA-PersistenceUnits: skysail.server.ext.notes
+Build-Jdk: 1.6.0_26
+Bundle-Version: 0.0.1.SNAPSHOT
+Bnd-LastModified: 1338034283084
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Description: This pom needs to be run with maven3!
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Import-Package: de.twenty11.skysail.server.servicedefinitions;version=
+ "[0.2,1)",javax.persistence;version="[2.0,3)",org.eclipse.emf.common.
+ notify,org.eclipse.emf.common.notify.impl,org.eclipse.emf.common.util
+ ,org.eclipse.emf.ecore,org.eclipse.emf.ecore.impl,org.eclipse.emf.eco
+ re.plugin,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.util,o
+ rg.eclipse.persistence.jpa.osgi;version="[2.2,3)",org.osgi.framework;
+ version="[1.5,2)",org.osgi.service.component;version="[1.1,2)",org.sl
+ f4j;version="[1.6,2)"
 Bundle-SymbolicName: skysail.server.ext.notes;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.twenty11.skysail.server.ext.notes,
- de.twenty11.skysail.server.ext.notes.impl,
- de.twenty11.skysail.server.ext.notes.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+
