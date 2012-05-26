@@ -1,2 +1,4 @@
+JPA-PersistenceUnits: skysail.server.ext.notes
 Bundle-SymbolicName: skysail.server.ext.notes
 Include-Resource: {maven-resources}
+Service-Component: OSGI-INF/*.xml

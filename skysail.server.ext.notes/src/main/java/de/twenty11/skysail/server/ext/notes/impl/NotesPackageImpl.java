@@ -146,6 +146,15 @@ public class NotesPackageImpl extends EPackageImpl implements NotesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getNote_Id() {
+        return (EAttribute)noteEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getFolder() {
         return folderEClass;
     }
@@ -219,6 +228,7 @@ public class NotesPackageImpl extends EPackageImpl implements NotesPackage {
         createEAttribute(noteEClass, NOTE__CHANGED);
         createEAttribute(noteEClass, NOTE__TITLE);
         createEAttribute(noteEClass, NOTE__CONTENT);
+        createEAttribute(noteEClass, NOTE__ID);
 
         folderEClass = createEClass(FOLDER);
         createEAttribute(folderEClass, FOLDER__NAME);
@@ -262,6 +272,9 @@ public class NotesPackageImpl extends EPackageImpl implements NotesPackage {
         initEAttribute(getNote_Changed(), ecorePackage.getEDate(), "changed", null, 0, 1, Note.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getNote_Title(), ecorePackage.getEString(), "title", null, 0, 1, Note.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getNote_Content(), ecorePackage.getEString(), "content", null, 0, 1, Note.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getNote_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Note.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        addEOperation(noteEClass, ecorePackage.getEString(), "toString", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(folderEClass, Folder.class, "Folder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getFolder_Name(), ecorePackage.getEString(), "name", null, 0, 1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

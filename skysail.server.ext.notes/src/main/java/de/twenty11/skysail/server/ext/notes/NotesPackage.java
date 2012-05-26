@@ -102,13 +102,22 @@ public interface NotesPackage extends EPackage {
     int NOTE__CONTENT = 3;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NOTE__ID = 4;
+
+    /**
      * The number of structural features of the '<em>Note</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int NOTE_FEATURE_COUNT = 4;
+    int NOTE_FEATURE_COUNT = 5;
 
     /**
      * The meta object id for the '{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl <em>Folder</em>}' class.
@@ -219,6 +228,17 @@ public interface NotesPackage extends EPackage {
      * @generated
      */
     EAttribute getNote_Content();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Note#getId <em>Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see de.twenty11.skysail.server.ext.notes.Note#getId()
+     * @see #getNote()
+     * @generated
+     */
+    EAttribute getNote_Id();
 
     /**
      * Returns the meta object for class '{@link de.twenty11.skysail.server.ext.notes.Folder <em>Folder</em>}'.
@@ -337,6 +357,14 @@ public interface NotesPackage extends EPackage {
          * @generated
          */
         EAttribute NOTE__CONTENT = eINSTANCE.getNote_Content();
+
+        /**
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute NOTE__ID = eINSTANCE.getNote_Id();
 
         /**
          * The meta object literal for the '{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl <em>Folder</em>}' class.

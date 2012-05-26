@@ -11,6 +11,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/changed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/content"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Note/id"/>
+      <genOperations ecoreOperation="Notes.ecore#//Note/toString"/>
     </genClasses>
     <genClasses ecoreClass="Notes.ecore#//Folder">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Notes.ecore#//Folder/name"/>

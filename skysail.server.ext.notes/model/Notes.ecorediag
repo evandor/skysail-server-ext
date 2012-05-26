@@ -19,18 +19,26 @@
         <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Note/content"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_WM7XcaaEEeGbUtpOZWUOPQ"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_l_K00KcLEeGYVIEGP3q2jw" type="2001">
+        <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Note/id"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_l_K00acLEeGYVIEGP3q2jw"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_FFbD8aaEEeGbUtpOZWUOPQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_FFbD8qaEEeGbUtpOZWUOPQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_FFbD86aEEeGbUtpOZWUOPQ"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_FFbrAKaEEeGbUtpOZWUOPQ" type="5002">
+      <children xmi:type="notation:Node" xmi:id="_MzulQKb5EeGs2LtbiQOZog" type="2002">
+        <element xmi:type="ecore:EOperation" href="Notes.ecore#//Note/toString"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_MzulQab5EeGs2LtbiQOZog"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_FFbrAaaEEeGbUtpOZWUOPQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_FFbrAqaEEeGbUtpOZWUOPQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_FFbrA6aEEeGbUtpOZWUOPQ"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_FFXZkaaEEeGbUtpOZWUOPQ" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="Notes.ecore#//Note"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FFXZkqaEEeGbUtpOZWUOPQ" x="456" y="84" width="195" height="111"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FFXZkqaEEeGbUtpOZWUOPQ" x="456" y="84" width="195" height="159"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_aFzGcKaEEeGbUtpOZWUOPQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_aF1isKaEEeGbUtpOZWUOPQ" type="4001"/>
