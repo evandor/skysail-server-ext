@@ -2,8 +2,10 @@ package de.twenty11.skysail.server.ext.notes.notes.impl;
 
 import java.util.Date;
 
-import de.twenty11.skysail.server.ext.notes.notes.Note;
-import de.twenty11.skysail.server.ext.notes.notes.NotesFactory;
+import de.twenty11.skysail.server.ext.notes.Note;
+import de.twenty11.skysail.server.ext.notes.NotesFactory;
+import de.twenty11.skysail.server.ext.notes.impl.NotesFactoryImpl;
+import de.twenty11.skysail.server.ext.notes.impl.NotesPackageImpl;
 
 import org.junit.After;
 import org.junit.Before;

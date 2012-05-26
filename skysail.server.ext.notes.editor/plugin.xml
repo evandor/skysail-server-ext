@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.twenty11.skysail.server.ext.notes.presentation.NotesModelWizardID"
+            name="%_UI_NotesModelWizard_label"
+            class="de.twenty11.skysail.server.ext.notes.presentation.NotesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NotesModelFile.gif">
+         <description>%_UI_NotesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="de.twenty11.skysail.server.ext.notes.presentation.NotesEditorID"
+            name="%_UI_NotesEditor_label"
+            icon="icons/full/obj16/NotesModelFile.gif"
+            extensions="notes"
+            class="de.twenty11.skysail.server.ext.notes.presentation.NotesEditor"
+            contributorClass="de.twenty11.skysail.server.ext.notes.presentation.NotesActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
