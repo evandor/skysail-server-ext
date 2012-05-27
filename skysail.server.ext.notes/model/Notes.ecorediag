@@ -3,6 +3,10 @@
   <children xmi:type="notation:Node" xmi:id="_FFXZkKaEEeGbUtpOZWUOPQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_FFZOwKaEEeGbUtpOZWUOPQ" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_FFbD8KaEEeGbUtpOZWUOPQ" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_l_K00KcLEeGYVIEGP3q2jw" type="2001">
+        <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Note/id"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_l_K00acLEeGYVIEGP3q2jw"/>
+      </children>
       <children xmi:type="notation:Node" xmi:id="_KtITUKaEEeGbUtpOZWUOPQ" type="2001">
         <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Note/created"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_KtITUaaEEeGbUtpOZWUOPQ"/>
@@ -18,10 +22,6 @@
       <children xmi:type="notation:Node" xmi:id="_WM7XcKaEEeGbUtpOZWUOPQ" type="2001">
         <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Note/content"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_WM7XcaaEEeGbUtpOZWUOPQ"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_l_K00KcLEeGYVIEGP3q2jw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Note/id"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_l_K00acLEeGYVIEGP3q2jw"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_FFbD8aaEEeGbUtpOZWUOPQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_FFbD8qaEEeGbUtpOZWUOPQ"/>
@@ -43,6 +43,10 @@
   <children xmi:type="notation:Node" xmi:id="_aFzGcKaEEeGbUtpOZWUOPQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_aF1isKaEEeGbUtpOZWUOPQ" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_aF1isaaEEeGbUtpOZWUOPQ" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_sPNqIKgJEeGjpccNDrI_zg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Folder/id"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sPNqIagJEeGjpccNDrI_zg"/>
+      </children>
       <children xmi:type="notation:Node" xmi:id="_cFUHIKaEEeGbUtpOZWUOPQ" type="2001">
         <element xmi:type="ecore:EAttribute" href="Notes.ecore#//Folder/name"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_cFUHIaaEEeGbUtpOZWUOPQ"/>

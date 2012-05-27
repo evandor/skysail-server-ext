@@ -66,13 +66,22 @@ public interface NotesPackage extends EPackage {
     int NOTE = 0;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NOTE__ID = 0;
+
+    /**
      * The feature id for the '<em><b>Created</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int NOTE__CREATED = 0;
+    int NOTE__CREATED = 1;
 
     /**
      * The feature id for the '<em><b>Changed</b></em>' attribute.
@@ -81,7 +90,7 @@ public interface NotesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int NOTE__CHANGED = 1;
+    int NOTE__CHANGED = 2;
 
     /**
      * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -90,7 +99,7 @@ public interface NotesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int NOTE__TITLE = 2;
+    int NOTE__TITLE = 3;
 
     /**
      * The feature id for the '<em><b>Content</b></em>' attribute.
@@ -99,16 +108,7 @@ public interface NotesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int NOTE__CONTENT = 3;
-
-    /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int NOTE__ID = 4;
+    int NOTE__CONTENT = 4;
 
     /**
      * The number of structural features of the '<em>Note</em>' class.
@@ -130,13 +130,22 @@ public interface NotesPackage extends EPackage {
     int FOLDER = 1;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOLDER__ID = 0;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FOLDER__NAME = 0;
+    int FOLDER__NAME = 1;
 
     /**
      * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -145,7 +154,7 @@ public interface NotesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FOLDER__PATH = 1;
+    int FOLDER__PATH = 2;
 
     /**
      * The feature id for the '<em><b>Notes</b></em>' containment reference list.
@@ -154,7 +163,7 @@ public interface NotesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FOLDER__NOTES = 2;
+    int FOLDER__NOTES = 3;
 
     /**
      * The feature id for the '<em><b>Subfolders</b></em>' containment reference list.
@@ -163,7 +172,7 @@ public interface NotesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FOLDER__SUBFOLDERS = 3;
+    int FOLDER__SUBFOLDERS = 4;
 
     /**
      * The number of structural features of the '<em>Folder</em>' class.
@@ -172,7 +181,7 @@ public interface NotesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FOLDER_FEATURE_COUNT = 4;
+    int FOLDER_FEATURE_COUNT = 5;
 
 
     /**
@@ -249,6 +258,17 @@ public interface NotesPackage extends EPackage {
      * @generated
      */
     EClass getFolder();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Folder#getId <em>Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see de.twenty11.skysail.server.ext.notes.Folder#getId()
+     * @see #getFolder()
+     * @generated
+     */
+    EAttribute getFolder_Id();
 
     /**
      * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Folder#getName <em>Name</em>}'.
@@ -375,6 +395,14 @@ public interface NotesPackage extends EPackage {
          * @generated
          */
         EClass FOLDER = eINSTANCE.getFolder();
+
+        /**
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FOLDER__ID = eINSTANCE.getFolder_Id();
 
         /**
          * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

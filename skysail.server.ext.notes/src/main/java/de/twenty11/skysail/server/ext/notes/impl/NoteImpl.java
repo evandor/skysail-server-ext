@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getId <em>Id</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getCreated <em>Created</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getChanged <em>Changed</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getContent <em>Content</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,6 +37,28 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 @Entity(name = "Notes")
 public class NoteImpl extends EObjectImpl implements Note {
+    /**
+     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    protected static final int ID_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    @Id
+    @GeneratedValue
+    protected int id = ID_EDEFAULT;
+
     /**
      * The default value of the '{@link #getCreated() <em>Created</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -118,28 +140,6 @@ public class NoteImpl extends EObjectImpl implements Note {
      * @ordered
      */
     protected String content = CONTENT_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
-    protected static final int ID_EDEFAULT = 0;
-
-    /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
-    @Id
-    @GeneratedValue
-    protected int id = ID_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -287,6 +287,8 @@ public class NoteImpl extends EObjectImpl implements Note {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case NotesPackage.NOTE__ID:
+                return getId();
             case NotesPackage.NOTE__CREATED:
                 return getCreated();
             case NotesPackage.NOTE__CHANGED:
@@ -295,8 +297,6 @@ public class NoteImpl extends EObjectImpl implements Note {
                 return getTitle();
             case NotesPackage.NOTE__CONTENT:
                 return getContent();
-            case NotesPackage.NOTE__ID:
-                return getId();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -309,6 +309,9 @@ public class NoteImpl extends EObjectImpl implements Note {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case NotesPackage.NOTE__ID:
+                setId((Integer)newValue);
+                return;
             case NotesPackage.NOTE__CREATED:
                 setCreated((Date)newValue);
                 return;
@@ -320,9 +323,6 @@ public class NoteImpl extends EObjectImpl implements Note {
                 return;
             case NotesPackage.NOTE__CONTENT:
                 setContent((String)newValue);
-                return;
-            case NotesPackage.NOTE__ID:
-                setId((Integer)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -336,6 +336,9 @@ public class NoteImpl extends EObjectImpl implements Note {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case NotesPackage.NOTE__ID:
+                setId(ID_EDEFAULT);
+                return;
             case NotesPackage.NOTE__CREATED:
                 setCreated(CREATED_EDEFAULT);
                 return;
@@ -347,9 +350,6 @@ public class NoteImpl extends EObjectImpl implements Note {
                 return;
             case NotesPackage.NOTE__CONTENT:
                 setContent(CONTENT_EDEFAULT);
-                return;
-            case NotesPackage.NOTE__ID:
-                setId(ID_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -363,6 +363,8 @@ public class NoteImpl extends EObjectImpl implements Note {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case NotesPackage.NOTE__ID:
+                return id != ID_EDEFAULT;
             case NotesPackage.NOTE__CREATED:
                 return CREATED_EDEFAULT == null ? created != null : !CREATED_EDEFAULT.equals(created);
             case NotesPackage.NOTE__CHANGED:
@@ -371,8 +373,6 @@ public class NoteImpl extends EObjectImpl implements Note {
                 return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
             case NotesPackage.NOTE__CONTENT:
                 return CONTENT_EDEFAULT == null ? content != null : !CONTENT_EDEFAULT.equals(content);
-            case NotesPackage.NOTE__ID:
-                return id != ID_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }

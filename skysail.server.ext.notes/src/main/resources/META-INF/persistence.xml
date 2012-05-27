@@ -5,6 +5,7 @@
 	<persistence-unit name="skysail.server.ext.notes"
 		transaction-type="RESOURCE_LOCAL">
 		<class>de.twenty11.skysail.server.ext.notes.impl.NoteImpl</class>
+        <class>de.twenty11.skysail.server.ext.notes.impl.FolderImpl</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>

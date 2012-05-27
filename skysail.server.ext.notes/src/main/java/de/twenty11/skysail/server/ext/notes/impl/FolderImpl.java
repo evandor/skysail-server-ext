@@ -2,23 +2,23 @@
  */
 package de.twenty11.skysail.server.ext.notes.impl;
 
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import de.twenty11.skysail.server.ext.notes.Folder;
 import de.twenty11.skysail.server.ext.notes.Note;
 import de.twenty11.skysail.server.ext.notes.NotesPackage;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getId <em>Id</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getPath <em>Path</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getNotes <em>Notes</em>}</li>
@@ -38,7 +39,30 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
+@Entity(name = "Folder")
 public class FolderImpl extends EObjectImpl implements Folder {
+    /**
+     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    protected static final int ID_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    @Id
+    @GeneratedValue
+    protected int id = ID_EDEFAULT;
+
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -116,6 +140,27 @@ public class FolderImpl extends EObjectImpl implements Folder {
     @Override
     protected EClass eStaticClass() {
         return NotesPackage.Literals.FOLDER;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setId(int newId) {
+        int oldId = id;
+        id = newId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NotesPackage.FOLDER__ID, oldId, id));
     }
 
     /**
@@ -208,6 +253,8 @@ public class FolderImpl extends EObjectImpl implements Folder {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case NotesPackage.FOLDER__ID:
+                return getId();
             case NotesPackage.FOLDER__NAME:
                 return getName();
             case NotesPackage.FOLDER__PATH:
@@ -229,6 +276,9 @@ public class FolderImpl extends EObjectImpl implements Folder {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case NotesPackage.FOLDER__ID:
+                setId((Integer)newValue);
+                return;
             case NotesPackage.FOLDER__NAME:
                 setName((String)newValue);
                 return;
@@ -255,6 +305,9 @@ public class FolderImpl extends EObjectImpl implements Folder {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case NotesPackage.FOLDER__ID:
+                setId(ID_EDEFAULT);
+                return;
             case NotesPackage.FOLDER__NAME:
                 setName(NAME_EDEFAULT);
                 return;
@@ -279,6 +332,8 @@ public class FolderImpl extends EObjectImpl implements Folder {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case NotesPackage.FOLDER__ID:
+                return id != ID_EDEFAULT;
             case NotesPackage.FOLDER__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case NotesPackage.FOLDER__PATH:
@@ -301,7 +356,9 @@ public class FolderImpl extends EObjectImpl implements Folder {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
+        result.append(" (id: ");
+        result.append(id);
+        result.append(", name: ");
         result.append(name);
         result.append(", path: ");
         result.append(path);

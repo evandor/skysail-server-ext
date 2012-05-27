@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getId <em>Id</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getCreated <em>Created</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getChanged <em>Changed</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getTitle <em>Title</em>}</li>
  *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getContent <em>Content</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
