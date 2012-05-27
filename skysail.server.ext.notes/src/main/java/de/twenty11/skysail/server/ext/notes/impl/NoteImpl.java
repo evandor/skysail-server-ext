@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import de.twenty11.skysail.server.ext.notes.Note;
 import de.twenty11.skysail.server.ext.notes.NotesPackage;
@@ -53,6 +55,7 @@ public class NoteImpl extends EObjectImpl implements Note {
      * @generated
      * @ordered
      */
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date created = CREATED_EDEFAULT;
 
     /**
@@ -73,6 +76,7 @@ public class NoteImpl extends EObjectImpl implements Note {
      * @generated
      * @ordered
      */
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date changed = CHANGED_EDEFAULT;
 
     /**

@@ -68,7 +68,7 @@ public class ServiceProvider {
     private EntityManager getEntityManager() {
         Properties properties = configService.getProperties("skysail.defaultDb.");
         properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
-        EntityManagerFactory emf = new PersistenceProvider().createEntityManagerFactory("skysail.server.um",
+        EntityManagerFactory emf = new PersistenceProvider().createEntityManagerFactory("skysail.server.ext.notes",
                         properties);
         EntityManager em = emf.createEntityManager();
         return em;

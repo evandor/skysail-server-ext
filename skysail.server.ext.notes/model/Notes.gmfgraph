@@ -1,105 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgraph:Canvas
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition"
-    name="notes">
-  <figures
-      name="Default">
-    <descriptors
-        name="NoteFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="NoteFigure">
-        <layout
-            xsi:type="gmfgraph:FlowLayout"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="NoteCreatedFigure"
-            text="&lt;...>"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="NoteChangedFigure"
-            text="&lt;...>"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="NoteTitleFigure"
-            text="&lt;...>"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="NoteContentFigure"
-            text="&lt;...>"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="NoteIdFigure"
-            text="&lt;...>"/>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="notes">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="FolderNotesTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="FolderSubfoldersTargetDecoration"/>
+    <descriptors name="NoteFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="NoteFigure">
+        <layout xsi:type="gmfgraph:FlowLayout"/>
+        <children xsi:type="gmfgraph:Label" name="NoteTitleFigure" text="&lt;...>"/>
       </actualFigure>
-      <accessors
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
-      <accessors
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
-      <accessors
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.2"/>
-      <accessors
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.3"/>
-      <accessors
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.4"/>
+      <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors
-        name="FolderFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="FolderFigure">
-        <layout
-            xsi:type="gmfgraph:FlowLayout"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="FolderNameFigure"
-            text="&lt;...>"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="FolderPathFigure"
-            text="&lt;...>"/>
+    <descriptors name="FolderFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="FolderFigure">
+        <layout xsi:type="gmfgraph:FlowLayout"/>
+        <children xsi:type="gmfgraph:Label" name="FolderNameFigure" text="&lt;...>"/>
       </actualFigure>
-      <accessors
-          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
-      <accessors
-          figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="FolderNotesFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="FolderNotesFigure" targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors name="FolderSubfoldersFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="FolderSubfoldersFigure" targetDecoration="//@figures.0/@figures.1"/>
     </descriptors>
   </figures>
-  <nodes
-      name="Note"
-      figure="NoteFigure"/>
-  <nodes
-      name="Folder"
-      figure="FolderFigure"/>
-  <labels
-      name="NoteCreated"
-      figure="NoteFigure"
-      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels
-      name="NoteChanged"
-      figure="NoteFigure"
-      accessor="//@figures.0/@descriptors.0/@accessors.1"/>
-  <labels
-      name="NoteTitle"
-      figure="NoteFigure"
-      accessor="//@figures.0/@descriptors.0/@accessors.2"/>
-  <labels
-      name="NoteContent"
-      figure="NoteFigure"
-      accessor="//@figures.0/@descriptors.0/@accessors.3"/>
-  <labels
-      name="NoteId"
-      figure="NoteFigure"
-      accessor="//@figures.0/@descriptors.0/@accessors.4"/>
-  <labels
-      name="FolderName"
-      figure="FolderFigure"
-      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels
-      name="FolderPath"
-      figure="FolderFigure"
-      accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <nodes name="Note" figure="NoteFigure"/>
+  <nodes name="Folder" figure="FolderFigure"/>
+  <connections name="FolderNotes" figure="FolderNotesFigure"/>
+  <connections name="FolderSubfolders" figure="FolderSubfoldersFigure"/>
+  <labels name="NoteTitle" figure="NoteFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="FolderName" figure="FolderFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
 </gmfgraph:Canvas>

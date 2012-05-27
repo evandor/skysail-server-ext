@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/skysail.server.ext.notes/model/Notes.genmodel
+gmf_dashboard/domainModel=platform\:/resource/skysail.server.ext.notes/model/Notes.ecore
+gmf_dashboard/generationModel=platform\:/resource/skysail.server.ext.notes/model/Notes.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/skysail.server.ext.notes/model/Notes.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/skysail.server.ext.notes/model/Notes.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/skysail.server.ext.notes/model/Notes.gmftool
