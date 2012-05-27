@@ -1,32 +1,32 @@
 Manifest-Version: 1.0
-Service-Component: OSGI-INF/*.xml
-Export-Package: de.twenty11.skysail.server.ext.notes;uses:="org.eclips
- e.emf.ecore,org.eclipse.emf.common.util",de.twenty11.skysail.server.e
- xt.notes.util;uses:="org.eclipse.emf.ecore,de.twenty11.skysail.server
- .ext.notes,org.eclipse.emf.common.notify,org.eclipse.emf.common.notif
- y.impl,org.eclipse.emf.ecore.util",de.twenty11.skysail.server.ext;use
- s:="org.osgi.framework,org.eclipse.persistence.jpa.osgi,de.twenty11.s
- kysail.server.servicedefinitions,org.slf4j,org.osgi.service.component
- ,javax.persistence"
+Bnd-LastModified: 1338133374017
+Build-Jdk: 1.6.0_24
 Built-By: carsten
-Tool: Bnd-1.15.0
-Bundle-Name: skysail notes server extension
-Created-By: Apache Maven Bundle Plugin
-JPA-PersistenceUnits: skysail.server.ext.notes
-DynamicImport-Package: *
-Build-Jdk: 1.6.0_26
-Bundle-Version: 0.0.1.SNAPSHOT
-Bnd-LastModified: 1338129334367
-Bundle-ManifestVersion: 2
 Bundle-Description: This pom needs to be run with maven3!
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
-Import-Package: de.twenty11.skysail.server.servicedefinitions;version=
- "[0.2,1)",javax.persistence;version="[2.0,3)",org.eclipse.emf.common.
- notify,org.eclipse.emf.common.notify.impl,org.eclipse.emf.common.util
- ,org.eclipse.emf.ecore,org.eclipse.emf.ecore.impl,org.eclipse.emf.eco
- re.plugin,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.util,o
- rg.eclipse.persistence.jpa.osgi;version="[2.2,3)",org.osgi.framework;
- version="[1.5,2)",org.osgi.service.component;version="[1.1,2)",org.sl
- f4j;version="[1.6,2)"
+Bundle-ManifestVersion: 2
+Bundle-Name: skysail notes server extension
 Bundle-SymbolicName: skysail.server.ext.notes;singleton:=true
-
+Bundle-Version: 0.0.1.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+DynamicImport-Package: *
+Export-Package: de.twenty11.skysail.server.ext;uses:="org.osgi.framework
+ ,org.eclipse.persistence.jpa.osgi,de.twenty11.skysail.server.servicedef
+ initions,org.osgi.service.component,javax.persistence,org.slf4j";versio
+ n="0.0.1.SNAPSHOT",de.twenty11.skysail.server.ext.notes;uses:="org.ecli
+ pse.emf.ecore,org.eclipse.emf.common.util";version="0.0.1.SNAPSHOT",de.
+ twenty11.skysail.server.ext.notes.util;uses:="org.eclipse.emf.ecore,de.
+ twenty11.skysail.server.ext.notes,org.eclipse.emf.common.notify,org.ecl
+ ipse.emf.common.notify.impl,org.eclipse.emf.ecore.util";version="0.0.1.
+ SNAPSHOT"
+Import-Package: de.twenty11.skysail.server.servicedefinitions;version="[
+ 0.2,1)",javax.persistence;version="[2.0,3)",org.eclipse.emf.common.noti
+ fy,org.eclipse.emf.common.notify.impl,org.eclipse.emf.common.util,org.e
+ clipse.emf.ecore,org.eclipse.emf.ecore.impl,org.eclipse.emf.ecore.plugi
+ n,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.util,org.eclipse
+ .persistence.jpa.osgi;version="[2.2,3)",org.osgi.framework;version="[1.
+ 5,2)",org.osgi.service.component;version="[1.1,2)",org.slf4j;version="[
+ 1.6,2)"
+JPA-PersistenceUnits: skysail.server.ext.notes
+Service-Component: OSGI-INF/*.xml
+Tool: Bnd-1.50.0

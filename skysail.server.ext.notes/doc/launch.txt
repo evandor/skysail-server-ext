@@ -1,0 +1,16 @@
+choose:
+
+deselect "add optional"
+
+---
+add org.apache.felix.gogo.* and press add required bundles
+add org.eclipse.equinox.console
+---
+add skysail.common
+add skysial.server.servicedefinitions
+add skysail.server.serviceproviders
+
+add org.slf4j.api
+add org.eclipse.equinox.ds
+
+skysail.common
