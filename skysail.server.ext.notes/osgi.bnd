@@ -1,5 +1,4 @@
 JPA-PersistenceUnits: skysail.server.ext.notes
 DynamicImport-Package: *
 Bundle-SymbolicName: skysail.server.ext.notes;singleton:=true
-Include-Resource: {maven-resources}
 Service-Component: OSGI-INF/*.xml

@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-@Entity(name = "Folder")
+@Entity(name = "skysail.server.ext.notes.Folder")
 public class FolderImpl extends EObjectImpl implements Folder {
     /**
      * The default value of the '{@link #getId() <em>Id</em>}' attribute.

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1338133374017
-Build-Jdk: 1.6.0_24
+Bnd-LastModified: 1338197515542
+Build-Jdk: 1.6.0_26
 Built-By: carsten
 Bundle-Description: This pom needs to be run with maven3!
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
@@ -12,7 +12,7 @@ Created-By: Apache Maven Bundle Plugin
 DynamicImport-Package: *
 Export-Package: de.twenty11.skysail.server.ext;uses:="org.osgi.framework
  ,org.eclipse.persistence.jpa.osgi,de.twenty11.skysail.server.servicedef
- initions,org.osgi.service.component,javax.persistence,org.slf4j";versio
+ initions,org.slf4j,org.osgi.service.component,javax.persistence";versio
  n="0.0.1.SNAPSHOT",de.twenty11.skysail.server.ext.notes;uses:="org.ecli
  pse.emf.ecore,org.eclipse.emf.common.util";version="0.0.1.SNAPSHOT",de.
  twenty11.skysail.server.ext.notes.util;uses:="org.eclipse.emf.ecore,de.
