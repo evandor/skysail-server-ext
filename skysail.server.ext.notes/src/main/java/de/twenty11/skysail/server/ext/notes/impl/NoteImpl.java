@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-@Entity(name = "skysail.server.ext.notes.Notes")
+@Entity(name = "skysail_server_ext_notes_Notes")
 public class NoteImpl extends EObjectImpl implements Note {
     /**
      * The default value of the '{@link #getId() <em>Id</em>}' attribute.
