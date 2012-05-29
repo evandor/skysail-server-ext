@@ -43,6 +43,8 @@ public class ServiceProvider {
     /** slf4j based logger. */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private static EntityManager em;
+
     /**
      * Activating this component will check if the skysail database is setup correctly.
      * 
@@ -51,7 +53,7 @@ public class ServiceProvider {
     protected void activate(final ComponentContext component) {
         logger.info("activating component in {}", component.getBundleContext().getBundle().getSymbolicName());
         try {
-            EntityManager em = getEntityManager();
+            em = getEntityManager();
             // validateDefaultClient(em);
             // validateDefaultRole(em);
             // validateDefaultPermission(em);
@@ -60,6 +62,10 @@ public class ServiceProvider {
         } catch (Throwable t) {
             logger.error("Persisting Entity threw error", t);
         }
+    }
+
+    public static EntityManager entityManager() {
+        return em;
     }
 
     /**
@@ -127,52 +133,5 @@ public class ServiceProvider {
     // }
     // }
     //
-    // private void validateDefaultPermission(EntityManager em) {
-    // try {
-    // SkysailClient defaultClient = ClientService.getClient(1);
-    //
-    // em.getTransaction().begin();
-    // SkysailPermission masterPermission = new SkysailPermission();
-    // masterPermission.setPermissionName("masterpermission");
-    // masterPermission.setId(1);
-    // masterPermission.setClient(defaultClient);
-    // em.persist(masterPermission);
-    // em.getTransaction().commit();
-    //
-    // } catch (Throwable t) {
-    // logger.error("Persisting Entity threw error", t);
-    // }
-    // }
-    //
-    // private void validateDefaultUser(EntityManager em) {
-    // try {
-    // SkysailRole role = RoleService.getRole(1);
-    // Set<SkysailRole> roles = new HashSet<SkysailRole>();
-    // roles.add(role);
-    //
-    // SkysailClient defaultClient = ClientService.getClient(1);
-    // Set<SkysailClient> clients = new HashSet<SkysailClient>();
-    // clients.add(defaultClient);
-    //
-    // SkysailPermission masterPermission = PermissionService.getPermission(1);
-    // Set<SkysailPermission> permissions = new HashSet<SkysailPermission>();
-    // permissions.add(masterPermission);
-    //
-    // em.getTransaction().begin();
-    // SkysailUser admin = new SkysailUser();
-    // admin.setLogin("admin");
-    // admin.setPassword("admin");
-    // admin.setId(1);
-    // admin.setClients(clients);
-    // admin.setPermissions(permissions);
-    //
-    // admin.setRoles(roles);
-    // em.persist(admin);
-    // em.getTransaction().commit();
-    //
-    // } catch (Throwable t) {
-    // logger.error("Persisting Entity threw error", t);
-    // }
-    // }
 
 }
