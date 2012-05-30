@@ -1,0 +1,4 @@
+http://wiki.eclipse.org/Equinox_p2_Repository_Mirroring
+
+eclipse -nosplash -verbose -application org.eclipse.equinox.p2.metadata.repository.mirrorApplication -source http://p2.restlet.org/2.1/ -destination file:C:/TEMP/restletP2Mirror/
+ 
