@@ -30,6 +30,7 @@ add http://p2.restlet.org/2.1 as software site to target
 12	ACTIVE      skysail.server.configuration.byPropertiesService_0.1.1.SNAPSHOT
 14	ACTIVE      skysail.server.serviceprovider_0.2.1.SNAPSHOT
 16	ACTIVE      skysail.common_0.3.1.SNAPSHOT
+4	ACTIVE      skysail.server_0.2.1.SNAPSHOT
 17	ACTIVE      skysail.server.bundleloader_0.0.1.SNAPSHOT
 6	ACTIVE      skysail.server.ext.notes_0.0.1.SNAPSHOT
 
@@ -43,3 +44,10 @@ add http://p2.restlet.org/2.1 as software site to target
 14	ACTIVE      org.eclipse.emf_2.6.0.v20120521-0706
 22	ACTIVE      org.eclipse.emf.common_2.8.0.v20120516-0416
 
+2	ACTIVE      org.restlet.ext.wadl_2.1.0.snapshot-v20120324-2215
+11	ACTIVE      org.restlet_2.1.0.snapshot-v20120324-2215
+22	ACTIVE      org.restlet.ext.xml_2.1.0.snapshot-v20120324-2215
+24	ACTIVE      org.restlet.ext.freemarker_2.1.0.snapshot-v20120324-2215
+
+33	ACTIVE      com.springsource.freemarker_2.3.18
+35	ACTIVE      jackson-core-lgpl_1.9.5
