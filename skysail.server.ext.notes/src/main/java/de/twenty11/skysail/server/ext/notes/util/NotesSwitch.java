@@ -2,11 +2,12 @@
  */
 package de.twenty11.skysail.server.ext.notes.util;
 
-import de.twenty11.skysail.server.ext.notes.*;
+import de.twenty11.skysail.server.ext.notes.Folder;
+import de.twenty11.skysail.server.ext.notes.Note;
+import de.twenty11.skysail.server.ext.notes.NotesPackage;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -19,7 +20,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see de.twenty11.skysail.server.ext.notes.NotesPackage
+ * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage
  * @generated
  */
 public class NotesSwitch<T> extends Switch<T> {

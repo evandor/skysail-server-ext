@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.notes.notes.impl;
+package de.twenty11.skysail.server.ext.notes.unittests;
 
 import java.util.Date;
 

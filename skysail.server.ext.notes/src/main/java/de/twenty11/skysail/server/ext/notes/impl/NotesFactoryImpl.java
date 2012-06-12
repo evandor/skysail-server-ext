@@ -2,14 +2,15 @@
  */
 package de.twenty11.skysail.server.ext.notes.impl;
 
-import de.twenty11.skysail.server.ext.notes.*;
+import de.twenty11.skysail.server.ext.notes.Folder;
+import de.twenty11.skysail.server.ext.notes.Note;
+import de.twenty11.skysail.server.ext.notes.NotesFactory;
+import de.twenty11.skysail.server.ext.notes.NotesPackage;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

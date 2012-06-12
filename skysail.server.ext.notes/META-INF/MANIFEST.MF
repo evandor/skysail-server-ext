@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1338626493473
+Bnd-LastModified: 1339314896552
 Build-Jdk: 1.6.0_26
 Built-By: carsten
 Bundle-Description: This pom needs to be run with maven3!
@@ -10,18 +10,8 @@ Bundle-SymbolicName: skysail.server.ext.notes;singleton:=true
 Bundle-Version: 0.0.1.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 DynamicImport-Package: *
-Export-Package: de.twenty11.skysail.server.ext;uses:="org.restlet.routin
- g,org.restlet.data,org.restlet.util,org.restlet,org.slf4j,de.twenty11.s
- kysail.common.grids,de.twenty11.skysail.server.ext.notes,de.twenty11.sk
- ysail.common,javax.persistence,de.twenty11.skysail.server,org.osgi.fram
- ework,org.eclipse.persistence.jpa.osgi,de.twenty11.skysail.server.servi
- cedefinitions,org.osgi.service.component,de.twenty11.skysail.server.lis
- tener,de.twenty11.skysail.server.restlet";version="0.0.1.SNAPSHOT",de.t
- wenty11.skysail.server.ext.notes;uses:="org.eclipse.emf.ecore,org.eclip
- se.emf.common.util";version="0.0.1.SNAPSHOT",de.twenty11.skysail.server
- .ext.notes.util;uses:="org.eclipse.emf.ecore,de.twenty11.skysail.server
- .ext.notes,org.eclipse.emf.common.notify,org.eclipse.emf.common.notify.
- impl,org.eclipse.emf.ecore.util";version="0.0.1.SNAPSHOT"
+Export-Package: de.twenty11.skysail.server.ext.notes;uses:="org.eclipse.
+ emf.ecore,org.eclipse.emf.common.util";version="0.0.1.SNAPSHOT"
 Import-Package: de.twenty11.skysail.common;version="[0.2,1)",de.twenty11
  .skysail.common.grids;version="[0.3,1)",de.twenty11.skysail.server;vers
  ion="[0.2,1)",de.twenty11.skysail.server.listener;version="[0.2,1)",de.

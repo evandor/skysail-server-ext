@@ -2,13 +2,13 @@
  */
 package de.twenty11.skysail.server.ext.notes.util;
 
-import de.twenty11.skysail.server.ext.notes.*;
+import de.twenty11.skysail.server.ext.notes.Folder;
+import de.twenty11.skysail.server.ext.notes.Note;
+import de.twenty11.skysail.server.ext.notes.NotesPackage;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see de.twenty11.skysail.server.ext.notes.NotesPackage
+ * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage
  * @generated
  */
 public class NotesAdapterFactory extends AdapterFactoryImpl {
@@ -96,13 +96,13 @@ public class NotesAdapterFactory extends AdapterFactoryImpl {
 
 
     /**
-     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.server.ext.notes.Note <em>Note</em>}'.
+     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note <em>Note</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.twenty11.skysail.server.ext.notes.Note
+     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Note
      * @generated
      */
     public Adapter createNoteAdapter() {
@@ -110,13 +110,13 @@ public class NotesAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.server.ext.notes.Folder <em>Folder</em>}'.
+     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Folder <em>Folder</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.twenty11.skysail.server.ext.notes.Folder
+     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Folder
      * @generated
      */
     public Adapter createFolderAdapter() {

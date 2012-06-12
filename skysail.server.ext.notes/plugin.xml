@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://notes/1.0"
-            class="de.twenty11.skysail.server.ext.notes.notes.NotesPackage"
+            class="de.twenty11.skysail.server.ext.notes.integrationtests.notes.NotesPackage"
             genModel="model/Notes.genmodel"/>
    </extension>
 

@@ -73,3 +73,4 @@ add http://p2.restlet.org/2.1 as software site to target
 52	ACTIVE      javax.servlet_3.0.0.v201112011016
 
 
+org.restlet.ext.jackson
