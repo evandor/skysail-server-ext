@@ -2,9 +2,12 @@ package de.twenty11.skysail.server.ext.forms;
 
 import static org.junit.Assert.*;
 
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 
 import de.twenty11.skysail.ext.forms.Form;
 import de.twenty11.skysail.ext.forms.FormsFactory;
@@ -28,6 +31,7 @@ public class FormTest {
 	public void test() {
 		Form simpleForm = formFactory.createForm();
 		simpleForm.setName("Simple Form");
+		new AdapterFactoryEditingDomain(getAdapterFactory(), new BasicCommandStack());
 	}
 
 }
