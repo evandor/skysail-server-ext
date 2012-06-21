@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<forms:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:forms="http://forms/1.0" xsi:schemaLocation="http://forms/1.0 Forms.ecore" name="mySimpleForm">
+  <fields name="Vorname"/>
+  <fields name="Nachname" required="true"/>
+</forms:Form>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/skysail.server.ext.forms/src"
+    modelPluginID="skysail.server.ext.forms" modelName="Forms" importerID="org.eclipse.emf.importer.ecore"
+    copyrightFields="false">
+  <foreignModel>Forms.ecore</foreignModel>
+  <genPackages prefix="Forms" basePackage="de.twenty11.skysail.ext.forms" disposableProviderFactory="true"
+      ecorePackage="Forms.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Forms.ecore#//Type">
+      <genEnumLiterals ecoreEnumLiteral="Forms.ecore#//Type/String"/>
+      <genEnumLiterals ecoreEnumLiteral="Forms.ecore#//Type/Integer"/>
+    </genEnums>
+    <genClasses ecoreClass="Forms.ecore#//Field">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Forms.ecore#//Field/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Forms.ecore#//Field/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Forms.ecore#//Field/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Forms.ecore#//Form">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Forms.ecore#//Form/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Forms.ecore#//Form/fields"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
