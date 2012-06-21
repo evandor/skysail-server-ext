@@ -76,6 +76,12 @@ public class FormsAdapterFactory extends AdapterFactoryImpl {
 			public Object caseForm(Form object) {
 				return createFormAdapter();
 			}
+			public Object caseValue(Value object) {
+				return createValueAdapter();
+			}
+			public Object caseFormInstance(FormInstance object) {
+				return createFormInstanceAdapter();
+			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -119,6 +125,34 @@ public class FormsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFormAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.forms.Value <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.twenty11.skysail.ext.forms.forms.Value
+	 * @generated
+	 */
+	public Adapter createValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.forms.FormInstance <em>Form Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.twenty11.skysail.ext.forms.forms.FormInstance
+	 * @generated
+	 */
+	public Adapter createFormInstanceAdapter() {
 		return null;
 	}
 

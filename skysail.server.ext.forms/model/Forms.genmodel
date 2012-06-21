@@ -20,5 +20,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Forms.ecore#//Form/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Forms.ecore#//Form/fields"/>
     </genClasses>
+    <genClasses ecoreClass="Forms.ecore#//Value">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Forms.ecore#//Value/stringValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Forms.ecore#//Value/field"/>
+    </genClasses>
+    <genClasses ecoreClass="Forms.ecore#//FormInstance">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Forms.ecore#//FormInstance/EReference0"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Forms.ecore#//FormInstance/form"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

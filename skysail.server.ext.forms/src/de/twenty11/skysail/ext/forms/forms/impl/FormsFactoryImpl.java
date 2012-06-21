@@ -62,6 +62,8 @@ public class FormsFactoryImpl extends EFactoryImpl implements FormsFactory {
 		switch (eClass.getClassifierID()) {
 			case FormsPackage.FIELD: return createField();
 			case FormsPackage.FORM: return createForm();
+			case FormsPackage.VALUE: return createValue();
+			case FormsPackage.FORM_INSTANCE: return createFormInstance();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -113,6 +115,26 @@ public class FormsFactoryImpl extends EFactoryImpl implements FormsFactory {
 	public Form createForm() {
 		FormImpl form = new FormImpl();
 		return form;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Value createValue() {
+		ValueImpl value = new ValueImpl();
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FormInstance createFormInstance() {
+		FormInstanceImpl formInstance = new FormInstanceImpl();
+		return formInstance;
 	}
 
 	/**

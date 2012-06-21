@@ -44,6 +44,24 @@ public interface FormsFactory extends EFactory {
 	Form createForm();
 
 	/**
+	 * Returns a new object of class '<em>Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value</em>'.
+	 * @generated
+	 */
+	Value createValue();
+
+	/**
+	 * Returns a new object of class '<em>Form Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Form Instance</em>'.
+	 * @generated
+	 */
+	FormInstance createFormInstance();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

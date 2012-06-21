@@ -99,6 +99,18 @@ public class FormsSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FormsPackage.VALUE: {
+				Value value = (Value)theEObject;
+				Object result = caseValue(value);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FormsPackage.FORM_INSTANCE: {
+				FormInstance formInstance = (FormInstance)theEObject;
+				Object result = caseFormInstance(formInstance);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -130,6 +142,36 @@ public class FormsSwitch {
 	 * @generated
 	 */
 	public Object caseForm(Form object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseValue(Value object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Form Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Form Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseFormInstance(FormInstance object) {
 		return null;
 	}
 

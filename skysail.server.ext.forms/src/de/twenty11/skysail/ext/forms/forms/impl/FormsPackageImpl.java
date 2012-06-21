@@ -8,10 +8,12 @@ package de.twenty11.skysail.ext.forms.forms.impl;
 
 import de.twenty11.skysail.ext.forms.forms.Field;
 import de.twenty11.skysail.ext.forms.forms.Form;
+import de.twenty11.skysail.ext.forms.forms.FormInstance;
 import de.twenty11.skysail.ext.forms.forms.FormsFactory;
 import de.twenty11.skysail.ext.forms.forms.FormsPackage;
 import de.twenty11.skysail.ext.forms.forms.Type;
 
+import de.twenty11.skysail.ext.forms.forms.Value;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -40,6 +42,20 @@ public class FormsPackageImpl extends EPackageImpl implements FormsPackage {
 	 * @generated
 	 */
 	private EClass formEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass formInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,6 +193,60 @@ public class FormsPackageImpl extends EPackageImpl implements FormsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getValue() {
+		return valueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValue_StringValue() {
+		return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getValue_Field() {
+		return (EReference)valueEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFormInstance() {
+		return formInstanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFormInstance_EReference0() {
+		return (EReference)formInstanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFormInstance_Form() {
+		return (EReference)formInstanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getType() {
 		return typeEEnum;
 	}
@@ -218,6 +288,14 @@ public class FormsPackageImpl extends EPackageImpl implements FormsPackage {
 		createEAttribute(formEClass, FORM__NAME);
 		createEReference(formEClass, FORM__FIELDS);
 
+		valueEClass = createEClass(VALUE);
+		createEAttribute(valueEClass, VALUE__STRING_VALUE);
+		createEReference(valueEClass, VALUE__FIELD);
+
+		formInstanceEClass = createEClass(FORM_INSTANCE);
+		createEReference(formInstanceEClass, FORM_INSTANCE__EREFERENCE0);
+		createEReference(formInstanceEClass, FORM_INSTANCE__FORM);
+
 		// Create enums
 		typeEEnum = createEEnum(TYPE);
 	}
@@ -256,6 +334,14 @@ public class FormsPackageImpl extends EPackageImpl implements FormsPackage {
 		initEClass(formEClass, Form.class, "Form", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getForm_Name(), ecorePackage.getEString(), "name", null, 0, 1, Form.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForm_Fields(), this.getField(), null, "fields", null, 0, -1, Form.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValue_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getValue_Field(), this.getField(), null, "field", null, 1, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(formInstanceEClass, FormInstance.class, "FormInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFormInstance_EReference0(), this.getValue(), null, "EReference0", null, 0, -1, FormInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFormInstance_Form(), this.getForm(), null, "form", null, 1, 1, FormInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(typeEEnum, Type.class, "Type");
