@@ -12,8 +12,8 @@ import de.twenty11.skysail.ext.forms.forms.FormInstance;
 import de.twenty11.skysail.ext.forms.forms.FormsFactory;
 import de.twenty11.skysail.ext.forms.forms.FormsPackage;
 import de.twenty11.skysail.ext.forms.forms.Type;
-
 import de.twenty11.skysail.ext.forms.forms.Value;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
