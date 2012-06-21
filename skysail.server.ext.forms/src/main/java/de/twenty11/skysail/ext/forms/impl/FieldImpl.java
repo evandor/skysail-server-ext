@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms.impl;
+package de.twenty11.skysail.ext.forms.impl;
 
-import de.twenty11.skysail.ext.forms.forms.Field;
-import de.twenty11.skysail.ext.forms.forms.FormsPackage;
-import de.twenty11.skysail.ext.forms.forms.Type;
+import de.twenty11.skysail.ext.forms.Field;
+import de.twenty11.skysail.ext.forms.FormsPackage;
+import de.twenty11.skysail.ext.forms.Type;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.impl.FieldImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.impl.FieldImpl#isRequired <em>Required</em>}</li>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.impl.FieldImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.impl.FieldImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.impl.FieldImpl#isRequired <em>Required</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.impl.FieldImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms;
+package de.twenty11.skysail.ext.forms;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see de.twenty11.skysail.ext.forms.forms.FormsFactory
+ * @see de.twenty11.skysail.ext.forms.FormsFactory
  * @model kind="package"
  * @generated
  */
@@ -58,14 +58,14 @@ public interface FormsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	FormsPackage eINSTANCE = de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl.init();
+	FormsPackage eINSTANCE = de.twenty11.skysail.ext.forms.impl.FormsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.forms.impl.FieldImpl <em>Field</em>}' class.
+	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.impl.FieldImpl <em>Field</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FieldImpl
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getField()
+	 * @see de.twenty11.skysail.ext.forms.impl.FieldImpl
+	 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getField()
 	 * @generated
 	 */
 	int FIELD = 0;
@@ -107,11 +107,11 @@ public interface FormsPackage extends EPackage {
 	int FIELD_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.forms.impl.FormImpl <em>Form</em>}' class.
+	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.impl.FormImpl <em>Form</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FormImpl
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getForm()
+	 * @see de.twenty11.skysail.ext.forms.impl.FormImpl
+	 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getForm()
 	 * @generated
 	 */
 	int FORM = 1;
@@ -144,11 +144,11 @@ public interface FormsPackage extends EPackage {
 	int FORM_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.forms.impl.ValueImpl <em>Value</em>}' class.
+	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.impl.ValueImpl <em>Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.ValueImpl
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getValue()
+	 * @see de.twenty11.skysail.ext.forms.impl.ValueImpl
+	 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getValue()
 	 * @generated
 	 */
 	int VALUE = 2;
@@ -181,11 +181,11 @@ public interface FormsPackage extends EPackage {
 	int VALUE_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.forms.impl.FormInstanceImpl <em>Form Instance</em>}' class.
+	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.impl.FormInstanceImpl <em>Form Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FormInstanceImpl
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getFormInstance()
+	 * @see de.twenty11.skysail.ext.forms.impl.FormInstanceImpl
+	 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getFormInstance()
 	 * @generated
 	 */
 	int FORM_INSTANCE = 3;
@@ -218,161 +218,161 @@ public interface FormsPackage extends EPackage {
 	int FORM_INSTANCE_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.forms.Type <em>Type</em>}' enum.
+	 * The meta object id for the '{@link de.twenty11.skysail.ext.forms.Type <em>Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.twenty11.skysail.ext.forms.forms.Type
-	 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getType()
+	 * @see de.twenty11.skysail.ext.forms.Type
+	 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getType()
 	 * @generated
 	 */
 	int TYPE = 4;
 
 
 	/**
-	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.forms.Field <em>Field</em>}'.
+	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.Field <em>Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Field</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Field
+	 * @see de.twenty11.skysail.ext.forms.Field
 	 * @generated
 	 */
 	EClass getField();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.forms.Field#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.Field#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Field#getName()
+	 * @see de.twenty11.skysail.ext.forms.Field#getName()
 	 * @see #getField()
 	 * @generated
 	 */
 	EAttribute getField_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.forms.Field#isRequired <em>Required</em>}'.
+	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.Field#isRequired <em>Required</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Required</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Field#isRequired()
+	 * @see de.twenty11.skysail.ext.forms.Field#isRequired()
 	 * @see #getField()
 	 * @generated
 	 */
 	EAttribute getField_Required();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.forms.Field#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.Field#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Field#getType()
+	 * @see de.twenty11.skysail.ext.forms.Field#getType()
 	 * @see #getField()
 	 * @generated
 	 */
 	EAttribute getField_Type();
 
 	/**
-	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.forms.Form <em>Form</em>}'.
+	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.Form <em>Form</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Form</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Form
+	 * @see de.twenty11.skysail.ext.forms.Form
 	 * @generated
 	 */
 	EClass getForm();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.forms.Form#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.Form#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Form#getName()
+	 * @see de.twenty11.skysail.ext.forms.Form#getName()
 	 * @see #getForm()
 	 * @generated
 	 */
 	EAttribute getForm_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.ext.forms.forms.Form#getFields <em>Fields</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.ext.forms.Form#getFields <em>Fields</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Fields</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Form#getFields()
+	 * @see de.twenty11.skysail.ext.forms.Form#getFields()
 	 * @see #getForm()
 	 * @generated
 	 */
 	EReference getForm_Fields();
 
 	/**
-	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.forms.Value <em>Value</em>}'.
+	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.Value <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Value</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Value
+	 * @see de.twenty11.skysail.ext.forms.Value
 	 * @generated
 	 */
 	EClass getValue();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.forms.Value#getStringValue <em>String Value</em>}'.
+	 * Returns the meta object for the attribute '{@link de.twenty11.skysail.ext.forms.Value#getStringValue <em>String Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>String Value</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Value#getStringValue()
+	 * @see de.twenty11.skysail.ext.forms.Value#getStringValue()
 	 * @see #getValue()
 	 * @generated
 	 */
 	EAttribute getValue_StringValue();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.twenty11.skysail.ext.forms.forms.Value#getField <em>Field</em>}'.
+	 * Returns the meta object for the reference '{@link de.twenty11.skysail.ext.forms.Value#getField <em>Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Field</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Value#getField()
+	 * @see de.twenty11.skysail.ext.forms.Value#getField()
 	 * @see #getValue()
 	 * @generated
 	 */
 	EReference getValue_Field();
 
 	/**
-	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.forms.FormInstance <em>Form Instance</em>}'.
+	 * Returns the meta object for class '{@link de.twenty11.skysail.ext.forms.FormInstance <em>Form Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Form Instance</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.FormInstance
+	 * @see de.twenty11.skysail.ext.forms.FormInstance
 	 * @generated
 	 */
 	EClass getFormInstance();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.ext.forms.forms.FormInstance#getEReference0 <em>EReference0</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.ext.forms.FormInstance#getEReference0 <em>EReference0</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>EReference0</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.FormInstance#getEReference0()
+	 * @see de.twenty11.skysail.ext.forms.FormInstance#getEReference0()
 	 * @see #getFormInstance()
 	 * @generated
 	 */
 	EReference getFormInstance_EReference0();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.twenty11.skysail.ext.forms.forms.FormInstance#getForm <em>Form</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.twenty11.skysail.ext.forms.FormInstance#getForm <em>Form</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Form</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.FormInstance#getForm()
+	 * @see de.twenty11.skysail.ext.forms.FormInstance#getForm()
 	 * @see #getFormInstance()
 	 * @generated
 	 */
 	EReference getFormInstance_Form();
 
 	/**
-	 * Returns the meta object for enum '{@link de.twenty11.skysail.ext.forms.forms.Type <em>Type</em>}'.
+	 * Returns the meta object for enum '{@link de.twenty11.skysail.ext.forms.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Type</em>'.
-	 * @see de.twenty11.skysail.ext.forms.forms.Type
+	 * @see de.twenty11.skysail.ext.forms.Type
 	 * @generated
 	 */
 	EEnum getType();
@@ -400,11 +400,11 @@ public interface FormsPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.forms.impl.FieldImpl <em>Field</em>}' class.
+		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.impl.FieldImpl <em>Field</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FieldImpl
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getField()
+		 * @see de.twenty11.skysail.ext.forms.impl.FieldImpl
+		 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getField()
 		 * @generated
 		 */
 		EClass FIELD = eINSTANCE.getField();
@@ -434,11 +434,11 @@ public interface FormsPackage extends EPackage {
 		EAttribute FIELD__TYPE = eINSTANCE.getField_Type();
 
 		/**
-		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.forms.impl.FormImpl <em>Form</em>}' class.
+		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.impl.FormImpl <em>Form</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FormImpl
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getForm()
+		 * @see de.twenty11.skysail.ext.forms.impl.FormImpl
+		 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getForm()
 		 * @generated
 		 */
 		EClass FORM = eINSTANCE.getForm();
@@ -460,11 +460,11 @@ public interface FormsPackage extends EPackage {
 		EReference FORM__FIELDS = eINSTANCE.getForm_Fields();
 
 		/**
-		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.forms.impl.ValueImpl <em>Value</em>}' class.
+		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.impl.ValueImpl <em>Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.ValueImpl
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getValue()
+		 * @see de.twenty11.skysail.ext.forms.impl.ValueImpl
+		 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getValue()
 		 * @generated
 		 */
 		EClass VALUE = eINSTANCE.getValue();
@@ -486,11 +486,11 @@ public interface FormsPackage extends EPackage {
 		EReference VALUE__FIELD = eINSTANCE.getValue_Field();
 
 		/**
-		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.forms.impl.FormInstanceImpl <em>Form Instance</em>}' class.
+		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.impl.FormInstanceImpl <em>Form Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FormInstanceImpl
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getFormInstance()
+		 * @see de.twenty11.skysail.ext.forms.impl.FormInstanceImpl
+		 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getFormInstance()
 		 * @generated
 		 */
 		EClass FORM_INSTANCE = eINSTANCE.getFormInstance();
@@ -512,11 +512,11 @@ public interface FormsPackage extends EPackage {
 		EReference FORM_INSTANCE__FORM = eINSTANCE.getFormInstance_Form();
 
 		/**
-		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.forms.Type <em>Type</em>}' enum.
+		 * The meta object literal for the '{@link de.twenty11.skysail.ext.forms.Type <em>Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.twenty11.skysail.ext.forms.forms.Type
-		 * @see de.twenty11.skysail.ext.forms.forms.impl.FormsPackageImpl#getType()
+		 * @see de.twenty11.skysail.ext.forms.Type
+		 * @see de.twenty11.skysail.ext.forms.impl.FormsPackageImpl#getType()
 		 * @generated
 		 */
 		EEnum TYPE = eINSTANCE.getType();

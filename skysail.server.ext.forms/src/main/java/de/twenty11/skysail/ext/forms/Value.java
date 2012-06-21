@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms;
+package de.twenty11.skysail.ext.forms;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.Value#getStringValue <em>String Value</em>}</li>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.Value#getField <em>Field</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.Value#getStringValue <em>String Value</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.Value#getField <em>Field</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getValue()
+ * @see de.twenty11.skysail.ext.forms.FormsPackage#getValue()
  * @model
  * @generated
  */
@@ -36,14 +36,14 @@ public interface Value extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>String Value</em>' attribute.
 	 * @see #setStringValue(String)
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getValue_StringValue()
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#getValue_StringValue()
 	 * @model
 	 * @generated
 	 */
 	String getStringValue();
 
 	/**
-	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.forms.Value#getStringValue <em>String Value</em>}' attribute.
+	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.Value#getStringValue <em>String Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>String Value</em>' attribute.
@@ -62,14 +62,14 @@ public interface Value extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Field</em>' reference.
 	 * @see #setField(Field)
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getValue_Field()
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#getValue_Field()
 	 * @model required="true"
 	 * @generated
 	 */
 	Field getField();
 
 	/**
-	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.forms.Value#getField <em>Field</em>}' reference.
+	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.Value#getField <em>Field</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Field</em>' reference.

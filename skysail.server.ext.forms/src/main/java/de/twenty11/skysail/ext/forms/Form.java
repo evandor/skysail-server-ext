@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms;
+package de.twenty11.skysail.ext.forms;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.Form#getName <em>Name</em>}</li>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.Form#getFields <em>Fields</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.Form#getName <em>Name</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.Form#getFields <em>Fields</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getForm()
+ * @see de.twenty11.skysail.ext.forms.FormsPackage#getForm()
  * @model
  * @generated
  */
@@ -38,14 +38,14 @@ public interface Form extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getForm_Name()
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#getForm_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.forms.Form#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.Form#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -56,7 +56,7 @@ public interface Form extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Fields</b></em>' containment reference list.
-	 * The list contents are of type {@link de.twenty11.skysail.ext.forms.forms.Field}.
+	 * The list contents are of type {@link de.twenty11.skysail.ext.forms.Field}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Fields</em>' containment reference list isn't clear,
@@ -64,8 +64,8 @@ public interface Form extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fields</em>' containment reference list.
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getForm_Fields()
-	 * @model type="de.twenty11.skysail.ext.forms.forms.Field" containment="true"
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#getForm_Fields()
+	 * @model type="de.twenty11.skysail.ext.forms.Field" containment="true"
 	 * @generated
 	 */
 	EList getFields();

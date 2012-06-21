@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms.impl;
+package de.twenty11.skysail.ext.forms.impl;
 
-import de.twenty11.skysail.ext.forms.forms.*;
+import de.twenty11.skysail.ext.forms.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms;
+package de.twenty11.skysail.ext.forms;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.Field#getName <em>Name</em>}</li>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.Field#isRequired <em>Required</em>}</li>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.Field#getType <em>Type</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.Field#getName <em>Name</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.Field#isRequired <em>Required</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.Field#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getField()
+ * @see de.twenty11.skysail.ext.forms.FormsPackage#getField()
  * @model
  * @generated
  */
@@ -37,14 +37,14 @@ public interface Field extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getField_Name()
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#getField_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.forms.Field#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.Field#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -63,14 +63,14 @@ public interface Field extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Required</em>' attribute.
 	 * @see #setRequired(boolean)
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getField_Required()
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#getField_Required()
 	 * @model
 	 * @generated
 	 */
 	boolean isRequired();
 
 	/**
-	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.forms.Field#isRequired <em>Required</em>}' attribute.
+	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.Field#isRequired <em>Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Required</em>' attribute.
@@ -81,7 +81,7 @@ public interface Field extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link de.twenty11.skysail.ext.forms.forms.Type}.
+	 * The literals are from the enumeration {@link de.twenty11.skysail.ext.forms.Type}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -89,20 +89,20 @@ public interface Field extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see de.twenty11.skysail.ext.forms.forms.Type
+	 * @see de.twenty11.skysail.ext.forms.Type
 	 * @see #setType(Type)
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getField_Type()
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#getField_Type()
 	 * @model
 	 * @generated
 	 */
 	Type getType();
 
 	/**
-	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.forms.Field#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link de.twenty11.skysail.ext.forms.Field#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see de.twenty11.skysail.ext.forms.forms.Type
+	 * @see de.twenty11.skysail.ext.forms.Type
 	 * @see #getType()
 	 * @generated
 	 */

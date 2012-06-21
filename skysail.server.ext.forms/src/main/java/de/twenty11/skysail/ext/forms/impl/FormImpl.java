@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms.impl;
+package de.twenty11.skysail.ext.forms.impl;
 
-import de.twenty11.skysail.ext.forms.forms.Field;
-import de.twenty11.skysail.ext.forms.forms.Form;
-import de.twenty11.skysail.ext.forms.forms.FormsPackage;
+import de.twenty11.skysail.ext.forms.Field;
+import de.twenty11.skysail.ext.forms.Form;
+import de.twenty11.skysail.ext.forms.FormsPackage;
 
 import java.util.Collection;
 
@@ -33,8 +33,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.impl.FormImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.twenty11.skysail.ext.forms.forms.impl.FormImpl#getFields <em>Fields</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.impl.FormImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.twenty11.skysail.ext.forms.impl.FormImpl#getFields <em>Fields</em>}</li>
  * </ul>
  * </p>
  *

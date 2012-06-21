@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms.util;
+package de.twenty11.skysail.ext.forms.util;
 
-import de.twenty11.skysail.ext.forms.forms.*;
+import de.twenty11.skysail.ext.forms.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see de.twenty11.skysail.ext.forms.forms.FormsPackage
+ * @see de.twenty11.skysail.ext.forms.FormsPackage
  * @generated
  */
 public class FormsAdapterFactory extends AdapterFactoryImpl {
@@ -101,13 +101,13 @@ public class FormsAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.forms.Field <em>Field</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Field <em>Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.forms.Field
+	 * @see de.twenty11.skysail.ext.forms.Field
 	 * @generated
 	 */
 	public Adapter createFieldAdapter() {
@@ -115,13 +115,13 @@ public class FormsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.forms.Form <em>Form</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Form <em>Form</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.forms.Form
+	 * @see de.twenty11.skysail.ext.forms.Form
 	 * @generated
 	 */
 	public Adapter createFormAdapter() {
@@ -129,13 +129,13 @@ public class FormsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.forms.Value <em>Value</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Value <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.forms.Value
+	 * @see de.twenty11.skysail.ext.forms.Value
 	 * @generated
 	 */
 	public Adapter createValueAdapter() {
@@ -143,13 +143,13 @@ public class FormsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.forms.FormInstance <em>Form Instance</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.FormInstance <em>Form Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.forms.FormInstance
+	 * @see de.twenty11.skysail.ext.forms.FormInstance
 	 * @generated
 	 */
 	public Adapter createFormInstanceAdapter() {

@@ -5,7 +5,7 @@
     modelPluginID="skysail.server.ext.forms" modelName="Forms" importerID="org.eclipse.emf.importer.ecore"
     copyrightFields="false">
   <foreignModel>Forms.ecore</foreignModel>
-  <genPackages prefix="Forms" basePackage="de.twenty11.skysail.ext.forms" disposableProviderFactory="true"
+  <genPackages prefix="Forms" basePackage="de.twenty11.skysail.ext" disposableProviderFactory="true"
       ecorePackage="Forms.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Forms.ecore#//Type">
       <genEnumLiterals ecoreEnumLiteral="Forms.ecore#//Type/String"/>

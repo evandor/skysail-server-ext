@@ -4,15 +4,15 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms.impl;
+package de.twenty11.skysail.ext.forms.impl;
 
-import de.twenty11.skysail.ext.forms.forms.Field;
-import de.twenty11.skysail.ext.forms.forms.Form;
-import de.twenty11.skysail.ext.forms.forms.FormInstance;
-import de.twenty11.skysail.ext.forms.forms.FormsFactory;
-import de.twenty11.skysail.ext.forms.forms.FormsPackage;
-import de.twenty11.skysail.ext.forms.forms.Type;
-import de.twenty11.skysail.ext.forms.forms.Value;
+import de.twenty11.skysail.ext.forms.Field;
+import de.twenty11.skysail.ext.forms.Form;
+import de.twenty11.skysail.ext.forms.FormInstance;
+import de.twenty11.skysail.ext.forms.FormsFactory;
+import de.twenty11.skysail.ext.forms.FormsPackage;
+import de.twenty11.skysail.ext.forms.Type;
+import de.twenty11.skysail.ext.forms.Value;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -75,7 +75,7 @@ public class FormsPackageImpl extends EPackageImpl implements FormsPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#eNS_URI
+	 * @see de.twenty11.skysail.ext.forms.FormsPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

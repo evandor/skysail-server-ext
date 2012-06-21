@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms;
+package de.twenty11.skysail.ext.forms;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * A representation of the literals of the enumeration '<em><b>Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see de.twenty11.skysail.ext.forms.forms.FormsPackage#getType()
+ * @see de.twenty11.skysail.ext.forms.FormsPackage#getType()
  * @model
  * @generated
  */

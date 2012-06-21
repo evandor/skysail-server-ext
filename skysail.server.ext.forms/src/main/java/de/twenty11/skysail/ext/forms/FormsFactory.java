@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.twenty11.skysail.ext.forms.forms;
+package de.twenty11.skysail.ext.forms;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see de.twenty11.skysail.ext.forms.forms.FormsPackage
+ * @see de.twenty11.skysail.ext.forms.FormsPackage
  * @generated
  */
 public interface FormsFactory extends EFactory {
@@ -23,7 +23,7 @@ public interface FormsFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	FormsFactory eINSTANCE = de.twenty11.skysail.ext.forms.forms.impl.FormsFactoryImpl.init();
+	FormsFactory eINSTANCE = de.twenty11.skysail.ext.forms.impl.FormsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Field</em>'.
