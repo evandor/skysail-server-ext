@@ -29,10 +29,9 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.3.7</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <manifestLocation>META-INF</manifestLocation>
+                    <!-- manifestLocation>META-INF</manifestLocation-->
                     <instructions>
                         <_include>-osgi.bnd</_include>
                         <Include-Resource>
@@ -64,7 +63,7 @@
             <version>2.8.0.v20120516</version>
         </dependency>
         <dependency>
-            <groupId>de.twenty11.skysail</groupId>
+            <groupId>de.twentyeleven.skysail</groupId>
             <artifactId>skysail.server.eclipselink</artifactId>
             <version>0.0.3-SNAPSHOT</version>
         </dependency>

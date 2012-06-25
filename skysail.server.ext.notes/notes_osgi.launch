@@ -23,5 +23,5 @@
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useCustomFeatures" value="false"/>
 <booleanAttribute key="useDefaultConfigArea" value="true"/>
-<stringAttribute key="workspace_bundles" value="skysail.common@default:default,skysail.server.configuration.byPropertiesService@default:default,skysail.server.eclipselink@default:default,skysail.server.ext.notes@default:default,skysail.server.serviceprovider@default:default,skysail.server@default:default"/>
+<stringAttribute key="workspace_bundles" value="skysail.common@default:default,skysail.server.ext.notes@default:default,skysail.server@default:default"/>
 </launchConfiguration>

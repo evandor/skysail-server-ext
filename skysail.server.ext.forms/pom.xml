@@ -1,78 +1,84 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>de.twentyeleven.skysail</groupId>
-        <artifactId>skysail.build.maven.parentPom</artifactId>
-        <version>0.7.10-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>de.twentyeleven.skysail</groupId>
+		<artifactId>skysail.build.maven.parentPom</artifactId>
+		<version>0.7.10-SNAPSHOT</version>
+	</parent>
 
-    <scm>
-        <!-- read access -->
-        <connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
-        <!-- write access -->
-        <developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
-        <!-- A publicly browsable repository. For example, via ViewCVS. -->
-        <url>scm:git:git@github.com:evandor/skysail-server-ext</url>
-    </scm>
+	<scm>
+		<!-- read access -->
+		<connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
+		<!-- write access -->
+		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
+		<!-- A publicly browsable repository. For example, via ViewCVS. -->
+		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
+	</scm>
 
-    <artifactId>skysail.server.ext.forms</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>skysail server extension - form management</name>
-    <packaging>bundle</packaging>
+	<artifactId>skysail.server.ext.forms</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>skysail server extension - form management</name>
+	<packaging>bundle</packaging>
 
-    <build>
+	<build>
 
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <manifestLocation>META-INF</manifestLocation>
-                    <instructions>
-                        <_include>-osgi.bnd</_include>
-                        <Include-Resource>
-                            {maven-resources},
-                            WEB-INF/=WEB-INF, OSGI-INF/=OSGI-INF/,
-                            etc/=etc/, index.html=index.html,
-                            webapp/=webapp/
-                        </Include-Resource>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<_include>-osgi.bnd</_include>
+						<Include-Resource>
+							{maven-resources},
+							WEB-INF/=WEB-INF,
+							OSGI-INF/=OSGI-INF/,
+							etc/=etc/, index.html=index.html,
+							webapp/=webapp/
+						</Include-Resource>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.emf</groupId>
-            <artifactId>ecore</artifactId>
-            <version>2.8.0.v20120516</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.emf</groupId>
-            <artifactId>common</artifactId>
-            <version>2.8.0.v20120516</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.emf</groupId>
-            <artifactId>edit</artifactId>
-            <version>2.8.0.v20120516</version>
-        </dependency>
-        <dependency>
-            <groupId>de.twenty11.skysail</groupId>
-            <artifactId>skysail.server.eclipselink</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
-        </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>ecore</artifactId>
+			<version>2.8.0.v20120516</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>common</artifactId>
+			<version>2.8.0.v20120516</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>edit</artifactId>
+			<version>2.8.0-v20120601-0824</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf.ecore</groupId>
+			<artifactId>xmi</artifactId>
+			<version>2.8.0-v20120516-0416</version>
+		</dependency>
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.server.eclipselink</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+		</dependency>
 
 		<!-- testing with pax exam -->
 		<dependency>
@@ -116,5 +122,5 @@
 		</dependency>
 
 
-    </dependencies>
+	</dependencies>
 </project>
