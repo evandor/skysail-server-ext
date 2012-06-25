@@ -1,0 +1,6 @@
+1.) new ecore diagram project (notes.ecorediag)
+2.) creating Notes.genmodel
+3.) updating notes.genmodel properties model->model directory to something like /skysail.server.ext.notes/src/main/java
+3.) adding pom.xml and maven capability
+4.) Updating NotesImpl.java and FolderImpl.java with Entity annotation
+5.) persistence.xml and ...

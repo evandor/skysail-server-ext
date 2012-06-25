@@ -34,190 +34,190 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ValueImpl extends EObjectImpl implements Value {
 	/**
-	 * The default value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStringValue()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getStringValue()
+     * @generated
+     * @ordered
+     */
 	protected static final String STRING_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStringValue()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getStringValue()
+     * @generated
+     * @ordered
+     */
 	protected String stringValue = STRING_VALUE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getField() <em>Field</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getField() <em>Field</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getField()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getField()
+     * @generated
+     * @ordered
+     */
 	protected Field field;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ValueImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return FormsPackage.Literals.VALUE;
-	}
+        return FormsPackage.Literals.VALUE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getStringValue() {
-		return stringValue;
-	}
+        return stringValue;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setStringValue(String newStringValue) {
-		String oldStringValue = stringValue;
-		stringValue = newStringValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FormsPackage.VALUE__STRING_VALUE, oldStringValue, stringValue));
-	}
+        String oldStringValue = stringValue;
+        stringValue = newStringValue;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FormsPackage.VALUE__STRING_VALUE, oldStringValue, stringValue));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Field getField() {
-		if (field != null && field.eIsProxy()) {
-			InternalEObject oldField = (InternalEObject)field;
-			field = (Field)eResolveProxy(oldField);
-			if (field != oldField) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FormsPackage.VALUE__FIELD, oldField, field));
-			}
-		}
-		return field;
-	}
+        if (field != null && field.eIsProxy()) {
+            InternalEObject oldField = (InternalEObject)field;
+            field = (Field)eResolveProxy(oldField);
+            if (field != oldField) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, FormsPackage.VALUE__FIELD, oldField, field));
+            }
+        }
+        return field;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Field basicGetField() {
-		return field;
-	}
+        return field;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setField(Field newField) {
-		Field oldField = field;
-		field = newField;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FormsPackage.VALUE__FIELD, oldField, field));
-	}
+        Field oldField = field;
+        field = newField;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FormsPackage.VALUE__FIELD, oldField, field));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FormsPackage.VALUE__STRING_VALUE:
-				return getStringValue();
-			case FormsPackage.VALUE__FIELD:
-				if (resolve) return getField();
-				return basicGetField();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case FormsPackage.VALUE__STRING_VALUE:
+                return getStringValue();
+            case FormsPackage.VALUE__FIELD:
+                if (resolve) return getField();
+                return basicGetField();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FormsPackage.VALUE__STRING_VALUE:
-				setStringValue((String)newValue);
-				return;
-			case FormsPackage.VALUE__FIELD:
-				setField((Field)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case FormsPackage.VALUE__STRING_VALUE:
+                setStringValue((String)newValue);
+                return;
+            case FormsPackage.VALUE__FIELD:
+                setField((Field)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FormsPackage.VALUE__STRING_VALUE:
-				setStringValue(STRING_VALUE_EDEFAULT);
-				return;
-			case FormsPackage.VALUE__FIELD:
-				setField((Field)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case FormsPackage.VALUE__STRING_VALUE:
+                setStringValue(STRING_VALUE_EDEFAULT);
+                return;
+            case FormsPackage.VALUE__FIELD:
+                setField((Field)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FormsPackage.VALUE__STRING_VALUE:
-				return STRING_VALUE_EDEFAULT == null ? stringValue != null : !STRING_VALUE_EDEFAULT.equals(stringValue);
-			case FormsPackage.VALUE__FIELD:
-				return field != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case FormsPackage.VALUE__STRING_VALUE:
+                return STRING_VALUE_EDEFAULT == null ? stringValue != null : !STRING_VALUE_EDEFAULT.equals(stringValue);
+            case FormsPackage.VALUE__FIELD:
+                return field != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (stringValue: ");
-		result.append(stringValue);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (stringValue: ");
+        result.append(stringValue);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ValueImpl

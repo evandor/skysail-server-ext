@@ -25,147 +25,147 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class FormsAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package.
-	 * <!-- begin-user-doc -->
+     * The cached model package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected static FormsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the adapter factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FormsAdapterFactory() {
-		if (modelPackage == null) {
-			modelPackage = FormsPackage.eINSTANCE;
-		}
-	}
+        if (modelPackage == null) {
+            modelPackage = FormsPackage.eINSTANCE;
+        }
+    }
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc -->
+     * Returns whether this factory is applicable for the type of the object.
+     * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 * @return whether this factory is applicable for the type of the object.
-	 * @generated
-	 */
+     * @return whether this factory is applicable for the type of the object.
+     * @generated
+     */
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
-			return true;
-		}
-		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
-		}
-		return false;
-	}
+        if (object == modelPackage) {
+            return true;
+        }
+        if (object instanceof EObject) {
+            return ((EObject)object).eClass().getEPackage() == modelPackage;
+        }
+        return false;
+    }
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods.
-	 * <!-- begin-user-doc -->
+     * The switch that delegates to the <code>createXXX</code> methods.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected FormsSwitch modelSwitch =
 		new FormsSwitch() {
-			public Object caseField(Field object) {
-				return createFieldAdapter();
-			}
-			public Object caseForm(Form object) {
-				return createFormAdapter();
-			}
-			public Object caseValue(Value object) {
-				return createValueAdapter();
-			}
-			public Object caseFormInstance(FormInstance object) {
-				return createFormInstanceAdapter();
-			}
-			public Object defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+            public Object caseField(Field object) {
+                return createFieldAdapter();
+            }
+            public Object caseForm(Form object) {
+                return createFormAdapter();
+            }
+            public Object caseValue(Value object) {
+                return createValueAdapter();
+            }
+            public Object caseFormInstance(FormInstance object) {
+                return createFormInstanceAdapter();
+            }
+            public Object defaultCase(EObject object) {
+                return createEObjectAdapter();
+            }
+        };
 
 	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
+     * Creates an adapter for the <code>target</code>.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
-	 * @return the adapter for the <code>target</code>.
-	 * @generated
-	 */
+     * @param target the object to adapt.
+     * @return the adapter for the <code>target</code>.
+     * @generated
+     */
 	public Adapter createAdapter(Notifier target) {
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
-	}
+        return (Adapter)modelSwitch.doSwitch((EObject)target);
+    }
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Field <em>Field</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Field <em>Field</em>}'.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.Field
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see de.twenty11.skysail.ext.forms.Field
+     * @generated
+     */
 	public Adapter createFieldAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Form <em>Form</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Form <em>Form</em>}'.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.Form
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see de.twenty11.skysail.ext.forms.Form
+     * @generated
+     */
 	public Adapter createFormAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Value <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.Value <em>Value</em>}'.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.Value
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see de.twenty11.skysail.ext.forms.Value
+     * @generated
+     */
 	public Adapter createValueAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.FormInstance <em>Form Instance</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link de.twenty11.skysail.ext.forms.FormInstance <em>Form Instance</em>}'.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.twenty11.skysail.ext.forms.FormInstance
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see de.twenty11.skysail.ext.forms.FormInstance
+     * @generated
+     */
 	public Adapter createFormInstanceAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for the default case.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @generated
+     */
 	public Adapter createEObjectAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 } //FormsAdapterFactory

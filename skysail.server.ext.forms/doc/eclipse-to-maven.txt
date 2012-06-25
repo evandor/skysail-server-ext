@@ -1,0 +1,5 @@
+http://maven.apache.org/plugins/maven-eclipse-plugin-2.5.1/to-maven-mojo.html:
+
+local:
+
+ mvn eclipse:to-maven -stripQualifier=true

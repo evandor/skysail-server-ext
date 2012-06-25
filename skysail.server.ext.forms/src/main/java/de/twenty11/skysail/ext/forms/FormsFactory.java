@@ -18,56 +18,56 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface FormsFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	FormsFactory eINSTANCE = de.twenty11.skysail.ext.forms.impl.FormsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Field</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Field</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Field</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Field</em>'.
+     * @generated
+     */
 	Field createField();
 
 	/**
-	 * Returns a new object of class '<em>Form</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Form</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Form</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Form</em>'.
+     * @generated
+     */
 	Form createForm();
 
 	/**
-	 * Returns a new object of class '<em>Value</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Value</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Value</em>'.
+     * @generated
+     */
 	Value createValue();
 
 	/**
-	 * Returns a new object of class '<em>Form Instance</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Form Instance</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Form Instance</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Form Instance</em>'.
+     * @generated
+     */
 	FormInstance createFormInstance();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	FormsPackage getFormsPackage();
 
 } //FormsFactory

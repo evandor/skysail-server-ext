@@ -31,16 +31,8 @@
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
 						<_include>-osgi.bnd</_include>
-						<Include-Resource>
-							{maven-resources},
-							WEB-INF/=WEB-INF,
-							OSGI-INF/=OSGI-INF/,
-							etc/=etc/, index.html=index.html,
-							webapp/=webapp/
-						</Include-Resource>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -55,6 +47,11 @@
 			<version>4.10</version>
 		</dependency>
 		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>app</artifactId>
+			<version>1.0.0-v20070606</version>
+		</dependency>
+		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>ecore</artifactId>
 			<version>2.8.0.v20120516</version>
@@ -62,17 +59,17 @@
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>common</artifactId>
-			<version>2.8.0.v20120516</version>
+			<version>[2.8.0, 2.9.0)</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>edit</artifactId>
-			<version>2.8.0-v20120601-0824</version>
+			<version>[2.8.0, 2.9.0)</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf.ecore</groupId>
 			<artifactId>xmi</artifactId>
-			<version>2.8.0-v20120516-0416</version>
+			<version>[2.8.0, 2.9.0)</version>
 		</dependency>
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>

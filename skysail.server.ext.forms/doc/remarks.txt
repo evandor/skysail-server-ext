@@ -1,0 +1,11 @@
+META-INF folder comes from genmodel -> Generate code
+
+Eclipse target must be set correctly
+
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>app</artifactId>
+			<version>1.0.0-v20070606</version>
+		</dependency>
+ 
+ seems to be necessary...

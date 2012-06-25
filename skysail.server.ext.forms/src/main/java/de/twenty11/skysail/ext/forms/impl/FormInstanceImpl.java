@@ -43,176 +43,176 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class FormInstanceImpl extends EObjectImpl implements FormInstance {
 	/**
-	 * The cached value of the '{@link #getEReference0() <em>EReference0</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getEReference0() <em>EReference0</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEReference0()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getEReference0()
+     * @generated
+     * @ordered
+     */
 	protected EList eReference0;
 
 	/**
-	 * The cached value of the '{@link #getForm() <em>Form</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getForm() <em>Form</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getForm()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getForm()
+     * @generated
+     * @ordered
+     */
 	protected Form form;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected FormInstanceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return FormsPackage.Literals.FORM_INSTANCE;
-	}
+        return FormsPackage.Literals.FORM_INSTANCE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList getEReference0() {
-		if (eReference0 == null) {
-			eReference0 = new EObjectContainmentEList(Value.class, this, FormsPackage.FORM_INSTANCE__EREFERENCE0);
-		}
-		return eReference0;
-	}
+        if (eReference0 == null) {
+            eReference0 = new EObjectContainmentEList(Value.class, this, FormsPackage.FORM_INSTANCE__EREFERENCE0);
+        }
+        return eReference0;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Form getForm() {
-		return form;
-	}
+        return form;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetForm(Form newForm, NotificationChain msgs) {
-		Form oldForm = form;
-		form = newForm;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FormsPackage.FORM_INSTANCE__FORM, oldForm, newForm);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Form oldForm = form;
+        form = newForm;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FormsPackage.FORM_INSTANCE__FORM, oldForm, newForm);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setForm(Form newForm) {
-		if (newForm != form) {
-			NotificationChain msgs = null;
-			if (form != null)
-				msgs = ((InternalEObject)form).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FormsPackage.FORM_INSTANCE__FORM, null, msgs);
-			if (newForm != null)
-				msgs = ((InternalEObject)newForm).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FormsPackage.FORM_INSTANCE__FORM, null, msgs);
-			msgs = basicSetForm(newForm, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FormsPackage.FORM_INSTANCE__FORM, newForm, newForm));
-	}
+        if (newForm != form) {
+            NotificationChain msgs = null;
+            if (form != null)
+                msgs = ((InternalEObject)form).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FormsPackage.FORM_INSTANCE__FORM, null, msgs);
+            if (newForm != null)
+                msgs = ((InternalEObject)newForm).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FormsPackage.FORM_INSTANCE__FORM, null, msgs);
+            msgs = basicSetForm(newForm, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FormsPackage.FORM_INSTANCE__FORM, newForm, newForm));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case FormsPackage.FORM_INSTANCE__EREFERENCE0:
-				return ((InternalEList)getEReference0()).basicRemove(otherEnd, msgs);
-			case FormsPackage.FORM_INSTANCE__FORM:
-				return basicSetForm(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case FormsPackage.FORM_INSTANCE__EREFERENCE0:
+                return ((InternalEList)getEReference0()).basicRemove(otherEnd, msgs);
+            case FormsPackage.FORM_INSTANCE__FORM:
+                return basicSetForm(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FormsPackage.FORM_INSTANCE__EREFERENCE0:
-				return getEReference0();
-			case FormsPackage.FORM_INSTANCE__FORM:
-				return getForm();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case FormsPackage.FORM_INSTANCE__EREFERENCE0:
+                return getEReference0();
+            case FormsPackage.FORM_INSTANCE__FORM:
+                return getForm();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FormsPackage.FORM_INSTANCE__EREFERENCE0:
-				getEReference0().clear();
-				getEReference0().addAll((Collection)newValue);
-				return;
-			case FormsPackage.FORM_INSTANCE__FORM:
-				setForm((Form)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case FormsPackage.FORM_INSTANCE__EREFERENCE0:
+                getEReference0().clear();
+                getEReference0().addAll((Collection)newValue);
+                return;
+            case FormsPackage.FORM_INSTANCE__FORM:
+                setForm((Form)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FormsPackage.FORM_INSTANCE__EREFERENCE0:
-				getEReference0().clear();
-				return;
-			case FormsPackage.FORM_INSTANCE__FORM:
-				setForm((Form)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case FormsPackage.FORM_INSTANCE__EREFERENCE0:
+                getEReference0().clear();
+                return;
+            case FormsPackage.FORM_INSTANCE__FORM:
+                setForm((Form)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FormsPackage.FORM_INSTANCE__EREFERENCE0:
-				return eReference0 != null && !eReference0.isEmpty();
-			case FormsPackage.FORM_INSTANCE__FORM:
-				return form != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case FormsPackage.FORM_INSTANCE__EREFERENCE0:
+                return eReference0 != null && !eReference0.isEmpty();
+            case FormsPackage.FORM_INSTANCE__FORM:
+                return form != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //FormInstanceImpl
