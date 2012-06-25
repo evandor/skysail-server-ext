@@ -38,8 +38,7 @@
                         <Include-Resource>
                             {maven-resources},
                             WEB-INF/=WEB-INF, OSGI-INF/=OSGI-INF/,
-                            etc/=etc/, index.html=index.html,
-                            webapp/=webapp/
+                            etc/=etc/, index.html=index.html
                         </Include-Resource>
                     </instructions>
                 </configuration>
