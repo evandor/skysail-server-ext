@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl#getId <em>Id</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl#getPath <em>Path</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl#getNotes <em>Notes</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl#getSubfolders <em>Subfolders</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getId <em>Id</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getNotes <em>Notes</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl#getSubfolders <em>Subfolders</em>}</li>
  * </ul>
  * </p>
  *

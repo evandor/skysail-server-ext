@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesFactory
+ * @see de.twenty11.skysail.server.ext.notes.NotesFactory
  * @model kind="package"
  * @generated
  */
@@ -56,11 +56,11 @@ public interface NotesPackage extends EPackage {
     NotesPackage eINSTANCE = de.twenty11.skysail.server.ext.notes.impl.NotesPackageImpl.init();
 
     /**
-     * The meta object id for the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl <em>Note</em>}' class.
+     * The meta object id for the '{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl <em>Note</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.NotesPackageImpl#getNote()
+     * @see de.twenty11.skysail.server.ext.notes.impl.NoteImpl
+     * @see de.twenty11.skysail.server.ext.notes.impl.NotesPackageImpl#getNote()
      * @generated
      */
     int NOTE = 0;
@@ -120,11 +120,11 @@ public interface NotesPackage extends EPackage {
     int NOTE_FEATURE_COUNT = 5;
 
     /**
-     * The meta object id for the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl <em>Folder</em>}' class.
+     * The meta object id for the '{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl <em>Folder</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.NotesPackageImpl#getFolder()
+     * @see de.twenty11.skysail.server.ext.notes.impl.FolderImpl
+     * @see de.twenty11.skysail.server.ext.notes.impl.NotesPackageImpl#getFolder()
      * @generated
      */
     int FOLDER = 1;
@@ -185,130 +185,130 @@ public interface NotesPackage extends EPackage {
 
 
     /**
-     * Returns the meta object for class '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note <em>Note</em>}'.
+     * Returns the meta object for class '{@link de.twenty11.skysail.server.ext.notes.Note <em>Note</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for class '<em>Note</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Note
+     * @see de.twenty11.skysail.server.ext.notes.Note
      * @generated
      */
     EClass getNote();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getCreated <em>Created</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Note#getCreated <em>Created</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Created</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Note#getCreated()
+     * @see de.twenty11.skysail.server.ext.notes.Note#getCreated()
      * @see #getNote()
      * @generated
      */
     EAttribute getNote_Created();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getChanged <em>Changed</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Note#getChanged <em>Changed</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Changed</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Note#getChanged()
+     * @see de.twenty11.skysail.server.ext.notes.Note#getChanged()
      * @see #getNote()
      * @generated
      */
     EAttribute getNote_Changed();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getTitle <em>Title</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Note#getTitle <em>Title</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Title</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Note#getTitle()
+     * @see de.twenty11.skysail.server.ext.notes.Note#getTitle()
      * @see #getNote()
      * @generated
      */
     EAttribute getNote_Title();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getContent <em>Content</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Note#getContent <em>Content</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Content</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Note#getContent()
+     * @see de.twenty11.skysail.server.ext.notes.Note#getContent()
      * @see #getNote()
      * @generated
      */
     EAttribute getNote_Content();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getId <em>Id</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Note#getId <em>Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Id</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Note#getId()
+     * @see de.twenty11.skysail.server.ext.notes.Note#getId()
      * @see #getNote()
      * @generated
      */
     EAttribute getNote_Id();
 
     /**
-     * Returns the meta object for class '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Folder <em>Folder</em>}'.
+     * Returns the meta object for class '{@link de.twenty11.skysail.server.ext.notes.Folder <em>Folder</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for class '<em>Folder</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Folder
+     * @see de.twenty11.skysail.server.ext.notes.Folder
      * @generated
      */
     EClass getFolder();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getId <em>Id</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Folder#getId <em>Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Id</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getId()
+     * @see de.twenty11.skysail.server.ext.notes.Folder#getId()
      * @see #getFolder()
      * @generated
      */
     EAttribute getFolder_Id();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getName <em>Name</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Folder#getName <em>Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Name</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getName()
+     * @see de.twenty11.skysail.server.ext.notes.Folder#getName()
      * @see #getFolder()
      * @generated
      */
     EAttribute getFolder_Name();
 
     /**
-     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getPath <em>Path</em>}'.
+     * Returns the meta object for the attribute '{@link de.twenty11.skysail.server.ext.notes.Folder#getPath <em>Path</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Path</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getPath()
+     * @see de.twenty11.skysail.server.ext.notes.Folder#getPath()
      * @see #getFolder()
      * @generated
      */
     EAttribute getFolder_Path();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getNotes <em>Notes</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.server.ext.notes.Folder#getNotes <em>Notes</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the containment reference list '<em>Notes</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getNotes()
+     * @see de.twenty11.skysail.server.ext.notes.Folder#getNotes()
      * @see #getFolder()
      * @generated
      */
     EReference getFolder_Notes();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getSubfolders <em>Subfolders</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.twenty11.skysail.server.ext.notes.Folder#getSubfolders <em>Subfolders</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the containment reference list '<em>Subfolders</em>'.
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.Folder#getSubfolders()
+     * @see de.twenty11.skysail.server.ext.notes.Folder#getSubfolders()
      * @see #getFolder()
      * @generated
      */
@@ -337,11 +337,11 @@ public interface NotesPackage extends EPackage {
      */
     interface Literals {
         /**
-         * The meta object literal for the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl <em>Note</em>}' class.
+         * The meta object literal for the '{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl <em>Note</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl
-         * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.NotesPackageImpl#getNote()
+         * @see de.twenty11.skysail.server.ext.notes.impl.NoteImpl
+         * @see de.twenty11.skysail.server.ext.notes.impl.NotesPackageImpl#getNote()
          * @generated
          */
         EClass NOTE = eINSTANCE.getNote();
@@ -387,11 +387,11 @@ public interface NotesPackage extends EPackage {
         EAttribute NOTE__ID = eINSTANCE.getNote_Id();
 
         /**
-         * The meta object literal for the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl <em>Folder</em>}' class.
+         * The meta object literal for the '{@link de.twenty11.skysail.server.ext.notes.impl.FolderImpl <em>Folder</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.FolderImpl
-         * @see de.twenty11.skysail.server.ext.notes.integrationtests.impl.NotesPackageImpl#getFolder()
+         * @see de.twenty11.skysail.server.ext.notes.impl.FolderImpl
+         * @see de.twenty11.skysail.server.ext.notes.impl.NotesPackageImpl#getFolder()
          * @generated
          */
         EClass FOLDER = eINSTANCE.getFolder();

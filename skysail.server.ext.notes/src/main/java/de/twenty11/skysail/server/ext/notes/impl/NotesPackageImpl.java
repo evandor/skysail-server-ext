@@ -46,7 +46,7 @@ public class NotesPackageImpl extends EPackageImpl implements NotesPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.ecore.EPackage.Registry
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage#eNS_URI
+     * @see de.twenty11.skysail.server.ext.notes.NotesPackage#eNS_URI
      * @see #init()
      * @generated
      */

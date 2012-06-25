@@ -1,30 +1,15 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1340613679185
-Build-Jdk: 1.6.0_24
-Built-By: graefca
-Bundle-Description: This is the parent pom for all skysail maven artifac
- ts. Should be run with maven3.
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
-Bundle-Name: skysail notes server extension
+Bundle-Name: %pluginName
 Bundle-SymbolicName: skysail.server.ext.notes;singleton:=true
-Bundle-Version: 0.0.1.SNAPSHOT
-Created-By: Apache Maven Bundle Plugin
-DynamicImport-Package: *
-Export-Package: de.twenty11.skysail.server.ext.notes;uses:="org.eclipse.
- emf.ecore,org.eclipse.emf.common.util";version="0.0.1.SNAPSHOT"
-Import-Package: de.twenty11.skysail.common;version="[0.2,1)",de.twenty11
- .skysail.common.grids;version="[0.3,1)",de.twenty11.skysail.server;vers
- ion="[0.2,1)",de.twenty11.skysail.server.listener;version="[0.2,1)",de.
- twenty11.skysail.server.restlet;version="[0.2,1)",de.twenty11.skysail.s
- erver.services,javax.persistence;version="[2.0,3)",org.eclipse.emf.comm
- on.notify,org.eclipse.emf.common.notify.impl,org.eclipse.emf.common.uti
- l,org.eclipse.emf.ecore,org.eclipse.emf.ecore.impl,org.eclipse.emf.ecor
- e.plugin,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.util,org.
- eclipse.persistence.jpa.osgi;version="[2.2,3)",org.osgi.framework;versi
- on="[1.5,2)",org.osgi.service.component;version="[1.1,2)",org.restlet,o
- rg.restlet.data,org.restlet.routing,org.restlet.util,org.slf4j;version=
- "[1.6,2)"
-JPA-PersistenceUnits: skysail.server.ext.notes
-Service-Component: OSGI-INF/*.xml
-Tool: Bnd-1.50.0
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.twenty11.skysail.server.ext.notes,
+ de.twenty11.skysail.server.ext.notes.impl,
+ de.twenty11.skysail.server.ext.notes.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Bundle-ActivationPolicy: lazy

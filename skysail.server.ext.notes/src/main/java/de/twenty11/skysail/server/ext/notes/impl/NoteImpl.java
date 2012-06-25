@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl#getId <em>Id</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl#getCreated <em>Created</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl#getChanged <em>Changed</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.impl.NoteImpl#getContent <em>Content</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getId <em>Id</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getCreated <em>Created</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getChanged <em>Changed</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getTitle <em>Title</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.impl.NoteImpl#getContent <em>Content</em>}</li>
  * </ul>
  * </p>
  *

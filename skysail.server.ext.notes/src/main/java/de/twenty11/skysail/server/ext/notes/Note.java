@@ -14,15 +14,15 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getId <em>Id</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getCreated <em>Created</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getChanged <em>Changed</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getTitle <em>Title</em>}</li>
- *   <li>{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getContent <em>Content</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getId <em>Id</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getCreated <em>Created</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getChanged <em>Changed</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getTitle <em>Title</em>}</li>
+ *   <li>{@link de.twenty11.skysail.server.ext.notes.Note#getContent <em>Content</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage#getNote()
+ * @see de.twenty11.skysail.server.ext.notes.NotesPackage#getNote()
  * @model
  * @generated
  */
@@ -37,14 +37,14 @@ public interface Note extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Created</em>' attribute.
      * @see #setCreated(Date)
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage#getNote_Created()
+     * @see de.twenty11.skysail.server.ext.notes.NotesPackage#getNote_Created()
      * @model
      * @generated
      */
     Date getCreated();
 
     /**
-     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getCreated <em>Created</em>}' attribute.
+     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.Note#getCreated <em>Created</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Created</em>' attribute.
@@ -63,14 +63,14 @@ public interface Note extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Changed</em>' attribute.
      * @see #setChanged(Date)
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage#getNote_Changed()
+     * @see de.twenty11.skysail.server.ext.notes.NotesPackage#getNote_Changed()
      * @model
      * @generated
      */
     Date getChanged();
 
     /**
-     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getChanged <em>Changed</em>}' attribute.
+     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.Note#getChanged <em>Changed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Changed</em>' attribute.
@@ -89,14 +89,14 @@ public interface Note extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Title</em>' attribute.
      * @see #setTitle(String)
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage#getNote_Title()
+     * @see de.twenty11.skysail.server.ext.notes.NotesPackage#getNote_Title()
      * @model
      * @generated
      */
     String getTitle();
 
     /**
-     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getTitle <em>Title</em>}' attribute.
+     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.Note#getTitle <em>Title</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Title</em>' attribute.
@@ -115,14 +115,14 @@ public interface Note extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Content</em>' attribute.
      * @see #setContent(String)
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage#getNote_Content()
+     * @see de.twenty11.skysail.server.ext.notes.NotesPackage#getNote_Content()
      * @model
      * @generated
      */
     String getContent();
 
     /**
-     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getContent <em>Content</em>}' attribute.
+     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.Note#getContent <em>Content</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Content</em>' attribute.
@@ -141,14 +141,14 @@ public interface Note extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Id</em>' attribute.
      * @see #setId(int)
-     * @see de.twenty11.skysail.server.ext.notes.integrationtests.NotesPackage#getNote_Id()
+     * @see de.twenty11.skysail.server.ext.notes.NotesPackage#getNote_Id()
      * @model
      * @generated
      */
     int getId();
 
     /**
-     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.integrationtests.Note#getId <em>Id</em>}' attribute.
+     * Sets the value of the '{@link de.twenty11.skysail.server.ext.notes.Note#getId <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Id</em>' attribute.
