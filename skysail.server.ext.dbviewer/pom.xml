@@ -3,13 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.twenty11.skysail</groupId>
+		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.7.0</version>
+		<version>0.7.10-SNAPSHOT</version>
 	</parent>
 
 	<properties>
-		<!-- exam.version>2.3.0.M1-SNAPSHOT</exam.version -->
 		<exam.version>2.2.0</exam.version>
 		<url.version>1.3.5</url.version>
 	</properties>
@@ -24,7 +23,7 @@
 	</scm>
 
 	<artifactId>skysail.server.ext.dbviewer</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>skysail dbviewer server extension</name>
 	<packaging>bundle</packaging>
 
@@ -34,7 +33,6 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.3.4</version>
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
@@ -48,7 +46,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>de.twenty11.skysail</groupId>
+			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
 			<version>[0.2.0,0.3)</version>
 		</dependency>
@@ -69,28 +67,24 @@
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-container-native</artifactId>
-			<version>${exam.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-junit4</artifactId>
-			<version>${exam.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-link-mvn</artifactId>
-			<version>${exam.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.ops4j.pax.url</groupId>
 			<artifactId>pax-url-aether</artifactId>
-			<version>${url.version}</version>
 			<scope>test</scope>
 		</dependency>
 

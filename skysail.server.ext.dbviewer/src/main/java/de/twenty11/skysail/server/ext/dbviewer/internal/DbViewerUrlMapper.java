@@ -8,7 +8,7 @@ import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
 import de.twenty11.skysail.server.ext.dbviewer.DataResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
-import de.twenty11.skysail.server.servicedefinitions.UrlMapper;
+import de.twenty11.skysail.server.services.UrlMapper;
 
 public class DbViewerUrlMapper implements UrlMapper {
 

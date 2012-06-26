@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+	<!-- feature to be used with apache karaf -->
+    <feature name="skysail.server.ext.notes.feature" version="${pom.version}">
+
+		<feature version="0.3.2-SNAPSHOT">skysail.common.feature</feature>
+		<feature>skysail.server.feature</feature>
+		<feature>skysail.server.eclipselink.feature</feature>
+
+ 		<!-- skysail.server.ext.notes with dependecies -->
+        <bundle>mvn:de.twentyeleven.skysail/skysail.server.ext.notes/${pom.version}</bundle>
+        
+        <bundle>mvn:org.eclipse.emf/common/2.8.0</bundle>
+        <bundle>mvn:org.eclipse.core/runtime/3.8.0</bundle>
+        <bundle>mvn:org.eclipse/osgi/3.8.0</bundle>
+
+    </feature>
+   
+</features>
