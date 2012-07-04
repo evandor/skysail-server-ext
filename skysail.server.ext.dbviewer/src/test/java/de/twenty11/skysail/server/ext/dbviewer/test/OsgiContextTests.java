@@ -3,7 +3,7 @@ package de.twenty11.skysail.server.ext.dbviewer.test;
 import static org.junit.Assert.assertTrue;
 import static org.ops4j.pax.exam.CoreOptions.bootDelegationPackage;
 import static org.ops4j.pax.exam.CoreOptions.cleanCaches;
-import static org.ops4j.pax.exam.CoreOptions.equinox;
+import static org.ops4j.pax.exam.CoreOptions.felix;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
@@ -69,8 +69,8 @@ public class OsgiContextTests {
                 systemProperty("osgi.console").value("6666"),
                 systemProperty("equinox.ds.debug").value("true"),
                 systemProperty("equinox.ds.print").value("true"),
-                equinox().version("3.6.2")
-                
+                //equinox().version("3.6.2")
+                felix().version("3.2.2")
         );
     	
     	
@@ -80,9 +80,7 @@ public class OsgiContextTests {
 		// return options(mavenBundle("de.twenty11.skysail",
 		// "skysail.server.ext.dbviewer", "0.0.1-SNAPSHOT")
 		// // mavenBundle("org.slf4j", "slf4j-api", "1.6.1"),
-		// //
 		// //mavenBundle("de.evandor","skysail.server.osgi.logback.config","0.4.0").noStart(),
-		// //
 		// mavenBundle("de.evandor","skysail.server.osgi.logging.osgi-over-slf4j","0.0.1-SNAPSHOT"),
 		// // mavenBundle("ch.qos.logback", "logback-core",
 		// "0.9.29").startLevel(3),
@@ -90,8 +88,6 @@ public class OsgiContextTests {
 		// "0.9.29").startLevel(3),
 		// // mavenBundle("org.eclipse.equinox","log","1.2.100.v20100503"),
 		// // mavenBundle("org.ops4j.pax.exam","pax-exam-junit","2.2.0"),
-		// // TODO make maven bundle
-		// //
 		// bundle("file:///home/carsten/workspaces/skysale2/skysail.server.restlet/src/main/webapp/WEB-INF/eclipse/plugins/freemarker_2.3.16.jar"),
 		// //
 		// scanDir("/home/carsten/workspaces/skysale2/skysail.server.osgi.ext.freemarker"),
@@ -99,10 +95,7 @@ public class OsgiContextTests {
 		// // equinox().version("3.6.2")
 		// );
 		// // return options(
-		// //
 		// scanDir("C:/workspaces/skysail/skysail.server.restlet/src/main/webapp/WEB-INF/eclipse/plugins/skysail/").filter("*.jar"),
-		// // junitBundles()
-		// // // equinox().version("3.6.2")
 		// // );
     }
 
@@ -113,7 +106,7 @@ public class OsgiContextTests {
      *             should not happen
      */
     @Test
-    public final void testLimitedQueue(final BundleContext bc) throws IOException {
+    public final void testLimitedQueue() throws IOException {
     	assertTrue(true);
     }
 

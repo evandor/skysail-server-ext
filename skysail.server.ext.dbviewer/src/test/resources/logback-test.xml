@@ -8,14 +8,14 @@
 		</encoder>
 	</appender>
 
-	<appender name="memory"
-		class="skysail.server.osgi.logging.memoryAppender.MemoryAppender">
+	<!-- <appender name="memory"
+		class="skysail.server.osgi.logging.memoryAppender.MemoryAppender"> 
 
-	</appender>
+	</appender>-->
 
 	<root level="error">
 		<appender-ref ref="STDOUT" />
 		<!--appender-ref ref="DB" / -->
-		<appender-ref ref="memory" />
+		<!-- <appender-ref ref="memory" /> -->
 	</root>
 </configuration>
