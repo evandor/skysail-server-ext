@@ -54,6 +54,7 @@ public class OsgiContextTests {
         InputStream bundleUnderTest = bundle().add(ConnectionsResource.class)
                 .set(Constants.BUNDLE_SYMBOLICNAME, "skysail.server.ext.dbviewer")
                 .set(Constants.EXPORT_PACKAGE, "de.twenty11.skysail.server.ext.dbviewer")
+                .set(Constants.IMPORT_PACKAGE, "org.hamcrest")
                 .set(Constants.DYNAMICIMPORT_PACKAGE, "*")
                 //.set(Constants.IMPORT_PACKAGE, "de.twenty11.skysail.server.services;version=\"[0.2.0, 0.3.0)\"")
                 .build();
@@ -89,17 +90,20 @@ public class OsgiContextTests {
 //                mavenBundle("de.twentyeleven.skysail","skysail.server.configuration.byPropertiesService","0.1.1-SNAPSHOT"),
 //                mavenBundle("org.eclipse.equinox","org.eclipse.equinox.ds","1.2.1"),
 //                mavenBundle("org.eclipse.equinox","org.eclipse.equinox.util","1.0.200"),
-                // --- rest-assured ---
+                // --- rest-assured (testing only) ---
                 mavenBundle("com.jayway.restassured", "skysail.bundles.rest-assured", "1.6.2"),
                 mavenBundle("org.codehaus.groovy","groovy", "1.8.4"),
                 mavenBundle("org.antlr", "com.springsource.antlr","2.7.7"),
                 mavenBundle("org.objectweb.asm","com.springsource.org.objectweb.asm","3.2.0"),
                 mavenBundle("org.apache.commons", "commons-lang3", "3.1"),
                 mavenBundle("commons-collections", "commons-collections", "3.2.1"),
-                mavenBundle("org.hamcrest", "skysail.bundles.hamcrest-core", "1.2.1"),
-                mavenBundle("org.hamcrest", "skysail.bundles.hamcrest-library", "1.2.1"),
+                mavenBundle("org.hamcrest", "skysail.bundles.hamcrest-all", "1.2.1"),
                 
-                junitBundles(),
+                mavenBundle("org.apache.httpcomponents","httpclient-osgi","4.1.3"), 
+                mavenBundle("org.apache.commons","com.springsource.org.apache.commons.codec","1.5.0"),
+                mavenBundle("org.apache.httpcomponents","httpcore-osgi","4.1.4"),
+                
+                //junitBundles(),
                 vmOption("-consoleLog"),
                 systemProperty("osgi.console").value("6666"),
                 systemProperty("equinox.ds.debug").value("true"),
@@ -129,7 +133,7 @@ public class OsgiContextTests {
         System.out.println("=============================");
         Bundle[] bundles = context2.getBundles();
         for(Bundle bundle : bundles) {
-            System.out.println(bundle.getSymbolicName() + ": " + bundle.getState() + " - " + bundle.getLocation());
+            System.out.println(bundle.getBundleId() + ": " + bundle.getSymbolicName() + ": " + bundle.getState() + " - " + bundle.getLocation());
         }
     }
 
