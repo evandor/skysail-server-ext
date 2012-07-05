@@ -84,11 +84,19 @@ public class OsgiContextTests {
                 mavenBundle("org.xmlpull","com.springsource.org.xmlpull","1.1.4.c"),
                 mavenBundle("org.codehaus.jettison","com.springsource.org.codehaus.jettison","1.0.1"),
                 
+                mavenBundle("javax.servlet","com.springsource.javax.servlet","2.5.0"),
+                
 //                mavenBundle("de.twentyeleven.skysail","skysail.server.configuration.byPropertiesService","0.1.1-SNAPSHOT"),
 //                mavenBundle("org.eclipse.equinox","org.eclipse.equinox.ds","1.2.1"),
 //                mavenBundle("org.eclipse.equinox","org.eclipse.equinox.util","1.0.200"),
                 // --- rest-assured ---
-                mavenBundle("com.jayway.restassured", "rest-assured", "1.6.2"),
+                mavenBundle("com.jayway.restassured", "skysail.bundles.rest-assured", "1.6.2"),
+                mavenBundle("org.codehaus.groovy","groovy", "1.8.4"),
+                mavenBundle("org.antlr", "com.springsource.antlr","2.7.7"),
+                mavenBundle("org.objectweb.asm","com.springsource.org.objectweb.asm","3.2.0"),
+                mavenBundle("org.apache.commons", "commons-lang3", "3.1"),
+                mavenBundle("commons-collections", "commons-collections", "3.2.1"),
+                
                 junitBundles(),
                 vmOption("-consoleLog"),
                 systemProperty("osgi.console").value("6666"),
@@ -119,7 +127,7 @@ public class OsgiContextTests {
         System.out.println("=============================");
         Bundle[] bundles = context2.getBundles();
         for(Bundle bundle : bundles) {
-            System.out.println(bundle.getSymbolicName() + ": " + bundle.getState());
+            System.out.println(bundle.getSymbolicName() + ": " + bundle.getState() + " - " + bundle.getLocation());
         }
     }
 
