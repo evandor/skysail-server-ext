@@ -96,6 +96,8 @@ public class OsgiContextTests {
                 mavenBundle("org.objectweb.asm","com.springsource.org.objectweb.asm","3.2.0"),
                 mavenBundle("org.apache.commons", "commons-lang3", "3.1"),
                 mavenBundle("commons-collections", "commons-collections", "3.2.1"),
+                mavenBundle("org.hamcrest", "skysail.bundles.hamcrest-core", "1.2.1"),
+                mavenBundle("org.hamcrest", "skysail.bundles.hamcrest-library", "1.2.1"),
                 
                 junitBundles(),
                 vmOption("-consoleLog"),
