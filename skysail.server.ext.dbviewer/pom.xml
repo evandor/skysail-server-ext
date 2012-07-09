@@ -207,6 +207,13 @@
 			<version>3.2.0</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>org.eclipse.equinox.log</artifactId>
+			<version>1.2.100.v20100503</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -215,10 +222,18 @@
 			<scope>test</scope>
 		</dependency>
 
+<!-- 		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr</artifactId>
+			<version>1.6.0</version>
+			<scope>test</scope>
+		</dependency>
+ -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- <dependency><groupId>org.codehaus.jettison</groupId> <artifactId>com.springsource.org.codehaus.jettison</artifactId> 

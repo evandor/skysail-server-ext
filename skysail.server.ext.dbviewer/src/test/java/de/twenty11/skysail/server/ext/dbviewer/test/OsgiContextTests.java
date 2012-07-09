@@ -1,20 +1,16 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
-import static org.junit.Assert.assertTrue;
+import static com.jayway.restassured.RestAssured.expect;
+import static org.hamcrest.Matchers.equalTo;
 import static org.ops4j.pax.exam.CoreOptions.bootDelegationPackage;
 import static org.ops4j.pax.exam.CoreOptions.cleanCaches;
 import static org.ops4j.pax.exam.CoreOptions.felix;
-import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
 import static org.ops4j.pax.exam.CoreOptions.provision;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
-
-import static com.jayway.restassured.RestAssured.*;
-import static com.jayway.restassured.matcher.RestAssuredMatchers.*;
-import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -87,9 +83,14 @@ public class OsgiContextTests {
                 
                 mavenBundle("javax.servlet","com.springsource.javax.servlet","2.5.0"),
                 
+                // declarative services
+                mavenBundle("org.apache.felix","org.apache.felix.scr","1.6.0"),
+                
 //                mavenBundle("de.twentyeleven.skysail","skysail.server.configuration.byPropertiesService","0.1.1-SNAPSHOT"),
-//                mavenBundle("org.eclipse.equinox","org.eclipse.equinox.ds","1.2.1"),
-//                mavenBundle("org.eclipse.equinox","org.eclipse.equinox.util","1.0.200"),
+                //mavenBundle("org.eclipse.equinox","ds","1.3.1"),
+                //mavenBundle("org.eclipse.equinox","util","1.0.300"),
+                //mavenBundle("org.eclipse.equinox","org.eclipse.equinox.log","1.2.100.v20100503"),
+                
                 // --- rest-assured (testing only) ---
                 mavenBundle("com.jayway.restassured", "skysail.bundles.rest-assured", "1.6.2"),
                 mavenBundle("org.codehaus.groovy","groovy", "1.8.4"),
@@ -105,7 +106,7 @@ public class OsgiContextTests {
                 
                 //junitBundles(),
                 vmOption("-consoleLog"),
-                systemProperty("osgi.console").value("6666"),
+                systemProperty("osgi.console").value("8111"),
                 systemProperty("equinox.ds.debug").value("true"),
                 systemProperty("equinox.ds.print").value("true"),
                 //equinox().version("3.6.2")
@@ -124,7 +125,7 @@ public class OsgiContextTests {
      *             should not happen
      */
     @Test
-    public final void test() {
+    public void test() {
         debug(context);
         expect().body("lotto.lottoId", equalTo(5)).when().get("/lotto");
     }
