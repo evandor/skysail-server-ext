@@ -6,13 +6,14 @@
 	<parent>
 		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.7.11</version>
+		<version>0.7.12-SNAPSHOT</version>
+		<relativePath />
 	</parent>
 
-	<properties>
-		<exam.version>2.2.0</exam.version>
-		<url.version>1.3.5</url.version>
-	</properties>
+	<artifactId>skysail.server.ext.dbviewer</artifactId>
+	<version>0.0.4-SNAPSHOT</version>
+	<name>skysail dbviewer server extension</name>
+	<packaging>bundle</packaging>
 
 	<scm>
 		<!-- read access -->
@@ -22,11 +23,6 @@
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
 		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
 	</scm>
-
-	<artifactId>skysail.server.ext.dbviewer</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
-	<name>skysail dbviewer server extension</name>
-	<packaging>bundle</packaging>
 
 	<build>
 		<resources>
@@ -44,6 +40,9 @@
 				<configuration>
 					<instructions>
 						<_include>-bnd.bnd</_include>
+						<Include-Resource>
+							{maven-resources}, OSGI-INF/=OSGI-INF/
+						</Include-Resource>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -90,7 +89,15 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
-			<version>[0.2.0,0.3)</version>
+			<version>[0.2.1-SNAPSHOT, 1.0)</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.server</artifactId>
+			<version>[0.2.1-SNAPSHOT, 1.0)</version>
+			<scope>test</scope>
+			<type>test-jar</type>
 		</dependency>
 
 		<dependency>
@@ -140,7 +147,6 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>0.9.29</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -222,22 +228,12 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.apache.felix.scr</artifactId>
-			<version>1.6.0</version>
-			<scope>test</scope>
-		</dependency>
- -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- <dependency><groupId>org.codehaus.jettison</groupId> <artifactId>com.springsource.org.codehaus.jettison</artifactId> 
-			<version>1.0.1</version> </dependency> -->
 
 	</dependencies>
 </project>
