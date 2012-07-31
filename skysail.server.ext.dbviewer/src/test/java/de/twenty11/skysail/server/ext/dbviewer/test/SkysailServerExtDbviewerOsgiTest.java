@@ -11,6 +11,7 @@ import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.EnumSet;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ import org.osgi.framework.Constants;
 
 import com.jayway.restassured.RestAssured;
 
+import de.twenty11.skysail.common.osgi.PaxExamOptionSet;
 import de.twenty11.skysail.server.internal.Activator;
 
 /**
@@ -40,7 +42,7 @@ public class SkysailServerExtDbviewerOsgiTest {
 	@Configuration
 	public Option[] config() {
 		SkysailServerExtDbViewerOsgiSetup setup = new SkysailServerExtDbViewerOsgiSetup();
-		List<Option> options = setup.getOptions();
+		List<Option> options = setup.getOptions(EnumSet.noneOf(PaxExamOptionSet.class));
 
 		//options.add(systemProperty("org.osgi.service.http.port").value( "8888" ));
 		options.add(systemProperty("jetty.home.bundle").value( "skysail.server" ));
@@ -59,6 +61,9 @@ public class SkysailServerExtDbviewerOsgiTest {
 		// felix config admin
 		options.add(mavenBundle("org.apache.felix", "org.apache.felix.configadmin", "1.4.0"));
 
+		// freemarker
+		options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server.freemarker", "0.1.1-SNAPSHOT"));
+		
 		// ds:
 //		options.add(mavenBundle("org.eclipse.equinox","org.eclipse.equinox.ds","1.2.1"));
 //	 	options.add(mavenBundle("org.eclipse.equinox","org.eclipse.equinox.util","1.0.200"));
@@ -94,11 +99,9 @@ public class SkysailServerExtDbviewerOsgiTest {
 		options.add(mavenBundle("org.codehaus.jackson", "jackson-core-lgpl", "1.9.5"));
 		
 		InputStream bundleUnderTest = bundle()
-				.add(Activator.class)
-				.set(Constants.BUNDLE_SYMBOLICNAME,
-						"skysail.server.ext.dbviewer")
-				// .set(Constants.IMPORT_PACKAGE,
-				// "de.twenty11.skysail.common.test")
+				.add(de.twenty11.skysail.server.ext.dbviewer.internal.Application.class)
+				.set(Constants.BUNDLE_SYMBOLICNAME, "skysail.server.ext.dbviewer")
+				.set(Constants.IMPORT_PACKAGE, "de.twenty11.skysail.common")
 				.build();
 		options.add(provision(bundleUnderTest));
 		return options.toArray(new Option[options.size()]);
