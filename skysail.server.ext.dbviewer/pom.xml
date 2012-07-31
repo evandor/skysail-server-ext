@@ -101,6 +101,14 @@
 		</dependency>
 
 		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.common</artifactId>
+			<version>[0.3.2-SNAPSHOT, 1.0)</version>
+			<scope>test</scope>
+			<type>test-jar</type>
+		</dependency>
+
+		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>skysail.bundles.commons-dbcp</artifactId>
 			<version>1.4</version>
