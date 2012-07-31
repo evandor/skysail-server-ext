@@ -11,6 +11,7 @@ import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.EnumSet;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ import org.osgi.framework.Constants;
 
 import com.jayway.restassured.RestAssured;
 
+import de.twenty11.skysail.common.osgi.PaxExamOptionSet;
 import de.twenty11.skysail.server.internal.Activator;
 
 /**
@@ -40,7 +42,7 @@ public class SkysailServerExtDbviewerOsgiTest {
 	@Configuration
 	public Option[] config() {
 		SkysailServerExtDbViewerOsgiSetup setup = new SkysailServerExtDbViewerOsgiSetup();
-		List<Option> options = setup.getOptions();
+		List<Option> options = setup.getOptions(EnumSet.noneOf(PaxExamOptionSet.class));
 
 		//options.add(systemProperty("org.osgi.service.http.port").value( "8888" ));
 		options.add(systemProperty("jetty.home.bundle").value( "skysail.server" ));
