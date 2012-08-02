@@ -24,11 +24,6 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
 		// freemarker
 		options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server.freemarker", "0.1.1-SNAPSHOT"));
 		
-		// ds:
-//		options.add(mavenBundle("org.eclipse.equinox","org.eclipse.equinox.ds","1.2.1"));
-//	 	options.add(mavenBundle("org.eclipse.equinox","org.eclipse.equinox.util","1.0.200"));
-//	 	options.add(mavenBundle("org.eclipse.equinox","org.eclipse.equinox.log","1.2.100.v20100503"));
-		options.add(mavenBundle("org.apache.felix", "org.apache.felix.scr", "1.6.0"));
 
 		// ok... jetty:
 		options.add(mavenBundle("org.eclipse.jetty",  "jetty-server","7.5.4.v20111024"));
