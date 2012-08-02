@@ -21,10 +21,14 @@ import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.server.internal.ConfigServiceProvider;
+import de.twenty11.skysail.server.services.ConfigService;
+
 
 public class ServiceProvider {
 
-    /** slf4j based logger implementation */
+    private static ConfigService configService;
+	/** slf4j based logger implementation */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     protected void activate(ComponentContext ctxt) {
@@ -33,6 +37,14 @@ public class ServiceProvider {
 
     protected void deactivate(ComponentContext ctxt) {
         //logValServiceListener = null;
+    }
+    
+    public synchronized void setConfigService(ConfigService configService) {
+    	ServiceProvider.configService = configService;
+    }
+    
+    public static ConfigService getConfigService() {
+        return configService;
     }
     
     
