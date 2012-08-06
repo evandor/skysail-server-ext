@@ -42,44 +42,25 @@ import de.twenty11.skysail.server.internal.Activator;
 public class SkysailServerExtDbviewerOsgiIT {
 
 	private List<PaxExamOptionSet> dependencies = new ArrayList<PaxExamOptionSet>();
-	
+
 	@Configuration
 	public Option[] config() {
-		
+
 		dependencies.add(PaxExamOptionSet.BASE);
 		dependencies.add(PaxExamOptionSet.DEBUGGING);
-		
+
 		SkysailServerExtDbViewerOsgiSetup setup = new SkysailServerExtDbViewerOsgiSetup();
 		List<Option> options = setup.getOptions(EnumSet.copyOf(dependencies));
 
-		//options.add(systemProperty("org.osgi.service.http.port").value( "8888" ));
-		options.add(systemProperty("jetty.home.bundle").value( "skysail.server" ));
+		// _this_ bundle from target directory
+		options.add(bundle("file:target/skysail.server.ext.dbviewer-"
+				+ setup.getProjectVersion() + ".jar"));
+
+		// options.add(systemProperty("org.osgi.service.http.port").value(
+		// "8888" ));
+		options.add(systemProperty("jetty.home.bundle").value("skysail.server"));
 		options.add(systemProperty("ds.loglevel").value("4"));
-		// equinox 
-		//options.add(mavenBundle("org.eclipse", "osgi", "3.6.2.R36x_v20110210"));
-		  
-		// felix webconsole
-//		options.add(mavenBundle("commons-fileupload", "commons-fileupload", "1.2.1"));
-//		options.add(mavenBundle("commons-io", "commons-io", "1.4"));
-//		options.add(mavenBundle("de.twentyeleven.bundled", "json", "20070829"));
-//		options.add(mavenBundle("org.apache.felix", "org.apache.felix.webconsole", "4.0.0"));
 
-		// felix config admin
-		options.add(mavenBundle("org.apache.felix", "org.apache.felix.configadmin", "1.4.0"));
-
-		// this  bundle
-		options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server.ext.dbviewer", "0.0.4-SNAPSHOT"));
-
-		options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
-		
-//		options.add(bundle("reference:file:./"));
-//		
-//		InputStream bundleUnderTest = bundle()
-//				.add(de.twenty11.skysail.server.ext.dbviewer.internal.Application.class)
-//				.set(Constants.BUNDLE_SYMBOLICNAME, "skysail.server.ext.dbviewer")
-//				.set(Constants.IMPORT_PACKAGE, "de.twenty11.skysail.common")
-//				.build();
-		//options.add(provision(bundleUnderTest));
 		Option[] options2Use = options.toArray(new Option[options.size()]);
 		setup.logOptionsUsed(options2Use);
 		return options2Use;
@@ -94,8 +75,9 @@ public class SkysailServerExtDbviewerOsgiIT {
 	@Test
 	public void test() {
 		RestAssured.baseURI = "http://localhost";
-		RestAssured.port = 8100;
-		expect().body("lotto.lottoId", equalTo(5)).when().get("/lotto");
+		RestAssured.port = 8554;
+		expect().body("success", equalTo(true)).given().auth()
+				.basic("scott", "tiger").when().get("/dbviewer/?media=json");
 	}
 
 }
