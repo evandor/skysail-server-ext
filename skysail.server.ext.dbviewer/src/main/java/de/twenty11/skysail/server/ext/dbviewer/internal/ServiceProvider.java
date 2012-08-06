@@ -18,73 +18,65 @@
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
 import org.osgi.service.component.ComponentContext;
-import org.restlet.Request;
-import org.restlet.Restlet;
 import org.restlet.Server;
-import org.restlet.data.MediaType;
 import org.restlet.data.Protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.internal.ConfigServiceProvider;
+import de.twenty11.skysail.server.ext.dbviewer.Constants;
 import de.twenty11.skysail.server.services.ConfigService;
-
 
 public class ServiceProvider {
 
     private static ConfigService configService;
-	/** slf4j based logger implementation */
+    /** slf4j based logger implementation */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private DbViewerComponent dbViewerComponent;
-	private Server server;
+    private DbViewerComponent dbViewerComponent;
+    private Server server;
 
     protected void activate(ComponentContext ctxt) {
-        //logValServiceListener = new LogValidationInputProviderServiceListener(ctxt.getBundleContext());
-    	
-//    	server = new Server(Protocol.HTTP, 8554, new Restlet() {
-//			@Override
-//			public void handle(Request request, org.restlet.Response response) {
-//				response.setEntity("Hello world!", MediaType.TEXT_PLAIN);
-//			}
-//		});
-//
-//		try {
-//			server.start();
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//    	
-    	
-    	dbViewerComponent = new DbViewerComponent();
-    	try {
-    		server = new Server(Protocol.HTTP, 8554, dbViewerComponent);
-			server.start();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        logger.error("Activating DbViewer ServiceProvider");
+        if (startStandaloneServer()) {
+            String port = configService.getString(Constants.STANDALONE_PORT, "8554");
+            logger.info("starting standalone dbviewer server on port {}", port);
+            dbViewerComponent = new DbViewerComponent();
+            startStandaloneServer(port);
+        }
     }
 
     protected void deactivate(ComponentContext ctxt) {
-        //logValServiceListener = null;
-    	try {
-			server.stop();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        try {
+            server.stop();
+        } catch (Exception e) {
+            logger.error("Exception when trying to stop standalone server", e);
+        }
     }
-    
+
+    private void startStandaloneServer(String portAsString) {
+        try {
+            server = new Server(Protocol.HTTP, Integer.valueOf(portAsString), dbViewerComponent);
+            server.start();
+        } catch (Exception e) {
+            logger.error("Exception when starting standalone server", e);
+        }
+    }
+
+    private boolean startStandaloneServer() {
+        String standalone = configService.getString(Constants.STANDALONE, "false");
+        if (!"true".equals(standalone)) {
+            logger.info("not starting standalone server, as {} is set to false or not configured", Constants.STANDALONE);
+            return false;
+        }
+        return true;
+
+    }
+
     public synchronized void setConfigService(ConfigService configService) {
-    	ServiceProvider.configService = configService;
+        ServiceProvider.configService = configService;
     }
-    
+
     public static ConfigService getConfigService() {
         return configService;
     }
-    
-    
-
 
 }

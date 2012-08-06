@@ -44,11 +44,6 @@ public class SkysailApplication extends RestletOsgiApplication {
      */
     protected void attach() {
         new UrlMappingServiceListener(this);
-//        logger.info("attachting {} to '/osgi/'", ProductRootResource.class.getName());
-//        router.attach("/osgi/", ProductRootResource.class);
-//        router.attach("/osgi/about/", AboutResource.class);
-//        router.attach("/osgi/taillog/", TailLogResource.class);
-        //router.attach("/cometTimesync/", CometResource.class);
     }
 
 }
