@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
-import de.twenty11.skysail.server.GridDataServerResource;
+import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
 public class ConnectionsResource extends GridDataServerResource {
 
@@ -37,6 +37,7 @@ public class ConnectionsResource extends GridDataServerResource {
                 addColumn("url");
                 addColumn("user");
                 addColumn("driver");
+                addColumn("drillDown");
             }
         });
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");
@@ -52,6 +53,7 @@ public class ConnectionsResource extends GridDataServerResource {
             row.add(ds.getUrl());
             row.add(ds.getUsername());
             row.add(ds.getDriverClassName());
+            row.add(getParent() + "dbviewer/" + dsName + "/?media=json");
             grid.addRowData(row);
         }
     }

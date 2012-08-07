@@ -17,7 +17,7 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
         
         List<Option> options = super.getOptions(optionSets);
         
-        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server", "0.2.1-SNAPSHOT"));
+        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server", "0.2.3-SNAPSHOT"));
         
 		options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server.configuration.byPropertiesService", "0.1.1-SNAPSHOT"));
 

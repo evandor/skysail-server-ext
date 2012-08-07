@@ -1,3 +1,4 @@
+
 # and bundle from the local hard drive with no specific start level that is installed and started
 #file:/C:/localRepository/org/ops4j/pax/web/bundles/service/0.2.0/service-0.2.0.jar
  
@@ -38,10 +39,18 @@ mvn:org.restlet.jee/org.restlet.ext.wadl/2.0.11
 mvn:de.twentyeleven.skysail/skysail.server.freemarker/0.1.1-SNAPSHOT
 
 ### config
-mvn:de.twentyeleven.skysail/skysail.server.configuration.byPropertiesService/0.1.1-SNAPSHOT
+mvn:de.twentyeleven.skysail/skysail.server.configuration.byPropertiesService/0.1.1-SNAPSHOT@update
  
 ### log
 mvn:org.apache.felix/org.apache.felix.log/1.0.1 
+ 
+### declarative services
+mvn:org.apache.felix/org.apache.felix.scr/1.6.0 
+ 
+mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.4-SNAPSHOT@update 
+ 
+mvn:commons-dbcp/skysail.bundles.commons-dbcp/1.4 
+ 
  
 # properties for http service ports
 #-Dorg.osgi.service.http.port=2080
