@@ -37,6 +37,11 @@ mvn:org.restlet.jee/org.restlet.ext.xstream/2.0.11
 mvn:org.restlet.jee/org.restlet.ext.wadl/2.0.11
 mvn:de.twentyeleven.skysail/skysail.server.freemarker/0.1.1-SNAPSHOT
 
+### config
+mvn:de.twentyeleven.skysail/skysail.server.configuration.byPropertiesService/0.1.1-SNAPSHOT
+ 
+### log
+mvn:org.apache.felix/org.apache.felix.log/1.0.1 
  
 # properties for http service ports
 #-Dorg.osgi.service.http.port=2080
