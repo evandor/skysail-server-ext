@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.twenty11.skysail.server.ext.spreadsheet.Spreadsheet;
-import de.twenty11.skysail.server.ext.spreadsheet.internal.InMemorySpreadsheet;
+import de.twenty11.skysail.server.ext.spreadsheet.Cell;
+import de.twenty11.skysail.server.ext.spreadsheet.internal.InMemoryCell;
 
 /**
  * @author carsten
@@ -15,7 +15,7 @@ import de.twenty11.skysail.server.ext.spreadsheet.internal.InMemorySpreadsheet;
  */
 public class SpreadsheetTest {
 
-    Spreadsheet spreadsheet = new InMemorySpreadsheet();
+    Cell cell = new InMemoryCell();
     
     @Before
     public void setUp() throws Exception {
@@ -25,8 +25,8 @@ public class SpreadsheetTest {
     @Test
     public void testConstructor() {
         String testtext = "testtext";
-        spreadsheet.addText(0, 0, testtext);
-        Assert.assertThat(testtext, is(spreadsheet.getText(0,0)));
+        cell.addText(testtext);
+        Assert.assertThat(testtext, is(cell.getText()));
     }
 
 }
