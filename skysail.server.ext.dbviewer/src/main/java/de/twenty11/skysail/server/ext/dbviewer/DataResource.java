@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.GridDataServerResource;
+import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
 public class DataResource extends GridDataServerResource {
 
@@ -38,6 +38,14 @@ public class DataResource extends GridDataServerResource {
     private final ObjectMapper mapper = new ObjectMapper();
 
     public DataResource() {
+        super(new ColumnsBuilder() {
+            
+            @Override
+            public void configure() {
+                // TODO Auto-generated method stub
+                
+            }
+        });
         getSkysailData().setColumns(new ColumnsBuilder() {
 
             @Override
