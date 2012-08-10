@@ -20,4 +20,18 @@ public class InMemoryCell implements Cell {
         return text;
     }
 
+    @Override
+    public int getColumn() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int getRow() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    
+
 }
