@@ -23,7 +23,7 @@ public class ConnectionsResource extends GridDataServerResource {
         BasicDataSource defaultDS = new BasicDataSource();
         defaultDS.setDriverClassName("com.mysql.jdbc.Driver");
         defaultDS.setUsername("root");
-        defaultDS.setPassword("");
+        defaultDS.setPassword("websphere");
         defaultDS.setUrl("jdbc:mysql://localhost/skysailosgi");
         datasources.put("default", defaultDS);
     }
@@ -37,7 +37,7 @@ public class ConnectionsResource extends GridDataServerResource {
                 addColumn("url");
                 addColumn("user");
                 addColumn("driver");
-                addColumn("drillDown");
+                addColumn("drillDown10");
             }
         });
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");

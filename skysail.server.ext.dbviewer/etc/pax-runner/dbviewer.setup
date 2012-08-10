@@ -47,9 +47,16 @@ mvn:org.apache.felix/org.apache.felix.log/1.0.1
 ### declarative services
 mvn:org.apache.felix/org.apache.felix.scr/1.6.0 
  
-mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.4-SNAPSHOT@update 
+#read from target dir
+#mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.4-SNAPSHOT@update 
  
 mvn:commons-dbcp/skysail.bundles.commons-dbcp/1.4 
+
+### db
+mvn:mysql/skysail.bundles.mysql-connector-java/5.1.6@update 
+ 
+### auto-install & update 
+mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 
  
  
 # properties for http service ports
