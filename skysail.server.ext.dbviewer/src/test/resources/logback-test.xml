@@ -18,7 +18,7 @@
 			<level>DEBUG</level>
 		</filter>
 		<file>etc/testrun.log</file>
-		<append>false</append>
+		<append>true</append>
 		<encoder>
 			<pattern>%-5level %logger{55} - %msg%n
 			</pattern>
