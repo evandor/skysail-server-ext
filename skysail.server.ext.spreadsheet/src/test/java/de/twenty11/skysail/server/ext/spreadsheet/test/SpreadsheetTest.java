@@ -22,11 +22,11 @@ public class SpreadsheetTest {
         
     }
 
-    @Test
-    public void testConstructor() {
-        String testtext = "testtext";
-        cell.addText(testtext);
-        Assert.assertThat(testtext, is(cell.getText()));
-    }
+//    @Test
+//    public void testConstructor() {
+//        String testtext = "testtext";
+//        cell.addText(testtext);
+//        Assert.assertThat(testtext, is(cell.getText()));
+//    }
 
 }
