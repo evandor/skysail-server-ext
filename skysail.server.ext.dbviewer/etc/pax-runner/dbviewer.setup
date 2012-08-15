@@ -14,7 +14,7 @@ mvn:ch.qos.logback/logback-core/0.9.29
 mvn:ch.qos.logback/logback-classic/0.9.29
 
 ### skysail common and dependencies 
-mvn:de.twentyeleven.skysail/skysail.common/0.3.3-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.common/0.3.5-SNAPSHOT@update
 
 mvn:commons-lang/commons-lang/2.6
 mvn:org.codehaus.jackson/jackson-core-lgpl/1.9.5
@@ -24,7 +24,7 @@ mvn:org.xmlpull/com.springsource.org.xmlpull/1.1.4.c
 mvn:com.thoughtworks.xstream/com.springsource.com.thoughtworks.xstream/1.3.1
 
 ### skysail server and dependencies 
-mvn:de.twentyeleven.skysail/skysail.server/0.2.3-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.server/0.2.4-SNAPSHOT@update
 
 mvn:org.freemarker/com.springsource.freemarker/2.3.18
 mvn:org.codehaus.jettison/com.springsource.org.codehaus.jettison/1.0.1
@@ -40,6 +40,7 @@ mvn:de.twentyeleven.skysail/skysail.server.freemarker/0.1.1-SNAPSHOT
 
 ### config
 mvn:de.twentyeleven.skysail/skysail.server.configuration.byPropertiesService/0.1.1-SNAPSHOT@update
+mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0 
  
 ### log
 mvn:org.apache.felix/org.apache.felix.log/1.0.1 
@@ -62,3 +63,6 @@ mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4
 # properties for http service ports
 #-Dorg.osgi.service.http.port=2080
 #-Dorg.osgi.service.http.port.secure=2443
+-Dfelix.fileinstall.dir=/home/carsten/git/skysail-server-ext/skysail.server.ext.dbviewer/etc/pax-runner/load
+-Dfelix.fileinstall.log.level=4
+-Dorg.apache.felix.log.storeDebug=true

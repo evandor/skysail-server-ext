@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
+import de.twenty11.skysail.server.ext.dbviewer.internal.Configuration;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
 public class ConnectionsResource extends GridDataServerResource {
@@ -18,15 +19,6 @@ public class ConnectionsResource extends GridDataServerResource {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static Map<String, BasicDataSource> datasources = new HashMap<String, BasicDataSource>();
-
-    static {
-        BasicDataSource defaultDS = new BasicDataSource();
-        defaultDS.setDriverClassName("com.mysql.jdbc.Driver");
-        defaultDS.setUsername("root");
-        defaultDS.setPassword("websphere");
-        defaultDS.setUrl("jdbc:mysql://localhost/skysailosgi");
-        datasources.put("default", defaultDS);
-    }
 
     public ConnectionsResource() {
         super(new ColumnsBuilder() {
@@ -41,10 +33,18 @@ public class ConnectionsResource extends GridDataServerResource {
             }
         });
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");
+        
+        BasicDataSource defaultDS = new BasicDataSource();
+        defaultDS.setDriverClassName(Configuration.getDriverClassName());
+        defaultDS.setUsername("root");
+        defaultDS.setPassword("websphere");
+        defaultDS.setUrl("jdbc:mysql://localhost/skysailosgi");
+        datasources.put("default", defaultDS);
     }
 
     @Override
     public void buildGrid() {
+        setMessage("all Connections");
         GridData grid = getSkysailData();
         for (String dsName : datasources.keySet()) {
             BasicDataSource ds = datasources.get(dsName);

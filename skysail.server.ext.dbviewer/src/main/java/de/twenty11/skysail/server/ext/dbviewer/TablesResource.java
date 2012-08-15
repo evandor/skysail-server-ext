@@ -43,6 +43,8 @@ public class TablesResource extends GridDataServerResource {
             @Override
             public void configure() {
                 addColumn("Table");
+                addColumn("Data");
+                addColumn("Columns");
             }
         });
         setTemplate("skysail.server.ext.dbviewer:tables.ftl");
@@ -62,6 +64,8 @@ public class TablesResource extends GridDataServerResource {
             while (tables.next()) {
                 RowData row = new RowData(getSkysailData().getColumns());
                 row.add(tables.getString("TABLE_NAME"));
+                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/data/?media=json");
+                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/columns/?media=json");
                 grid.addRowData(row);
             }
         } catch (SQLException e) {
