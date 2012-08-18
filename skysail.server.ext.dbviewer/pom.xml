@@ -153,13 +153,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>com.jayway.rest-assured-osgi</artifactId>
-			<version>1.6.2</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<scope>test</scope>
@@ -213,13 +206,13 @@
 			<version>3.2.1</version>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-core</artifactId>
 			<scope>test</scope>
 			<version>1.3.RC2</version>
 		</dependency>
-
+ -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient-osgi</artifactId>

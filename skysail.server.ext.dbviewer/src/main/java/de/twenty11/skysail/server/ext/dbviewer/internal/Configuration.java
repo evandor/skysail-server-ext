@@ -21,6 +21,8 @@ import java.io.IOException;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.ComponentContext;
+import org.restlet.Server;
+import org.restlet.data.Protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,12 +32,45 @@ public class Configuration {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
     private static ConfigurationAdmin configadmin;
+    private DbViewerComponent dbViewerComponent;
+    private Server server;
 
     protected void activate(ComponentContext ctxt) {
         logger.info("Activating DbViewer Config");
+        if (startStandaloneServer()) {
+            String port = "8554";// configService.getString(Constants.STANDALONE_PORT, "8554");
+            logger.info("starting standalone dbviewer server on port {}", port);
+            dbViewerComponent = new DbViewerComponent();
+            startStandaloneServer(port);
+        }
+
     }
 
     protected void deactivate(ComponentContext ctxt) {
+        try {
+            server.stop();
+        } catch (Exception e) {
+            logger.error("Exception when trying to stop standalone server", e);
+        }
+    }
+
+    private boolean startStandaloneServer() {
+        // String standalone = configService.getString(Constants.STANDALONE, "false");
+        // if (!"true".equals(standalone)) {
+        // logger.info("not starting standalone server, as {} is set to false or not configured", Constants.STANDALONE);
+        // return false;
+        // }
+        return true;
+
+    }
+
+    private void startStandaloneServer(String portAsString) {
+        try {
+            server = new Server(Protocol.HTTP, Integer.valueOf(portAsString), dbViewerComponent);
+            server.start();
+        } catch (Exception e) {
+            logger.error("Exception when starting standalone server", e);
+        }
     }
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
