@@ -185,6 +185,12 @@
 			<version>1.3</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>org.ccil.cowan.tagsoup-osgi</artifactId>
+			<version>1.2.1</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.antlr</groupId>
