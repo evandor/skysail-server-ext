@@ -26,7 +26,7 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
 
         // restassured:
         options.add(mavenBundle("de.twentyeleven.skysail", "com.jayway.rest-assured-osgi", "1.6.2"));
-        options.add(mavenBundle("de.twentyeleven.skysail", "org.hamcrest.hamcrest-all-osgi", "1.3"));
+        options.add(mavenBundle("de.twentyeleven.skysail", "org.hamcrest.hamcrest-all-osgi", "1.3.0.1"));
         options.add(mavenBundle("de.twentyeleven.skysail", "org.ccil.cowan.tagsoup-osgi", "1.2.1"));
         options.add(mavenBundle("commons-collections", "commons-collections", "3.2.1"));
         options.add(mavenBundle("org.apache.commons", "commons-lang3", "3.1"));
