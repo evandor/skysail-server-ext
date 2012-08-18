@@ -180,9 +180,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>skysail.bundles.hamcrest-all</artifactId>
-			<version>1.2.1</version>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>org.hamcrest.hamcrest-all-osgi</artifactId>
+			<version>1.3</version>
 			<scope>test</scope>
 		</dependency>
 
