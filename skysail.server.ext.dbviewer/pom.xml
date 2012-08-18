@@ -179,6 +179,12 @@
 			<version>1.8.4</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>skysail.bundles.hamcrest-all</artifactId>
+			<version>1.2.1</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.antlr</groupId>
