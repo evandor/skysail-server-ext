@@ -172,6 +172,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- needed for pax exam when artifact is not in local rep -->
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>1.8.4</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>com.springsource.antlr</artifactId>
