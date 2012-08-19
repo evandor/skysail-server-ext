@@ -26,6 +26,9 @@ import org.restlet.data.Protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
+
 import de.twenty11.skysail.server.Constants;
 
 public class Configuration {
@@ -36,6 +39,10 @@ public class Configuration {
     private Server server;
 
     protected void activate(ComponentContext ctxt) {
+        
+//        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+//        StatusPrinter.print(lc);
+
         logger.info("Activating DbViewer Config");
         if (startStandaloneServer()) {
             String port = "8554";// configService.getString(Constants.STANDALONE_PORT, "8554");
