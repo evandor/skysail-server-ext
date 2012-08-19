@@ -85,8 +85,8 @@
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>install phase</id>
-						<phase>install</phase>
+						<id>deploy phase</id>
+						<phase>deploy</phase>
 						<configuration>
 							<tasks>
 								<!-- delete zip file first to have an exact copy (even if files have 
