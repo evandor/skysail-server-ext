@@ -5,7 +5,7 @@
 ### -Dorg.osgi.service.http.port=2080
 ### -Dorg.osgi.service.http.port.secure=2443
 ### ---------------------------------------
--Dfelix.fileinstall.dir=../config,../deploy
+-Dfelix.fileinstall.dir=../conf,
 -Dfelix.fileinstall.log.level=4
 -Dorg.apache.felix.log.storeDebug=true
 
@@ -57,6 +57,8 @@ mvn:org.apache.felix/org.apache.felix.scr/1.6.0
  
 #read from target dir
 #mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.4-SNAPSHOT@update 
+mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.4-SNAPSHOT@update 
+
  
 mvn:commons-dbcp/skysail.bundles.commons-dbcp/1.4 
 
