@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>skysail.server.ext.dbviewer</artifactId>
-	<version>0.0.7-SNAPSHOT</version>
+	<version>0.0.7</version>
 	<name>skysail dbviewer server extension</name>
 	<packaging>bundle</packaging>
 
