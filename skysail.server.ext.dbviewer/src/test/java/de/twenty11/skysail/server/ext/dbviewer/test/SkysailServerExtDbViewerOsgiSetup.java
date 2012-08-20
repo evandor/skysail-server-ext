@@ -22,7 +22,7 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
 
         List<Option> options = super.getOptions(optionSets);
 
-        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server"));
+        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server", "0.2.5-SNAPSHOT"));
 
         // restassured:
         options.add(mavenBundle("de.twentyeleven.skysail", "com.jayway.rest-assured-osgi", "1.6.2"));
