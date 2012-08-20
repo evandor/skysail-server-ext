@@ -10,9 +10,9 @@
 		<relativePath />
 	</parent>
 
-	<artifactId>skysail.server.ext.dbviewer</artifactId>
+	<artifactId>skysail.server.ext.spreadsheet</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
-	<name>skysail dbviewer server extension</name>
+	<name>skysail spreadsheet server extension</name>
 	<packaging>bundle</packaging>
 
 	<scm>

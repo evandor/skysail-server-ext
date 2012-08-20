@@ -2,10 +2,10 @@
 <features>
 
 	<!-- feature to be used with apache karaf -->
-    <feature name="skysail.server.ext.dbviewer.feature" version="${pom.version}">
+    <feature name="skysail.server.ext.spreadsheet.feature" version="${pom.version}">
 
  		<!-- skysail.server.osgi.bundles with dependecies -->
-        <bundle>mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/${pom.version}</bundle>
+        <bundle>mvn:de.twentyeleven.skysail/skysail.server.ext.spreadsheet/${pom.version}</bundle>
         
         <bundle>mvn:commons-pool/commons-pool/1.5.4</bundle>
         <bundle>mvn:commons-dbcp/commons-dbcp/1.4</bundle>

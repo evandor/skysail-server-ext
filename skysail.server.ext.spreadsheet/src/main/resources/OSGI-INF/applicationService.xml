@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="SSEDV Application Service Provider">
- <implementation class="de.twenty11.skysail.server.ext.dbviewer.internal.Application"/>
+ <implementation class="de.twenty11.skysail.server.ext.spreadsheet.internal.Application"/>
  <service>
      <provide interface="de.twenty11.skysail.server.services.ApplicationService"/>
  </service>
