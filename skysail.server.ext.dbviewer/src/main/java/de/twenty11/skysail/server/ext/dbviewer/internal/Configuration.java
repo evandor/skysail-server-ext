@@ -37,13 +37,10 @@ public class Configuration {
 
     protected void activate(ComponentContext ctxt) {
         
-//        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-//        StatusPrinter.print(lc);
-
-        logger.info("Activating DbViewer Config");
+        logger.info("Activating Skysail Ext DbViewer Configuration");
         if (startStandaloneServer()) {
             String port = "8554";// configService.getString(Constants.STANDALONE_PORT, "8554");
-            logger.info("starting standalone dbviewer server on port {}", port);
+            logger.info("Starting standalone dbviewer server on port {}", port);
             dbViewerComponent = new DbViewerComponent();
             startStandaloneServer(port);
         }

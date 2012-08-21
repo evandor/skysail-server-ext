@@ -2,7 +2,7 @@
 ### equivalent to AbstractFrameworkIntegrationSetup:
 ### ------------------------------------------------
 
-mvn:org.slf4j/slf4j-api/1.6.1
+mvn:org.slf4j/slf4j-api/1.6.4
 mvn:ch.qos.logback/logback-core/0.9.29
 mvn:ch.qos.logback/logback-classic/0.9.29
 
@@ -39,6 +39,7 @@ mvn:org.restlet.jee/org.restlet.ext.wadl/2.0.14
 
 mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0 
 mvn:org.apache.felix/org.apache.felix.log/1.0.1 
+mvn:org.slf4j/jul-to-slf4j/1.6.4
 
 ### --------------------
 ### declarative services
