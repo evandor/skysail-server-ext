@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +10,7 @@
 	</parent>
 
 	<artifactId>skysail.server.ext.dbviewer</artifactId>
-	<version>0.0.13-SNAPSHOT</version>
+	<version>0.0.13</version>
 	<name>skysail dbviewer server extension</name>
 	<packaging>bundle</packaging>
 
@@ -90,22 +89,17 @@
 						<configuration>
 							<tasks>
 								<!-- delete zip file first to have an exact copy (even if files have 
-									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
-									/> -->
-								<zip destfile="target/skysail-dbviewer-${project.version}.zip"
-									encoding="UTF-8" update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner"
-										prefix="skysail-dbviewer-${project.version}" filemode="775">
+									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" /> -->
+								<zip destfile="target/skysail-dbviewer-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer-${project.version}" filemode="775">
 										<include name="dbviewer.sh" />
 										<include name="dbviewer.composite" />
 										<include name="dbviewer.setup" />
 									</zipfileset>
-									<zipfileset dir="src/main/resources"
-										prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="src/main/resources" prefix="skysail-dbviewer-${project.version}/conf">
 										<include name="logback.xml" />
 									</zipfileset>
-									<zipfileset dir="conf/prod"
-										prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="conf/prod" prefix="skysail-dbviewer-${project.version}/conf">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
