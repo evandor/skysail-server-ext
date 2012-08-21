@@ -50,7 +50,6 @@ mvn:org.apache.felix/org.apache.felix.scr/1.6.0
 ### Other
 ### --------------------
  
-mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.4-SNAPSHOT@update 
 mvn:commons-dbcp/skysail.bundles.commons-dbcp/1.4 
 mvn:mysql/skysail.bundles.mysql-connector-java/5.1.6@update 
 mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 

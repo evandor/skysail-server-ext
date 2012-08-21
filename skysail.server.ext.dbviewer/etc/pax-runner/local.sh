@@ -10,8 +10,7 @@
 --log=WARNING \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
- -Dskysail.confDir=../../ \
- -Dfelix.fileinstall.dir=../../../target \
+ -Dfelix.fileinstall.dir=../../../target,../config \
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \
  -Dfelix.fileinstall.noInitialDelay=true \
  -Dfelix.fileinstall.poll=1000 \
