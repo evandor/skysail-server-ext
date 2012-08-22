@@ -5,9 +5,11 @@
 # You need to configure the path to your local pax-runner installation in the first line!             #
 #######################################################################################################
 
-/home/carsten/install/pax-runner-1.7.6/bin/pax-run.sh \
+### --log=WARN \
+
+/home/carsten/install/pax-runner-1.7.6/bin/pax-debug.sh \
 --clean \
---log=WARNING \
+--log=TRACE \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
  -Dfelix.fileinstall.dir=../../../target,../config \
