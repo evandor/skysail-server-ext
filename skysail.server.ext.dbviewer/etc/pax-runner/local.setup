@@ -5,6 +5,8 @@
 mvn:org.slf4j/slf4j-api/1.6.4
 mvn:ch.qos.logback/logback-core/0.9.29
 mvn:ch.qos.logback/logback-classic/0.9.29
+mvn:org.apache.felix/org.apache.felix.log/1.0.1 
+mvn:org.slf4j/jul-to-slf4j/1.6.4
 
 ### -------------------------------
 ### skysail common and dependencies 
@@ -34,12 +36,10 @@ mvn:org.restlet.jee/org.restlet.ext.xstream/2.0.14
 mvn:org.restlet.jee/org.restlet.ext.wadl/2.0.14
 
 ### ------------------
-### config and logging
+### config admin
 ### ------------------
 
 mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0 
-mvn:org.apache.felix/org.apache.felix.log/1.0.1 
-mvn:org.slf4j/jul-to-slf4j/1.6.4
 
 ### --------------------
 ### declarative services
@@ -51,5 +51,5 @@ mvn:org.apache.felix/org.apache.felix.scr/1.6.0
 ### --------------------
  
 mvn:commons-dbcp/skysail.bundles.commons-dbcp/1.4 
-mvn:mysql/skysail.bundles.mysql-connector-java/5.1.6@update 
+mvn:mysql/mysql-connector-java/5.1.21 
 mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 
