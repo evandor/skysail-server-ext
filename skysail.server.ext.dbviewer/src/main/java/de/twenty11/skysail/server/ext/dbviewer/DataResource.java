@@ -81,7 +81,7 @@ public class DataResource extends GridDataServerResource {
                 getSkysailData().getColumns().getAsList().add(columnDefinition);
             }
 
-            BasicDataSource ds = ConnectionsResource.datasources.get(connectionName);
+            BasicDataSource ds = (BasicDataSource)ConnectionsResource.datasources.get(connectionName);
             GridData grid = getSkysailData();
             Connection connection = ds.getConnection();
 

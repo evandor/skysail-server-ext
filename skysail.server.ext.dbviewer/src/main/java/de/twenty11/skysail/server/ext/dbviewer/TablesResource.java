@@ -53,7 +53,7 @@ public class TablesResource extends GridDataServerResource {
     @Override
     public void buildGrid() {
         String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        BasicDataSource ds = ConnectionsResource.datasources.get(connectionName);
+        BasicDataSource ds = (BasicDataSource) ConnectionsResource.datasources.get(connectionName);
         GridData grid = getSkysailData();
         Connection connection;
         try {

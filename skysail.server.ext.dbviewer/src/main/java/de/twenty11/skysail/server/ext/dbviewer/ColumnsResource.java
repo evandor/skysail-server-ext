@@ -56,7 +56,7 @@ public class ColumnsResource extends GridDataServerResource {
         String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         String tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
 
-        BasicDataSource ds = ConnectionsResource.datasources.get(connectionName);
+        BasicDataSource ds = (BasicDataSource)ConnectionsResource.datasources.get(connectionName);
         GridData grid = getSkysailData();
 
         Connection connection;
