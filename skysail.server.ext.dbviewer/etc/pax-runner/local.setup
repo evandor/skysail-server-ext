@@ -55,3 +55,10 @@ mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1-SNAPSHOT
 mvn:commons-pool/commons-pool/1.6 
 mvn:mysql/mysql-connector-java/5.1.21 
 mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 
+mvn:org.eclipse.persistence/javax.persistence/2.0.3 
+mvn:org.eclipse.persistence/org.eclipse.persistence.osgi/2.2.0 
+mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.2.0 
+mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0 
+mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0 
+mvn:de.twentyeleven.skysail/skysail.server.eclipselink/0.0.3-SNAPSHOT
+
