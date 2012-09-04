@@ -19,7 +19,7 @@ public class DbViewerUrlMapper implements UrlMapper {
     public static final String TABLE_NAME = "tableName";
 
     @Override
-    public Map<String, String> getUrlMapping() {
+    public Map<String, String> provideUrlMapping() {
         Map<String, String> queue = Collections.synchronizedMap(new LinkedHashMap<String, String>());
         queue.put("/" + CONTEXT_ID + "/", ConnectionsResource.class.getName());
         queue.put("/" + CONTEXT_ID + "/{" + CONNECTION_NAME + "}/", TablesResource.class.getName());
