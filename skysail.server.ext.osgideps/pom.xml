@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.twentyeleven.skysail</groupId>
+		<artifactId>skysail.build.maven.parentPom</artifactId>
+		<version>0.8.2</version>
+	</parent>
+
+	<artifactId>skysail.server.ext.osgideps</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>skysail.server.ext.osgideps created by skysail archetype</name>
+	<packaging>bundle</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<_include>-osgi.bnd</_include>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- <dependency> <groupId>de.twentyeleven.skysail</groupId> <artifactId>skysail.server</artifactId> 
+			<version>[0.2.4-SNAPSHOT, 1.0)</version> </dependency> <dependency> <groupId>de.twentyeleven.skysail</groupId> 
+			<artifactId>skysail.server</artifactId> <version>[0.2.4, 1.0)</version> <scope>test</scope> 
+			<type>test-jar</type> </dependency> <dependency> <groupId>de.twentyeleven.skysail</groupId> 
+			<artifactId>skysail.common</artifactId> <version>[0.3.6, 1.0)</version> <scope>test</scope> 
+			<type>test-jar</type> </dependency> -->
+
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>net.sf.jgrapht-osgi</artifactId>
+			<version>0.8.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jgraph</groupId>
+			<artifactId>jgraph</artifactId>
+			<version>5.13.0.0</version>
+		</dependency>
+
+		<!-- pax exam for testing <dependency> <groupId>org.ops4j.pax.exam</groupId> 
+			<artifactId>pax-exam-container-native</artifactId> <scope>test</scope> </dependency> 
+			<dependency> <groupId>org.ops4j.pax.exam</groupId> <artifactId>pax-exam-junit4</artifactId> 
+			<scope>test</scope> </dependency> <dependency> <groupId>org.ops4j.pax.exam</groupId> 
+			<artifactId>pax-exam-link-mvn</artifactId> <scope>test</scope> </dependency> 
+			<dependency> <groupId>org.ops4j.pax.url</groupId> <artifactId>pax-url-aether</artifactId> 
+			<scope>test</scope> </dependency> -->
+
+
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>

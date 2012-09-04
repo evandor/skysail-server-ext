@@ -1,0 +1,2 @@
+Bundle-SymbolicName: skysail.server.ext.osgideps
+Service-Component: OSGI-INF/*.xml
