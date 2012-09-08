@@ -1,4 +1,4 @@
-//package de.twentyeleven.skysail.skysail.server.ext.osgideps.test;
+//package de.twentyeleven.skysail.skysail.server.ext.osgideps;
 //
 //import java.awt.Color;
 //import java.awt.Dimension;
@@ -21,7 +21,7 @@
 //import org.jgrapht.graph.ListenableDirectedGraph;
 //import org.jgrapht.graph.DefaultEdge;
 //
-//public class JGraphAdapterDemo {
+//public class JGraphAdapterDemo2 {
 //    
 //    
 //    private static final Dimension DEFAULT_SIZE = new Dimension(530, 320);
@@ -91,7 +91,7 @@
 //        JPanel p = new JPanel();
 //        p.setSize(500, 500);
 //
-//        JGraphAdapterDemo g = new JGraphAdapterDemo();
+//        JGraphAdapterDemo2 g = new JGraphAdapterDemo2();
 //        g.run();
 //
 //        JGraph jg = g.getJgraph();

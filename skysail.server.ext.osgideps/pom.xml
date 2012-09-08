@@ -30,34 +30,69 @@
 	</build>
 
 	<dependencies>
-		<!-- <dependency> <groupId>de.twentyeleven.skysail</groupId> <artifactId>skysail.server</artifactId> 
-			<version>[0.2.4-SNAPSHOT, 1.0)</version> </dependency> <dependency> <groupId>de.twentyeleven.skysail</groupId> 
-			<artifactId>skysail.server</artifactId> <version>[0.2.4, 1.0)</version> <scope>test</scope> 
-			<type>test-jar</type> </dependency> <dependency> <groupId>de.twentyeleven.skysail</groupId> 
-			<artifactId>skysail.common</artifactId> <version>[0.3.6, 1.0)</version> <scope>test</scope> 
-			<type>test-jar</type> </dependency> -->
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.server</artifactId>
+			<version>[0.2.4-SNAPSHOT, 1.0)</version>
+		</dependency>
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.server</artifactId>
+			<version>[0.2.4, 1.0)</version>
+			<scope>test</scope>
+			<type>test-jar</type>
+		</dependency>
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.common</artifactId>
+			<version>[0.3.6, 1.0)</version>
+			<scope>test</scope>
+			<type>test-jar</type>
+		</dependency>
 
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>net.sf.jgrapht-osgi</artifactId>
-			<version>0.8.3</version>
+			<artifactId>jgraphx-osgi</artifactId>
+			<version>1.10.3.1</version>
 		</dependency>
 
+		<!-- <dependency> <groupId>de.twentyeleven.skysail</groupId> <artifactId>net.sf.jgrapht-osgi</artifactId> 
+			<version>0.8.3</version> </dependency> -->		
+
+		<!-- testing with pax exam -->
 		<dependency>
-			<groupId>jgraph</groupId>
-			<artifactId>jgraph</artifactId>
-			<version>5.13.0.0</version>
+			<groupId>org.ops4j.pax.exam</groupId>
+			<artifactId>pax-exam-container-native</artifactId>
+			<scope>test</scope>
 		</dependency>
-
-		<!-- pax exam for testing <dependency> <groupId>org.ops4j.pax.exam</groupId> 
-			<artifactId>pax-exam-container-native</artifactId> <scope>test</scope> </dependency> 
-			<dependency> <groupId>org.ops4j.pax.exam</groupId> <artifactId>pax-exam-junit4</artifactId> 
-			<scope>test</scope> </dependency> <dependency> <groupId>org.ops4j.pax.exam</groupId> 
-			<artifactId>pax-exam-link-mvn</artifactId> <scope>test</scope> </dependency> 
-			<dependency> <groupId>org.ops4j.pax.url</groupId> <artifactId>pax-url-aether</artifactId> 
-			<scope>test</scope> </dependency> -->
-
-
+		<dependency>
+			<groupId>org.ops4j.pax.exam</groupId>
+			<artifactId>pax-exam-junit4</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.exam</groupId>
+			<artifactId>pax-exam-link-mvn</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.url</groupId>
+			<artifactId>pax-url-aether</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<version>3.2.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- testing with pax exam - done -->
 
 		<dependency>
 			<groupId>junit</groupId>
