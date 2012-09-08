@@ -1,2 +1,3 @@
 Bundle-SymbolicName: skysail.server.ext.osgideps
+Bundle-Activator: de.twentyeleven.skysail.skysail.server.ext.osgideps.Activator
 Service-Component: OSGI-INF/*.xml

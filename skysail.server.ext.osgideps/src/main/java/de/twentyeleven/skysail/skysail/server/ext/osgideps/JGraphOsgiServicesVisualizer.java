@@ -16,7 +16,7 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mxgraph.layout.mxCircleLayout;
+import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
@@ -41,8 +41,10 @@ public class JGraphOsgiServicesVisualizer extends JFrame {
         graph = new mxGraph();
 
         // mxFastOrganicLayout layout = new mxFastOrganicLayout(graph);
-        mxCircleLayout layout = new mxCircleLayout(graph);
-        layout.setRadius(30);
+        // mxCircleLayout layout = new mxCircleLayout(graph);
+        mxHierarchicalLayout layout = new mxHierarchicalLayout(graph);
+
+        // layout.setRadius(30);
         // layout.setMinDistanceLimit(10);
         // layout.setInitialTemp(10);
         // layout.setForceConstant(120);
@@ -54,7 +56,7 @@ public class JGraphOsgiServicesVisualizer extends JFrame {
 
         getContentPane().add(BorderLayout.CENTER, graphComponent);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 400);
+        setSize(1000, 800);
         setVisible(true);
 
         List<Bundle> skysailBundles = determineSkysailBundles(bundleContext);
@@ -63,6 +65,10 @@ public class JGraphOsgiServicesVisualizer extends JFrame {
 
         layout.execute(graph.getDefaultParent());
 
+        // mxGraphView view = graphComponent.getGraph().getView();
+        // int compLen = graphComponent.getWidth();
+        // int viewLen = (int) view.getGraphBounds().getWidth();
+        // view.setScale((double) compLen / viewLen * view.getScale());
     }
 
     public void run() {
@@ -168,7 +174,7 @@ public class JGraphOsgiServicesVisualizer extends JFrame {
             Object[] allEdges = graph.getAllEdges(new mxCell[] { bundle });
             if (allEdges.length == 0) {
                 logger.info("removing vertex for '{}' as it does not have any edges attached", bundleName);
-                graph.removeCells(new mxCell[] { bundle });
+                // graph.removeCells(new mxCell[] { bundle });
             }
         }
     }

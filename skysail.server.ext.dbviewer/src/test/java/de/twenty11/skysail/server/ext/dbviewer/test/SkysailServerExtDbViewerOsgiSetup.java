@@ -36,10 +36,10 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
         options.add(mavenBundle("org.codehaus.jackson", "jackson-core-lgpl", "1.9.5"));
 
         // mysql
-        options.add(mavenBundle("mysql","skysail.bundles.mysql-connector-java","5.1.6"));
-        
+        options.add(mavenBundle("mysql", "skysail.bundles.mysql-connector-java", "5.1.6"));
+
         // felix config admin
-        options.add(mavenBundle("org.apache.felix", "org.apache.felix.configadmin", "1.4.0"));
+        // options.add(mavenBundle("org.apache.felix", "org.apache.felix.configadmin", "1.4.0"));
 
         options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
 

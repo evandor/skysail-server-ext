@@ -129,7 +129,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
-			<version>[0.2.4, 1.0)</version>
+			<version>[0.2.5-SNAPSHOT, 1.0)</version>
 		</dependency>
 
 		<dependency>
