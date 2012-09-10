@@ -8,7 +8,6 @@ Bundle-Name: skysail.server.ext.osgi.visualization created by skysail archetype
 Bundle-SymbolicName: skysail.server.ext.osgi.visualization.zest
 Created-By: Apache Maven Bundle Plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0",
- org.eclipse.xsd,
  org.eclipse.draw2d;bundle-version="3.8.0"
 Service-Component: OSGI-INF/*.xml
 Bundle-Version: 0.0.1.qualifier

@@ -96,6 +96,12 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/juno</url>
 		</repository>
+        <repository>
+            <id>eclipse-gef-downloads</id>
+            <layout>p2</layout>
+            <url>http://www.eclipse.org/gef/downloads</url>
+        </repository>
+		
 	</repositories>
 
 </project>
