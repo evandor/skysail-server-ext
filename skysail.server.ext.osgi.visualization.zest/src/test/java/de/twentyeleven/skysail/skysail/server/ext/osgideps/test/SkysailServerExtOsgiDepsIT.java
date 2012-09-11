@@ -20,7 +20,7 @@
 //import org.osgi.framework.BundleContext;
 //
 //import de.twenty11.skysail.common.osgi.PaxExamOptionSet;
-//import de.twentyeleven.skysail.skysail.server.ext.osgideps.JGraphOsgiServicesVisualizer;
+//import de.twentyeleven.skysail.skysail.server.ext.osgideps.ZestOsgiServicesVisualizer;
 //
 ///**
 // * @author carsten
