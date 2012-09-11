@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
-import de.twenty11.skysail.server.ext.dbviewer.internal.Configuration;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailDataSource;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
@@ -60,9 +59,9 @@ public class ConnectionsResource extends GridDataServerResource {
             if (ds instanceof BasicDataSource) {
                 RowData row = new RowData(getSkysailData().getColumns());
                 row.add(dsName);
-                row.add(((BasicDataSource)ds).getUrl());
-                row.add(((BasicDataSource)ds).getUsername());
-                row.add(((BasicDataSource)ds).getDriverClassName());
+                row.add(((BasicDataSource) ds).getUrl());
+                row.add(((BasicDataSource) ds).getUsername());
+                row.add(((BasicDataSource) ds).getDriverClassName());
                 row.add(getParent() + "dbviewer/" + dsName + "/?media=json");
                 grid.addRowData(row);
             }
