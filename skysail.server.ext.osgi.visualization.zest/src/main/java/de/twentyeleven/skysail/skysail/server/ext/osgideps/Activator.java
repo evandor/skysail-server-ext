@@ -23,7 +23,8 @@ import org.osgi.framework.ServiceReference;
 
 public class Activator implements BundleActivator {
 
-    private static final String JUNO_P2_REPO = "http://download.eclipse.org/releases/juno";
+    // private static final String JUNO_P2_REPO = "http://download.eclipse.org/releases/juno";
+    private static final String JUNO_P2_REPO = "file:///home/carsten/eclipse/eclipse_4.2_RCP";
     private static BundleContext context;
     private ZestOsgiServicesVisualizer zestOsgiServicesVisualizer;
 
@@ -44,14 +45,12 @@ public class Activator implements BundleActivator {
         if (sr == null)
             return;
         agentProvider = (IProvisioningAgentProvider) bundleContext.getService(sr);
-        final IProvisioningAgent agent = agentProvider.createAgent(new URI(
-                "http://download.eclipse.org/releases/helios"));
+        final IProvisioningAgent agent = agentProvider.createAgent(new URI(JUNO_P2_REPO));
 
         // get the repository managers and define our repositories
         IMetadataRepositoryManager manager = (IMetadataRepositoryManager) agent
                 .getService(IMetadataRepositoryManager.SERVICE_NAME);
-        IMetadataRepository repository = manager.loadRepository(new URI("http://download.eclipse.org/releases/helios"),
-                new NullProgressMonitor());
+        IMetadataRepository repository = manager.loadRepository(new URI(JUNO_P2_REPO), new NullProgressMonitor());
 
         IArtifactRepositoryManager artifactManager = (IArtifactRepositoryManager) agent
                 .getService(IArtifactRepositoryManager.SERVICE_NAME);
