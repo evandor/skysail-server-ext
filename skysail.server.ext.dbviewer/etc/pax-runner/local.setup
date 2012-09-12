@@ -38,9 +38,9 @@ mvn:org.restlet.jee/org.restlet.ext.wadl/2.0.14
 ### -------------------------------
 ### skysail other 
 ### -------------------------------
-mvn:de.twentyeleven.skysail/skysail.server.ext.osgi.visualization.zest/0.0.1-SNAPSHOT@noStart
-file:/home/carsten/.m2/repository/org/eclipse/core/runtime/3.8.0-v20120308-2101/runtime-3.8.0-v20120308-2101.jar
-file:/home/carsten/.m2/repository/org/eclipse/osgi/3.8.0-v20120430-1750/osgi-3.8.0-v20120430-1750.jar
+#mvn:de.twentyeleven.skysail/skysail.server.ext.osgi.visualization.zest/0.0.1-SNAPSHOT@noStart
+#file:/home/carsten/.m2/repository/org/eclipse/core/runtime/3.8.0-v20120308-2101/runtime-3.8.0-v20120308-2101.jar
+#file:/home/carsten/.m2/repository/org/eclipse/osgi/3.8.0-v20120430-1750/osgi-3.8.0-v20120430-1750.jar
 
 ### ------------------
 ### config admin

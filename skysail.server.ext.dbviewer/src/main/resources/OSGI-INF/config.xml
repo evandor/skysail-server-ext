@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
 	name="SSEDB Config Service Provider">
+	<service>
+      <provide interface='org.osgi.service.cm.ManagedServiceFactory'/>
+    </service>
+    <property name='service.factoryPid' value='de.twenty11.skysail.server.ext.dbviewer'/>
+    
 	<implementation
 		class="de.twenty11.skysail.server.ext.dbviewer.internal.Configuration" />
 	<reference bind="setConfigAdmin" cardinality="1..1"

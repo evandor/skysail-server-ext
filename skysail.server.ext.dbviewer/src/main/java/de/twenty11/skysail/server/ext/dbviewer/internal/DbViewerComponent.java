@@ -22,12 +22,9 @@ import org.restlet.data.Protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.services.ConfigService;
-
 /**
- * Concurrency note from parent class: instances of this class or its subclasses
- * can be invoked by several threads at the same time and therefore must be
- * thread-safe. You should be especially careful when storing state in member
+ * Concurrency note from parent class: instances of this class or its subclasses can be invoked by several threads at
+ * the same time and therefore must be thread-safe. You should be especially careful when storing state in member
  * variables.
  * 
  * @author carsten
@@ -37,7 +34,7 @@ public class DbViewerComponent extends Component {
 
     /** slf4j based logger implementation. */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    
+
     /**
      * 
      */
@@ -47,7 +44,7 @@ public class DbViewerComponent extends Component {
         // Create a restlet application
         logger.info("new restlet application: {}", SkysailApplication.class.getName());
         final SkysailApplication application = new SkysailApplication("/static");
-        
+
         // Attach the application to the component and start it
         logger.info("attaching application and starting {}", this.toString());
         getDefaultHost().attachDefault(application);

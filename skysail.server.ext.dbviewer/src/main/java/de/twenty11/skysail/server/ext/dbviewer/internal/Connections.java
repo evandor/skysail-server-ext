@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.dbviewer.internal;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -28,5 +29,30 @@ public class Connections {
             return ds;
         }
         return null;
+    }
+
+    public Set<String> list() {
+        return connectionDetails.keySet();
+    }
+
+    public ConnectionDetails get(String connectionName) {
+        return connectionDetails.get(connectionName);
+    }
+
+    public void delete(String key) {
+        connectionDetails.remove(key);
+
+    }
+
+    public void update(String key, ConnectionDetails newConnectioDetails) {
+        connectionDetails.put(key, newConnectioDetails);
+    }
+
+    public void rename(String oldName, String newName) {
+        if (connectionDetails.containsKey(newName)) {
+            throw new IllegalArgumentException("name '" + newName + "' already exists");
+        }
+        connectionDetails.put(newName, connectionDetails.get(oldName));
+        connectionDetails.remove(oldName);
     }
 }
