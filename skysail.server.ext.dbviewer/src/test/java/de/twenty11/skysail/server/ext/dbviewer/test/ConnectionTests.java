@@ -1,10 +1,15 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
 import javax.sql.DataSource;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -17,11 +22,14 @@ public class ConnectionTests {
 
     private Connections connections;
     private ConnectionDetails connectionDetails;
+	private Validator validator;
 
     @Before
     public void setup() {
         connections = new Connections();
         connectionDetails = new ConnectionDetails("id", "user", "pass", "url", "driverName");
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
     }
 
     @Test
@@ -81,6 +89,17 @@ public class ConnectionTests {
         // connections.add("test", connectionDetails);
         // connections.rename("test", "newtest");
         // assertTrue(connections.get("newtest") != null);
+    }
+    
+    @Test
+    public void testManufacturerIsNull() {
+    	connectionDetails = new ConnectionDetails(null, "user", "pass", "url", "driverName");
+        Set<ConstraintViolation<ConnectionDetails>> constraintViolations =
+            validator.validate(connectionDetails);
+
+        assertEquals(1, constraintViolations.size());
+        assertEquals("Id is mandatory", constraintViolations.iterator().next().getMessage());
+
     }
 
 }

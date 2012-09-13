@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.dbviewer.internal.entities;
 
+import javax.validation.constraints.NotNull;
+
 public class ConnectionDetails {
 
     private String id;
@@ -16,6 +18,12 @@ public class ConnectionDetails {
         this.driverName = driverClassName;
     }
 
+    @NotNull(message="Id is mandatory")
+    public String getId() {
+        return id;
+    }
+
+    @NotNull(message="Username is mandatory")
     public String getUsername() {
         return username;
     }
@@ -24,16 +32,14 @@ public class ConnectionDetails {
         return password;
     }
 
+    @NotNull(message="Drivername is mandatory")
     public String getDriverName() {
         return driverName;
     }
 
+    @NotNull(message="Url is mandatory")
     public String getUrl() {
         return url;
     }
-
-    public String getId() {
-        return id;
-    }
-
+    
 }
