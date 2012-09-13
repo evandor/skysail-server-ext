@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Option;
@@ -62,6 +63,7 @@ public class SkysailServerExtDbviewerOsgiIT {
      *             should not happen
      */
     @Test
+    @Ignore
     public void test() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8554;
@@ -69,4 +71,19 @@ public class SkysailServerExtDbviewerOsgiIT {
                 .get("/dbviewer/?media=json");
     }
 
+    @Test
+    public void testPostConnectionDetails() {
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = 8554;
+
+        // @formatter:off
+        expect()
+            .body(equalTo("")) //"greeting.firstName", equalTo("John"))
+        .given()
+            .auth().basic("scott", "tiger")
+            .contentType("application/json")
+            .request().body("{\"connectionName\" : \"there\"}")
+        .when()
+            .post("/dbviewer/");
+    }
 }

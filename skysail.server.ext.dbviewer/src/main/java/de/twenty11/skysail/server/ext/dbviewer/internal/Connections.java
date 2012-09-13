@@ -14,8 +14,8 @@ public class Connections {
 
     private Map<String, ConnectionDetails> connectionDetails = new HashMap<String, ConnectionDetails>();
 
-    public void add(String identifier, ConnectionDetails details) {
-        connectionDetails.put(identifier, details);
+    public void add(ConnectionDetails details) {
+        connectionDetails.put(details.getId(), details);
     }
 
     public DataSource getDataSource(String identifier) {

@@ -41,9 +41,9 @@ public class SkysailApplication extends RestletOsgiApplication {
     public SkysailApplication(String staticPathTemplate) {
         super(staticPathTemplate);
         connections = new Connections();
-        ConnectionDetails defaultConnectionDetails = new ConnectionDetails("root", "websphere",
+        ConnectionDetails defaultConnectionDetails = new ConnectionDetails("default", "root", "websphere",
                 "jdbc:mysql://localhost/skysailosgi", "com.mysql.jdbc.Driver");
-        connections.add("default", defaultConnectionDetails);
+        connections.add(defaultConnectionDetails);
     }
 
     public Connections getConnections() {

@@ -43,6 +43,8 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
 
         options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
 
+        options.add(mavenBundle("de.twentyeleven.skysail", "org.json-osgi", "20070829"));
+
         logger.info("using options from {} for tests", this.getClass());
 
         return options;

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
-	name="SSEDB Config Service Provider">
+	name="de.twenty11.skysail.server.ext.dbviewer">
 	<service>
-      <provide interface='org.osgi.service.cm.ManagedServiceFactory'/>
+      <provide interface='org.osgi.service.cm.ManagedService'/>
     </service>
-    <property name='service.factoryPid' value='de.twenty11.skysail.server.ext.dbviewer'/>
+    <property name='service.pid' value='de.twenty11.skysail.server.ext.dbviewer'/>
     
 	<implementation
 		class="de.twenty11.skysail.server.ext.dbviewer.internal.Configuration" />

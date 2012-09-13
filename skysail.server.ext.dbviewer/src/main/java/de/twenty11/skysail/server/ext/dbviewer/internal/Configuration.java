@@ -23,7 +23,7 @@ import java.util.Properties;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedServiceFactory;
+import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.Constants;
 
-public class Configuration implements ManagedServiceFactory {
+public class Configuration implements ManagedService {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
     private static ConfigurationAdmin configadmin;
@@ -132,20 +132,9 @@ public class Configuration implements ManagedServiceFactory {
     }
 
     @Override
-    public String getName() {
-        return "name";
-    }
-
-    @Override
-    public void updated(String pid, Dictionary properties) throws ConfigurationException {
+    public void updated(Dictionary properties) throws ConfigurationException {
         Dictionary config = properties == null ? getDefaultConfig() : properties;
         // this.context.getServiceReference().
-    }
-
-    @Override
-    public void deleted(String pid) {
-        // TODO Auto-generated method stub
-
     }
 
     private Dictionary getDefaultConfig() {

@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.resource.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,14 +43,6 @@ public class ConnectionsResource extends GridDataServerResource {
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");
 
         if (!datasources.containsKey("default")) {
-            // BasicDataSource defaultDS = new BasicDataSource();
-            // defaultDS.setDriverClassName(Configuration.getDriverClassName());
-            // defaultDS.setUsername(Configuration.getUsername());
-            // defaultDS.setPassword(Configuration.getPasswort());
-            // defaultDS.setUrl(Configuration.getUrl());
-
-            // logger.info("setting up skysail db with connection '{}', user '{}' and class '{}'", new String[] {
-            // Configuration.getUrl(), Configuration.getUsername(), Configuration.getDriverClassName() });
             DataSource defaultDS = SkysailDataSource.get();
             datasources.put("default", defaultDS);
         }
@@ -71,22 +66,16 @@ public class ConnectionsResource extends GridDataServerResource {
             grid.addRowData(row);
 
         }
-        // for (String dsName : datasources.keySet()) {
-        // DataSource ds = datasources.get(dsName);
-        // if (ds instanceof BasicDataSource) {
-        // RowData row = new RowData(getSkysailData().getColumns());
-        // row.add(dsName);
-        // row.add(((BasicDataSource) ds).getUrl());
-        // row.add(((BasicDataSource) ds).getUsername());
-        // row.add(((BasicDataSource) ds).getDriverClassName());
-        // row.add(getParent() + "dbviewer/" + dsName + "/?media=json");
-        // grid.addRowData(row);
-        // }
     }
 
-    @Post
-    public void add(ConnectionsResource res) {
-        System.out.println(res);
+    @Post()
+    public void add(JsonRepresentation entity) {
+        try {
+            JSONObject jsonObject = entity.getJsonObject();
+            String name = jsonObject.getString("connectionName");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 }
