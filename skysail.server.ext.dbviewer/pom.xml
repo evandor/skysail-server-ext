@@ -135,7 +135,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
-			<version>[0.2.4, 1.0)</version>
+			<version>[0.2.5-SNAPSHOT, 1.0)</version>
 			<scope>test</scope>
 			<type>test-jar</type>
 		</dependency>
@@ -143,16 +143,16 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common</artifactId>
-			<version>[0.3.6, 1.0)</version>
+			<version>[0.3.7-SNAPSHOT, 1.0)</version>
 			<scope>test</scope>
 			<type>test-jar</type>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>skysail.bundles.commons-dbcp</artifactId>
 			<version>1.4</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
