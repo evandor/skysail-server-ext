@@ -76,6 +76,8 @@ public class SkysailServerExtDbviewerOsgiIT {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8554;
 
+        // RequestSpecification spec = getRequestSpec();
+
         // @formatter:off
         expect()
             .body(equalTo("")) //"greeting.firstName", equalTo("John"))
@@ -85,5 +87,22 @@ public class SkysailServerExtDbviewerOsgiIT {
             .request().body("{\"connectionName\" : \"there\"}")
         .when()
             .post("/dbviewer/");
+
+        //String json = given().auth().basic("scott", "tiger").get("/dbviewer/?media=json").asString();
+        
+        expect()
+            .body("success", equalTo(true))
+            .body("message", equalTo("all Connections"))
+            .body("navigation.parent", equalTo("http://localhost:8554/?media=json"))
+            .body("pagination.totalResults", equalTo(2))
+        .given()
+            .auth().basic("scott", "tiger")
+        .when()
+            .get("/dbviewer/?media=json");
+
     }
+
+//    private RequestSpecification getRequestSpec() {
+//        RequestSpecBuilder builder = new RequestSpecBuilder();
+//    }
 }

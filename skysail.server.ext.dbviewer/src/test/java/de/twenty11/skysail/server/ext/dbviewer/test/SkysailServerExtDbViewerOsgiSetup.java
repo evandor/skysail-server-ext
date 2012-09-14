@@ -45,6 +45,15 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
 
         options.add(mavenBundle("de.twentyeleven.skysail", "org.json-osgi", "20070829"));
 
+        // bean validation
+        // options.add(mavenBundle("org.apache.bval", "org.apache.bval.bundle", "0.4"));
+        // options.add(mavenBundle("org.apache.geronimo.specs", "geronimo-validation_1.0_spec", "1.1"));
+        // options.add(mavenBundle("org.apache.servicemix.bundles", "org.apache.servicemix.bundles.commons-beanutils",
+        // "1.8.3_1"));
+        options.add(mavenBundle("org.hibernate", "hibernate-validator", "4.3.0.Final"));
+        options.add(mavenBundle("javax.validation", "com.springsource.javax.validation", "1.0.0.GA"));
+        options.add(mavenBundle("org.jboss.logging", "jboss-logging", "3.1.2.GA"));
+
         logger.info("using options from {} for tests", this.getClass());
 
         return options;

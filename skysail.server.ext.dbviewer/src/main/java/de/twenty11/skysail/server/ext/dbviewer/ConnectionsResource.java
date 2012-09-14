@@ -2,8 +2,13 @@ package de.twenty11.skysail.server.ext.dbviewer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.sql.DataSource;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +33,10 @@ public class ConnectionsResource extends GridDataServerResource {
 
     public static Map<String, DataSource> datasources = new HashMap<String, DataSource>();
 
+    SkysailApplication application = (SkysailApplication) getApplication();
+
+    private Validator validator;
+
     public ConnectionsResource() {
         super(new ColumnsBuilder() {
 
@@ -41,6 +50,8 @@ public class ConnectionsResource extends GridDataServerResource {
             }
         });
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
 
         if (!datasources.containsKey("default")) {
             DataSource defaultDS = SkysailDataSource.get();
@@ -52,7 +63,6 @@ public class ConnectionsResource extends GridDataServerResource {
     public void buildGrid() {
         setMessage("all Connections");
 
-        SkysailApplication application = (SkysailApplication) getApplication();
         Connections connections = application.getConnections();
         GridData grid = getSkysailData();
         for (String connectionName : connections.list()) {
@@ -73,9 +83,12 @@ public class ConnectionsResource extends GridDataServerResource {
         try {
             JSONObject jsonObject = entity.getJsonObject();
             String name = jsonObject.getString("connectionName");
+            ConnectionDetails connectionDetails = new ConnectionDetails(name, "", "", "", "");
+            Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(connectionDetails);
+            int size = constraintViolations.size();
+            application.getConnections().add(connectionDetails);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
 }
