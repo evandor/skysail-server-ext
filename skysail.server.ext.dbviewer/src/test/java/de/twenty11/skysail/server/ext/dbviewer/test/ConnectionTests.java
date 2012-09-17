@@ -22,7 +22,7 @@ public class ConnectionTests {
 
     private Connections connections;
     private ConnectionDetails connectionDetails;
-	private Validator validator;
+    private Validator validator;
 
     @Before
     public void setup() {
@@ -90,12 +90,11 @@ public class ConnectionTests {
         // connections.rename("test", "newtest");
         // assertTrue(connections.get("newtest") != null);
     }
-    
+
     @Test
     public void testManufacturerIsNull() {
-    	connectionDetails = new ConnectionDetails(null, "user", "pass", "url", "driverName");
-        Set<ConstraintViolation<ConnectionDetails>> constraintViolations =
-            validator.validate(connectionDetails);
+        connectionDetails = new ConnectionDetails(null, "user", "pass", "url", "driverName");
+        Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(connectionDetails);
 
         assertEquals(1, constraintViolations.size());
         assertEquals("Id is mandatory", constraintViolations.iterator().next().getMessage());

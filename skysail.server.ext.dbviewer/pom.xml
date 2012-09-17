@@ -231,16 +231,27 @@
 		<!-- <dependency> <groupId>org.antlr</groupId> <artifactId>com.springsource.antlr</artifactId> 
 			<scope>test</scope> <version>2.7.7</version> </dependency> -->
 
+		<!-- <dependency> <groupId>org.apache.bval</groupId> <artifactId>org.apache.bval.bundle</artifactId> 
+			<version>0.4</version> </dependency> <dependency> <groupId>org.apache.geronimo.specs</groupId> 
+			<artifactId>geronimo-validation_1.0_spec</artifactId> <version>1.1</version> 
+			</dependency> -->
+
 		<dependency>
-			<groupId>org.apache.bval</groupId>
-			<artifactId>org.apache.bval.bundle</artifactId>
-			<version>0.4</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.3.0.Final</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-validation_1.0_spec</artifactId>
-			<version>1.1</version>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.1.2.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>com.springsource.javax.validation</artifactId>
+			<version>1.0.0.GA</version>
 		</dependency>
 
 		<dependency>
