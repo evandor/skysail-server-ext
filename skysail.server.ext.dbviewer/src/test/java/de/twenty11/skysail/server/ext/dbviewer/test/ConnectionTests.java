@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Set;
 
 import javax.sql.DataSource;
+import javax.validation.Configuration;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -15,6 +16,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import de.twenty11.skysail.server.ext.dbviewer.OSGiServiceDiscoverer;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 
@@ -28,7 +30,11 @@ public class ConnectionTests {
     public void setup() {
         connections = new Connections();
         connectionDetails = new ConnectionDetails("id", "user", "pass", "url", "driverName");
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
+                .configure();
+
+        // ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        ValidatorFactory factory = config.buildValidatorFactory();
         validator = factory.getValidator();
     }
 

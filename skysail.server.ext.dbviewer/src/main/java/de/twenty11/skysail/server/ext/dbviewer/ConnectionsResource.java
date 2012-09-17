@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.sql.DataSource;
+import javax.validation.Configuration;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -20,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
+import de.twenty11.skysail.common.responses.SkysailFailureResponse;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailDataSource;
@@ -33,7 +36,7 @@ public class ConnectionsResource extends GridDataServerResource {
 
     public static Map<String, DataSource> datasources = new HashMap<String, DataSource>();
 
-    SkysailApplication application = (SkysailApplication) getApplication();
+    // SkysailApplication application = (SkysailApplication) getApplication();
 
     private Validator validator;
 
@@ -50,7 +53,11 @@ public class ConnectionsResource extends GridDataServerResource {
             }
         });
         setTemplate("skysail.server.ext.dbviewer:connections.ftl");
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+
+        Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
+                .configure();
+
+        ValidatorFactory factory = config.buildValidatorFactory();
         validator = factory.getValidator();
 
         if (!datasources.containsKey("default")) {
@@ -63,7 +70,7 @@ public class ConnectionsResource extends GridDataServerResource {
     public void buildGrid() {
         setMessage("all Connections");
 
-        Connections connections = application.getConnections();
+        Connections connections = ((SkysailApplication) getApplication()).getConnections();
         GridData grid = getSkysailData();
         for (String connectionName : connections.list()) {
             ConnectionDetails details = connections.get(connectionName);
@@ -79,16 +86,22 @@ public class ConnectionsResource extends GridDataServerResource {
     }
 
     @Post()
-    public void add(JsonRepresentation entity) {
+    public SkysailResponse add(JsonRepresentation entity) {
         try {
             JSONObject jsonObject = entity.getJsonObject();
             String name = jsonObject.getString("connectionName");
-            ConnectionDetails connectionDetails = new ConnectionDetails(name, "", "", "", "");
+            String user = jsonObject.getString("username");
+            ConnectionDetails connectionDetails = new ConnectionDetails(null, user, "a", "b", "c");
             Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(connectionDetails);
             int size = constraintViolations.size();
-            application.getConnections().add(connectionDetails);
+            if (size > 0) {
+                return new SkysailFailureResponse(constraintViolations.toString());
+            }
+            ((SkysailApplication) getApplication()).getConnections().add(connectionDetails);
+            return null;
         } catch (JSONException e) {
             e.printStackTrace();
+            return null;
         }
     }
 }
