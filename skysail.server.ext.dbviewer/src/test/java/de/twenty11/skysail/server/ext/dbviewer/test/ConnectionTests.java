@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
