@@ -77,4 +77,4 @@ mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.2.0
 mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0 
 mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0 
 mvn:de.twentyeleven.skysail/skysail.server.eclipselink/0.0.3-SNAPSHOT
-mvn:de.twentyeleven.skysail/org.json-osgi/20070829
+mvn:de.twentyeleven.skysail/org.json-osgi/20080701
