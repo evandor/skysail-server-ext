@@ -73,6 +73,7 @@ public class SkysailServerExtDbviewerOsgiIT {
     }
 
     @Test
+    @Ignore
     public void testPostConnectionDetails() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8554;
