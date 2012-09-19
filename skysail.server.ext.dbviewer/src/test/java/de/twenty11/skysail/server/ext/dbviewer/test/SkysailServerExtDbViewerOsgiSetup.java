@@ -43,8 +43,6 @@ public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
 
         options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
 
-        options.add(mavenBundle("de.twentyeleven.skysail", "org.json-osgi", "20070829"));
-
         // bean validation
         // options.add(mavenBundle("org.apache.bval", "org.apache.bval.bundle", "0.4"));
         // options.add(mavenBundle("org.apache.geronimo.specs", "geronimo-validation_1.0_spec", "1.1"));

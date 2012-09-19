@@ -55,6 +55,14 @@ mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0
 mvn:org.apache.felix/org.apache.felix.scr/1.6.0 
 
 ### --------------------
+### bean validation
+### --------------------
+mvn:org.hibernate/hibernate-validator/4.3.0.Final
+mvn:javax.validation/com.springsource.javax.validation/1.0.0.GA
+mvn:org.jboss.logging/jboss-logging/3.1.2.GA
+
+
+### --------------------
 ### Other
 ### --------------------
  
@@ -69,4 +77,4 @@ mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.2.0
 mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0 
 mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0 
 mvn:de.twentyeleven.skysail/skysail.server.eclipselink/0.0.3-SNAPSHOT
-mvn:de.twentyeleven.skysail/org.json-osgi/20070829
+mvn:de.twentyeleven.skysail/org.json-osgi/20080701

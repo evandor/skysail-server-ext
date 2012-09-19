@@ -17,6 +17,9 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
+import org.osgi.framework.FrameworkUtil;
+import org.restlet.Request;
+import org.restlet.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +49,11 @@ public class SkysailApplication extends RestletOsgiApplication {
         connections.add(defaultConnectionDetails);
     }
 
+    @Override
+    public void handle(Request request, Response response) {
+        super.handle(request, response);
+    }
+
     public Connections getConnections() {
         return connections;
     }
@@ -56,7 +64,9 @@ public class SkysailApplication extends RestletOsgiApplication {
      * @see de.twenty11.skysail.server.RestletOsgiApplication#attach()
      */
     protected void attach() {
-        new UrlMappingServiceListener(this);
+        if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
+            new UrlMappingServiceListener(this);
+        }
     }
 
 }

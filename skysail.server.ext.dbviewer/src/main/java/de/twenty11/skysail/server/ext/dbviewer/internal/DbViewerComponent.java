@@ -35,6 +35,8 @@ public class DbViewerComponent extends Component {
     /** slf4j based logger implementation. */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private SkysailApplication application;
+
     /**
      * 
      */
@@ -43,11 +45,15 @@ public class DbViewerComponent extends Component {
 
         // Create a restlet application
         logger.info("new restlet application: {}", SkysailApplication.class.getName());
-        final SkysailApplication application = new SkysailApplication("/static");
+        application = new SkysailApplication("/static");
 
         // Attach the application to the component and start it
         logger.info("attaching application and starting {}", this.toString());
         getDefaultHost().attachDefault(application);
     }
 
+    @Override
+    public SkysailApplication getApplication() {
+        return this.application;
+    }
 }

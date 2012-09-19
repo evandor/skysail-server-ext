@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.dbviewer.test;
 
 import static com.jayway.restassured.RestAssured.expect;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 
@@ -80,11 +81,11 @@ public class SkysailServerExtDbviewerOsgiIT {
 
         // @formatter:off
         expect()
-            .body(equalTo("")) //"greeting.firstName", equalTo("John"))
+            .body(not(equalTo(""))) //"greeting.firstName", equalTo("John"))
         .given()
             .auth().basic("scott", "tiger")
             .contentType("application/json")
-            .request().body("{\"connectionName\" : \"there\"}")
+            .request().body("{\"connectionName\" : \"there\", \"username\" : \"root\"}")
         .when()
             .post("/dbviewer/");
 
@@ -94,7 +95,7 @@ public class SkysailServerExtDbviewerOsgiIT {
             .body("success", equalTo(true))
             .body("message", equalTo("all Connections"))
             .body("navigation.parent", equalTo("http://localhost:8554/?media=json"))
-            .body("pagination.totalResults", equalTo(2))
+            .body("pagination.totalResults", equalTo(1))
         .given()
             .auth().basic("scott", "tiger")
         .when()
