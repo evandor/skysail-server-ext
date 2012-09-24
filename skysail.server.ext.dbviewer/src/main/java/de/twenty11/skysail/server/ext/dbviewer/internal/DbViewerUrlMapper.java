@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
+import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
 import de.twenty11.skysail.server.ext.dbviewer.DataResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;

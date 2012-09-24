@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
-import org.restlet.resource.Delete;
 import org.restlet.resource.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,18 +108,6 @@ public class ConnectionsResource extends GridDataServerResource {
                 ((SkysailApplication) getApplication()).getConnections().add(connectionDetails);
                 skysailResponse = new SkysailSuccessResponse<SkysailData>();
             }
-        } catch (JSONException e) {
-            skysailResponse = new SkysailFailureResponse(e);
-        }
-        return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
-    }
-
-    @Delete
-    public Representation delete(JsonRepresentation entity) {
-        SkysailResponse skysailResponse;
-        try {
-            JSONObject jsonObject = entity.getJsonObject();
-            skysailResponse = new SkysailFailureResponse("");
         } catch (JSONException e) {
             skysailResponse = new SkysailFailureResponse(e);
         }

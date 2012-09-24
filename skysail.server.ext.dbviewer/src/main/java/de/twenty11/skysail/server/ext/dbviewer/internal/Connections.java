@@ -39,9 +39,8 @@ public class Connections {
         return connectionDetails.get(connectionName);
     }
 
-    public void delete(String key) {
-        connectionDetails.remove(key);
-
+    public ConnectionDetails delete(String key) {
+        return connectionDetails.remove(key);
     }
 
     public void update(String key, ConnectionDetails newConnectioDetails) {
