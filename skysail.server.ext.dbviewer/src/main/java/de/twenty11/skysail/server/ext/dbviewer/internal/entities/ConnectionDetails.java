@@ -26,7 +26,7 @@ public class ConnectionDetails {
         return id;
     }
 
-    @NotNull(message = "Username is mandatory")
+    @NotNull(message = "field 'username' is mandatory")
     @Size(min = 1)
     public String getUsername() {
         return username;
@@ -36,12 +36,12 @@ public class ConnectionDetails {
         return password;
     }
 
-    @NotNull(message = "Drivername is mandatory")
+    @NotNull(message = "field 'driverName' is mandatory")
     public String getDriverName() {
         return driverName;
     }
 
-    @NotNull(message = "Url is mandatory")
+    @NotNull(message = "field 'url' is mandatory")
     public String getUrl() {
         return url;
     }

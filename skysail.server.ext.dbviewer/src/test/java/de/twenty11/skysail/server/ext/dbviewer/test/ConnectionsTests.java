@@ -20,7 +20,7 @@ import de.twenty11.skysail.server.ext.dbviewer.OSGiServiceDiscoverer;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 
-public class ConnectionTests {
+public class ConnectionsTests {
 
     private Connections connections;
     private ConnectionDetails connectionDetails;

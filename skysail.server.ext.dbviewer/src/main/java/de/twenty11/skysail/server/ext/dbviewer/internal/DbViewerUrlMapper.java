@@ -23,7 +23,7 @@ public class DbViewerUrlMapper implements UrlMapper {
         Map<String, String> queue = Collections.synchronizedMap(new LinkedHashMap<String, String>());
         // @formatter:off
         queue.put("/" + CONTEXT_ID + "/", ConnectionsResource.class.getName());
-        queue.put("/" + CONTEXT_ID + "/add", ConnectionsResource.class.getName());
+        queue.put("/" + CONTEXT_ID + "/{" + CONNECTION_NAME + "}", ConnectionResource.class.getName());
         queue.put("/" + CONTEXT_ID + "/{" + CONNECTION_NAME + "}/", TablesResource.class.getName());
         queue.put("/" + CONTEXT_ID + "/{" + CONNECTION_NAME + "}/{" + TABLE_NAME + "}/columns/",ColumnsResource.class.getName());
         queue.put("/" + CONTEXT_ID + "/{" + CONNECTION_NAME + "}/{" + TABLE_NAME + "}/data/", DataResource.class.getName());

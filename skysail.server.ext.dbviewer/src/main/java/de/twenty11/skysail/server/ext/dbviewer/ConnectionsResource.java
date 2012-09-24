@@ -13,16 +13,21 @@ import javax.validation.ValidatorFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.ext.json.JsonRepresentation;
+import org.restlet.representation.Representation;
+import org.restlet.resource.Delete;
 import org.restlet.resource.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.common.SkysailData;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
 import de.twenty11.skysail.common.responses.SkysailFailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailDataSource;
@@ -86,22 +91,45 @@ public class ConnectionsResource extends GridDataServerResource {
     }
 
     @Post()
-    public SkysailResponse add(JsonRepresentation entity) {
+    public Representation add(JsonRepresentation entity) {
+        SkysailResponse skysailResponse;
         try {
             JSONObject jsonObject = entity.getJsonObject();
-            String name = jsonObject.getString("connectionName");
-            String user = jsonObject.getString("username");
-            ConnectionDetails connectionDetails = new ConnectionDetails(null, user, "a", "b", "c");
+            String name = determineValue(jsonObject, "id");
+            String user = determineValue(jsonObject, "username");
+            String pass = determineValue(jsonObject, "password");
+            String url = determineValue(jsonObject, "url");
+            String driver = determineValue(jsonObject, "driverName");
+            ConnectionDetails connectionDetails = new ConnectionDetails(name, user, pass, url, driver);
             Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(connectionDetails);
             int size = constraintViolations.size();
             if (size > 0) {
-                return new SkysailFailureResponse(constraintViolations.toString());
+                skysailResponse = new SkysailFailureResponse(constraintViolations.toString());
+            } else {
+                ((SkysailApplication) getApplication()).getConnections().add(connectionDetails);
+                skysailResponse = new SkysailSuccessResponse<SkysailData>();
             }
-            ((SkysailApplication) getApplication()).getConnections().add(connectionDetails);
-            return null;
         } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
+            skysailResponse = new SkysailFailureResponse(e);
         }
+        return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
+    }
+
+    @Delete
+    public Representation delete(JsonRepresentation entity) {
+        SkysailResponse skysailResponse;
+        try {
+            JSONObject jsonObject = entity.getJsonObject();
+            skysailResponse = new SkysailFailureResponse("");
+        } catch (JSONException e) {
+            skysailResponse = new SkysailFailureResponse(e);
+        }
+        return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
+    }
+
+    private String determineValue(JSONObject jsonObject, String key) throws JSONException {
+        if (jsonObject.isNull(key))
+            return null;
+        return jsonObject.getString(key);
     }
 }
