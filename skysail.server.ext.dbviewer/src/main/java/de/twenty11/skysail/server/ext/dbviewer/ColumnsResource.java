@@ -29,7 +29,9 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
+import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
+import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
 public class ColumnsResource extends GridDataServerResource {
@@ -49,14 +51,16 @@ public class ColumnsResource extends GridDataServerResource {
         });
         setTemplate("skysail.server.ext.dbviewer:columns.ftl");
     }
-    
+
     @Override
     public void buildGrid() {
-        
+
         String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         String tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
 
-        BasicDataSource ds = (BasicDataSource)ConnectionsResource.datasources.get(connectionName);
+        Connections connections = ((SkysailApplication) getApplication()).getConnections();
+
+        BasicDataSource ds = null;// (BasicDataSource) connections.get(connectionName);
         GridData grid = getSkysailData();
 
         Connection connection;
@@ -74,9 +78,8 @@ public class ColumnsResource extends GridDataServerResource {
                 grid.addRowData(row);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("could not execute select statement: " + e.getMessage(),e);
+            throw new RuntimeException("could not execute select statement: " + e.getMessage(), e);
         }
     }
-
 
 }

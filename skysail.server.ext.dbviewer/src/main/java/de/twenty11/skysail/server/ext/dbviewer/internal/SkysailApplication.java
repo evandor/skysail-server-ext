@@ -23,7 +23,6 @@ import org.restlet.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
 
@@ -43,10 +42,12 @@ public class SkysailApplication extends RestletOsgiApplication {
      */
     public SkysailApplication(String staticPathTemplate) {
         super(staticPathTemplate);
+        setDescription("RESTful DbViewer OSGi bundle");
+        setOwner("twentyeleven");
         connections = new Connections();
-        ConnectionDetails defaultConnectionDetails = new ConnectionDetails("default", "root", "websphere",
-                "jdbc:mysql://localhost/skysailosgi", "com.mysql.jdbc.Driver");
-        connections.add(defaultConnectionDetails);
+        // ConnectionDetails defaultConnectionDetails = new ConnectionDetails("default", "root", "websphere",
+        // "jdbc:mysql://localhost/skysailosgi", "com.mysql.jdbc.Driver");
+        // connections.add(defaultConnectionDetails);
     }
 
     @Override

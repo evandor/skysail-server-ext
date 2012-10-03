@@ -40,8 +40,6 @@ public class ConnectionsResource extends GridDataServerResource {
 
     public static Map<String, DataSource> datasources = new HashMap<String, DataSource>();
 
-    // SkysailApplication application = (SkysailApplication) getApplication();
-
     private Validator validator;
 
     public ConnectionsResource() {
@@ -114,9 +112,4 @@ public class ConnectionsResource extends GridDataServerResource {
         return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
     }
 
-    private String determineValue(JSONObject jsonObject, String key) throws JSONException {
-        if (jsonObject.isNull(key))
-            return null;
-        return jsonObject.getString(key);
-    }
 }
