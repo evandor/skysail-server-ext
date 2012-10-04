@@ -25,8 +25,8 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.TableDetails;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
+import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
 public class ResourceTest {
 

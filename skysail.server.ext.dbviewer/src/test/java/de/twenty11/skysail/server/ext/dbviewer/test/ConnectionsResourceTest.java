@@ -14,13 +14,14 @@ import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 
 public class ConnectionsResourceTest extends ResourceTest {
 
     @Test
     public void shouldGetValidResponseForGetRequest() throws Exception {
-        Response response = get("/dbviewer/connections/");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
@@ -28,7 +29,7 @@ public class ConnectionsResourceTest extends ResourceTest {
 
     @Test
     public void shouldGetValidGridDataForGetRequest() throws Exception {
-        Response response = get("/dbviewer/connections/");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
         GridData gridData = getSkysailResponse(response).getData();
         assertThat(gridData.getColumns().getAsList().size(), is(5));
         assertThat(gridData.getRows().size(), is(0));
@@ -37,7 +38,7 @@ public class ConnectionsResourceTest extends ResourceTest {
     @Test
     public void shouldGetSuccessAnswerWhenAddingValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
-        Response response = post("/dbviewer/connections/", connection);
+        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
         Representation entity = response.getEntity();
         SkysailResponse<GridData> skysailResponse = mapper.readValue(entity.getText(),
                 new TypeReference<SkysailResponse<GridData>>() {
@@ -48,9 +49,9 @@ public class ConnectionsResourceTest extends ResourceTest {
     @Test
     public void shouldGetNewConnectionWithGetAfterAddingValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
-        post("/dbviewer/connections/", connection);
+        post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
-        Response response = handleRequest(new Request(Method.GET, "/dbviewer/connections/"));
+        Response response = handleRequest(new Request(Method.GET, DbViewerUrlMapper.CONNECTION_PREFIX));
         GridData gridData = getSkysailResponse(response).getData();
         assertThat(gridData.getRows().size(), is(1));
     }
@@ -58,7 +59,7 @@ public class ConnectionsResourceTest extends ResourceTest {
     @Test
     public void shouldGetFailureAnswerWhenAddingNonValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
-        Response response = post("/dbviewer/connections/", connection);
+        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
         assertThat(skysailResponse.getSuccess(), is(false));

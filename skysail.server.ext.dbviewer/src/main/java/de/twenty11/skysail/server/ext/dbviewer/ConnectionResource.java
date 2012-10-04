@@ -47,7 +47,7 @@ public class ConnectionResource extends SkysailServerResource<MapData> {
     @Override
     public MapData getFilteredData() {
         MapData data = new MapData();
-        String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        // String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         ConnectionDetails connectionDetails = connections.get(connectionName);
         if (connectionDetails != null) {
             Map<String, String> members = connectionDetails.toMap();

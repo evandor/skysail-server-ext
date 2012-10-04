@@ -20,8 +20,6 @@ package de.twenty11.skysail.server.ext.dbviewer.internal;
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
@@ -34,9 +32,6 @@ public class SkysailApplication extends RestletOsgiApplication {
 
     private Connections connections;
 
-    /** slf4j based logger implementation. */
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     /**
      * @param staticPathTemplate
      */
@@ -45,9 +40,6 @@ public class SkysailApplication extends RestletOsgiApplication {
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");
         connections = new Connections();
-        // ConnectionDetails defaultConnectionDetails = new ConnectionDetails("default", "root", "websphere",
-        // "jdbc:mysql://localhost/skysailosgi", "com.mysql.jdbc.Driver");
-        // connections.add(defaultConnectionDetails);
     }
 
     @Override
@@ -59,11 +51,6 @@ public class SkysailApplication extends RestletOsgiApplication {
         return connections;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see de.twenty11.skysail.server.RestletOsgiApplication#attach()
-     */
     protected void attach() {
         if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
             new UrlMappingServiceListener(this);

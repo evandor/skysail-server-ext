@@ -37,6 +37,7 @@ import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
+import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +51,7 @@ import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.TableDetails;
+import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
 public class TablesResource extends GridDataServerResource {
@@ -59,6 +60,8 @@ public class TablesResource extends GridDataServerResource {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private Validator validator;
+
+    private String connectionName;
 
     public TablesResource() {
         super(new ColumnsBuilder() {
@@ -79,10 +82,12 @@ public class TablesResource extends GridDataServerResource {
     }
 
     @Override
+    protected void doInit() throws ResourceException {
+        connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+    }
+
+    @Override
     public void buildGrid() {
-        String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        // Connections connections = ((SkysailApplication) getApplication()).getConnections();
-        // DataSource ds = connections.getDataSource(connectionName);
         DataSource ds = getDataSourceForConnection();
         GridData grid = getSkysailData();
         Connection connection;
@@ -126,7 +131,7 @@ public class TablesResource extends GridDataServerResource {
                     stmt.execute(sql);
                     skysailResponse = new SkysailSuccessResponse<SkysailData>();
                 } catch (SQLException e) {
-                    skysailResponse = new SkysailFailureResponse(e);
+                    skysailResponse = new SkysailFailureResponse<SkysailData>(e);
                 }
             }
         } catch (JSONException e) {
@@ -136,7 +141,6 @@ public class TablesResource extends GridDataServerResource {
     }
 
     private DataSource getDataSourceForConnection() {
-        String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         Connections connections = ((SkysailApplication) getApplication()).getConnections();
         return connections.getDataSource(connectionName);
     }

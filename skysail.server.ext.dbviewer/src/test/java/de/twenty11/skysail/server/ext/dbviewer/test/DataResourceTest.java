@@ -13,13 +13,13 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
-public class ColumnsResourceTest extends ResourceTest {
+public class DataResourceTest extends ResourceTest {
 
     @Test
     public void shouldGetValidResponseForGetRequest() throws Exception {
         addDefaultConnection();
         addTable("default", new TableDetails("tableA"));
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables/tableA/columns");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables/tableA/data");
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
@@ -29,12 +29,12 @@ public class ColumnsResourceTest extends ResourceTest {
     public void shouldGetValidGridDataForGetRequestToExistingConnection() throws Exception {
         addDefaultConnection();
         addTable("default", new TableDetails("tableA"));
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables/tableA/data");
         SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
-        assertThat(skysailResponse.getMessage(), is("listing 1 tables"));
+        assertThat(skysailResponse.getMessage(), is("found 0 rows"));
         GridData gridData = skysailResponse.getData();
-        assertThat(gridData.getColumns().getAsList().size(), is(3));
-        assertThat(gridData.getRows().size(), is(1));
+        assertThat(gridData.getColumns().getAsList().size(), is(0));
+        assertThat(gridData.getRows().size(), is(0));
     }
 
 }

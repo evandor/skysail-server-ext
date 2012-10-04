@@ -7,22 +7,21 @@ import static org.junit.Assert.assertEquals;
 
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
-import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.MediaType;
-import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.dbviewer.internal.TableDetails;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
+import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
 public class TablesResourceTest extends ResourceTest {
 
     @Test
     public void shouldGetValidResponseForGetRequest() throws Exception {
-        Response response = get("/dbviewer/connections/default/tables");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
@@ -32,7 +31,7 @@ public class TablesResourceTest extends ResourceTest {
     public void shouldGetValidGridDataForGetRequestToExistingConnection() throws Exception {
         addDefaultConnection();
 
-        Response response = get("/dbviewer/connections/default/tables");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
         SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
         assertThat(skysailResponse.getMessage(), containsString("listing"));
         assertThat(skysailResponse.getMessage(), containsString("tables"));
@@ -44,7 +43,7 @@ public class TablesResourceTest extends ResourceTest {
     @Test
     public void shouldGetSuccessAnswerWhenAddingValidTableWithPost() throws Exception {
         addDefaultConnection();
-        Response response = post("/dbviewer/connections/default/tables", new TableDetails("tableA"));
+        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables", new TableDetails("tableA"));
         Representation entity = response.getEntity();
         SkysailResponse<GridData> skysailResponse = mapper.readValue(entity.getText(),
                 new TypeReference<SkysailResponse<GridData>>() {
@@ -55,9 +54,9 @@ public class TablesResourceTest extends ResourceTest {
     @Test
     public void shouldGetNewConnectionWithGetAfterAddingValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
-        post("/dbviewer/connections/", connection);
+        post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
-        Response response = handleRequest(new Request(Method.GET, "/dbviewer/connections/"));
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
         GridData gridData = getSkysailResponse(response).getData();
         assertThat(gridData.getRows().size(), is(1));
     }
@@ -65,7 +64,7 @@ public class TablesResourceTest extends ResourceTest {
     @Test
     public void shouldGetFailureAnswerWhenAddingNonValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
-        Response response = post("/dbviewer/connections/", connection);
+        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
         assertThat(skysailResponse.getSuccess(), is(false));

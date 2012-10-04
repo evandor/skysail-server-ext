@@ -1,10 +1,7 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
-import javax.sql.DataSource;
 import javax.validation.Configuration;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -29,7 +26,6 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailDataSource;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
@@ -38,7 +34,7 @@ public class ConnectionsResource extends GridDataServerResource {
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static Map<String, DataSource> datasources = new HashMap<String, DataSource>();
+    // public static Map<String, DataSource> datasources = new HashMap<String, DataSource>();
 
     private Validator validator;
 
@@ -62,10 +58,10 @@ public class ConnectionsResource extends GridDataServerResource {
         ValidatorFactory factory = config.buildValidatorFactory();
         validator = factory.getValidator();
 
-        if (!datasources.containsKey("default")) {
-            DataSource defaultDS = SkysailDataSource.get();
-            datasources.put("default", defaultDS);
-        }
+        // if (!datasources.containsKey("default")) {
+        // DataSource defaultDS = SkysailDataSource.get();
+        // datasources.put("default", defaultDS);
+        // }
     }
 
     @Override

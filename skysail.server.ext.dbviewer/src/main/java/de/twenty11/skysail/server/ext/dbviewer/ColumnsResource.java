@@ -22,7 +22,9 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import javax.sql.DataSource;
+
+import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +40,9 @@ public class ColumnsResource extends GridDataServerResource {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    private String connectionName;
+    private String tableName;
+    private DataSource dataSource;
 
     public ColumnsResource() {
         super(new ColumnsBuilder() {
@@ -53,19 +58,21 @@ public class ColumnsResource extends GridDataServerResource {
     }
 
     @Override
+    protected void doInit() throws ResourceException {
+        connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
+        Connections connections = ((SkysailApplication) getApplication()).getConnections();
+        dataSource = connections.getDataSource(connectionName);
+    }
+
+    @Override
     public void buildGrid() {
 
-        String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        String tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
-
-        Connections connections = ((SkysailApplication) getApplication()).getConnections();
-
-        BasicDataSource ds = null;// (BasicDataSource) connections.get(connectionName);
         GridData grid = getSkysailData();
 
         Connection connection;
         try {
-            connection = ds.getConnection();
+            connection = dataSource.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet columns = meta.getColumns(null, null, tableName, null);
             while (columns.next()) {

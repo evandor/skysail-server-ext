@@ -21,10 +21,20 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <association id="3">    
+  <class id="3" corner="BOTTOM_RIGHT" language="java" 
+    name="de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails" project="skysail.server.ext.dbviewer" 
+    file="/skysail.server.ext.dbviewer/src/main/java/de/twenty11/skysail/server/ext/dbviewer/internal/entities/TableDetails.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="296" y="435"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association id="4">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="4" name="connectionDetails"/>      
-      <multiplicity id="5" minimum="0" maximum="2147483647"/>    
+      <attribute id="5" name="connectionDetails"/>      
+      <multiplicity id="6" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
