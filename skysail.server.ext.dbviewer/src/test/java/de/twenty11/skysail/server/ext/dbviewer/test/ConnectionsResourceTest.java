@@ -21,7 +21,7 @@ public class ConnectionsResourceTest extends ResourceTest {
 
     @Test
     public void shouldGetValidResponseForXmlGetRequest() throws Exception {
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "?media=xml");
         // RestfulConnections proxy = ClientResource.create(DbViewerUrlMapper.CONNECTION_PREFIX + "?media=json",
         // RestfulConnections.class);
         // SkysailResponse<GridData> connections = proxy.getConnections();

@@ -81,9 +81,7 @@ public class ConnectionsResource extends GridDataServerResource implements Restf
     }
 
     public SkysailResponse<GridData> getConnections(Variant variant) {
-        SkysailResponse<GridData> response = createResponse();
-        // setResponseDetails(response, MediaType.APPLICATION_JSON);
-        return response;// new JacksonRepresentation<SkysailResponse<GridData>>(response);
+        return createResponse();
     }
 
     public SkysailResponse<?> addConnection(ConnectionDetails entity) {
