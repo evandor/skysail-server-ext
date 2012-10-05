@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
+import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
@@ -52,9 +53,10 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
+import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulTables;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
-public class TablesResource extends GridDataServerResource {
+public class TablesResource extends GridDataServerResource implements RestfulTables {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -109,6 +111,13 @@ public class TablesResource extends GridDataServerResource {
         } catch (SQLException e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
         }
+    }
+
+    @Get
+    public SkysailResponse<GridData> getTables() {
+        SkysailResponse<GridData> response = createResponse();
+        // setResponseDetails(response, MediaType.APPLICATION_JSON);
+        return response;// new JacksonRepresentation<SkysailResponse<MapData>>(response);
     }
 
     @Post()

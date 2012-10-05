@@ -18,9 +18,10 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
+import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulConnection;
 import de.twenty11.skysail.server.restlet.SkysailServerResource;
 
-public class ConnectionResource extends SkysailServerResource<MapData> {
+public class ConnectionResource extends SkysailServerResource<MapData> implements RestfulConnection {
 
     private String connectionName;
     private Connections connections;
@@ -58,11 +59,11 @@ public class ConnectionResource extends SkysailServerResource<MapData> {
         return data;
     }
 
-    @Get("json")
-    public Representation getJson() {
+    @Get
+    public SkysailResponse<MapData> getConnection() {
         SkysailResponse<MapData> response = createResponse();
-        setResponseDetails(response, MediaType.APPLICATION_JSON);
-        return new JacksonRepresentation<SkysailResponse<MapData>>(response);
+        // setResponseDetails(response, MediaType.APPLICATION_JSON);
+        return response;// new JacksonRepresentation<SkysailResponse<MapData>>(response);
     }
 
     @Delete

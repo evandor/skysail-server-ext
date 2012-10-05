@@ -24,6 +24,11 @@
 		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
 	</scm>
 
+    <properties>
+        <skysail.common.version>[0.3.7, 1.0)</skysail.common.version>
+        <skysail.server.version>[0.2.6-SNAPSHOT, 1.0)</skysail.server.version>
+    </properties>
+
 	<build>
 		<resources>
 			<resource>
@@ -135,13 +140,13 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
-			<version>[0.2.5, 1.0)</version>
+			<version>${skysail.server.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
-			<version>[0.2.5, 1.0)</version>
+			<version>${skysail.server.version}</version>
 			<scope>test</scope>
 			<type>test-jar</type>
 		</dependency>
@@ -149,7 +154,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common</artifactId>
-			<version>[0.3.7, 1.0)</version>
+			<version>${skysail.common.version}</version>
 			<scope>test</scope>
 			<type>test-jar</type>
 		</dependency>

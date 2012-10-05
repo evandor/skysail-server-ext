@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class ConnectionDetails {
 
     public static final String ID = "id";
@@ -23,7 +26,10 @@ public class ConnectionDetails {
     private String driverName;
     private String url;
 
-    public ConnectionDetails(String id, String username, String password, String url, String driverClassName) {
+    @JsonCreator
+    public ConnectionDetails(@JsonProperty("id") String id, @JsonProperty("username") String username,
+            @JsonProperty("password") String password, @JsonProperty("url") String url,
+            @JsonProperty("driverClassName") String driverClassName) {
         this.id = id;
         this.username = username;
         this.password = password;

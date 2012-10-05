@@ -8,12 +8,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.restlet.ext.jackson.JacksonRepresentation;
-import org.restlet.ext.json.JsonRepresentation;
-import org.restlet.representation.Representation;
-import org.restlet.resource.Post;
+import org.restlet.representation.Variant;
+import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,14 +23,13 @@ import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
+import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulConnections;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
-public class ConnectionsResource extends GridDataServerResource {
+public class ConnectionsResource extends GridDataServerResource implements RestfulConnections {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    // public static Map<String, DataSource> datasources = new HashMap<String, DataSource>();
 
     private Validator validator;
 
@@ -58,10 +53,12 @@ public class ConnectionsResource extends GridDataServerResource {
         ValidatorFactory factory = config.buildValidatorFactory();
         validator = factory.getValidator();
 
-        // if (!datasources.containsKey("default")) {
-        // DataSource defaultDS = SkysailDataSource.get();
-        // datasources.put("default", defaultDS);
-        // }
+    }
+
+    @Override
+    protected void doInit() throws ResourceException {
+        // getVariants().add(new Variant(MediaType.APPLICATION_XML));
+        // getVariants().add(new Variant(MediaType.APPLICATION_JSON));
     }
 
     @Override
@@ -83,29 +80,30 @@ public class ConnectionsResource extends GridDataServerResource {
         }
     }
 
-    @Post()
-    public Representation add(JsonRepresentation entity) {
+    public SkysailResponse<GridData> getConnections(Variant variant) {
+        SkysailResponse<GridData> response = createResponse();
+        // setResponseDetails(response, MediaType.APPLICATION_JSON);
+        return response;// new JacksonRepresentation<SkysailResponse<GridData>>(response);
+    }
+
+    public SkysailResponse<?> addConnection(ConnectionDetails entity) {
         SkysailResponse skysailResponse;
-        try {
-            JSONObject jsonObject = entity.getJsonObject();
-            String name = determineValue(jsonObject, "id");
-            String user = determineValue(jsonObject, "username");
-            String pass = determineValue(jsonObject, "password");
-            String url = determineValue(jsonObject, "url");
-            String driver = determineValue(jsonObject, "driverName");
-            ConnectionDetails connectionDetails = new ConnectionDetails(name, user, pass, url, driver);
-            Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(connectionDetails);
-            int size = constraintViolations.size();
-            if (size > 0) {
-                skysailResponse = new SkysailFailureResponse(constraintViolations.toString());
-            } else {
-                ((SkysailApplication) getApplication()).getConnections().add(connectionDetails);
-                skysailResponse = new SkysailSuccessResponse<SkysailData>();
-            }
-        } catch (JSONException e) {
-            skysailResponse = new SkysailFailureResponse(e);
+        // JSONObject jsonObject = entity.getJsonObject();
+        // String name = determineValue(jsonObject, "id");
+        // String user = determineValue(jsonObject, "username");
+        // String pass = determineValue(jsonObject, "password");
+        // String url = determineValue(jsonObject, "url");
+        // String driver = determineValue(jsonObject, "driverName");
+        // ConnectionDetails connectionDetails = new ConnectionDetails(name, user, pass, url, driver);
+        Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(entity);
+        int size = constraintViolations.size();
+        if (size > 0) {
+            skysailResponse = new SkysailFailureResponse(constraintViolations.toString());
+        } else {
+            ((SkysailApplication) getApplication()).getConnections().add(entity);
+            skysailResponse = new SkysailSuccessResponse<SkysailData>();
         }
-        return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
+        return skysailResponse;// new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
     }
 
 }

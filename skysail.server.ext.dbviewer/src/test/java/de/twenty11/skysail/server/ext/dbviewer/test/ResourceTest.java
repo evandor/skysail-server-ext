@@ -87,24 +87,24 @@ public class ResourceTest {
         });
     }
 
-    protected Request preparePostRequest(ConnectionDetails connection) throws IOException, JsonGenerationException,
-            JsonMappingException {
-        Request request = new Request(Method.POST, "/dbviewer/connections/");
-        String writeValueAsString = mapper.writeValueAsString(connection);
-        request.setEntity(writeValueAsString, MediaType.APPLICATION_JSON);
-        return request;
-    }
-
+    // protected Request preparePostRequest(ConnectionDetails connection) throws IOException, JsonGenerationException,
+    // JsonMappingException {
+    // Request request = new Request(Method.POST, "/dbviewer/connections/");
+    // String writeValueAsString = mapper.writeValueAsString(connection);
+    // request.setEntity(writeValueAsString, MediaType.APPLICATION_JSON);
+    // return request;
+    // }
+    //
     protected ConnectionDetails addDefaultConnection() throws JsonGenerationException, JsonMappingException,
             IOException {
         ConnectionDetails connection = new ConnectionDetails("default", "SA", "", "jdbc:hsqldb:mem:.",
                 "org.hsqldb.jdbc.JDBCDriver");
-        post("/dbviewer/connections/", connection);
+        post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
         return connection;
     }
 
     protected void addTable(String connection, TableDetails tableDetails) throws JsonGenerationException,
             JsonMappingException, IOException {
-        post("/dbviewer/connections/" + connection + "/tables", tableDetails);
+        post(DbViewerUrlMapper.CONNECTION_PREFIX + connection + "/tables", tableDetails);
     }
 }

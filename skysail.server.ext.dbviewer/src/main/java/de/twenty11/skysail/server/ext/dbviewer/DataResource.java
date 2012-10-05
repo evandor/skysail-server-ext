@@ -32,6 +32,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
+import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,9 +46,10 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulDbData;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
-public class DataResource extends GridDataServerResource {
+public class DataResource extends GridDataServerResource implements RestfulDbData {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -88,6 +90,12 @@ public class DataResource extends GridDataServerResource {
         } finally {
             closeResultSet(executeQuery);
         }
+    }
+
+    @Override
+    @Get
+    public SkysailResponse<GridData> getData() {
+        return createResponse();
     }
 
     private void getColumns() throws IOException, JsonParseException, JsonMappingException {

@@ -24,6 +24,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,12 +32,14 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulColumns;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
-public class ColumnsResource extends GridDataServerResource {
+public class ColumnsResource extends GridDataServerResource implements RestfulColumns {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -89,4 +92,9 @@ public class ColumnsResource extends GridDataServerResource {
         }
     }
 
+    @Override
+    @Get
+    public SkysailResponse<GridData> getColumns() {
+        return createResponse();
+    }
 }

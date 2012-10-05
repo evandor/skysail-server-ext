@@ -20,8 +20,12 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetai
 public class ConnectionsResourceTest extends ResourceTest {
 
     @Test
-    public void shouldGetValidResponseForGetRequest() throws Exception {
+    public void shouldGetValidResponseForXmlGetRequest() throws Exception {
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
+        // RestfulConnections proxy = ClientResource.create(DbViewerUrlMapper.CONNECTION_PREFIX + "?media=json",
+        // RestfulConnections.class);
+        // SkysailResponse<GridData> connections = proxy.getConnections();
+        // assertThat(connections.getMessage(), is(""));
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
@@ -29,7 +33,7 @@ public class ConnectionsResourceTest extends ResourceTest {
 
     @Test
     public void shouldGetValidGridDataForGetRequest() throws Exception {
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "?media=xml");
         GridData gridData = getSkysailResponse(response).getData();
         assertThat(gridData.getColumns().getAsList().size(), is(5));
         assertThat(gridData.getRows().size(), is(0));
