@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.dbviewer.test;
+package de.twenty11.skysail.server.ext.dbviewer.itests;
 
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 

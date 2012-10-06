@@ -42,6 +42,7 @@ public class DbViewerComponent extends Component {
      */
     public DbViewerComponent() {
         getClients().add(Protocol.CLAP);
+        getClients().add(Protocol.HTTP);
 
         // Create a restlet application
         logger.info("new restlet application: {}", SkysailApplication.class.getName());

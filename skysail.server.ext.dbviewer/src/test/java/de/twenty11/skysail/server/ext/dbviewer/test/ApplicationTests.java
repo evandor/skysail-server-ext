@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
 import java.io.IOException;
-import java.util.Map;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
@@ -18,22 +17,19 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
-import org.restlet.resource.ServerResource;
 
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
-public class ResourceTest {
+public class ApplicationTests extends BaseTests {
 
     protected Restlet inboundRoot;
-    protected SkysailApplication skysailApplication;
     protected ObjectMapper mapper = new ObjectMapper();
-    private DbViewerComponent dbViewerComponent;
+    protected DbViewerComponent dbViewerComponent;
 
     @Before
     public void setUp() throws Exception {
@@ -68,16 +64,6 @@ public class ResourceTest {
         Response response = new Response(request);
         inboundRoot.handle(request, response);
         return response;
-    }
-
-    protected void addMappings() throws ClassNotFoundException {
-        Map<String, String> urlMapping = new DbViewerUrlMapper().provideUrlMapping();
-        for (Map.Entry<String, String> mapping : urlMapping.entrySet()) {
-            @SuppressWarnings("unchecked")
-            Class<? extends ServerResource> resourceClass = (Class<? extends ServerResource>) Class.forName(mapping
-                    .getValue());
-            skysailApplication.attachToRouter("" + mapping.getKey(), resourceClass);
-        }
     }
 
     protected SkysailResponse<GridData> getSkysailResponse(Response response) throws IOException, JsonParseException,

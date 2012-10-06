@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.dbviewer.test;
+package de.twenty11.skysail.server.ext.dbviewer.itests;
 
 import static com.jayway.restassured.RestAssured.expect;
 import static org.hamcrest.Matchers.equalTo;

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.dbviewer.test;
+package de.twenty11.skysail.server.ext.dbviewer.test.connections;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

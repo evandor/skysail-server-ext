@@ -1,49 +1,45 @@
-package de.twenty11.skysail.server.ext.dbviewer.test;
+package de.twenty11.skysail.server.ext.dbviewer.test.connections;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
+import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.MediaType;
+import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
+import de.twenty11.skysail.server.ext.dbviewer.test.ApplicationTests;
 
-public class TablesResourceTest extends ResourceTest {
+public class ConnectionsViaApplicationTest extends ApplicationTests {
 
     @Test
-    public void shouldGetValidResponseForGetRequest() throws Exception {
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
+    public void shouldGetValidResponseForXmlGetRequest() throws Exception {
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
     }
 
     @Test
-    public void shouldGetValidGridDataForGetRequestToExistingConnection() throws Exception {
-        addDefaultConnection();
-
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
-        SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
-        assertThat(skysailResponse.getMessage(), containsString("listing"));
-        assertThat(skysailResponse.getMessage(), containsString("tables"));
-        GridData gridData = skysailResponse.getData();
-        assertThat(gridData.getColumns().getAsList().size(), is(3));
-        // assertThat(gridData.getRows().size(), is(0));
+    public void shouldGetValidGridDataForGetRequest() throws Exception {
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "?media=xml");
+        GridData gridData = getSkysailResponse(response).getData();
+        assertThat(gridData.getColumns().getAsList().size(), is(5));
+        assertThat(gridData.getRows().size(), is(0));
     }
 
     @Test
-    public void shouldGetSuccessAnswerWhenAddingValidTableWithPost() throws Exception {
-        addDefaultConnection();
-        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables", new TableDetails("tableA"));
+    public void shouldGetSuccessAnswerWhenAddingValidConnectionWithPost() throws Exception {
+        ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
+        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
         Representation entity = response.getEntity();
         SkysailResponse<GridData> skysailResponse = mapper.readValue(entity.getText(),
                 new TypeReference<SkysailResponse<GridData>>() {
@@ -56,7 +52,7 @@ public class TablesResourceTest extends ResourceTest {
         ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
+        Response response = handleRequest(new Request(Method.GET, DbViewerUrlMapper.CONNECTION_PREFIX));
         GridData gridData = getSkysailResponse(response).getData();
         assertThat(gridData.getRows().size(), is(1));
     }
@@ -69,5 +65,4 @@ public class TablesResourceTest extends ResourceTest {
         SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
         assertThat(skysailResponse.getSuccess(), is(false));
     }
-
 }

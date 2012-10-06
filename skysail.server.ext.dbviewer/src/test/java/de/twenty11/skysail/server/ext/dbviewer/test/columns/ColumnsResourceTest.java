@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.dbviewer.test;
+package de.twenty11.skysail.server.ext.dbviewer.test.columns;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -12,14 +12,15 @@ import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
+import de.twenty11.skysail.server.ext.dbviewer.test.ApplicationTests;
 
-public class DataResourceTest extends ResourceTest {
+public class ColumnsResourceTest extends ApplicationTests {
 
     @Test
     public void shouldGetValidResponseForGetRequest() throws Exception {
         addDefaultConnection();
         addTable("default", new TableDetails("tableA"));
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables/tableA/data");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables/tableA/columns");
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
@@ -29,12 +30,12 @@ public class DataResourceTest extends ResourceTest {
     public void shouldGetValidGridDataForGetRequestToExistingConnection() throws Exception {
         addDefaultConnection();
         addTable("default", new TableDetails("tableA"));
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables/tableA/data");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
         SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
-        assertThat(skysailResponse.getMessage(), is("found 0 rows"));
+        assertThat(skysailResponse.getMessage(), is("listing 1 tables"));
         GridData gridData = skysailResponse.getData();
-        assertThat(gridData.getColumns().getAsList().size(), is(0));
-        assertThat(gridData.getRows().size(), is(0));
+        assertThat(gridData.getColumns().getAsList().size(), is(3));
+        assertThat(gridData.getRows().size(), is(1));
     }
 
 }

@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.dbviewer.test;
+package de.twenty11.skysail.server.ext.dbviewer.test.connection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -10,8 +10,9 @@ import de.twenty11.skysail.common.maps.MapData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
+import de.twenty11.skysail.server.ext.dbviewer.test.ApplicationTests;
 
-public class ConnectionResourceTest extends ResourceTest {
+public class ConnectionResourceTest extends ApplicationTests {
 
     @Test
     public void shouldListExistingConnectionDetails() throws Exception {

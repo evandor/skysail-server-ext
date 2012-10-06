@@ -8,7 +8,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,7 +79,7 @@ public class ConnectionsResource extends GridDataServerResource implements Restf
         }
     }
 
-    public SkysailResponse<GridData> getConnections(Variant variant) {
+    public SkysailResponse<GridData> getConnections() {
         return createResponse();
     }
 

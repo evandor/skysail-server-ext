@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.ext.dbviewer.spi;
 
-import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 
@@ -14,19 +13,20 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetai
  */
 public interface RestfulConnections {
 
-	/**
-	 * Returns a GridData Object (which is wrapped in a SkysailResponse) with all available Connections.
-	 * @param variant
-	 * @return a subclass of SkysailResponse.
-	 */
-	@Get
-	public SkysailResponse<GridData> getConnections(Variant variant);
+    /**
+     * Returns a GridData Object (which is wrapped in a SkysailResponse) with all available Connections.
+     * 
+     * @param variant
+     * @return a subclass of SkysailResponse.
+     */
+    @Get
+    public SkysailResponse<GridData> getConnections();
 
-	/**
-	 * @param entity
-	 * @return
-	 */
-	@Post()
-	public SkysailResponse<?> addConnection(ConnectionDetails entity);
+    /**
+     * @param entity
+     * @return
+     */
+    @Post()
+    public SkysailResponse<?> addConnection(ConnectionDetails entity);
 
 }
