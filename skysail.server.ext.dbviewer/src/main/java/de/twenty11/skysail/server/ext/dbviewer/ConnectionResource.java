@@ -3,14 +3,14 @@ package de.twenty11.skysail.server.ext.dbviewer;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.restlet.data.MediaType;
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
+import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.common.maps.MapData;
+import de.twenty11.skysail.common.MapData;
 import de.twenty11.skysail.common.responses.SkysailFailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
@@ -41,8 +41,33 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
     }
 
     @Override
-    public void setResponseDetails(SkysailResponse<MapData> response, MediaType mediaType) {
+    @Get
+    public SkysailResponse<MapData> getConnection() {
+        SkysailResponse<MapData> response = createResponse();
         response.setMessage("Details for connection '" + connectionName + "'");
+        return response;
+    }
+
+    @Override
+    @Put
+    public SkysailResponse<MapData> updateConnection(ConnectionDetails connection) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    @Delete
+    public Representation delete() {
+        SkysailResponse<MapData> response;
+        ConnectionDetails deletedConnection = connections.delete(connectionName);
+        if (deletedConnection != null) {
+            response = new SkysailSuccessResponse<MapData>();
+            response.setMessage("deleted one entry");
+        } else {
+            response = new SkysailFailureResponse<MapData>();
+            response.setMessage("no entry found to delete");
+        }
+        return new JacksonRepresentation<SkysailResponse<MapData>>(response);
     }
 
     @Override
@@ -57,27 +82,6 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
             }
         }
         return data;
-    }
-
-    @Get
-    public SkysailResponse<MapData> getConnection() {
-        SkysailResponse<MapData> response = createResponse();
-        // setResponseDetails(response, MediaType.APPLICATION_JSON);
-        return response;// new JacksonRepresentation<SkysailResponse<MapData>>(response);
-    }
-
-    @Delete
-    public Representation delete() {
-        SkysailResponse<MapData> response;
-        ConnectionDetails deletedConnection = connections.delete(connectionName);
-        if (deletedConnection != null) {
-            response = new SkysailSuccessResponse<MapData>();
-            response.setMessage("deleted one entry");
-        } else {
-            response = new SkysailFailureResponse<MapData>();
-            response.setMessage("no entry found to delete");
-        }
-        return new JacksonRepresentation<SkysailResponse<MapData>>(response);
     }
 
 }

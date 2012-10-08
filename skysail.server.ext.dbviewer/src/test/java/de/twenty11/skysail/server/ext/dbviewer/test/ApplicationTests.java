@@ -3,7 +3,6 @@ package de.twenty11.skysail.server.ext.dbviewer.test;
 import java.io.IOException;
 
 import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -18,6 +17,7 @@ import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 
+import de.twenty11.skysail.common.MapData;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
@@ -66,21 +66,18 @@ public class ApplicationTests extends BaseTests {
         return response;
     }
 
-    protected SkysailResponse<GridData> getSkysailResponse(Response response) throws IOException, JsonParseException,
-            JsonMappingException {
+    protected SkysailResponse<GridData> getGridDataResponse(Response response) throws Exception {
         Representation entity = response.getEntity();
         return mapper.readValue(entity.getText(), new TypeReference<SkysailResponse<GridData>>() {
         });
     }
 
-    // protected Request preparePostRequest(ConnectionDetails connection) throws IOException, JsonGenerationException,
-    // JsonMappingException {
-    // Request request = new Request(Method.POST, "/dbviewer/connections/");
-    // String writeValueAsString = mapper.writeValueAsString(connection);
-    // request.setEntity(writeValueAsString, MediaType.APPLICATION_JSON);
-    // return request;
-    // }
-    //
+    protected SkysailResponse<MapData> getMapDataResponse(Response response) throws Exception {
+        Representation entity = response.getEntity();
+        return mapper.readValue(entity.getText(), new TypeReference<SkysailResponse<MapData>>() {
+        });
+    }
+
     protected ConnectionDetails addDefaultConnection() throws JsonGenerationException, JsonMappingException,
             IOException {
         ConnectionDetails connection = new ConnectionDetails("default", "SA", "", "jdbc:hsqldb:mem:.",

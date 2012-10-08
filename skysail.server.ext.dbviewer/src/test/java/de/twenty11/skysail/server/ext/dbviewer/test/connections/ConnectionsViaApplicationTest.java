@@ -20,24 +20,33 @@ import de.twenty11.skysail.server.ext.dbviewer.test.ApplicationTests;
 
 public class ConnectionsViaApplicationTest extends ApplicationTests {
 
+    /**
+     * Testing HTTP GET request
+     */
     @Test
-    public void shouldGetValidResponseForXmlGetRequest() throws Exception {
+    public void canIssueGetRequest() throws Exception {
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
     }
 
+    /**
+     * Testing HTTP GET request
+     */
     @Test
-    public void shouldGetValidGridDataForGetRequest() throws Exception {
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "?media=xml");
-        GridData gridData = getSkysailResponse(response).getData();
+    public void getsValidGridDataForGetRequest() throws Exception {
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
+        GridData gridData = getGridDataResponse(response).getData();
         assertThat(gridData.getColumns().getAsList().size(), is(5));
         assertThat(gridData.getRows().size(), is(0));
     }
 
+    /**
+     * Testing HTTP POST request
+     */
     @Test
-    public void shouldGetSuccessAnswerWhenAddingValidConnectionWithPost() throws Exception {
+    public void getsSuccessAnswerWhenAddingValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
         Representation entity = response.getEntity();
@@ -47,22 +56,28 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
     }
 
+    /**
+     * Testing HTTP POST and GET request
+     */
     @Test
-    public void shouldGetNewConnectionWithGetAfterAddingValidConnectionWithPost() throws Exception {
+    public void canRetrieveNewConnectionAfterAddingValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         Response response = handleRequest(new Request(Method.GET, DbViewerUrlMapper.CONNECTION_PREFIX));
-        GridData gridData = getSkysailResponse(response).getData();
+        GridData gridData = getGridDataResponse(response).getData();
         assertThat(gridData.getRows().size(), is(1));
     }
 
+    /**
+     * Testing HTTP POST request
+     */
     @Test
-    public void shouldGetFailureAnswerWhenAddingNonValidConnectionWithPost() throws Exception {
+    public void getsFailureMessageWhenAddingNonValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
-        SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
+        SkysailResponse<GridData> skysailResponse = getGridDataResponse(response);
         assertThat(skysailResponse.getSuccess(), is(false));
     }
 }

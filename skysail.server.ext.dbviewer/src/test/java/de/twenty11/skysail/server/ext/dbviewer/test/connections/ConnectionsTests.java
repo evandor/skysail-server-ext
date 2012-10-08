@@ -32,8 +32,6 @@ public class ConnectionsTests {
         connectionDetails = new ConnectionDetails("id", "user", "pass", "url", "driverName");
         Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
                 .configure();
-
-        // ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         ValidatorFactory factory = config.buildValidatorFactory();
         validator = factory.getValidator();
     }

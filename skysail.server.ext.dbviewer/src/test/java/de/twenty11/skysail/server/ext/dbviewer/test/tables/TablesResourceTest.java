@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
 import org.codehaus.jackson.type.TypeReference;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.Response;
 import org.restlet.data.MediaType;
@@ -29,11 +30,12 @@ public class TablesResourceTest extends ApplicationTests {
     }
 
     @Test
+    @Ignore
     public void shouldGetValidGridDataForGetRequestToExistingConnection() throws Exception {
         addDefaultConnection();
 
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
-        SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
+        SkysailResponse<GridData> skysailResponse = getGridDataResponse(response);
         assertThat(skysailResponse.getMessage(), containsString("listing"));
         assertThat(skysailResponse.getMessage(), containsString("tables"));
         GridData gridData = skysailResponse.getData();
@@ -58,7 +60,7 @@ public class TablesResourceTest extends ApplicationTests {
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
-        GridData gridData = getSkysailResponse(response).getData();
+        GridData gridData = getGridDataResponse(response).getData();
         assertThat(gridData.getRows().size(), is(1));
     }
 
@@ -67,7 +69,7 @@ public class TablesResourceTest extends ApplicationTests {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
-        SkysailResponse<GridData> skysailResponse = getSkysailResponse(response);
+        SkysailResponse<GridData> skysailResponse = getGridDataResponse(response);
         assertThat(skysailResponse.getSuccess(), is(false));
     }
 
