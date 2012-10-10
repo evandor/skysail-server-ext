@@ -18,11 +18,11 @@ import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.MapData;
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
 public class ApplicationTests extends BaseTests {

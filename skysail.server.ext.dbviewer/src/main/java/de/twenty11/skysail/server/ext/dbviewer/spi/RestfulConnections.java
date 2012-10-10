@@ -3,9 +3,9 @@ package de.twenty11.skysail.server.ext.dbviewer.spi;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 
 /**
  * Restful Http Service for Connections.

@@ -16,9 +16,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.server.ext.dbviewer.OSGiServiceDiscoverer;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
 
 public class ConnectionsTests {
 

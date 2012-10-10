@@ -1,9 +1,7 @@
 <class-diagram version="1.0.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" corner="BOTTOM_RIGHT" language="java" 
-    name="de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails" 
-    project="skysail.server.ext.dbviewer" 
-    file="/skysail.server.ext.dbviewer/src/main/java/de/twenty11/skysail/server/ext/dbviewer/internal/entities/ConnectionDetails.java" 
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="de.twde.twenty11.skysail.common.ext.dbviewer.ConnectionDetails="skysail.common.ext.dbviewer" 
+    file="/skysail.common.ext.dbviewer/src/main/java/de/twenty11/skysail/common/ext/dbviewer/ConnectionDetails.java" 
     binary="false">    
     <position height="-1" width="-1" x="297" y="188"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      

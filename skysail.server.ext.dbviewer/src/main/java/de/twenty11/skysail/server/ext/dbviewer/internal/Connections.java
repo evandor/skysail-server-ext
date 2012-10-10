@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.ConnectionDetails;
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 
 public class Connections {
 
