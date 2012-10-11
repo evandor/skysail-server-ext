@@ -137,6 +137,11 @@
 
 
 	<dependencies>
+        <dependency>
+            <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>skysail.common.ext.dbviewer</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
