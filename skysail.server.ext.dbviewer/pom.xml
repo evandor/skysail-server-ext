@@ -137,6 +137,11 @@
 
 
 	<dependencies>
+        <dependency>
+            <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>skysail.common.ext.dbviewer</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
@@ -244,12 +249,6 @@
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
 			<version>3.1.2.GA</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>com.springsource.javax.validation</artifactId>
-			<version>1.0.0.GA</version>
 		</dependency>
 
 		<dependency>

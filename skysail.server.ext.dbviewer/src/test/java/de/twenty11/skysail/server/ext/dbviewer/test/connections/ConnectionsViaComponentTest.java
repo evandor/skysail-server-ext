@@ -7,10 +7,10 @@ import static org.hamcrest.Matchers.nullValue;
 import org.junit.Test;
 import org.restlet.resource.ClientResource;
 
+import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulConnections;
 import de.twenty11.skysail.server.ext.dbviewer.test.ComponentTests;
 
 public class ConnectionsViaComponentTest extends ComponentTests {
