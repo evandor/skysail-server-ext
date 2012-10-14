@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.SkysailData;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
+import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
@@ -23,7 +24,6 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulConnections;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
 public class ConnectionsResource extends GridDataServerResource implements RestfulConnections {
