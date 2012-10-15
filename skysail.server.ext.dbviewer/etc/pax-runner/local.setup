@@ -37,13 +37,6 @@ mvn:org.restlet.osgi/org.restlet.ext.xstream/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.wadl/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.json/2.1.0
 
-### -------------------------------
-### skysail other 
-### -------------------------------
-#mvn:de.twentyeleven.skysail/skysail.server.ext.osgi.visualization.zest/0.0.1-SNAPSHOT@noStart
-#file:/home/carsten/.m2/repository/org/eclipse/core/runtime/3.8.0-v20120308-2101/runtime-3.8.0-v20120308-2101.jar
-#file:/home/carsten/.m2/repository/org/eclipse/osgi/3.8.0-v20120430-1750/osgi-3.8.0-v20120430-1750.jar
-
 ### ------------------
 ### config admin
 ### ------------------
@@ -62,7 +55,6 @@ mvn:org.hibernate/hibernate-validator/4.3.0.Final
 mvn:javax.validation/com.springsource.javax.validation/1.0.0.GA
 mvn:org.jboss.logging/jboss-logging/3.1.2.GA
 
-
 ### --------------------
 ### Other
 ### --------------------
@@ -79,7 +71,6 @@ mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0
 mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0 
 mvn:de.twentyeleven.skysail/skysail.server.eclipselink/0.0.3-SNAPSHOT
 mvn:de.twentyeleven.skysail/org.json-osgi/20080701
-
 
 ### -------------------------------
 ### Client Side 
