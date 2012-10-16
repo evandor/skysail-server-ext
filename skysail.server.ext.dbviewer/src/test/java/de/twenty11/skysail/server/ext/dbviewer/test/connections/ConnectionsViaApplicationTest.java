@@ -4,6 +4,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 import org.restlet.Request;
@@ -37,9 +39,8 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
     @Test
     public void getsValidGridDataForGetRequest() throws Exception {
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
-        GridData gridData = getGridDataResponse(response).getData();
-        assertThat(gridData.getColumns().getAsList().size(), is(5));
-        assertThat(gridData.getRows().size(), is(0));
+        List<ConnectionDetails> data = getListOfConnectionDetailsResponse(response).getData();
+        assertThat(data.size(), is(0));
     }
 
     /**
@@ -65,8 +66,8 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         Response response = handleRequest(new Request(Method.GET, DbViewerUrlMapper.CONNECTION_PREFIX));
-        GridData gridData = getGridDataResponse(response).getData();
-        assertThat(gridData.getRows().size(), is(1));
+        List<ConnectionDetails> result = getListOfConnectionDetailsResponse(response).getData();
+        assertThat(result.size(), is(1));
     }
 
     /**

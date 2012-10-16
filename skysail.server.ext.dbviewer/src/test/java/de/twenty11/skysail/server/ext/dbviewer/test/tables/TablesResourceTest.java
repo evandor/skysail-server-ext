@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -60,8 +62,8 @@ public class TablesResourceTest extends ApplicationTests {
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
-        GridData gridData = getGridDataResponse(response).getData();
-        assertThat(gridData.getRows().size(), is(1));
+        List<ConnectionDetails> data = getListOfConnectionDetailsResponse(response).getData();
+        assertThat(data.size(), is(1));
     }
 
     @Test

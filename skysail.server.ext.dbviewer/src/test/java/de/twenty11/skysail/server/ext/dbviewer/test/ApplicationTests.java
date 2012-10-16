@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -69,6 +70,12 @@ public class ApplicationTests extends BaseTests {
     protected SkysailResponse<GridData> getGridDataResponse(Response response) throws Exception {
         Representation entity = response.getEntity();
         return mapper.readValue(entity.getText(), new TypeReference<SkysailResponse<GridData>>() {
+        });
+    }
+
+    protected de.twenty11.skysail.common.responses.Response<List<ConnectionDetails>> getListOfConnectionDetailsResponse(Response response) throws Exception {
+        Representation entity = response.getEntity();
+        return mapper.readValue(entity.getText(), new TypeReference<de.twenty11.skysail.common.responses.Response<List<ConnectionDetails>>>() {
         });
     }
 
