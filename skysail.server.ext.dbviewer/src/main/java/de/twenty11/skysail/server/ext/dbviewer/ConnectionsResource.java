@@ -91,16 +91,8 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
 
         Connections connections = ((SkysailApplication) getApplication()).getConnections();
         List<ConnectionDetails> result = new ArrayList<ConnectionDetails>();
-        //GridData grid = getSkysailData();
         for (String connectionName : connections.list()) {
             ConnectionDetails details = connections.get(connectionName);
-//            RowData row = new RowData(getSkysailData().getColumns());
-//            row.add(connectionName);
-//            row.add(details.getUrl());
-//            row.add(details.getUsername());
-//            row.add(details.getDriverName());
-//            row.add(getParent() + "dbviewer/" + connectionName + "/?media=json");
-//            grid.addRowData(row);
             result.add(details);
         }
         setSkysailData(result);
