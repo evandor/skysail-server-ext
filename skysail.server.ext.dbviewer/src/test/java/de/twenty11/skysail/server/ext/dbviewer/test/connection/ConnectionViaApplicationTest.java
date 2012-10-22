@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.Response;
 import org.restlet.data.MediaType;
@@ -30,6 +31,7 @@ public class ConnectionViaApplicationTest extends ApplicationTests {
      * Testing HTTP GET request
      */
     @Test
+    @Ignore
     public void shouldRetrieveExistingConnectionDetails() throws Exception {
         addDefaultConnection();
 
