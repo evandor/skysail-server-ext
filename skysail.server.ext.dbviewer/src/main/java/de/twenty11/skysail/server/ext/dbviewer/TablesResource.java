@@ -22,6 +22,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.sql.DataSource;
@@ -43,20 +45,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.SkysailData;
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
+import de.twenty11.skysail.common.ext.dbviewer.RestfulTables;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
+import de.twenty11.skysail.common.responses.FailureResponse;
+import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SkysailFailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
+import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
-import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulTables;
+import de.twenty11.skysail.server.restlet.GenericServerResource;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
-public class TablesResource extends GridDataServerResource implements RestfulTables {
+public class TablesResource extends GenericServerResource<List<String>> implements RestfulTables {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -91,8 +98,9 @@ public class TablesResource extends GridDataServerResource implements RestfulTab
     @Override
     public void buildGrid() {
         DataSource ds = getDataSourceForConnection();
-        GridData grid = getSkysailData();
+        //GridData grid = getSkysailData();
         Connection connection;
+        List<String> result = new ArrayList<String>();
         int count = 0;
         try {
             connection = ds.getConnection();
@@ -100,12 +108,13 @@ public class TablesResource extends GridDataServerResource implements RestfulTab
 
             ResultSet tables = meta.getTables(null, null, null, new String[] { "TABLE" });
             while (tables.next()) {
-                RowData row = new RowData(getSkysailData().getColumns());
-                row.add(tables.getString("TABLE_NAME"));
-                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/data/?media=json");
-                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/columns/?media=json");
-                grid.addRowData(row);
+//                RowData row = new RowData(getSkysailData().getColumns());
+//                row.add(tables.getString("TABLE_NAME"));
+//                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/data/?media=json");
+//                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/columns/?media=json");
+//                grid.addRowData(row);
                 count++;
+                result.add(tables.getString("TABLE_NAME"));
             }
             setMessage("listing " + count + " tables");
         } catch (SQLException e) {
@@ -114,10 +123,15 @@ public class TablesResource extends GridDataServerResource implements RestfulTab
     }
 
     @Get
-    public SkysailResponse<GridData> getTables() {
-        SkysailResponse<GridData> response = createResponse();
-        // setResponseDetails(response, MediaType.APPLICATION_JSON);
-        return response;// new JacksonRepresentation<SkysailResponse<MapData>>(response);
+    public Response<List<String>> getTables() {
+        Response<List<String>> response;
+        try {
+            response = new SuccessResponse<List<String>>(getFilteredData());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response = new FailureResponse<List<String>>(e);
+        }
+        return response;
     }
 
     @Post()
