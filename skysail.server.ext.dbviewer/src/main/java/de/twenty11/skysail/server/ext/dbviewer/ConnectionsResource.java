@@ -21,9 +21,6 @@ import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.common.responses.SkysailFailureResponse;
-import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
@@ -32,7 +29,7 @@ import de.twenty11.skysail.server.restlet.GenericServerResource;
 public class ConnectionsResource extends GenericServerResource<List<ConnectionDetails>> implements RestfulConnections {
 
     /** slf4j based logger implementation */
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static Logger logger = LoggerFactory.getLogger(ConnectionsResource.class);
 
     private Validator validator;
 
@@ -72,17 +69,19 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
 
     @Override
     @Post
-    public SkysailResponse<?> addConnection(ConnectionDetails entity) {
-        SkysailResponse<?> skysailResponse;
+    public Response<?> addConnection(ConnectionDetails entity) {
+        Response<?> skysailResponse;
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(entity);
         int size = constraintViolations.size();
         if (size > 0) {
-            skysailResponse = new SkysailFailureResponse(constraintViolations.toString());
+            logger.warn("contraint violations found on {}: {}", entity, constraintViolations);
+            skysailResponse = new FailureResponse(constraintViolations.toString());
         } else {
+            logger.info("about to add connection {}", entity);
             ((SkysailApplication) getApplication()).getConnections().add(entity);
-            skysailResponse = new SkysailSuccessResponse<SkysailData>();
+            skysailResponse = new SuccessResponse<SkysailData>();
         }
-        return skysailResponse;// new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
+        return skysailResponse;
     }
 
     @Override
