@@ -8,6 +8,7 @@ import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
 import de.twenty11.skysail.server.ext.dbviewer.DataResource;
+import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
 import de.twenty11.skysail.server.services.UrlMapper;
 
@@ -26,10 +27,16 @@ public class DbViewerUrlMapper implements UrlMapper {
         Map<String, String> queue = Collections.synchronizedMap(new LinkedHashMap<String, String>());
         // @formatter:off
         queue.put(CONNECTION_PREFIX, ConnectionsResource.class.getName());
-        queue.put(CONNECTION_PREFIX + "{" + CONNECTION_NAME + "}", ConnectionResource.class.getName());
-        queue.put(CONNECTION_PREFIX + "{" + CONNECTION_NAME + "}/tables", TablesResource.class.getName());
-        queue.put(CONNECTION_PREFIX + "{" + CONNECTION_NAME + "}/tables/{" + TABLE_NAME + "}/columns",ColumnsResource.class.getName());
-        queue.put(CONNECTION_PREFIX + "{" + CONNECTION_NAME + "}/tables/{" + TABLE_NAME + "}/data", DataResource.class.getName());
+
+        String connection = CONNECTION_PREFIX + "{" + CONNECTION_NAME + "}";
+        queue.put(connection, ConnectionResource.class.getName());
+
+        String schemas = connection + "/schemas";
+        queue.put(schemas, SchemasResource.class.getName());
+
+        queue.put(schemas + "/tables", TablesResource.class.getName());
+        queue.put(schemas + "/tables/{" + TABLE_NAME + "}/columns",ColumnsResource.class.getName());
+        queue.put(schemas + "/tables/{" + TABLE_NAME + "}/data", DataResource.class.getName());
         // @formatter:on
         return queue;
     }
