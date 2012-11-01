@@ -72,6 +72,8 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
 
     private String connectionName;
 
+    private String schemaName;
+
     public TablesResource() {
         super(new ColumnsBuilder() {
 
@@ -93,6 +95,7 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
     @Override
     protected void doInit() throws ResourceException {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        schemaName = (String) getRequest().getAttributes().get("schema");
     }
 
     @Override
@@ -106,7 +109,7 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
             connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
-            ResultSet tables = meta.getTables(null, null, null, new String[] { "TABLE" });
+            ResultSet tables = meta.getTables(schemaName, null, null, new String[] { "TABLE" });
             while (tables.next()) {
 //                RowData row = new RowData(getSkysailData().getColumns());
 //                row.add(tables.getString("TABLE_NAME"));
@@ -117,6 +120,7 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
                 result.add(tables.getString("TABLE_NAME"));
             }
             setMessage("listing " + count + " tables");
+            setSkysailData(result);
         } catch (SQLException e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
         }

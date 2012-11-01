@@ -25,7 +25,7 @@ public class TablesResourceTest extends ApplicationTests {
 
     @Test
     public void shouldGetValidResponseForGetRequest() throws Exception {
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/schemas/PUBLIC/tables");
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
@@ -48,7 +48,7 @@ public class TablesResourceTest extends ApplicationTests {
     @Test
     public void shouldGetSuccessAnswerWhenAddingValidTableWithPost() throws Exception {
         addDefaultConnection();
-        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables", new TableDetails("tableA"));
+        Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX + "default/schemas/PUBLIC/tables", new TableDetails("tableA"));
         Representation entity = response.getEntity();
         SkysailResponse<GridData> skysailResponse = mapper.readValue(entity.getText(),
                 new TypeReference<SkysailResponse<GridData>>() {

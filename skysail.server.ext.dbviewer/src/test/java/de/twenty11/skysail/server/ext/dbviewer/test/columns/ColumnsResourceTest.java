@@ -21,7 +21,7 @@ public class ColumnsResourceTest extends ApplicationTests {
     public void shouldGetValidResponseForGetRequest() throws Exception {
         addDefaultConnection();
         addTable("default", new TableDetails("tableA"));
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables/tableA/columns");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/schemas/PUBLIC/tables/tableA/columns");
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
@@ -32,7 +32,7 @@ public class ColumnsResourceTest extends ApplicationTests {
     public void shouldGetValidGridDataForGetRequestToExistingConnection() throws Exception {
         addDefaultConnection();
         addTable("default", new TableDetails("tableA"));
-        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/tables");
+        Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX + "default/schemas/PUBLIC/tables");
         SkysailResponse<GridData> skysailResponse = getGridDataResponse(response);
         assertThat(skysailResponse.getMessage(), is("listing 1 tables"));
         GridData gridData = skysailResponse.getData();

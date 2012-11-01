@@ -82,19 +82,21 @@ public class SchemasResource extends GenericServerResource<List<SchemaDetails>> 
         setMessage("all Schemas");
         DataSource ds = getDataSourceForConnection();
         Connection connection;
-        List<String> result = new ArrayList<String>();
+        List<SchemaDetails> result = new ArrayList<SchemaDetails>();
         int count = 0;
         try {
             connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
-            ResultSet schemas = meta.getSchemas();
+            //http://stackoverflow.com/questions/5679259/how-to-get-list-of-databases-schema-names-of-mysql-using-java-jdbc
+            ResultSet schemas = meta.getCatalogs();
             //ResultSet tables = meta.getTables(null, null, null, new String[] { "TABLE" });
             while (schemas.next()) {
                 count++;
-                result.add(schemas.getString("TABLE_SCHEM"));
+                result.add(new SchemaDetails(schemas.getString("TABLE_CAT")));
             }
             setMessage("listing " + count + " schemas");
+            setSkysailData(result);
         } catch (SQLException e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
         }

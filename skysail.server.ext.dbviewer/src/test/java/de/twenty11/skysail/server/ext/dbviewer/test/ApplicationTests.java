@@ -85,6 +85,9 @@ public class ApplicationTests extends BaseTests {
         });
     }
 
+    /**
+     * adds connections details with id "default" to an in-memory hsqldb database
+     */
     protected ConnectionDetails addDefaultConnection() throws JsonGenerationException, JsonMappingException,
             IOException {
         ConnectionDetails connection = new ConnectionDetails("default", "SA", "", "jdbc:hsqldb:mem:.",

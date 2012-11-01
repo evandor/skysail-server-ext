@@ -34,9 +34,10 @@ public class DbViewerUrlMapper implements UrlMapper {
         String schemas = connection + "/schemas";
         queue.put(schemas, SchemasResource.class.getName());
 
-        queue.put(schemas + "/tables", TablesResource.class.getName());
-        queue.put(schemas + "/tables/{" + TABLE_NAME + "}/columns",ColumnsResource.class.getName());
-        queue.put(schemas + "/tables/{" + TABLE_NAME + "}/data", DataResource.class.getName());
+        String schema = schemas + "/{schema}";
+        queue.put(schema + "/tables", TablesResource.class.getName());
+        queue.put(schema + "/tables/{" + TABLE_NAME + "}/columns",ColumnsResource.class.getName());
+        queue.put(schema + "/tables/{" + TABLE_NAME + "}/data", DataResource.class.getName());
         // @formatter:on
         return queue;
     }
