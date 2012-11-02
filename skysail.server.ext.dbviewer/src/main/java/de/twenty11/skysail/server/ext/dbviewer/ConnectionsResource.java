@@ -1,15 +1,20 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.validation.Configuration;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.eclipse.persistence.config.PersistenceUnitProperties;
+import org.eclipse.persistence.jpa.osgi.PersistenceProvider;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.slf4j.Logger;
@@ -32,6 +37,9 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
     private static Logger logger = LoggerFactory.getLogger(ConnectionsResource.class);
 
     private Validator validator;
+
+    private EntityManagerFactory emf;
+    private EntityManager em;
 
     public ConnectionsResource() {
         super(new ColumnsBuilder() {
@@ -79,6 +87,19 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
         } else {
             logger.info("about to add connection {}", entity);
             ((SkysailApplication) getApplication()).getConnections().add(entity);
+
+            logger.info("trying to persist connection {}", entity);
+            try {
+                EntityManager em = getEntityManager();
+                em.getTransaction().begin();
+                em.persist(entity);
+                em.getTransaction().commit();
+                em.close();
+                emf.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                skysailResponse = new FailureResponse(e.getMessage());
+            }
             skysailResponse = new SuccessResponse<SkysailData>();
         }
         return skysailResponse;
@@ -95,6 +116,22 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
             result.add(details);
         }
         setSkysailData(result);
+    }
+
+    private EntityManager getEntityManager() {
+        if (em == null) {
+            em = getEntityManagerFactory().createEntityManager();
+        }
+        return em;
+    }
+
+    private EntityManagerFactory getEntityManagerFactory() {
+        if (emf == null) {
+            HashMap properties = new HashMap();
+            properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
+            emf = new PersistenceProvider().createEntityManagerFactory("DbViewerPU", properties);
+        }
+        return emf;
     }
 
 }
