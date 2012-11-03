@@ -37,19 +37,22 @@ import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
+import de.twenty11.skysail.common.ext.dbviewer.RestfulData;
 import de.twenty11.skysail.common.grids.ColumnDefinition;
 import de.twenty11.skysail.common.grids.Columns;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
-import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.common.responses.FailureResponse;
+import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulDbData;
 import de.twenty11.skysail.server.restlet.GridDataServerResource;
 
-public class DataResource extends GridDataServerResource implements RestfulDbData {
+public class DataResource extends GridDataServerResource implements RestfulData {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -63,6 +66,8 @@ public class DataResource extends GridDataServerResource implements RestfulDbDat
 
     private String tableName;
 
+    private String schemaName;
+
     public DataResource() {
         super(new ColumnsBuilder() {
             @Override
@@ -75,6 +80,7 @@ public class DataResource extends GridDataServerResource implements RestfulDbDat
     protected void doInit() throws ResourceException {
         tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        schemaName = (String) getRequest().getAttributes().get("schema");
         Connections connections = ((SkysailApplication) getApplication()).getConnections();
         dataSource = connections.getDataSource(connectionName);
     }
@@ -94,23 +100,34 @@ public class DataResource extends GridDataServerResource implements RestfulDbDat
 
     @Override
     @Get
-    public SkysailResponse<GridData> getData() {
-        return createResponse();
+    public Response<GridData> getData() {
+        Response<GridData> response;
+        try {
+            response = new SuccessResponse<GridData>(getFilteredData());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response = new FailureResponse<GridData>(e);
+        }
+        return response;
     }
 
     private void getColumns() throws IOException, JsonParseException, JsonMappingException {
         ClientResource columns = new ClientResource("riap://application/dbviewer/connections/" + connectionName
-                + "/tables/" + tableName + "/columns");
+                + "/schemas/" + schemaName + "/tables/" + tableName + "/columns");
         columns.setChallengeResponse(getChallengeResponse());
         Representation representation = columns.get();
-        SkysailResponse<GridData> response = mapper.readValue(representation.getText(),
-                new TypeReference<SkysailResponse<GridData>>() {
+        Response<List<ColumnsDetails>> response = mapper.readValue(representation.getText(),
+                new TypeReference<Response<List<ColumnsDetails>>>() {
                 });
-        GridData payload = response.getData();
-        List<RowData> gridData = payload.getRows();
-        for (RowData rowData : gridData) {
-            List<Object> columnData = rowData.getColumnData();
-            ColumnDefinition columnDefinition = new ColumnDefinition((String) columnData.get(1));
+        List<ColumnsDetails> payload = response.getData();
+        // List<RowData> gridData = payload.getRows();
+        // for (RowData rowData : gridData) {
+        // List<Object> columnData = rowData.getColumnData();
+        // ColumnDefinition columnDefinition = new ColumnDefinition((String) columnData.get(1));
+        // getSkysailData().getColumns().getAsList().add(columnDefinition);
+        // }
+        for (ColumnsDetails columnsDetails : payload) {
+            ColumnDefinition columnDefinition = new ColumnDefinition(columnsDetails.getId());
             getSkysailData().getColumns().getAsList().add(columnDefinition);
         }
     }
@@ -118,6 +135,7 @@ public class DataResource extends GridDataServerResource implements RestfulDbDat
     private ResultSet getRows(GridData grid) throws SQLException {
         ResultSet executeQuery;
         Connection connection = dataSource.getConnection();
+        connection.setCatalog(schemaName);
 
         Statement createStatement = connection.createStatement();
         executeQuery = createStatement.executeQuery("SELECT * FROM " + tableName);

@@ -21,6 +21,8 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -29,23 +31,25 @@ import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
+import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
-import de.twenty11.skysail.common.grids.GridData;
-import de.twenty11.skysail.common.grids.RowData;
-import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.common.responses.FailureResponse;
+import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.spi.RestfulColumns;
-import de.twenty11.skysail.server.restlet.GridDataServerResource;
+import de.twenty11.skysail.server.restlet.GenericServerResource;
 
-public class ColumnsResource extends GridDataServerResource implements RestfulColumns {
+public class ColumnsResource extends GenericServerResource<List<ColumnsDetails>> implements RestfulColumns {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
     private String connectionName;
     private String tableName;
     private DataSource dataSource;
+    private String schemaName;
 
     public ColumnsResource() {
         super(new ColumnsBuilder() {
@@ -63,6 +67,7 @@ public class ColumnsResource extends GridDataServerResource implements RestfulCo
     @Override
     protected void doInit() throws ResourceException {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        schemaName = (String) getRequest().getAttributes().get("schema");
         tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
         Connections connections = ((SkysailApplication) getApplication()).getConnections();
         dataSource = connections.getDataSource(connectionName);
@@ -71,22 +76,17 @@ public class ColumnsResource extends GridDataServerResource implements RestfulCo
     @Override
     public void buildGrid() {
 
-        GridData grid = getSkysailData();
-
+        setMessage("all columns");
         Connection connection;
         try {
             connection = dataSource.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
-            ResultSet columns = meta.getColumns(null, null, tableName, null);
+            ResultSet columns = meta.getColumns(schemaName, null, tableName, null);
+            List<ColumnsDetails> result = new ArrayList<ColumnsDetails>();
             while (columns.next()) {
-                RowData row = new RowData(getSkysailData().getColumns());
-                row.add(columns.getString("TYPE_NAME"));
-                row.add(columns.getString("COLUMN_SIZE"));
-                row.add(columns.getString("COLUMN_NAME"));
-                row.add(columns.getString("DATA_TYPE"));
-                // grid.addRowData(getSkysailData().getFilter(), row);
-                grid.addRowData(row);
+                result.add(new ColumnsDetails(columns.getString("COLUMN_NAME")));
             }
+            setSkysailData(result);
         } catch (SQLException e) {
             throw new RuntimeException("could not execute select statement: " + e.getMessage(), e);
         }
@@ -94,7 +94,14 @@ public class ColumnsResource extends GridDataServerResource implements RestfulCo
 
     @Override
     @Get
-    public SkysailResponse<GridData> getColumns() {
-        return createResponse();
+    public Response<List<ColumnsDetails>> getColumns() {
+        Response<List<ColumnsDetails>> response;
+        try {
+            response = new SuccessResponse<List<ColumnsDetails>>(getFilteredData());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response = new FailureResponse<List<ColumnsDetails>>(e);
+        }
+        return response;
     }
 }
