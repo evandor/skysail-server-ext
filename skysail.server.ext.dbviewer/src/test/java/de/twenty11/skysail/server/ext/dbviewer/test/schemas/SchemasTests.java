@@ -25,7 +25,7 @@ public class SchemasTests {
     @Before
     public void setup() {
         schemas = new Schemas();
-        schemaDetails = new SchemaDetails("id");
+        schemaDetails = new SchemaDetails("name");
         Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
                 .configure();
         ValidatorFactory factory = config.buildValidatorFactory();
@@ -43,6 +43,5 @@ public class SchemasTests {
         Set<String> list = schemas.list();
         assertTrue(list.size() == 1);
     }
-
 
 }

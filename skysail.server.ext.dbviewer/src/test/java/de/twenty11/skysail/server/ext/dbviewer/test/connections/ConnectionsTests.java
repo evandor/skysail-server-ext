@@ -29,7 +29,7 @@ public class ConnectionsTests {
     @Before
     public void setup() {
         connections = new Connections();
-        connectionDetails = new ConnectionDetails("id", "user", "pass", "url", "driverName");
+        connectionDetails = new ConnectionDetails("name", "user", "pass", "url", "driverName");
         Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
                 .configure();
         ValidatorFactory factory = config.buildValidatorFactory();
@@ -39,7 +39,7 @@ public class ConnectionsTests {
     @Test
     public void testSuccessfullAdd() {
         connections.add(connectionDetails);
-        DataSource ds = connections.getDataSource("id");
+        DataSource ds = connections.getDataSource("name");
         assertTrue(ds != null);
     }
 
@@ -68,14 +68,14 @@ public class ConnectionsTests {
     @Test
     public void testGet() throws Exception {
         connections.add(connectionDetails);
-        ConnectionDetails details = connections.get("id");
+        ConnectionDetails details = connections.get("name");
         assertTrue(details.equals(connectionDetails));
     }
 
     @Test
     public void testDelete() throws Exception {
         connections.add(connectionDetails);
-        connections.delete("id");
+        connections.delete("name");
     }
 
     @Test
@@ -84,7 +84,7 @@ public class ConnectionsTests {
         connections.add(connectionDetails);
         ConnectionDetails newConnectioDetails = new ConnectionDetails("i", "u", "p", "u", "d");
         connections.update("test", newConnectioDetails);
-        assertTrue(connections.get("id").getUsername().equals("u"));
+        assertTrue(connections.get("name").getUsername().equals("u"));
     }
 
     @Test
@@ -101,7 +101,7 @@ public class ConnectionsTests {
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(connectionDetails);
 
         assertEquals(1, constraintViolations.size());
-        assertEquals("Id is mandatory", constraintViolations.iterator().next().getMessage());
+        assertEquals("Name is mandatory", constraintViolations.iterator().next().getMessage());
 
     }
 

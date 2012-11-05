@@ -48,7 +48,7 @@ public class SchemasResourceTest extends ApplicationTests {
     @Test
     @Ignore
     public void shouldGetNewConnectionWithGetAfterAddingValidConnectionWithPost() throws Exception {
-        ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
+        ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);

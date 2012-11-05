@@ -48,7 +48,7 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
      */
     @Test
     public void getsSuccessAnswerWhenAddingValidConnectionWithPost() throws Exception {
-        ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
+        ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
         Representation entity = response.getEntity();
         SkysailResponse<GridData> skysailResponse = mapper.readValue(entity.getText(),
@@ -62,7 +62,7 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
      */
     @Test
     public void canRetrieveNewConnectionAfterAddingValidConnectionWithPost() throws Exception {
-        ConnectionDetails connection = new ConnectionDetails("id", "username", "password", "url", "driverClassName");
+        ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
 
         Response response = handleRequest(new Request(Method.GET, DbViewerUrlMapper.CONNECTION_PREFIX));
