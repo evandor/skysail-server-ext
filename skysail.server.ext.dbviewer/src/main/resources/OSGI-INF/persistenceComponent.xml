@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<component name='skysail.server.persistenceComponent'>
+<component name='skysail.server.ext.dbviewer.persistenceComponent'>
 	<implementation class='de.twenty11.skysail.server.ext.dbviewer.internal.SkysailEntityManagerProvider' />
  <service>
     <provide interface="de.twenty11.skysail.server.SkysailEntityManagerProvider"/>

@@ -1,46 +1,19 @@
 <class-diagram version="1.0.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" corner="BOTTOM_RIGHT" language="java" name="de.twde.twenty11.skysail.common.ext.dbviewer.ConnectionDetails="skysail.common.ext.dbviewer" 
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails" 
+    project="skysail.common.ext.dbviewer" 
     file="/skysail.common.ext.dbviewer/src/main/java/de/twenty11/skysail/common/ext/dbviewer/ConnectionDetails.java" 
     binary="false">    
-    <position height="-1" width="-1" x="297" y="188"/>    
+    <position height="297" width="270" x="301" y="93"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
+      <attributes public="true" package="true" protected="true" private="false"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
     </display>  
   </class>  
-  <class id="2" corner="BOTTOM_RIGHT" language="java" 
-    name="de.twenty11.skysail.server.ext.dbviewer.internal.Connections" project="skysail.server.ext.dbviewer" 
-    file="/skysail.server.ext.dbviewer/src/main/java/de/twenty11/skysail/server/ext/dbviewer/internal/Connections.java" 
-    binary="false">    
-    <position height="-1" width="-1" x="659" y="184"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <class id="3" corner="BOTTOM_RIGHT" language="java" 
-    name="de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails" project="skysail.server.ext.dbviewer" 
-    file="/skysail.server.ext.dbviewer/src/main/java/de/twenty11/skysail/server/ext/dbviewer/internal/entities/TableDetails.java" 
-    binary="false">    
-    <position height="-1" width="-1" x="296" y="435"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <association id="4">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="5" name="connectionDetails"/>      
-      <multiplicity id="6" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     visibility="true">    
-    <attributes public="true" package="true" protected="true" private="true"/>    
-    <operations public="true" package="true" protected="true" private="true"/>  
+    <attributes public="true" package="true" protected="true" private="false"/>    
+    <operations public="true" package="true" protected="true" private="false"/>  
   </classifier-display>  
   <association-display labels="true" multiplicity="true"/>
 </class-diagram>
