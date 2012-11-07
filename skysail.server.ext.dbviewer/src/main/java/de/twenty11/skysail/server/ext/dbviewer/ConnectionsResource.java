@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -13,10 +12,9 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import org.eclipse.persistence.config.PersistenceUnitProperties;
-import org.eclipse.persistence.jpa.osgi.PersistenceProvider;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +28,7 @@ import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
+import de.twenty11.skysail.server.services.EntityManagerProvider;
 
 public class ConnectionsResource extends GenericServerResource<List<ConnectionDetails>> implements RestfulConnections {
 
@@ -39,7 +38,9 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
     private Validator validator;
 
     private EntityManagerFactory emf;
-    private EntityManager em;
+    // private EntityManager em;
+
+    private EntityManagerProvider entityManagerProvider;
 
     public ConnectionsResource() {
         super(new ColumnsBuilder() {
@@ -60,6 +61,12 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
 
         ValidatorFactory factory = config.buildValidatorFactory();
         validator = factory.getValidator();
+    }
+
+    @Override
+    protected void doInit() throws ResourceException {
+        super.doInit();
+        entityManagerProvider = ((SkysailApplication) getApplication()).getEntityManagerProvider();
     }
 
     @Override
@@ -90,7 +97,8 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
 
             logger.info("trying to persist connection {}", entity);
             try {
-                EntityManager em = getEntityManager();
+                // EntityManager em = getEntityManager();
+                EntityManager em = entityManagerProvider.getEntityManager("DbViewerPU");
                 em.getTransaction().begin();
                 em.persist(entity);
                 em.getTransaction().commit();
@@ -118,20 +126,20 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
         setSkysailData(result);
     }
 
-    private EntityManager getEntityManager() {
-        if (em == null) {
-            em = getEntityManagerFactory().createEntityManager();
-        }
-        return em;
-    }
-
-    private EntityManagerFactory getEntityManagerFactory() {
-        if (emf == null) {
-            HashMap properties = new HashMap();
-            properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
-            emf = new PersistenceProvider().createEntityManagerFactory("DbViewerPU", properties);
-        }
-        return emf;
-    }
+    // private EntityManager getEntityManager() {
+    // if (em == null) {
+    // em = getEntityManagerFactory().createEntityManager();
+    // }
+    // return em;
+    // }
+    //
+    // private EntityManagerFactory getEntityManagerFactory() {
+    // if (emf == null) {
+    // HashMap properties = new HashMap();
+    // properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
+    // emf = new PersistenceProvider().createEntityManagerFactory("DbViewerPU", properties);
+    // }
+    // return emf;
+    // }
 
 }

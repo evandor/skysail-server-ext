@@ -23,6 +23,7 @@ import org.restlet.Response;
 
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
+import de.twenty11.skysail.server.services.EntityManagerProvider;
 
 /**
  * @author carsten
@@ -32,6 +33,10 @@ public class SkysailApplication extends RestletOsgiApplication {
 
     private Connections connections;
 
+    private EntityManagerProvider emp;
+
+    private static SkysailApplication self;
+
     /**
      * @param staticPathTemplate
      */
@@ -40,6 +45,17 @@ public class SkysailApplication extends RestletOsgiApplication {
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");
         connections = new Connections();
+        self = this;
+    }
+
+    /**
+     * this is done to give osgi a chance to inject serives to restlet; should be changed to some javax.inject approach
+     * (like using InjectedServerResource) once this is available.
+     * 
+     * @return
+     */
+    public static SkysailApplication get() {
+        return self;
     }
 
     @Override
@@ -55,6 +71,14 @@ public class SkysailApplication extends RestletOsgiApplication {
         if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
             new UrlMappingServiceListener(this);
         }
+    }
+
+    public void setEntityManagerProvider(EntityManagerProvider emp) {
+        this.emp = emp;
+    }
+
+    public EntityManagerProvider getEntityManagerProvider() {
+        return this.emp;
     }
 
 }

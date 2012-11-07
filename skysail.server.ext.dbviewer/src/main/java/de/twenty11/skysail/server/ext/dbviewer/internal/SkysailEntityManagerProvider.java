@@ -17,43 +17,25 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
-import java.util.HashMap;
+import org.osgi.service.component.ComponentContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
-import org.apache.commons.dbcp.BasicDataSource;
-import org.eclipse.persistence.config.PersistenceUnitProperties;
-import org.eclipse.persistence.jpa.osgi.PersistenceProvider;
-
-import de.twenty11.skysail.server.config.Configuration;
 import de.twenty11.skysail.server.services.EntityManagerProvider;
 
-public class SkysailEntityManagerProvider implements EntityManagerProvider {
+public class SkysailEntityManagerProvider {
 
-    public SkysailEntityManagerProvider() {
-        // TODO Auto-generated constructor stub
-    }
-    
-    @Override
-    public EntityManager getEntityManager(String persistenceUnit) {
-        return getEntityManagerFactory(persistenceUnit);
+    /** slf4j based logger. */
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private EntityManagerProvider emp;
+
+    protected void activate(final ComponentContext component) {
+        logger.info("activating component in {}", component.getBundleContext().getBundle().getSymbolicName());
     }
 
-    private EntityManager getEntityManagerFactory(String unit) {
-        HashMap properties = new HashMap();
-        
-        BasicDataSource defaultDS = Configuration.getDefaultDS();
-        properties.put(PersistenceUnitProperties.CLASSLOADER, this.getClass().getClassLoader());
-
-        properties.put(PersistenceUnitProperties.JDBC_USER, defaultDS.getUsername());
-        properties.put(PersistenceUnitProperties.JDBC_PASSWORD, defaultDS.getPassword());
-        properties.put(PersistenceUnitProperties.JDBC_URL, defaultDS.getUrl());
-        properties.put(PersistenceUnitProperties.JDBC_DRIVER, defaultDS.getDriverClassName());
-        
-        EntityManagerFactory emf = new PersistenceProvider().createEntityManagerFactory(unit, properties);
-        emf.getProperties();
-//        emf.createEntityManager().get
-        return emf.createEntityManager();
+    public void setEntityManager(EntityManagerProvider emp) {
+        SkysailApplication.get().setEntityManagerProvider(emp);
     }
+
 }
