@@ -28,7 +28,6 @@ import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
-import de.twenty11.skysail.server.services.EntityManagerProvider;
 
 public class ConnectionsResource extends GenericServerResource<List<ConnectionDetails>> implements RestfulConnections {
 
@@ -37,10 +36,7 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
 
     private Validator validator;
 
-    private EntityManagerFactory emf;
-    // private EntityManager em;
-
-    private EntityManagerProvider entityManagerProvider;
+    private EntityManagerFactory entityManagerFactory;
 
     public ConnectionsResource() {
         super(new ColumnsBuilder() {
@@ -66,7 +62,7 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
     @Override
     protected void doInit() throws ResourceException {
         super.doInit();
-        entityManagerProvider = ((SkysailApplication) getApplication()).getEntityManagerProvider();
+        entityManagerFactory = ((SkysailApplication) getApplication()).getEntityManagerFactory();
     }
 
     @Override
@@ -98,12 +94,11 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
             logger.info("trying to persist connection {}", entity);
             try {
                 // EntityManager em = getEntityManager();
-                EntityManager em = entityManagerProvider.getEntityManager("DbViewerPU");
+                EntityManager em = entityManagerFactory.createEntityManager();
                 em.getTransaction().begin();
                 em.persist(entity);
                 em.getTransaction().commit();
                 em.close();
-                emf.close();
             } catch (Exception e) {
                 e.printStackTrace();
                 skysailResponse = new FailureResponse(e.getMessage());

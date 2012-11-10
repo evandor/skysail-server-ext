@@ -17,13 +17,14 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
-import de.twenty11.skysail.server.services.EntityManagerProvider;
 
 /**
  * @author carsten
@@ -33,8 +34,7 @@ public class SkysailApplication extends RestletOsgiApplication {
 
     private Connections connections;
 
-    private EntityManagerProvider emp;
-
+    private EntityManagerFactory emf;
     private static SkysailApplication self;
 
     /**
@@ -73,12 +73,12 @@ public class SkysailApplication extends RestletOsgiApplication {
         }
     }
 
-    public void setEntityManagerProvider(EntityManagerProvider emp) {
-        this.emp = emp;
+    public void setEntityManagerProvider(EntityManagerFactory emf) {
+        this.emf = emf;
     }
 
-    public EntityManagerProvider getEntityManagerProvider() {
-        return this.emp;
+    public EntityManagerFactory getEntityManagerFactory() {
+        return this.emf;
     }
 
 }

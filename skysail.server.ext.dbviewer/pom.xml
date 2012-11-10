@@ -293,5 +293,12 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+		  <groupId>de.twentyeleven.skysail</groupId>
+		  <artifactId>org.eclipse.gemini.jpa</artifactId>
+		  <version>1.0.0.RELEASE</version>
+		</dependency>
+		
 	</dependencies>
+	
 </project>

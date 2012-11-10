@@ -72,6 +72,7 @@ mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0
 mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0 
 mvn:de.twentyeleven.skysail/skysail.server.eclipselink/0.0.4-SNAPSHOT
 mvn:de.twentyeleven.skysail/org.json-osgi/20080701
+mvn:de.twentyeleven.skysail/org.eclipse.gemini.jpa/1.0.0.RELEASE
 
 ### -------------------------------
 ### Client Side 

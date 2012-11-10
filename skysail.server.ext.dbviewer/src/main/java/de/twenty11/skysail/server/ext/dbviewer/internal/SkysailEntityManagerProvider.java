@@ -17,25 +17,23 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.twenty11.skysail.server.services.EntityManagerProvider;
 
 public class SkysailEntityManagerProvider {
 
     /** slf4j based logger. */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private EntityManagerProvider emp;
-
     protected void activate(final ComponentContext component) {
         logger.info("activating component in {}", component.getBundleContext().getBundle().getSymbolicName());
     }
 
-    public void setEntityManager(EntityManagerProvider emp) {
-        SkysailApplication.get().setEntityManagerProvider(emp);
+    public void setEntityManager(EntityManagerFactory emf) {
+        SkysailApplication.get().setEntityManagerProvider(emf);
     }
 
 }
