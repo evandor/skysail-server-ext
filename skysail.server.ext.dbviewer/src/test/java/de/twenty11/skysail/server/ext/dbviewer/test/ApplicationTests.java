@@ -5,17 +5,10 @@ import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Before;
 import org.restlet.Application;
-import org.restlet.Request;
 import org.restlet.Response;
-import org.restlet.Restlet;
-import org.restlet.data.ChallengeResponse;
-import org.restlet.data.ChallengeScheme;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.MapData;
@@ -28,8 +21,6 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
 public class ApplicationTests extends BaseTests {
 
-    protected Restlet inboundRoot;
-    protected ObjectMapper mapper = new ObjectMapper();
     protected DbViewerComponent dbViewerComponent;
 
     @Before
@@ -39,32 +30,6 @@ public class ApplicationTests extends BaseTests {
         Application.setCurrent(skysailApplication);
         inboundRoot = skysailApplication.getInboundRoot();
         addMappings();
-    }
-
-    protected Response get(String uri) {
-        Request request = new Request(Method.GET, uri);
-        return handleRequest(request);
-    }
-
-    protected Response post(String uri, Object connection) throws JsonGenerationException, JsonMappingException,
-            IOException {
-        Request request = new Request(Method.POST, uri);
-        String writeValueAsString = mapper.writeValueAsString(connection);
-        request.setEntity(writeValueAsString, MediaType.APPLICATION_JSON);
-        return handleRequest(request);
-    }
-
-    protected Response delete(String uri) {
-        Request request = new Request(Method.DELETE, uri);
-        return handleRequest(request);
-    }
-
-    protected Response handleRequest(Request request) {
-        ChallengeResponse authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "scott", "tiger");
-        request.setChallengeResponse(authentication);
-        Response response = new Response(request);
-        inboundRoot.handle(request, response);
-        return response;
     }
 
     protected SkysailResponse<GridData> getGridDataResponse(Response response) throws Exception {

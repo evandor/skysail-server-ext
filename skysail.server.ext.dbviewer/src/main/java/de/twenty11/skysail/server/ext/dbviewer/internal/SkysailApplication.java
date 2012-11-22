@@ -17,12 +17,16 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
 
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
 
@@ -31,8 +35,6 @@ import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
  * 
  */
 public class SkysailApplication extends RestletOsgiApplication {
-
-    private Connections connections;
 
     private EntityManagerFactory emf;
     private static SkysailApplication self;
@@ -44,7 +46,6 @@ public class SkysailApplication extends RestletOsgiApplication {
         super(staticPathTemplate);
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");
-        connections = new Connections();
         self = this;
     }
 
@@ -63,8 +64,17 @@ public class SkysailApplication extends RestletOsgiApplication {
         super.handle(request, response);
     }
 
-    public Connections getConnections() {
-        return connections;
+    public javax.sql.DataSource getConnections(String connectionName) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ext_dbv_connections c WHERE name=:name", ConnectionDetails.class);
+        query.setParameter(0, connectionName);
+        ConnectionDetails result = query.getSingleResult();
+        BasicDataSource ds = new BasicDataSource();
+        ds.setUrl(result.getUrl());
+        ds.setUsername(result.getUsername());
+        ds.setDriverClassName(result.getDriverName());
+        ds.setPassword(result.getPassword());
+        return ds;
     }
 
     protected void attach() {
@@ -77,8 +87,24 @@ public class SkysailApplication extends RestletOsgiApplication {
         this.emf = emf;
     }
 
+    /**
+     * use getEntityManager directly
+     * @return
+     */
+    @Deprecated
     public EntityManagerFactory getEntityManagerFactory() {
         return this.emf;
+    }
+
+    public EntityManager getEntityManager() {
+        return this.emf != null ? this.emf.createEntityManager() : null;
+    }
+
+    public ConnectionDetails getConnectionByName(String connectionName) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ext_dbv_connections c WHERE name=:name", ConnectionDetails.class);
+        query.setParameter(0, connectionName);
+        return query.getSingleResult();
     }
 
 }

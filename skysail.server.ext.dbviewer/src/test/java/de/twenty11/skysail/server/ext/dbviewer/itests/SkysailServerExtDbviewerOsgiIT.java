@@ -94,7 +94,7 @@ public class SkysailServerExtDbviewerOsgiIT {
         
         expect()
             .body("success", equalTo(true))
-            .body("message", equalTo("all Connections"))
+            .body("message", equalTo("all DataSource"))
             .body("navigation.parent", equalTo("http://localhost:8554/?media=json"))
             .body("pagination.totalResults", equalTo(1))
         .given()

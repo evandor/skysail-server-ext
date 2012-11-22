@@ -75,17 +75,6 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
     private String schemaName;
 
     public TablesResource() {
-        super(new ColumnsBuilder() {
-
-            @Override
-            public void configure() {
-                addColumn("Table");
-                addColumn("Data");
-                addColumn("Columns");
-            }
-        });
-        setTemplate("skysail.server.ext.dbviewer:tables.ftl");
-
         Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
                 .configure();
         ValidatorFactory factory = config.buildValidatorFactory();
@@ -168,8 +157,7 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
     }
 
     private DataSource getDataSourceForConnection() {
-        Connections connections = ((SkysailApplication) getApplication()).getConnections();
-        return connections.getDataSource(connectionName);
+        return ((SkysailApplication) getApplication()).getConnections(connectionName);
     }
 
 }

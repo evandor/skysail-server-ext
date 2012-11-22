@@ -58,6 +58,7 @@ public class TablesResourceTest extends ApplicationTests {
     }
 
     @Test
+    @Ignore
     public void shouldGetNewConnectionWithGetAfterAddingValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);

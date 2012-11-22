@@ -7,17 +7,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
 import javax.validation.Configuration;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import junit.framework.Assert;
+
+import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.lang.Validate;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulSchemas;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.grids.ColumnsBuilder;
@@ -38,19 +46,9 @@ public class SchemasResource extends GenericServerResource<List<SchemaDetails>> 
 
     private String connectionName;
 
+    private EntityManagerFactory entityManagerFactory;
+
     public SchemasResource() {
-        super(new ColumnsBuilder() {
-
-            @Override
-            public void configure() {
-                addColumn("connectionName");
-                addColumn("url");
-                addColumn("user");
-                addColumn("driver");
-                addColumn("drillDown10");
-            }
-        });
-
         Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
                 .configure();
 
@@ -60,7 +58,9 @@ public class SchemasResource extends GenericServerResource<List<SchemaDetails>> 
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        entityManagerFactory = ((SkysailApplication) getApplication()).getEntityManagerFactory();
     }
 
     @Override
@@ -81,6 +81,9 @@ public class SchemasResource extends GenericServerResource<List<SchemaDetails>> 
     public void buildGrid() {
         setMessage("all Schemas");
         DataSource ds = getDataSourceForConnection();
+        //Validate.notNull(ds, "datasource could not be found");
+        if (ds == null)
+            throw new IllegalStateException("datasource could not be found");
         Connection connection;
         List<SchemaDetails> result = new ArrayList<SchemaDetails>();
         int count = 0;
@@ -103,8 +106,7 @@ public class SchemasResource extends GenericServerResource<List<SchemaDetails>> 
     }
 
     private DataSource getDataSourceForConnection() {
-        Connections connections = ((SkysailApplication) getApplication()).getConnections();
-        return connections.getDataSource(connectionName);
+       return ((SkysailApplication) getApplication()).getConnections(connectionName);
     }
 
 }

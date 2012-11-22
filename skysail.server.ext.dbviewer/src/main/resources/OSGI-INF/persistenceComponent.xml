@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component name='skysail.server.ext.dbviewer.persistenceComponent'>
-	<implementation class='de.twenty11.skysail.server.ext.dbviewer.internal.SkysailEntityManagerProvider' />
+	<implementation class="de.twenty11.skysail.server.ext.dbviewer.internal.SkysailEntityManagerProvider" />
     <reference bind="setEntityManager" cardinality="1..1" interface="javax.persistence.EntityManagerFactory" name="EntityManagerProvider" policy="static"/>
 </component>
 

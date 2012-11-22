@@ -6,6 +6,7 @@
 #######################################################################################################
 
 ### --log=WARNING \
+# -DGEMINI_DEBUG" \
 
 /home/carsten/install/pax-runner-1.7.6/bin/pax-run.sh \
 --clean \
@@ -17,6 +18,7 @@
  -Dfelix.fileinstall.noInitialDelay=true \
  -Dfelix.fileinstall.poll=1000 \
  -Dfelix.fileinstall.log.level=4 \
+ -DGEMINI_DEBUG \
  -Dlogback.configurationFile=../../../src/main/resources/logback.xml \
  -Dorg.apache.felix.log.storeDebug=true" \
 scan-composite:file:local.composite

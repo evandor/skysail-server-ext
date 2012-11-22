@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.8.15-SNAPSHOT</version>
+		<version>0.8.16-SNAPSHOT</version>
 		<relativePath />
 	</parent>
 
@@ -164,9 +164,6 @@
 			<type>test-jar</type>
 		</dependency>
 
-		<!-- <dependency> <groupId>commons-dbcp</groupId> <artifactId>skysail.bundles.commons-dbcp</artifactId> 
-			<version>1.4</version> </dependency> -->
-
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>com.jayway.rest-assured-osgi</artifactId>
@@ -254,7 +251,6 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<scope>test</scope>
 			<version>3.1</version>
 		</dependency>
 
@@ -279,6 +275,11 @@
 			<artifactId>junit-dep</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -293,12 +294,29 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
+		<!-- <dependency>
 		  <groupId>de.twentyeleven.skysail</groupId>
 		  <artifactId>org.eclipse.gemini.jpa</artifactId>
 		  <version>1.0.0.RELEASE</version>
-		</dependency>
+		</dependency> -->
 		
+		
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.core </artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.8.2.2</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	
 </project>

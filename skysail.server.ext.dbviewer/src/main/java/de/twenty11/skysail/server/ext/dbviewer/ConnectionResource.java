@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
@@ -28,7 +32,8 @@ import de.twenty11.skysail.server.restlet.SkysailServerResource;
 public class ConnectionResource extends SkysailServerResource<MapData> implements RestfulConnection {
 
     private String connectionName;
-    private Connections connections;
+    private DataSource dataSource;
+    private EntityManagerFactory entityManagerFactory;
 
     public ConnectionResource() {
         super(null);
@@ -41,7 +46,9 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
     @Override
     protected void doInit() throws ResourceException {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        connections = ((SkysailApplication) getApplication()).getConnections();
+        entityManagerFactory = ((SkysailApplication) getApplication()).getEntityManagerFactory();
+        dataSource = ((SkysailApplication) getApplication()).getConnections(connectionName);
+
     }
 
     @Override
@@ -52,7 +59,7 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
             response = new SuccessResponse<MapData>(getFilteredData());
             response.setMessage("Details for connection '" + connectionName + "'");
         } catch (Exception e) {
-            //logger.error(e.getMessage(), e);
+            // logger.error(e.getMessage(), e);
             response = new FailureResponse<MapData>(e);
         }
         return response;
@@ -69,11 +76,13 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
     @Delete
     public Representation delete() {
         SkysailResponse<MapData> response;
-        ConnectionDetails deletedConnection = connections.delete(connectionName);
-        if (deletedConnection != null) {
+        ConnectionDetails connection = ((SkysailApplication) getApplication()).getConnectionByName(connectionName);
+        try {
+            EntityManager em = entityManagerFactory.createEntityManager();
+            em.remove(connection);
             response = new SkysailSuccessResponse<MapData>();
             response.setMessage("deleted one entry");
-        } else {
+        } catch (Exception e) {
             response = new SkysailFailureResponse<MapData>();
             response.setMessage("no entry found to delete");
         }
@@ -83,14 +92,14 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
     @Override
     public MapData getFilteredData() {
         MapData data = new MapData();
-        // String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        ConnectionDetails connectionDetails = connections.get(connectionName);
-        if (connectionDetails != null) {
-            Map<String, String> members = connectionDetails.toMap();
-            for (Entry<String, String> entry : members.entrySet()) {
-                data.put(entry.getKey(), entry.getValue());
-            }
-        }
+//        // String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+//        ConnectionDetails connectionDetails = dataSource.get(connectionName);
+//        if (connectionDetails != null) {
+//            Map<String, String> members = connectionDetails.toMap();
+//            for (Entry<String, String> entry : members.entrySet()) {
+//                data.put(entry.getKey(), entry.getValue());
+//            }
+//        }
         return data;
     }
 

@@ -33,11 +33,9 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
-import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
@@ -51,26 +49,12 @@ public class ColumnsResource extends GenericServerResource<List<ColumnsDetails>>
     private DataSource dataSource;
     private String schemaName;
 
-    public ColumnsResource() {
-        super(new ColumnsBuilder() {
-            @Override
-            public void configure() {
-                addColumn("typeName");
-                addColumn("colSize");
-                addColumn("ColName");
-                addColumn("DataType");
-            }
-        });
-        setTemplate("skysail.server.ext.dbviewer:columns.ftl");
-    }
-
     @Override
     protected void doInit() throws ResourceException {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         schemaName = (String) getRequest().getAttributes().get("schema");
         tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
-        Connections connections = ((SkysailApplication) getApplication()).getConnections();
-        dataSource = connections.getDataSource(connectionName);
+        DataSource dataSource = ((SkysailApplication) getApplication()).getConnections(connectionName);
     }
 
     @Override

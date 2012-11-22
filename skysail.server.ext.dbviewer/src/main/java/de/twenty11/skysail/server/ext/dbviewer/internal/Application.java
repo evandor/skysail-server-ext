@@ -25,4 +25,5 @@ public class Application implements ApplicationService {
     public SkysailApplication getApplication() {
         return new SkysailApplication("dbviewer",  "skysail dbviewer", "dbviewer");
     }
+    
 }

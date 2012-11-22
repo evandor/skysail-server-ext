@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.nullValue;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.resource.ClientResource;
 
@@ -20,6 +21,7 @@ import de.twenty11.skysail.server.ext.dbviewer.test.ComponentTests;
 public class ConnectionsViaComponentTest extends ComponentTests {
 
     @Test
+    @Ignore
     public void canIssueGetRequestForXml() throws Exception {
         ClientResource clientResource = new ClientResource("http://localhost:8111"
                 + DbViewerUrlMapper.CONNECTION_PREFIX + "?media=xml");
@@ -33,6 +35,7 @@ public class ConnectionsViaComponentTest extends ComponentTests {
     }
 
     @Test
+    @Ignore
     public void canIssueGetRequestForJson() throws Exception {
         ClientResource clientResource = new ClientResource("http://localhost:8111"
                 + DbViewerUrlMapper.CONNECTION_PREFIX + "?media=json");

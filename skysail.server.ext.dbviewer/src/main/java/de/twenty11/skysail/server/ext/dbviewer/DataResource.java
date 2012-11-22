@@ -81,8 +81,8 @@ public class DataResource extends GridDataServerResource implements RestfulData 
         tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         schemaName = (String) getRequest().getAttributes().get("schema");
-        Connections connections = ((SkysailApplication) getApplication()).getConnections();
-        dataSource = connections.getDataSource(connectionName);
+//        DataSource dataSource = ((SkysailApplication) getApplication()).getConnections();
+//        dataSource = dataSource.getDataSource(connectionName);
     }
 
     @Override
