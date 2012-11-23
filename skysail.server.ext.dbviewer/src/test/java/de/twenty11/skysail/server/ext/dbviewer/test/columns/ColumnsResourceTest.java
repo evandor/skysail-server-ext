@@ -18,6 +18,7 @@ import de.twenty11.skysail.server.ext.dbviewer.test.ApplicationTests;
 public class ColumnsResourceTest extends ApplicationTests {
 
     @Test
+    @Ignore
     public void shouldGetValidResponseForGetRequest() throws Exception {
         addDefaultConnection();
         addTable("default", new TableDetails("tableA"));

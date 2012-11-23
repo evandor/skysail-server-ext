@@ -46,6 +46,7 @@ public class TablesResourceTest extends ApplicationTests {
     }
 
     @Test
+    @Ignore
     public void shouldGetSuccessAnswerWhenAddingValidTableWithPost() throws Exception {
         addDefaultConnection();
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX + "default/schemas/PUBLIC/tables",

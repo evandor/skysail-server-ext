@@ -1,12 +1,7 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
+import javax.persistence.TypedQuery;
 
 import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
@@ -24,43 +19,28 @@ import de.twenty11.skysail.common.responses.SkysailFailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.restlet.SkysailServerResource;
+import de.twenty11.skysail.server.restlet.GenericServerResource;
 
-public class ConnectionResource extends SkysailServerResource<MapData> implements RestfulConnection {
+public class ConnectionResource extends GenericServerResource<ConnectionDetails> implements RestfulConnection {
 
     private String connectionName;
-    private DataSource dataSource;
-    private EntityManagerFactory entityManagerFactory;
-
-    public ConnectionResource() {
-        super(null);
-    }
-
-    public ConnectionResource(MapData data) {
-        super(data);
-    }
 
     @Override
     protected void doInit() throws ResourceException {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        entityManagerFactory = ((SkysailApplication) getApplication()).getEntityManagerFactory();
-        dataSource = ((SkysailApplication) getApplication()).getConnections(connectionName);
-
     }
 
     @Override
     @Get
-    public Response<MapData> getConnection() {
-        Response<MapData> response;
+    public Response<ConnectionDetails> getConnection() {
+        Response<ConnectionDetails> response;
         try {
-            response = new SuccessResponse<MapData>(getFilteredData());
+            response = new SuccessResponse<ConnectionDetails>(getFilteredData());
             response.setMessage("Details for connection '" + connectionName + "'");
         } catch (Exception e) {
-            // logger.error(e.getMessage(), e);
-            response = new FailureResponse<MapData>(e);
+            response = new FailureResponse<ConnectionDetails>(e);
         }
         return response;
     }
@@ -78,7 +58,7 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
         SkysailResponse<MapData> response;
         ConnectionDetails connection = ((SkysailApplication) getApplication()).getConnectionByName(connectionName);
         try {
-            EntityManager em = entityManagerFactory.createEntityManager();
+            EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
             em.remove(connection);
             response = new SkysailSuccessResponse<MapData>();
             response.setMessage("deleted one entry");
@@ -90,17 +70,13 @@ public class ConnectionResource extends SkysailServerResource<MapData> implement
     }
 
     @Override
-    public MapData getFilteredData() {
-        MapData data = new MapData();
-//        // String connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-//        ConnectionDetails connectionDetails = dataSource.get(connectionName);
-//        if (connectionDetails != null) {
-//            Map<String, String> members = connectionDetails.toMap();
-//            for (Entry<String, String> entry : members.entrySet()) {
-//                data.put(entry.getKey(), entry.getValue());
-//            }
-//        }
-        return data;
+    public void buildGrid() {
+        setMessage("all Connections");
+        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        TypedQuery<ConnectionDetails> query = em.  createQuery("SELECT c FROM ext_dbv_connections c WHERE c.name = :name", ConnectionDetails.class);
+        query.setParameter("name", connectionName);
+        ConnectionDetails result = query.getSingleResult();
+        setSkysailData(result);
     }
 
 }

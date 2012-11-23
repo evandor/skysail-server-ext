@@ -1,9 +1,8 @@
-package de.twenty11.skysail.server.ext.dbviewer.test.connections;
+package de.twenty11.skysail.server.ext.dbviewer.test.connection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +26,7 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.ext.dbviewer.test.BaseTests;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ConnectionsResourceTest extends BaseTests {
+public class ConnectionResourceTest extends BaseTests {
     
     @Before
     public void setUp() throws Exception {
@@ -50,21 +49,22 @@ public class ConnectionsResourceTest extends BaseTests {
     }
 
     @Test
-    public void can_create_and_read_connections() throws Exception {
+    public void can_read_connection() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         create(connection);
         read();
     }
-    
+
     private void read() throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/");
+        org.restlet.Response response = get("/dbviewer/connections/name");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<ConnectionDetails>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<ConnectionDetails>>>() {
+        Response<ConnectionDetails> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<Response<ConnectionDetails>>() {
                 });
+        ConnectionDetails data = skysailResponse.getData();
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
-        //assertThat(skysailResponse.getMessage(), skysailResponse.getData().size(), is(1));
+        assertThat(data.getUsername(), is(equalTo("username")));
     }
 
 }

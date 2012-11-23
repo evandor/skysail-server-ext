@@ -10,8 +10,8 @@ import java.util.Map;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.restlet.Request;
-import org.restlet.Response;
 import org.restlet.Restlet;
 import org.restlet.data.ChallengeResponse;
 import org.restlet.data.ChallengeScheme;
@@ -19,6 +19,8 @@ import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.resource.ServerResource;
 
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
+import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 
@@ -38,12 +40,22 @@ public class BaseTests {
         }
     }
     
-    protected Response get(String uri) {
+    protected void create(ConnectionDetails connection) throws Exception {
+        org.restlet.Response response = post("/dbviewer/connections/", connection);
+        assertDefaults(response);
+        Response<?> skysailResponse = mapper.readValue(response.getEntity().getText(),
+                new TypeReference<Response<?>>() {
+                });
+        assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
+    }
+
+    
+    protected org.restlet.Response get(String uri) {
         Request request = new Request(Method.GET, uri);
         return handleRequest(request);
     }
 
-    protected Response post(String uri, Object connection) throws JsonGenerationException, JsonMappingException,
+    protected org.restlet.Response post(String uri, Object connection) throws JsonGenerationException, JsonMappingException,
             IOException {
         Request request = new Request(Method.POST, uri);
         String writeValueAsString = mapper.writeValueAsString(connection);
@@ -51,15 +63,15 @@ public class BaseTests {
         return handleRequest(request);
     }
 
-    protected Response delete(String uri) {
+    protected org.restlet.Response delete(String uri) {
         Request request = new Request(Method.DELETE, uri);
         return handleRequest(request);
     }
 
-    protected Response handleRequest(Request request) {
+    protected org.restlet.Response handleRequest(Request request) {
         ChallengeResponse authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "scott", "tiger");
         request.setChallengeResponse(authentication);
-        Response response = new Response(request);
+        org.restlet.Response response = new org.restlet.Response(request);
         inboundRoot.handle(request, response);
         return response;
     }
