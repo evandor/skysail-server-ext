@@ -83,14 +83,14 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
 
     @Override
     protected void doInit() throws ResourceException {
+        super.doInit();
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        schemaName = (String) getRequest().getAttributes().get("schema");
+        schemaName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.SCHEMA_NAME);
     }
 
     @Override
     public void buildGrid() {
         DataSource ds = getDataSourceForConnection();
-        //GridData grid = getSkysailData();
         Connection connection;
         List<String> result = new ArrayList<String>();
         int count = 0;
@@ -100,11 +100,6 @@ public class TablesResource extends GenericServerResource<List<String>> implemen
 
             ResultSet tables = meta.getTables(schemaName, null, null, new String[] { "TABLE" });
             while (tables.next()) {
-//                RowData row = new RowData(getSkysailData().getColumns());
-//                row.add(tables.getString("TABLE_NAME"));
-//                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/data/?media=json");
-//                row.add(getParent() + connectionName + "/" + tables.getString("TABLE_NAME") + "/columns/?media=json");
-//                grid.addRowData(row);
                 count++;
                 result.add(tables.getString("TABLE_NAME"));
             }

@@ -66,8 +66,8 @@ public class SkysailApplication extends RestletOsgiApplication {
 
     public javax.sql.DataSource getConnections(String connectionName) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ext_dbv_connections c WHERE name=:name", ConnectionDetails.class);
-        query.setParameter(0, connectionName);
+        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name=:name", ConnectionDetails.class);
+        query.setParameter("name", connectionName);
         ConnectionDetails result = query.getSingleResult();
         BasicDataSource ds = new BasicDataSource();
         ds.setUrl(result.getUrl());
@@ -102,7 +102,7 @@ public class SkysailApplication extends RestletOsgiApplication {
 
     public ConnectionDetails getConnectionByName(String connectionName) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ext_dbv_connections c WHERE name=:name", ConnectionDetails.class);
+        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name=:name", ConnectionDetails.class);
         query.setParameter(0, connectionName);
         return query.getSingleResult();
     }

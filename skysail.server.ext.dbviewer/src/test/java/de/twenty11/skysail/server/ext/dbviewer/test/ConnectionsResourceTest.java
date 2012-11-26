@@ -1,8 +1,9 @@
-package de.twenty11.skysail.server.ext.dbviewer.test.connection;
+package de.twenty11.skysail.server.ext.dbviewer.test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,10 +24,9 @@ import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.test.BaseTests;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ConnectionResourceTest extends BaseTests {
+public class ConnectionsResourceTest extends BaseTests {
     
     @Before
     public void setUp() throws Exception {
@@ -49,22 +49,21 @@ public class ConnectionResourceTest extends BaseTests {
     }
 
     @Test
-    public void can_read_connection() throws Exception {
+    public void can_create_and_read_connections() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         create(connection);
         read();
     }
-
+    
     private void read() throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/name");
+        org.restlet.Response response = get("/dbviewer/connections/");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<ConnectionDetails> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<ConnectionDetails>>() {
+        Response<List<ConnectionDetails>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<Response<List<ConnectionDetails>>>() {
                 });
-        ConnectionDetails data = skysailResponse.getData();
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
-        assertThat(data.getUsername(), is(equalTo("username")));
+        //assertThat(skysailResponse.getMessage(), skysailResponse.getData().size(), is(1));
     }
 
 }

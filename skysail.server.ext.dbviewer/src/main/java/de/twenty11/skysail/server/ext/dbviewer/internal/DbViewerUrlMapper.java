@@ -20,6 +20,8 @@ public class DbViewerUrlMapper implements UrlMapper {
 
     public static final String CONNECTION_NAME = "connectionName";
 
+    public static final String SCHEMA_NAME = "schema";
+
     public static final String TABLE_NAME = "tableName";
 
     @Override

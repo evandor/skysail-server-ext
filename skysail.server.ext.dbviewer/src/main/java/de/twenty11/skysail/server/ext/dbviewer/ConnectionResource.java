@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -73,10 +75,12 @@ public class ConnectionResource extends GenericServerResource<ConnectionDetails>
     public void buildGrid() {
         setMessage("all Connections");
         EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
-        TypedQuery<ConnectionDetails> query = em.  createQuery("SELECT c FROM ext_dbv_connections c WHERE c.name = :name", ConnectionDetails.class);
+        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name = :name",
+                ConnectionDetails.class);
         query.setParameter("name", connectionName);
-        ConnectionDetails result = query.getSingleResult();
-        setSkysailData(result);
+        List<ConnectionDetails> result = query.getResultList();
+        if (result.size() > 0)
+            setSkysailData(result.get(0));
     }
 
 }

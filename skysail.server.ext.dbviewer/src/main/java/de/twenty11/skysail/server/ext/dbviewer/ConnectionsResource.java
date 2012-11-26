@@ -84,7 +84,7 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
         setMessage("all Connections");
         EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
         @SuppressWarnings("unchecked")
-        List<ConnectionDetails> resultList = em.createQuery("SELECT c FROM ext_dbv_connections c").getResultList();
+        List<ConnectionDetails> resultList = em.createQuery("SELECT c FROM ConnectionDetails c").getResultList();
         setSkysailData(resultList);
     }
 
