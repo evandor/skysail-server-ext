@@ -13,6 +13,7 @@ import javax.validation.bootstrap.GenericBootstrap;
 
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +32,12 @@ public class ConnectionsResource extends GenericServerResource<List<ConnectionDe
     private static Logger logger = LoggerFactory.getLogger(ConnectionsResource.class);
 
     private Validator validator;
+    
+    @Override
+    protected void doInit() throws ResourceException {
+        super.doInit();
+        setName("dbviewer connections resource");
+    }
 
     public ConnectionsResource() {
         GenericBootstrap validationProvider = Validation.byDefaultProvider();
