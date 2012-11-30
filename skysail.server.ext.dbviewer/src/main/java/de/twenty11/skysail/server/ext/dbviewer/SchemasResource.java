@@ -22,8 +22,9 @@ import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
+import de.twenty11.skysail.server.restlet.ListServerResource;
 
-public class SchemasResource extends GenericServerResource<List<SchemaDetails>> implements RestfulSchemas {
+public class SchemasResource extends ListServerResource<List<SchemaDetails>> implements RestfulSchemas {
 
     /** slf4j based logger implementation */
     private static Logger logger = LoggerFactory.getLogger(SchemasResource.class);
@@ -34,8 +35,7 @@ public class SchemasResource extends GenericServerResource<List<SchemaDetails>> 
     }
 
     @Override
-    protected void doInit() throws ResourceException {
-        super.doInit();
+    protected void doInit() {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
     }
 

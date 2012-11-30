@@ -38,9 +38,9 @@ import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.restlet.GenericServerResource;
+import de.twenty11.skysail.server.restlet.ListServerResource;
 
-public class ColumnsResource extends GenericServerResource<List<ColumnsDetails>> implements RestfulColumns {
+public class ColumnsResource extends ListServerResource<List<ColumnsDetails>> implements RestfulColumns {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());

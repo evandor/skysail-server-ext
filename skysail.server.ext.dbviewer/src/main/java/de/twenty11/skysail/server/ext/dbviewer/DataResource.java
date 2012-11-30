@@ -41,18 +41,15 @@ import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulData;
 import de.twenty11.skysail.common.grids.ColumnDefinition;
 import de.twenty11.skysail.common.grids.Columns;
-import de.twenty11.skysail.common.grids.ColumnsBuilder;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.ext.dbviewer.internal.Connections;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.restlet.GridDataServerResource;
+import de.twenty11.skysail.server.restlet.GenericServerResource;
 
-public class DataResource extends GridDataServerResource implements RestfulData {
+public class DataResource extends GenericServerResource<List<String>> implements RestfulData {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -68,14 +65,6 @@ public class DataResource extends GridDataServerResource implements RestfulData 
 
     private String schemaName;
 
-    public DataResource() {
-        super(new ColumnsBuilder() {
-            @Override
-            public void configure() {
-            }
-        });
-    }
-
     @Override
     protected void doInit() throws ResourceException {
         tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
@@ -90,7 +79,7 @@ public class DataResource extends GridDataServerResource implements RestfulData 
         ResultSet executeQuery = null;
         try {
             getColumns();
-            executeQuery = getRows(getSkysailData());
+            //executeQuery = getRows(getSkysailData());
         } catch (Exception e) {
             throw new RuntimeException("Problem accessing data: " + e.getMessage(), e);
         } finally {
@@ -103,7 +92,7 @@ public class DataResource extends GridDataServerResource implements RestfulData 
     public Response<GridData> getData() {
         Response<GridData> response;
         try {
-            response = new SuccessResponse<GridData>(getFilteredData());
+            response = response = new FailureResponse<GridData>();//new SuccessResponse<GridData>(getFilteredData());
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             response = new FailureResponse<GridData>(e);
@@ -128,7 +117,7 @@ public class DataResource extends GridDataServerResource implements RestfulData 
         // }
         for (ColumnsDetails columnsDetails : payload) {
             ColumnDefinition columnDefinition = new ColumnDefinition(columnsDetails.getId());
-            getSkysailData().getColumns().getAsList().add(columnDefinition);
+            //getSkysailData().getColumns().getAsList().add(columnDefinition);
         }
     }
 
@@ -142,13 +131,13 @@ public class DataResource extends GridDataServerResource implements RestfulData 
 
         int count = 0;
         while (executeQuery.next()) {
-            Columns queryColumns = getSkysailData().getColumns();
-            RowData row = new RowData(queryColumns);
-            for (ColumnDefinition column : queryColumns.getColumnsInSortOrder()) {
-                String result = executeQuery.getString(column.getName());
-                row.add(result != null ? result : "null");
-            }
-            grid.addRowData(row);
+//            Columns queryColumns = getSkysailData().getColumns();
+//            RowData row = new RowData(queryColumns);
+//            for (ColumnDefinition column : queryColumns.getColumnsInSortOrder()) {
+//                String result = executeQuery.getString(column.getName());
+//                row.add(result != null ? result : "null");
+//            }
+//            grid.addRowData(row);
             count++;
         }
         setMessage("found " + count + " rows");

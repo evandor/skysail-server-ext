@@ -4,95 +4,55 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.validation.Configuration;
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import javax.validation.bootstrap.GenericBootstrap;
 
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
-import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.SkysailData;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
-import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.restlet.GenericServerResource;
+import de.twenty11.skysail.server.restlet.ListServerResource;
 
-public class ConnectionsResource extends GenericServerResource<List<ConnectionDetails>> implements RestfulConnections {
+/**
+ * Restlet Resource class for handling Connections.
+ * 
+ * Provides a method to retrieve the existing connections and to add a new one.
+ *
+ */
+public class ConnectionsResource extends ListServerResource<ConnectionDetails> implements RestfulConnections {
 
     /** slf4j based logger implementation */
     private static Logger logger = LoggerFactory.getLogger(ConnectionsResource.class);
 
-    private Validator validator;
-    
     @Override
-    protected void doInit() throws ResourceException {
-        super.doInit();
+    protected void doInit() {
         setName("dbviewer connections resource");
-    }
-
-    public ConnectionsResource() {
-        GenericBootstrap validationProvider = Validation.byDefaultProvider();
-        Configuration<?> config = validationProvider.providerResolver(new OSGiServiceDiscoverer())
-                .configure();
-        ValidatorFactory factory = config.buildValidatorFactory();
-        validator = factory.getValidator();
     }
 
     @Override
     @Get
     public Response<List<ConnectionDetails>> getConnections() {
-        Response<List<ConnectionDetails>> response;
-        try {
-            response = new SuccessResponse<List<ConnectionDetails>>(getFilteredData());
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            response = new FailureResponse<List<ConnectionDetails>>(e);
-        }
-        return response;
+        setMessage("all Connections");
+        return getEntities(allConnections());
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<ConnectionDetails> allConnections() {
+        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        return em.createQuery("SELECT c FROM ConnectionDetails c").getResultList();
     }
 
     @Override
     @Post
     public Response<?> addConnection(ConnectionDetails entity) {
-        Response<?> skysailResponse;
-        Set<ConstraintViolation<ConnectionDetails>> constraintViolations = validator.validate(entity);
-        int size = constraintViolations.size();
-        if (size > 0) {
-            logger.warn("contraint violations found on {}: {}", entity, constraintViolations);
-            skysailResponse = new FailureResponse(constraintViolations.toString());
-        } else {
-            logger.info("trying to persist connection {}", entity);
-            try {
-                EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
-                em.getTransaction().begin();
-                em.persist(entity);
-                em.getTransaction().commit();
-                em.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                skysailResponse = new FailureResponse(e.getMessage());
-            }
-            skysailResponse = new SuccessResponse<SkysailData>();
-        }
-        return skysailResponse;
-    }
-
-    @Override
-    public void buildGrid() {
-        setMessage("all Connections");
+        logger.info("trying to persist connection {}", entity);
         EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
-        @SuppressWarnings("unchecked")
-        List<ConnectionDetails> resultList = em.createQuery("SELECT c FROM ConnectionDetails c").getResultList();
-        setSkysailData(resultList);
+        Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);
+        return addEntity(em, entity, constraintViolations);
     }
 
 }

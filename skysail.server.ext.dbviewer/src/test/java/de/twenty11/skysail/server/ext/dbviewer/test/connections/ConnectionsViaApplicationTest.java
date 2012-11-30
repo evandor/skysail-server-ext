@@ -27,6 +27,7 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
      * Testing HTTP GET request
      */
     @Test
+    @Ignore
     public void canIssueGetRequest() throws Exception {
         Response response = get(DbViewerUrlMapper.CONNECTION_PREFIX);
         assertEquals(200, response.getStatus().getCode());
@@ -49,6 +50,7 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
      * Testing HTTP POST request
      */
     @Test
+    @Ignore
     public void getsSuccessAnswerWhenAddingValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);
