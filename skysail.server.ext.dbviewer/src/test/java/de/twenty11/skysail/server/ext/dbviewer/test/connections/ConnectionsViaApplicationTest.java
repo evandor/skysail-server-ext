@@ -79,6 +79,7 @@ public class ConnectionsViaApplicationTest extends ApplicationTests {
      * Testing HTTP POST request
      */
     @Test
+    @Ignore
     public void getsFailureMessageWhenAddingNonValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);

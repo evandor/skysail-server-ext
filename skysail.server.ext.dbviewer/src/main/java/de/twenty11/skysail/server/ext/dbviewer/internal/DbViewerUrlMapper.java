@@ -8,6 +8,7 @@ import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
 import de.twenty11.skysail.server.ext.dbviewer.DataResource;
+import de.twenty11.skysail.server.ext.dbviewer.RootResource;
 import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
 import de.twenty11.skysail.server.services.UrlMapper;
@@ -28,6 +29,9 @@ public class DbViewerUrlMapper implements UrlMapper {
     public Map<String, String> provideUrlMapping() {
         Map<String, String> queue = Collections.synchronizedMap(new LinkedHashMap<String, String>());
         // @formatter:off
+        queue.put("/dbviewer", RootResource.class.getName());
+        queue.put("/dbviewer/", RootResource.class.getName());
+
         queue.put(CONNECTION_PREFIX, ConnectionsResource.class.getName());
 
         String connection = CONNECTION_PREFIX + "{" + CONNECTION_NAME + "}";

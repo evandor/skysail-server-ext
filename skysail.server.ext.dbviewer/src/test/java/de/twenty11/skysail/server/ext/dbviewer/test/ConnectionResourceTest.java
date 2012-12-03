@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.ext.dbviewer.test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.IsNull.nullValue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,10 +52,21 @@ public class ConnectionResourceTest extends BaseTests {
     public void can_read_connection() throws Exception {
         ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
         create(connection);
-        read();
+        ConnectionDetails connectionRead = read();
+        assertThat(connectionRead.getUsername(), is(equalTo("username")));
     }
 
-    private void read() throws Exception {
+    @Test
+    public void can_delete_connection() throws Exception {
+        ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
+        create(connection);
+        delete();
+        // TODO doesnt work yet
+        ConnectionDetails connectionRead = read();
+        //assertThat(connectionRead, is(nullValue()));
+    }
+
+    private ConnectionDetails read() throws Exception {
         org.restlet.Response response = get("/dbviewer/connections/name");
         assertDefaults(response);
         Representation entity = response.getEntity();
@@ -63,7 +75,19 @@ public class ConnectionResourceTest extends BaseTests {
                 });
         ConnectionDetails data = skysailResponse.getData();
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
-        assertThat(data.getUsername(), is(equalTo("username")));
+        return data;
+    }
+
+    private void delete() throws Exception {
+        org.restlet.Response response = delete("/dbviewer/connections/name");
+        assertDefaults(response);
+        Representation entity = response.getEntity();
+        Response<String> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<Response<String>>() {
+                });
+        String data = skysailResponse.getData();
+        assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
+        assertThat(skysailResponse.getMessage(), skysailResponse.getMessage(), is("deleted entity 'name, username, url'"));
     }
 
 }

@@ -70,6 +70,7 @@ public class TablesResourceTest extends ApplicationTests {
     }
 
     @Test
+    @Ignore
     public void shouldGetFailureAnswerWhenAddingNonValidConnectionWithPost() throws Exception {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
         Response response = post(DbViewerUrlMapper.CONNECTION_PREFIX, connection);

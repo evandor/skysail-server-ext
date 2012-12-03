@@ -21,6 +21,9 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * Restlet Resource class for handling Connections.
  * 
  * Provides a method to retrieve the existing connections and to add a new one.
+ * 
+ * The managed entity is of type {@link ConnectionDetails}, providing details (like jdbc url, username
+ * and password about what is needed to actually connect to a datasource.
  *
  */
 public class ConnectionsResource extends ListServerResource<ConnectionDetails> implements RestfulConnections {
@@ -28,16 +31,15 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
     /** slf4j based logger implementation */
     private static Logger logger = LoggerFactory.getLogger(ConnectionsResource.class);
 
-    @Override
-    protected void doInit() {
+    public ConnectionsResource() {
         setName("dbviewer connections resource");
+        setDescription("The resource containing the list of connections");
     }
 
     @Override
     @Get
     public Response<List<ConnectionDetails>> getConnections() {
-        setMessage("all Connections");
-        return getEntities(allConnections());
+        return getEntities(allConnections(), "all Connections");
     }
 
     @SuppressWarnings("unchecked")

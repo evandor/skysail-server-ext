@@ -87,15 +87,6 @@ public class SkysailApplication extends RestletOsgiApplication {
         this.emf = emf;
     }
 
-    /**
-     * use getEntityManager directly
-     * @return
-     */
-    @Deprecated
-    public EntityManagerFactory getEntityManagerFactory() {
-        return this.emf;
-    }
-
     public EntityManager getEntityManager() {
         return this.emf != null ? this.emf.createEntityManager() : null;
     }
