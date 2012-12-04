@@ -33,14 +33,12 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
-import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
-public class ColumnsResource extends ListServerResource<List<ColumnsDetails>> implements RestfulColumns {
+public class ColumnsResource extends ListServerResource<ColumnsDetails> implements RestfulColumns {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -49,18 +47,29 @@ public class ColumnsResource extends ListServerResource<List<ColumnsDetails>> im
     private DataSource dataSource;
     private String schemaName;
 
+    public ColumnsResource() {
+        setName("dbviewer columns resource");
+        setDescription("The resource describing the columns of a table of a schema of a connection");
+    }
+
     @Override
     protected void doInit() throws ResourceException {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         schemaName = (String) getRequest().getAttributes().get("schema");
         tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
-        DataSource dataSource = ((SkysailApplication) getApplication()).getConnections(connectionName);
+        dataSource = ((SkysailApplication) getApplication()).getConnections(connectionName);
+        setDescription("The resource describing the columns of the table '" + tableName
+                + "' of the schema '"+schemaName+"' of the connection '"+connectionName+"'");
+    }
+    
+    @Override
+    @Get
+    public Response<List<ColumnsDetails>> getColumns() {
+        return getEntities(allColumns(), "all Columns");
     }
 
-    @Override
-    public void buildGrid() {
 
-        setMessage("all columns");
+    private List<ColumnsDetails> allColumns() {
         Connection connection;
         try {
             connection = dataSource.getConnection();
@@ -70,22 +79,9 @@ public class ColumnsResource extends ListServerResource<List<ColumnsDetails>> im
             while (columns.next()) {
                 result.add(new ColumnsDetails(columns.getString("COLUMN_NAME")));
             }
-            setSkysailData(result);
+            return result;
         } catch (SQLException e) {
             throw new RuntimeException("could not execute select statement: " + e.getMessage(), e);
         }
-    }
-
-    @Override
-    @Get
-    public Response<List<ColumnsDetails>> getColumns() {
-        Response<List<ColumnsDetails>> response;
-        try {
-            response = new SuccessResponse<List<ColumnsDetails>>(getFilteredData());
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            response = new FailureResponse<List<ColumnsDetails>>(e);
-        }
-        return response;
     }
 }

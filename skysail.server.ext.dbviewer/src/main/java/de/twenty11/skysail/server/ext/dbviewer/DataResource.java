@@ -40,9 +40,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulData;
 import de.twenty11.skysail.common.grids.ColumnDefinition;
-import de.twenty11.skysail.common.grids.Columns;
 import de.twenty11.skysail.common.grids.GridData;
-import de.twenty11.skysail.common.grids.RowData;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SuccessResponse;
@@ -65,13 +63,19 @@ public class DataResource extends GenericServerResource<List<String>> implements
 
     private String schemaName;
 
+    public DataResource() {
+        setName("dbviewer data resource");
+        setDescription("The resource describing the data found in a table");
+    }
+
     @Override
     protected void doInit() throws ResourceException {
         tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         schemaName = (String) getRequest().getAttributes().get("schema");
-//        DataSource dataSource = ((SkysailApplication) getApplication()).getConnections();
-//        dataSource = dataSource.getDataSource(connectionName);
+        // DataSource dataSource = ((SkysailApplication) getApplication()).getConnections();
+        // dataSource = dataSource.getDataSource(connectionName);
+        setDescription("The resource describing the data found in the table '" + tableName + "'");
     }
 
     @Override
@@ -79,7 +83,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
         ResultSet executeQuery = null;
         try {
             getColumns();
-            //executeQuery = getRows(getSkysailData());
+            // executeQuery = getRows(getSkysailData());
         } catch (Exception e) {
             throw new RuntimeException("Problem accessing data: " + e.getMessage(), e);
         } finally {
@@ -92,12 +96,26 @@ public class DataResource extends GenericServerResource<List<String>> implements
     public Response<GridData> getData() {
         Response<GridData> response;
         try {
-            response = response = new FailureResponse<GridData>();//new SuccessResponse<GridData>(getFilteredData());
+            response = new SuccessResponse<GridData>(getFilteredData());
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             response = new FailureResponse<GridData>(e);
         }
         return response;
+    }
+
+    private GridData getFilteredData() {
+        ResultSet executeQuery = null;
+        GridData gridData = new GridData();
+        try {
+            getColumns();
+            executeQuery = getRows(gridData);
+            return gridData;
+        } catch (Exception e) {
+            throw new RuntimeException("Problem accessing data: " + e.getMessage(), e);
+        } finally {
+            closeResultSet(executeQuery);
+        }
     }
 
     private void getColumns() throws IOException, JsonParseException, JsonMappingException {
@@ -117,7 +135,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
         // }
         for (ColumnsDetails columnsDetails : payload) {
             ColumnDefinition columnDefinition = new ColumnDefinition(columnsDetails.getId());
-            //getSkysailData().getColumns().getAsList().add(columnDefinition);
+            // getSkysailData().getColumns().getAsList().add(columnDefinition);
         }
     }
 
@@ -131,13 +149,13 @@ public class DataResource extends GenericServerResource<List<String>> implements
 
         int count = 0;
         while (executeQuery.next()) {
-//            Columns queryColumns = getSkysailData().getColumns();
-//            RowData row = new RowData(queryColumns);
-//            for (ColumnDefinition column : queryColumns.getColumnsInSortOrder()) {
-//                String result = executeQuery.getString(column.getName());
-//                row.add(result != null ? result : "null");
-//            }
-//            grid.addRowData(row);
+            // Columns queryColumns = getSkysailData().getColumns();
+            // RowData row = new RowData(queryColumns);
+            // for (ColumnDefinition column : queryColumns.getColumnsInSortOrder()) {
+            // String result = executeQuery.getString(column.getName());
+            // row.add(result != null ? result : "null");
+            // }
+            // grid.addRowData(row);
             count++;
         }
         setMessage("found " + count + " rows");
