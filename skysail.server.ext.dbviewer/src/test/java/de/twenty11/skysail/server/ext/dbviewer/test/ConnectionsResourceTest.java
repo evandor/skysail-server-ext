@@ -20,6 +20,13 @@ public class ConnectionsResourceTest extends BaseTests {
         SkysailApplication spy = setUpRestletApplication();
         setUpPersistence(spy);
     }
+    
+    @Test
+    public void gives_validation_error_for_missing_name() throws Exception {
+        ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
+        create(connection);
+       
+    }
 
     @Test
     public void can_create_and_read_connections() throws Exception {
