@@ -26,7 +26,7 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ConnectionsResourceTest extends BaseTests {
+public class ConstraintsResourceTest extends BaseTests {
     
     @Before
     public void setUp() throws Exception {
@@ -46,13 +46,6 @@ public class ConnectionsResourceTest extends BaseTests {
              }
             
         }).when(spy).getEntityManager();
-    }
-    
-    @Test
-    public void gives_validation_error_for_missing_name() throws Exception {
-        ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
-        create(connection);
-       
     }
 
     @Test

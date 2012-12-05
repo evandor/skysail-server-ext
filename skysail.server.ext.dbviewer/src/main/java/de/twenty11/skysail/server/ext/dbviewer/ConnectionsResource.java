@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -50,7 +51,7 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
 
     @Override
     @Post
-    public Response<?> addConnection(ConnectionDetails entity) {
+    public Response<Set<ConstraintViolation<ConnectionDetails>>> addConnection(ConnectionDetails entity) {
         logger.info("trying to persist connection {}", entity);
         EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);
