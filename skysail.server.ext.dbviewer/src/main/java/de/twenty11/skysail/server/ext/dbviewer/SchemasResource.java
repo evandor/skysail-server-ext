@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import org.restlet.resource.Get;
@@ -46,14 +47,12 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
 
 
     private List<SchemaDetails> allSchemas() {
-        DataSource ds = getDataSourceForConnection();
-        if (ds == null)
-            throw new IllegalStateException("datasource could not be found");
-        Connection connection;
+        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        em.getTransaction().begin();
+        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
         List<SchemaDetails> result = new ArrayList<SchemaDetails>();
         int count = 0;
         try {
-            connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
             //http://stackoverflow.com/questions/5679259/how-to-get-list-of-databases-schema-names-of-mysql-using-java-jdbc
@@ -73,6 +72,8 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
             return result;
         } catch (SQLException e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
+        } finally {
+            em.getTransaction().commit();
         }
     }
 
