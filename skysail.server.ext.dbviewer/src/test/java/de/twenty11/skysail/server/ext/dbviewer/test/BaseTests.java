@@ -7,10 +7,12 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.validation.ConstraintViolation;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -29,6 +31,7 @@ import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ServerResource;
 
+import de.twenty11.skysail.common.ConstraintViolations;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.responses.Response;
@@ -52,13 +55,14 @@ public class BaseTests {
         }
     }
     
-    protected void create(ConnectionDetails connection) throws Exception {
+    protected ConstraintViolations<ConnectionDetails> create(ConnectionDetails connection) throws Exception {
         org.restlet.Response response = post("/dbviewer/connections/", connection);
         assertDefaults(response);
-        Response<?> skysailResponse = mapper.readValue(response.getEntity().getText(),
-                new TypeReference<Response<?>>() {
+        Response<ConstraintViolations<ConnectionDetails>> skysailResponse = mapper.readValue(response.getEntity().getText(),
+                new TypeReference<Response<ConstraintViolations<ConnectionDetails>>>() {
                 });
-        assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
+        //assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
+        return skysailResponse.getValidationViolations();
     }
     
     protected List<ConnectionDetails> getConnections() throws Exception {

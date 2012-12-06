@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,6 +13,8 @@ import org.restlet.resource.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.common.ConstraintViolations;
+import de.twenty11.skysail.common.Violation;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
 import de.twenty11.skysail.common.responses.Response;
@@ -51,11 +54,13 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
 
     @Override
     @Post
-    public Response<Set<ConstraintViolation<ConnectionDetails>>> addConnection(ConnectionDetails entity) {
+    public Response<ConstraintViolations<ConnectionDetails>> addConnection(ConnectionDetails entity) {
         logger.info("trying to persist connection {}", entity);
         EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);
-        return addEntity(em, entity, constraintViolations);
+        ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(constraintViolations);
+        //ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(Arrays.asSet(new Violation("yeah")));
+        return addEntity(em, entity, violations);
     }
 
 }

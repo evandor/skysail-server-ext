@@ -1,6 +1,9 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
+import de.twenty11.skysail.common.ConstraintViolations;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 
@@ -24,7 +28,8 @@ public class ConnectionsResourceTest extends BaseTests {
     @Test
     public void gives_validation_error_for_missing_name() throws Exception {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
-        create(connection);
+        ConstraintViolations<ConnectionDetails> createViolations = create(connection);
+        assertThat(createViolations.size(), is(greaterThan(0)));
        
     }
 
