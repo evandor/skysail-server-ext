@@ -13,10 +13,10 @@ import org.restlet.resource.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.ConstraintViolations;
-import de.twenty11.skysail.common.Violation;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
+import de.twenty11.skysail.common.forms.ConstraintViolations;
+import de.twenty11.skysail.common.forms.Violation;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;

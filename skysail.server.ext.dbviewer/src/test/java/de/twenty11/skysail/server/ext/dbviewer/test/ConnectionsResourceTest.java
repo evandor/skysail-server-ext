@@ -12,8 +12,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
-import de.twenty11.skysail.common.ConstraintViolations;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
+import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 
 @RunWith(MockitoJUnitRunner.class)

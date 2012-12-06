@@ -31,9 +31,9 @@ import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ServerResource;
 
-import de.twenty11.skysail.common.ConstraintViolations;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
+import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
