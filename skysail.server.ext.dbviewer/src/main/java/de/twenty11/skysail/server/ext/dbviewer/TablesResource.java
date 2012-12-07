@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import javax.validation.Configuration;
 import javax.validation.ConstraintViolation;
@@ -46,6 +47,7 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.SkysailData;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulTables;
+import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
@@ -59,22 +61,22 @@ import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
-public class TablesResource extends ListServerResource<List<String>> implements RestfulTables {
+public class TablesResource extends ListServerResource<String> implements RestfulTables {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private Validator validator;
-
     private String connectionName;
-
     private String schemaName;
 
     public TablesResource() {
-        Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
-                .configure();
-        ValidatorFactory factory = config.buildValidatorFactory();
-        validator = factory.getValidator();
+        setName("dbviewer tables resource");
+        setDescription("The resource containing the list of tables for the current connection and schema");
+
+        // Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
+        // .configure();
+        // ValidatorFactory factory = config.buildValidatorFactory();
+        // validator = factory.getValidator();
     }
 
     @Override
@@ -82,16 +84,24 @@ public class TablesResource extends ListServerResource<List<String>> implements 
         super.doInit();
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         schemaName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.SCHEMA_NAME);
+        setDescription("The resource containing the list of tables for the connection " + connectionName
+                + " and schema " + schemaName);
+    }
+    
+    @Override
+    @Get
+    public Response<List<String>> getTables() {
+        return getEntities(allTables(), "all Tables");
     }
 
-    @Override
-    public void buildGrid() {
-        DataSource ds = getDataSourceForConnection();
-        Connection connection;
+
+    private List<String> allTables() {
+        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        em.getTransaction().begin();
+        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
         List<String> result = new ArrayList<String>();
         int count = 0;
         try {
-            connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
             ResultSet tables = meta.getTables(schemaName, null, null, new String[] { "TABLE" });
@@ -100,52 +110,42 @@ public class TablesResource extends ListServerResource<List<String>> implements 
                 result.add(tables.getString("TABLE_NAME"));
             }
             setMessage("listing " + count + " tables");
-            setSkysailData(result);
+            return result;
         } catch (SQLException e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
+        } finally {
+            em.getTransaction().commit();
         }
     }
 
-    @Get
-    public Response<List<String>> getTables() {
-        Response<List<String>> response;
-        try {
-            response = new SuccessResponse<List<String>>(getFilteredData());
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            response = new FailureResponse<List<String>>(e);
-        }
-        return response;
-    }
-
-    @Post()
-    public Representation add(JsonRepresentation entity) {
-        SkysailResponse skysailResponse;
-        try {
-            JSONObject jsonObject = entity.getJsonObject();
-            String name = determineValue(jsonObject, "name");
-            DataSource ds = getDataSourceForConnection();
-            TableDetails table = new TableDetails(name);
-            Set<ConstraintViolation<TableDetails>> constraintViolations = validator.validate(table);
-            int size = constraintViolations.size();
-            if (size > 0) {
-                skysailResponse = new SkysailFailureResponse(constraintViolations.toString());
-            } else {
-                String sql = "CREATE TABLE IF NOT EXISTS " + name + " ();";
-                try {
-                    Connection connection = ds.getConnection();
-                    Statement stmt = connection.createStatement();
-                    stmt.execute(sql);
-                    skysailResponse = new SkysailSuccessResponse<SkysailData>();
-                } catch (SQLException e) {
-                    skysailResponse = new SkysailFailureResponse<SkysailData>(e);
-                }
-            }
-        } catch (JSONException e) {
-            skysailResponse = new SkysailFailureResponse(e);
-        }
-        return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
-    }
+//    @Post()
+//    public Representation add(JsonRepresentation entity) {
+//        SkysailResponse skysailResponse;
+//        try {
+//            JSONObject jsonObject = entity.getJsonObject();
+//            String name = determineValue(jsonObject, "name");
+//            DataSource ds = getDataSourceForConnection();
+//            TableDetails table = new TableDetails(name);
+//            Set<ConstraintViolation<TableDetails>> constraintViolations = validator.validate(table);
+//            int size = constraintViolations.size();
+//            if (size > 0) {
+//                skysailResponse = new SkysailFailureResponse(constraintViolations.toString());
+//            } else {
+//                String sql = "CREATE TABLE IF NOT EXISTS " + name + " ();";
+//                try {
+//                    Connection connection = ds.getConnection();
+//                    Statement stmt = connection.createStatement();
+//                    stmt.execute(sql);
+//                    skysailResponse = new SkysailSuccessResponse<SkysailData>();
+//                } catch (SQLException e) {
+//                    skysailResponse = new SkysailFailureResponse<SkysailData>(e);
+//                }
+//            }
+//        } catch (JSONException e) {
+//            skysailResponse = new SkysailFailureResponse(e);
+//        }
+//        return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
+//    }
 
     private DataSource getDataSourceForConnection() {
         return ((SkysailApplication) getApplication()).getConnections(connectionName);

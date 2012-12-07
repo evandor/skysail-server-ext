@@ -3,25 +3,15 @@ package de.twenty11.skysail.server.ext.dbviewer.test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.codehaus.jackson.type.TypeReference;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.restlet.Response;
-import org.restlet.data.MediaType;
-import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
-import de.twenty11.skysail.common.grids.GridData;
-import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
 public class SchemasResourceTest extends BaseTests {
 
@@ -33,14 +23,12 @@ public class SchemasResourceTest extends BaseTests {
                 "jdbc:derby:skysailDerbyTestDb;create=true", "org.apache.derby.jdbc.EmbeddedDriver");
         create(connection);
     }
-    
+
     @Test
-    public void can_read_schemas_from_database() throws Exception {
+    public void can_read_tables_from_schema() throws Exception {
         List<SchemaDetails> schemas = getSchemas("testdb");
         assertThat(schemas.size(), is(greaterThan(0)));
-       // assertThat(schemas, )
     }
-
 
     // @Test
     // @Ignore

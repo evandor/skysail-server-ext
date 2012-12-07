@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
-import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;

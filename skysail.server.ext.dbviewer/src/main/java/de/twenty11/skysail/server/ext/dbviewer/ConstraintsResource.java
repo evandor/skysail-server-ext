@@ -32,13 +32,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
+import de.twenty11.skysail.common.ext.dbviewer.ConstraintDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
+import de.twenty11.skysail.common.ext.dbviewer.RestfulConstraints;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
-public class ColumnsResource extends ListServerResource<ColumnsDetails> implements RestfulColumns {
+public class ConstraintsResource extends ListServerResource<ConstraintDetails> implements RestfulConstraints {
 
     /** slf4j based logger implementation */
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -46,7 +48,7 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
     private String tableName;
     private String schemaName;
 
-    public ColumnsResource() {
+    public ConstraintsResource() {
         setName("dbviewer columns resource");
         setDescription("The resource describing the columns of a table of a schema of a connection");
     }
@@ -62,20 +64,20 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
 
     @Override
     @Get
-    public Response<List<ColumnsDetails>> getColumns() {
-        return getEntities(allColumns(), "all Columns");
+    public Response<List<ConstraintDetails>> getConstraints() {
+        return getEntities(allConstraints(), "all Constraints");
     }
 
-    private List<ColumnsDetails> allColumns() {
+    private List<ConstraintDetails> allConstraints() {
         try {
             EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
             em.getTransaction().begin();
             java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
             DatabaseMetaData meta = connection.getMetaData();
-            ResultSet columns = meta.getColumns(schemaName, null, tableName, null);
-            List<ColumnsDetails> result = new ArrayList<ColumnsDetails>();
+            ResultSet columns = meta.getIndexInfo(schemaName, null, tableName, false, true);
+            List<ConstraintDetails> result = new ArrayList<ConstraintDetails>();
             while (columns.next()) {
-                result.add(new ColumnsDetails(columns.getString("COLUMN_NAME")));
+                result.add(new ConstraintDetails(columns.getString("COLUMN_NAME")));
             }
             return result;
         } catch (SQLException e) {

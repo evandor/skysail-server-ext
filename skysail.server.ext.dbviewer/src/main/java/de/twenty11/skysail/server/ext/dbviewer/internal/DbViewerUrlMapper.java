@@ -7,6 +7,7 @@ import java.util.Map;
 import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
+import de.twenty11.skysail.server.ext.dbviewer.ConstraintsResource;
 import de.twenty11.skysail.server.ext.dbviewer.DataResource;
 import de.twenty11.skysail.server.ext.dbviewer.RootResource;
 import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
@@ -41,9 +42,12 @@ public class DbViewerUrlMapper implements UrlMapper {
         queue.put(schemas, SchemasResource.class.getName());
 
         String schema = schemas + "/{schema}";
+
         queue.put(schema + "/tables", TablesResource.class.getName());
         queue.put(schema + "/tables/{" + TABLE_NAME + "}/columns",ColumnsResource.class.getName());
+        queue.put(schema + "/tables/{" + TABLE_NAME + "}/constraints", ConstraintsResource.class.getName());
         queue.put(schema + "/tables/{" + TABLE_NAME + "}/data", DataResource.class.getName());
+        
         // @formatter:on
         return queue;
     }

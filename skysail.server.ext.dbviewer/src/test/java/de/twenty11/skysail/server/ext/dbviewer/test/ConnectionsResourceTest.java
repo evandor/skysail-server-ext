@@ -1,16 +1,16 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
-import javax.validation.ConstraintViolation;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
@@ -29,7 +29,8 @@ public class ConnectionsResourceTest extends BaseTests {
     public void gives_validation_error_for_missing_name() throws Exception {
         ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
         ConstraintViolations<ConnectionDetails> createViolations = create(connection);
-        assertThat(createViolations.size(), is(greaterThan(0)));
+        assertThat(createViolations.size(), is(equalTo(1)));
+        assertThat(createViolations.getViolations().get(0).getMessage(), is(equalTo("Name is mandatory")));
        
     }
 

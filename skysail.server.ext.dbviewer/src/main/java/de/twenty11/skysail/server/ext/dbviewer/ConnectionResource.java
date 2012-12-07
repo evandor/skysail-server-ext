@@ -10,9 +10,9 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.common.MapData;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnection;
+import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
@@ -51,7 +51,7 @@ public class ConnectionResource extends ListServerResource<ConnectionDetails> im
 
     @Override
     @Put
-    public Response<MapData> updateConnection(ConnectionDetails connection) {
+    public Response<ConstraintViolations<ConnectionDetails>> updateConnection(ConnectionDetails connection) {
         // TODO Auto-generated method stub
         return null;
     }
