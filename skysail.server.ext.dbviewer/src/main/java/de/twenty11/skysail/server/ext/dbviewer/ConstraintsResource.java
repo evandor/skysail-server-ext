@@ -69,8 +69,8 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
     }
 
     private List<ConstraintDetails> allConstraints() {
+        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
         try {
-            EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
             em.getTransaction().begin();
             java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
             DatabaseMetaData meta = connection.getMetaData();
@@ -82,6 +82,9 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
             return result;
         } catch (SQLException e) {
             throw new RuntimeException("could not execute select statement: " + e.getMessage(), e);
+        }
+        finally {
+        	em.getTransaction().commit();
         }
     }
 }

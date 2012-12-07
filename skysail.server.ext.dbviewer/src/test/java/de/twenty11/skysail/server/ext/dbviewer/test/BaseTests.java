@@ -36,6 +36,7 @@ import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.ConstraintDetails;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
+import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
@@ -135,6 +136,19 @@ public class BaseTests {
         Representation entity = response.getEntity();
         Response<List<ConstraintDetails>> skysailResponse = mapper.readValue(entity.getText(),
                 new TypeReference<Response<List<ConstraintDetails>>>() {
+                });
+        assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
+        return skysailResponse.getData();
+    }
+
+    protected GridData getData(String connectionName, String schemaName, String tableName)
+            throws Exception {
+        org.restlet.Response response = get("/dbviewer/connections/" + connectionName + "/schemas/" + schemaName
+                + "/tables/" + tableName + "/data");
+        assertDefaults(response);
+        Representation entity = response.getEntity();
+        Response<GridData> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<Response<GridData>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
