@@ -17,13 +17,13 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
-import de.twenty11.skysail.common.app.SkysailApplication;
-import de.twenty11.skysail.server.services.ApplicationService;
+import de.twenty11.skysail.common.app.ApplicationDescription;
+import de.twenty11.skysail.server.services.ApplicationDescriptor;
 
-public class Application implements ApplicationService {
+public class DbViewerApplicationDescriptor implements ApplicationDescriptor {
     @Override
-    public SkysailApplication getApplication() {
-        return new SkysailApplication("dbviewer",  "skysail dbviewer", "dbviewer");
+    public ApplicationDescription getApplicationDescription() {
+        return new ApplicationDescription("dbviewer",  "skysail dbviewer", "dbviewer");
     }
     
 }

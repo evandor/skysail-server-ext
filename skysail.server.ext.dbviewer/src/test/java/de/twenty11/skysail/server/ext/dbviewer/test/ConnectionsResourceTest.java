@@ -9,14 +9,11 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
 
-@RunWith(MockitoJUnitRunner.class)
 public class ConnectionsResourceTest extends BaseTests {
     
     @Before

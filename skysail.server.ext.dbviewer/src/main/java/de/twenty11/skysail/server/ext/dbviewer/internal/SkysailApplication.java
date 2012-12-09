@@ -27,6 +27,7 @@ import org.restlet.Request;
 import org.restlet.Response;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
+import de.twenty11.skysail.server.listener.SkysailApplicationServiceListener;
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
 
@@ -76,10 +77,11 @@ public class SkysailApplication extends RestletOsgiApplication {
         ds.setPassword(result.getPassword());
         return ds;
     }
-
+    // TODO proper place for this here? what about multiple instances?
     protected void attach() {
         if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
             new UrlMappingServiceListener(this);
+            new SkysailApplicationServiceListener(this);
         }
     }
 

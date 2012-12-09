@@ -7,12 +7,12 @@
 
 ### --log=WARNING \
 # -DGEMINI_DEBUG" \
+# --clean \
 
 /home/carsten/install/pax-runner-1.7.6/bin/pax-run.sh \
---clean \
---log=WARNING \
+--log=INFO \
 --vmOptions="\
- -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
+ -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 \
  -Dfelix.fileinstall.dir=../../../target,../config \
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \
  -Dfelix.fileinstall.noInitialDelay=true \
