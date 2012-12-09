@@ -26,9 +26,9 @@ public class ApplicationTests extends BaseTests {
     @Before
     public void setUp() throws Exception {
         dbViewerComponent = new DbViewerComponent();
-        skysailApplication = dbViewerComponent.getApplication();
-        Application.setCurrent(skysailApplication);
-        inboundRoot = skysailApplication.getInboundRoot();
+        dbViewerApplication = dbViewerComponent.getApplication();
+        Application.setCurrent(dbViewerApplication);
+        inboundRoot = dbViewerApplication.getInboundRoot();
         addMappings();
     }
 

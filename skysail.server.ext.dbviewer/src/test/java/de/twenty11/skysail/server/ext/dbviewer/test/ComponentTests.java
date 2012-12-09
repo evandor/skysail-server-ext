@@ -16,12 +16,12 @@ import org.restlet.resource.ServerResource;
 
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 
 public class ComponentTests {
 
     protected static Restlet inboundRoot;
-    protected SkysailApplication skysailApplication;
+    protected DbViewerApplication dbViewerApplication;
     protected ObjectMapper mapper = new ObjectMapper();
     protected static DbViewerComponent dbViewerComponent;
     private static Server server;
@@ -37,9 +37,9 @@ public class ComponentTests {
     @Before
     public void setUp() throws Exception {
         authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "scott", "tiger");
-        skysailApplication = dbViewerComponent.getApplication();
-        Application.setCurrent(skysailApplication);
-        inboundRoot = skysailApplication.getInboundRoot();
+        dbViewerApplication = dbViewerComponent.getApplication();
+        Application.setCurrent(dbViewerApplication);
+        inboundRoot = dbViewerApplication.getInboundRoot();
         addMappings();
     }
 
@@ -54,7 +54,7 @@ public class ComponentTests {
             @SuppressWarnings("unchecked")
             Class<? extends ServerResource> resourceClass = (Class<? extends ServerResource>) Class.forName(mapping
                     .getValue());
-            skysailApplication.attachToRouter("" + mapping.getKey(), resourceClass);
+            dbViewerApplication.attachToRouter("" + mapping.getKey(), resourceClass);
         }
     }
 

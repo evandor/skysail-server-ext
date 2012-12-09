@@ -16,7 +16,7 @@ import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class ConnectionResource extends ListServerResource<ConnectionDetails> implements RestfulConnection {
@@ -33,7 +33,7 @@ public class ConnectionResource extends ListServerResource<ConnectionDetails> im
     protected void doInit() throws ResourceException {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
         setName("dbviewer connection resource for " + connectionName);
-        em = ((SkysailApplication) getApplication()).getEntityManager();
+        em = ((DbViewerApplication) getApplication()).getEntityManager();
     }
 
     @Override

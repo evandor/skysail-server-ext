@@ -36,13 +36,14 @@ import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 
 public class BaseTests {
 
-    protected SkysailApplication skysailApplication;
+    protected DbViewerApplication dbViewerApplication;
     protected Restlet inboundRoot;
     protected ObjectMapper mapper = new ObjectMapper();
 
@@ -52,12 +53,12 @@ public class BaseTests {
             @SuppressWarnings("unchecked")
             Class<? extends ServerResource> resourceClass = (Class<? extends ServerResource>) Class.forName(mapping
                     .getValue());
-            skysailApplication.attachToRouter("" + mapping.getKey(), resourceClass);
+            dbViewerApplication.attachToRouter("" + mapping.getKey(), resourceClass);
         }
     }
 
     protected ConstraintViolations<ConnectionDetails> create(ConnectionDetails connection) throws Exception {
-        org.restlet.Response response = post("/dbviewer/connections/", connection);
+        org.restlet.Response response = post("connections/", connection);
         assertDefaults(response);
         Response<ConstraintViolations<ConnectionDetails>> skysailResponse = mapper.readValue(response.getEntity()
                 .getText(), new TypeReference<Response<ConstraintViolations<ConnectionDetails>>>() {
@@ -67,7 +68,7 @@ public class BaseTests {
     }
 
     protected List<ConnectionDetails> getConnections() throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/");
+        org.restlet.Response response = get("connections/");
         assertDefaults(response);
         Representation entity = response.getEntity();
         Response<List<ConnectionDetails>> skysailResponse = mapper.readValue(entity.getText(),
@@ -79,7 +80,7 @@ public class BaseTests {
     }
 
     protected ConnectionDetails getConnection(String connectionName) throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/" + connectionName);
+        org.restlet.Response response = get("connections/" + connectionName);
         assertDefaults(response);
         Representation entity = response.getEntity();
         Response<ConnectionDetails> skysailResponse = mapper.readValue(entity.getText(),
@@ -91,7 +92,7 @@ public class BaseTests {
     }
 
     protected List<SchemaDetails> getSchemas(String connectionName) throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/" + connectionName + "/schemas");
+        org.restlet.Response response = get("connections/" + connectionName + "/schemas");
         assertDefaults(response);
         Representation entity = response.getEntity();
         Response<List<SchemaDetails>> skysailResponse = mapper.readValue(entity.getText(),
@@ -102,7 +103,7 @@ public class BaseTests {
     }
 
     protected List<String> getTables(String connectionName, String schemaName) throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/" + connectionName + "/schemas/" + schemaName
+        org.restlet.Response response = get("connections/" + connectionName + "/schemas/" + schemaName
                 + "/tables");
         assertDefaults(response);
         Representation entity = response.getEntity();
@@ -115,7 +116,7 @@ public class BaseTests {
 
     protected List<ColumnsDetails> getColumns(String connectionName, String schemaName, String tableName)
             throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/" + connectionName + "/schemas/" + schemaName
+        org.restlet.Response response = get("connections/" + connectionName + "/schemas/" + schemaName
                 + "/tables/" + tableName + "/columns");
         assertDefaults(response);
         Representation entity = response.getEntity();
@@ -128,7 +129,7 @@ public class BaseTests {
 
     protected List<ConstraintDetails> getConstraints(String connectionName, String schemaName, String tableName)
             throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/" + connectionName + "/schemas/" + schemaName
+        org.restlet.Response response = get("connections/" + connectionName + "/schemas/" + schemaName
                 + "/tables/" + tableName + "/constraints");
         assertDefaults(response);
         Representation entity = response.getEntity();
@@ -141,7 +142,7 @@ public class BaseTests {
 
     protected GridData getData(String connectionName, String schemaName, String tableName)
             throws Exception {
-        org.restlet.Response response = get("/dbviewer/connections/" + connectionName + "/schemas/" + schemaName
+        org.restlet.Response response = get("connections/" + connectionName + "/schemas/" + schemaName
                 + "/tables/" + tableName + "/data");
         assertDefaults(response);
         Representation entity = response.getEntity();
@@ -153,7 +154,7 @@ public class BaseTests {
     }
 
     protected void deleteConnection(String connectionName) throws Exception {
-        org.restlet.Response response = delete("/dbviewer/connections/" + connectionName);
+        org.restlet.Response response = delete("connections/" + connectionName);
         assertDefaults(response);
         Representation entity = response.getEntity();
         Response<String> skysailResponse = mapper.readValue(entity.getText(), new TypeReference<Response<String>>() {
@@ -165,18 +166,18 @@ public class BaseTests {
     }
 
     private org.restlet.Response delete(String uri) {
-        Request request = new Request(Method.DELETE, uri);
+        Request request = new Request(Method.DELETE, "/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/" + uri);
         return handleRequest(request);
     }
 
     protected org.restlet.Response get(String uri) {
-        Request request = new Request(Method.GET, uri);
+        Request request = new Request(Method.GET, "/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/" + uri);
         return handleRequest(request);
     }
 
     protected org.restlet.Response post(String uri, Object connection) throws JsonGenerationException,
             JsonMappingException, IOException {
-        Request request = new Request(Method.POST, uri);
+        Request request = new Request(Method.POST, "/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/" + uri);
         String writeValueAsString = mapper.writeValueAsString(connection);
         request.setEntity(writeValueAsString, MediaType.APPLICATION_JSON);
         return handleRequest(request);
@@ -196,7 +197,7 @@ public class BaseTests {
         assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
     }
 
-    protected void setUpPersistence(SkysailApplication spy) {
+    protected void setUpPersistence(DbViewerApplication spy) {
         final EntityManagerFactory emf = Persistence.createEntityManagerFactory("testPU");
         Mockito.doAnswer(new Answer<EntityManager>() {
             @Override
@@ -207,13 +208,13 @@ public class BaseTests {
         }).when(spy).getEntityManager();
     }
 
-    protected SkysailApplication setUpRestletApplication() throws ClassNotFoundException {
+    protected DbViewerApplication setUpRestletApplication() throws ClassNotFoundException {
         DbViewerComponent dbViewerComponent = new DbViewerComponent();
-        skysailApplication = dbViewerComponent.getApplication();
+        dbViewerApplication = dbViewerComponent.getApplication();
 
-        SkysailApplication spy = Mockito.spy(skysailApplication);
+        DbViewerApplication spy = Mockito.spy(dbViewerApplication);
         Application.setCurrent(spy);
-        inboundRoot = skysailApplication.getInboundRoot();
+        inboundRoot = dbViewerApplication.getInboundRoot();
         addMappings();
         return spy;
     }

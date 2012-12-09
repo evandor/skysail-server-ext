@@ -37,7 +37,7 @@ import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConstraints;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class ConstraintsResource extends ListServerResource<ConstraintDetails> implements RestfulConstraints {
@@ -69,7 +69,7 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
     }
 
     private List<ConstraintDetails> allConstraints() {
-        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
         try {
             em.getTransaction().begin();
             java.sql.Connection connection = em.unwrap(java.sql.Connection.class);

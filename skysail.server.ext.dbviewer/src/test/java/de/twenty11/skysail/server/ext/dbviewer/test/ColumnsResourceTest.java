@@ -11,13 +11,13 @@ import org.junit.Test;
 
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 
 public class ColumnsResourceTest extends BaseTests {
 
     @Before
     public void setUp() throws Exception {
-        SkysailApplication spy = setUpRestletApplication();
+        DbViewerApplication spy = setUpRestletApplication();
         setUpPersistence(spy);
         ConnectionDetails connection = new ConnectionDetails("testdb", "skysail", "skysail",
                 "jdbc:derby:skysailDerbyTestDb;create=true", "org.apache.derby.jdbc.EmbeddedDriver");

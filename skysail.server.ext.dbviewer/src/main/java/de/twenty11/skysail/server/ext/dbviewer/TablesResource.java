@@ -56,7 +56,7 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
 import de.twenty11.skysail.server.restlet.ListServerResource;
@@ -96,7 +96,7 @@ public class TablesResource extends ListServerResource<String> implements Restfu
 
 
     private List<String> allTables() {
-        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
         em.getTransaction().begin();
         java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
         List<String> result = new ArrayList<String>();
@@ -148,7 +148,7 @@ public class TablesResource extends ListServerResource<String> implements Restfu
 //    }
 
     private DataSource getDataSourceForConnection() {
-        return ((SkysailApplication) getApplication()).getConnections(connectionName);
+        return ((DbViewerApplication) getApplication()).getConnections(connectionName);
     }
 
 }

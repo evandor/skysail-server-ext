@@ -17,7 +17,7 @@ import de.twenty11.skysail.common.ext.dbviewer.RestfulSchemas;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class SchemasResource extends ListServerResource<SchemaDetails> implements RestfulSchemas {
@@ -46,7 +46,7 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
 
 
     private List<SchemaDetails> allSchemas() {
-        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
         em.getTransaction().begin();
         java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
         List<SchemaDetails> result = new ArrayList<SchemaDetails>();
@@ -83,7 +83,7 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
     }
 
     private DataSource getDataSourceForConnection() {
-       return ((SkysailApplication) getApplication()).getConnections(connectionName);
+       return ((DbViewerApplication) getApplication()).getConnections(connectionName);
     }
 
 }

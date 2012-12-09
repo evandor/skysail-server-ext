@@ -20,7 +20,7 @@ import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
 public class TablesResourceTest extends BaseTests {
@@ -28,7 +28,7 @@ public class TablesResourceTest extends BaseTests {
 
     @Before
     public void setUp() throws Exception {
-        SkysailApplication spy = setUpRestletApplication();
+        DbViewerApplication spy = setUpRestletApplication();
         setUpPersistence(spy);
         ConnectionDetails connection = new ConnectionDetails("testdb", "skysail", "skysail",
                 "jdbc:derby:skysailDerbyTestDb;create=true", "org.apache.derby.jdbc.EmbeddedDriver");

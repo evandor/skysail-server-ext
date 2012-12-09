@@ -18,7 +18,7 @@ import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.forms.Violation;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**
@@ -48,7 +48,7 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
 
     @SuppressWarnings("unchecked")
     private List<ConnectionDetails> allConnections() {
-        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
         return em.createQuery("SELECT c FROM ConnectionDetails c").getResultList();
     }
 
@@ -56,7 +56,7 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
     @Post
     public Response<ConstraintViolations<ConnectionDetails>> addConnection(ConnectionDetails entity) {
         logger.info("trying to persist connection {}", entity);
-        EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);
         ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(constraintViolations);
         //ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(Arrays.asSet(new Violation("yeah")));

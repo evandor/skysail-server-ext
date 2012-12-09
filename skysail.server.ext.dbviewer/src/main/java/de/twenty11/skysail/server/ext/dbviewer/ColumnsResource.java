@@ -35,7 +35,7 @@ import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class ColumnsResource extends ListServerResource<ColumnsDetails> implements RestfulColumns {
@@ -68,7 +68,7 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
 
     private List<ColumnsDetails> allColumns() {
         try {
-            EntityManager em = ((SkysailApplication) getApplication()).getEntityManager();
+            EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
             em.getTransaction().begin();
             java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
             DatabaseMetaData meta = connection.getMetaData();

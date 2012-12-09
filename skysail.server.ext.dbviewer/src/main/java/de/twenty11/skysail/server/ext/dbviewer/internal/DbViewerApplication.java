@@ -35,16 +35,16 @@ import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
  * @author carsten
  * 
  */
-public class SkysailApplication extends RestletOsgiApplication {
+public class DbViewerApplication extends RestletOsgiApplication {
 
     private EntityManagerFactory emf;
-    private static SkysailApplication self;
+    private static DbViewerApplication self;
 
     /**
      * @param staticPathTemplate
      */
-    public SkysailApplication(String staticPathTemplate) {
-        super(staticPathTemplate);
+    public DbViewerApplication(String staticPathTemplate) {
+        super(DbViewerApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");
         self = this;
@@ -56,7 +56,7 @@ public class SkysailApplication extends RestletOsgiApplication {
      * 
      * @return
      */
-    public static SkysailApplication get() {
+    public static DbViewerApplication get() {
         return self;
     }
 

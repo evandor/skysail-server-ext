@@ -33,7 +33,7 @@ public class SkysailEntityManagerProvider {
     }
 
     public void setEntityManager(EntityManagerFactory emf) {
-        SkysailApplication.get().setEntityManagerProvider(emf);
+        DbViewerApplication.get().setEntityManagerProvider(emf);
     }
 
 }

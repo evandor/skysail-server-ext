@@ -45,8 +45,9 @@ import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SuccessResponse;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.SkysailApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
 
 public class DataResource extends GenericServerResource<List<String>> implements
@@ -127,7 +128,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
 	private void getColumns() throws IOException, JsonParseException,
 			JsonMappingException {
 		ClientResource columns = new ClientResource(
-				"riap://application/dbviewer/connections/" + connectionName
+				"riap://application/"+DbViewerApplicationDescriptor.APPLICATION_NAME+"/connections/" + connectionName
 						+ "/schemas/" + schemaName + "/tables/" + tableName
 						+ "/columns");
 		columns.setChallengeResponse(getChallengeResponse());
@@ -153,7 +154,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
 
 	private ResultSet getRows(GridData grid) throws SQLException {
 		ResultSet executeQuery;
-		EntityManager em = ((SkysailApplication) getApplication())
+		EntityManager em = ((DbViewerApplication) getApplication())
 				.getEntityManager();
 		em.getTransaction().begin();
 		java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
