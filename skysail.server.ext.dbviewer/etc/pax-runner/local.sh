@@ -10,7 +10,7 @@
 # --clean \
 
 /home/carsten/install/pax-runner-1.7.6/bin/pax-run.sh \
---log=INFO \
+--log=DEBUG \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 \
  -Dfelix.fileinstall.dir=../../../target,../config \
