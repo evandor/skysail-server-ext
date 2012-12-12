@@ -1,8 +1,9 @@
 package de.twenty11.skysail.server.ext.osgimonitor;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.osgi.framework.Bundle;
 import org.restlet.resource.Get;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
 import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.server.ext.osgimonitor.internal.Activator;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**
@@ -37,9 +39,23 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
         return getEntities(allBundles(), "all Bundles");
     }
 
-    @SuppressWarnings("unchecked")
     private List<BundleDetails> allBundles() {
-        return Collections.emptyList();
+    	List<BundleDetails> result = new ArrayList<BundleDetails>();
+        List<Bundle> bundles = Activator.getBundles();
+        for (Bundle bundle : bundles) {
+			BundleDetails bundleDetail = new BundleDetails();
+			bundleDetail.setSymbolicName(bundle.getLocation());
+			bundleDetail.setBundleId(bundle.getBundleId());
+			bundleDetail.setHeaders(bundle.getHeaders());
+			bundleDetail.setLastModified(bundle.getLastModified());
+			bundleDetail.setRegisteredServices(bundle.getRegisteredServices());
+			bundleDetail.setServicesInUse(bundle.getServicesInUse());
+			bundleDetail.setState(bundle.getState());
+			bundleDetail.setVersion(bundle.getVersion());
+			bundleDetail.setSymbolicName(bundle.getSymbolicName());
+			result.add(bundleDetail );
+		}
+        return result;
     }
 
 

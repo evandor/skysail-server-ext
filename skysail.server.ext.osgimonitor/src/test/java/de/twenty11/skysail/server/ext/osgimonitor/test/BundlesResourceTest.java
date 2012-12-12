@@ -24,7 +24,6 @@ public class BundlesResourceTest extends BaseTests {
     
     @Test
     public void gives_validation_error_for_missing_name() throws Exception {
-        BundleDetails connection = new BundleDetails();
         List<BundleDetails> bundles = getBundles();
         assertThat(bundles.size(), is(equalTo(0)));
         //assertThat(createViolations.getViolations().get(0).getMessage(), is(equalTo("Name is mandatory")));

@@ -2,5 +2,6 @@ Include-Resource: {maven-resources}
 Import-Package:	de.twenty11.skysail.common;version="[0.2.0, 1.0.0)",\
  de.twenty11.skysail.common.selfdescription;version="[0.1.0, 1.0.0)",\
  *
+Bundle-Activator: de.twenty11.skysail.server.ext.osgimonitor.internal.Activator
 Bundle-SymbolicName: skysail.server.ext.osgimonitor
 Service-Component: OSGI-INF/*.xml
