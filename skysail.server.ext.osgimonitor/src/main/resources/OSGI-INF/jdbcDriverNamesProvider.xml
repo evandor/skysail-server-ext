@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="SSEDB jdbcDriverNamesProvider">
+   <implementation class="de.twenty11.skysail.server.ext.osgimonitor.internal.JdbcDriverValuesProvider"/>
+   <service>
+      <provide interface="de.twenty11.skysail.common.forms.ValuesProvider"/>
+   </service>
+   <property name="name" type="String" value="JdbcDriverValuesProvider"/>
+</scr:component>
