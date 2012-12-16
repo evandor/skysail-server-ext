@@ -1,7 +1,11 @@
 package de.twenty11.skysail.server.ext.osgimonitor;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
@@ -48,7 +52,7 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
             BundleDetails bundleDetail = new BundleDetails();
             bundleDetail.setSymbolicName(bundle.getLocation());
             bundleDetail.setBundleId(bundle.getBundleId());
-            bundleDetail.setHeaders(bundle.getHeaders());
+            //bundleDetail.setHeaders(getDetails(bundle.getHeaders()));
             bundleDetail.setLastModified(bundle.getLastModified());
             bundleDetail.setRegisteredServices(getDetails(bundle.getRegisteredServices()));
             bundleDetail.setServicesInUse(getDetails(bundle.getServicesInUse()));
@@ -56,6 +60,16 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
             bundleDetail.setVersion(bundle.getVersion());
             bundleDetail.setSymbolicName(bundle.getSymbolicName());
             result.add(bundleDetail);
+        }
+        return result;
+    }
+
+    private Map<String, String> getDetails(Dictionary headers) {
+        Map<String, String> result = new HashMap<String, String>();
+        Enumeration keys = headers.keys();
+        while (keys.hasMoreElements()) {
+            Object nextElement = keys.nextElement();
+            result.put(nextElement.toString(), headers.get(nextElement).toString());
         }
         return result;
     }
