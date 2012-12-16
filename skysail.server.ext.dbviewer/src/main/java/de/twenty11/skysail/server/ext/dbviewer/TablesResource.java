@@ -17,48 +17,23 @@
 
 package de.twenty11.skysail.server.ext.dbviewer;
 
-import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-import javax.validation.Configuration;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.restlet.ext.jackson.JacksonRepresentation;
-import org.restlet.ext.json.JsonRepresentation;
-import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.SkysailData;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulTables;
-import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
-import de.twenty11.skysail.common.grids.GridData;
-import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.common.responses.SkysailFailureResponse;
-import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.common.responses.SkysailSuccessResponse;
-import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
-import de.twenty11.skysail.server.restlet.GenericServerResource;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class TablesResource extends ListServerResource<String> implements RestfulTables {
@@ -147,8 +122,5 @@ public class TablesResource extends ListServerResource<String> implements Restfu
 //        return new JacksonRepresentation<SkysailResponse<GridData>>(skysailResponse);
 //    }
 
-    private DataSource getDataSourceForConnection() {
-        return ((DbViewerApplication) getApplication()).getConnections(connectionName);
-    }
 
 }

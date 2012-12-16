@@ -10,8 +10,8 @@
 # --clean \
 
 /home/carsten/install/pax-runner-1.7.6/bin/pax-run.sh \
---clean \
 --log=INFO \
+--clean \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
  -Dfelix.fileinstall.dir=../../../target,../config \
@@ -19,7 +19,7 @@
  -Dfelix.fileinstall.noInitialDelay=true \
  -Dfelix.fileinstall.poll=1000 \
  -Dfelix.fileinstall.log.level=4 \
- -DGEMINI_DEBUG \
+ -Dfelix.fileinstall.bundles.new.start=false \
  -Dlogback.configurationFile=../../../src/main/resources/logback.xml \
  -Dorg.apache.felix.log.storeDebug=true" \
 scan-composite:file:local.composite

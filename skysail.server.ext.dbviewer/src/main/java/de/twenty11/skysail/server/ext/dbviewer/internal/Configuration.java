@@ -38,13 +38,20 @@ public class Configuration implements ManagedService {
     private static ConfigurationAdmin configadmin;
     private DbViewerComponent dbViewerComponent;
     private Server server;
-    private ComponentContext context;
 
     protected void activate(ComponentContext ctxt) {
         logger.info("Activating Skysail Ext DbViewer Configuration Component");
-        this.context = ctxt;
         if (startStandaloneServer()) {
-            String port = "8554";// configService.getString(Constants.STANDALONE_PORT, "8554");
+            String port = "8554";//configService.getString(Constants.STANDALONE_PORT, "8554");
+            try {
+                org.osgi.service.cm.Configuration configuration = configadmin.getConfiguration("de.twenty11.skysail.server.ext.dbviewer");
+                Dictionary properties = configuration.getProperties();
+                System.out.println(properties);
+                port = (String)properties.get("port");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             logger.info("Starting standalone dbviewer server on port {}", port);
             dbViewerComponent = new DbViewerComponent();
             startStandaloneServer(port);
@@ -53,7 +60,6 @@ public class Configuration implements ManagedService {
     }
 
     protected void deactivate(ComponentContext ctxt) {
-        this.context = null;
         try {
             server.stop();
         } catch (Exception e) {

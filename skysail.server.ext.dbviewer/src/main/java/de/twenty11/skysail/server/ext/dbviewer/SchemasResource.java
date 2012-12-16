@@ -82,8 +82,4 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
        
     }
 
-    private DataSource getDataSourceForConnection() {
-       return ((DbViewerApplication) getApplication()).getConnections(connectionName);
-    }
-
 }

@@ -17,7 +17,6 @@ import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.entities.TableDetails;
 
 public class ApplicationTests extends BaseTests {
 
@@ -61,8 +60,8 @@ public class ApplicationTests extends BaseTests {
         return connection;
     }
 
-    protected void addTable(String connection, TableDetails tableDetails) throws JsonGenerationException,
-            JsonMappingException, IOException {
-        post(DbViewerUrlMapper.CONNECTION_PREFIX + connection + "/tables", tableDetails);
-    }
+//    protected void addTable(String connection, TableDetails tableDetails) throws JsonGenerationException,
+//            JsonMappingException, IOException {
+//        post(DbViewerUrlMapper.CONNECTION_PREFIX + connection + "/tables", tableDetails);
+//    }
 }
