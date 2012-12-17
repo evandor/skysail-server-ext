@@ -1,12 +1,12 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import org.restlet.resource.Get;
@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulSchemas;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class SchemasResource extends ListServerResource<SchemaDetails> implements RestfulSchemas {
@@ -35,7 +35,7 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
     @Override
     protected void doInit() {
         connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        setDescription("The resource containing the list of schemas for '"+connectionName+"'");
+        setDescription("The resource containing the list of schemas for '" + connectionName + "'");
     }
 
     @Override
@@ -44,17 +44,19 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
         return getEntities(allSchemas(), "all Schemas");
     }
 
-
     private List<SchemaDetails> allSchemas() {
-        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-        em.getTransaction().begin();
-        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+        DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName, getChallengeResponse());
+//        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
+//        em.getTransaction().begin();
+//        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+
         List<SchemaDetails> result = new ArrayList<SchemaDetails>();
         int count = 0;
         try {
+            Connection connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
-            //http://stackoverflow.com/questions/5679259/how-to-get-list-of-databases-schema-names-of-mysql-using-java-jdbc
+            // http://stackoverflow.com/questions/5679259/how-to-get-list-of-databases-schema-names-of-mysql-using-java-jdbc
             ResultSet schemas = meta.getCatalogs();
             while (schemas.next()) {
                 count++;
@@ -72,14 +74,14 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
         } catch (SQLException e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
         } finally {
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
         }
     }
 
     @Override
     public void buildGrid() {
         setMessage("all Schemas");
-       
+
     }
 
 }

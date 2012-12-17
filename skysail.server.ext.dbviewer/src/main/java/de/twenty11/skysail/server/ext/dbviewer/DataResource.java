@@ -40,159 +40,131 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulData;
-import de.twenty11.skysail.common.grids.ColumnDefinition;
 import de.twenty11.skysail.common.grids.GridData;
+import de.twenty11.skysail.common.grids.RowData;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SuccessResponse;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
 
-public class DataResource extends GenericServerResource<List<String>> implements
-		RestfulData {
+public class DataResource extends GenericServerResource<List<String>> implements RestfulData {
 
-	/** slf4j based logger implementation */
-	Logger logger = LoggerFactory.getLogger(this.getClass());
+    /** slf4j based logger implementation */
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	/** deals with json objects */
-	private final ObjectMapper mapper = new ObjectMapper();
+    /** deals with json objects */
+    private final ObjectMapper mapper = new ObjectMapper();
 
-	private String connectionName;
+    private String connectionName;
 
-	private DataSource dataSource;
+    private String tableName;
 
-	private String tableName;
+    private String schemaName;
 
-	private String schemaName;
+    public DataResource() {
+        setName("dbviewer data resource");
+        setDescription("The resource describing the data found in a table");
+    }
 
-	public DataResource() {
-		setName("dbviewer data resource");
-		setDescription("The resource describing the data found in a table");
-	}
+    @Override
+    protected void doInit() throws ResourceException {
+        tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
+        connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        schemaName = (String) getRequest().getAttributes().get("schema");
+        setDescription("The resource describing the data found in the table '" + tableName + "'");
+    }
 
-	@Override
-	protected void doInit() throws ResourceException {
-		tableName = (String) getRequest().getAttributes().get(
-				DbViewerUrlMapper.TABLE_NAME);
-		connectionName = (String) getRequest().getAttributes().get(
-				DbViewerUrlMapper.CONNECTION_NAME);
-		schemaName = (String) getRequest().getAttributes().get("schema");
-		setDescription("The resource describing the data found in the table '"
-				+ tableName + "'");
-	}
+    @Override
+    public void buildGrid() {
+        ResultSet executeQuery = null;
+        try {
+            getColumns();
+            // executeQuery = getRows(getSkysailData());
+        } catch (Exception e) {
+            throw new RuntimeException("Problem accessing data: " + e.getMessage(), e);
+        } finally {
+            closeResultSet(executeQuery);
+        }
+    }
 
-	@Override
-	public void buildGrid() {
-		ResultSet executeQuery = null;
-		try {
-			getColumns();
-			// executeQuery = getRows(getSkysailData());
-		} catch (Exception e) {
-			throw new RuntimeException("Problem accessing data: "
-					+ e.getMessage(), e);
-		} finally {
-			closeResultSet(executeQuery);
-		}
-	}
+    @Override
+    @Get
+    public Response<GridData> getData() {
+        Response<GridData> response;
+        try {
+            response = new SuccessResponse<GridData>(getFilteredData());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response = new FailureResponse<GridData>(e);
+        }
+        return response;
+    }
 
-	@Override
-	@Get
-	public Response<GridData> getData() {
-		Response<GridData> response;
-		try {
-			response = new SuccessResponse<GridData>(getFilteredData());
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-			response = new FailureResponse<GridData>(e);
-		}
-		return response;
-	}
+    private GridData getFilteredData() {
+        ResultSet executeQuery = null;
+        GridData gridData = new GridData();
+        try {
+            List<ColumnsDetails> columns = getColumns();
+            return getRows(columns, gridData);
+        } catch (Exception e) {
+            throw new RuntimeException("Problem accessing data: " + e.getMessage(), e);
+        } finally {
+            closeResultSet(executeQuery);
+        }
+    }
 
-	private GridData getFilteredData() {
-		ResultSet executeQuery = null;
-		GridData gridData = new GridData();
-		try {
-			getColumns();
-			executeQuery = getRows(gridData);
-			return gridData;
-		} catch (Exception e) {
-			throw new RuntimeException("Problem accessing data: "
-					+ e.getMessage(), e);
-		} finally {
-			closeResultSet(executeQuery);
-		}
-	}
+    private List<ColumnsDetails> getColumns() throws IOException, JsonParseException, JsonMappingException {
+        ClientResource columns = new ClientResource("riap://application/"
+                + DbViewerApplicationDescriptor.APPLICATION_NAME + "/connections/" + connectionName + "/schemas/"
+                + schemaName + "/tables/" + tableName + "/columns");
+        columns.setChallengeResponse(getChallengeResponse());
+        Representation representation = columns.get();
+        Response<List<ColumnsDetails>> response = mapper.readValue(representation.getText(),
+                new TypeReference<Response<List<ColumnsDetails>>>() {
+                });
+        List<ColumnsDetails> payload = response.getData();
+        return payload;
+    }
 
-	private void getColumns() throws IOException, JsonParseException,
-			JsonMappingException {
-		ClientResource columns = new ClientResource(
-				"riap://application/"+DbViewerApplicationDescriptor.APPLICATION_NAME+"/connections/" + connectionName
-						+ "/schemas/" + schemaName + "/tables/" + tableName
-						+ "/columns");
-		columns.setChallengeResponse(getChallengeResponse());
-		Representation representation = columns.get();
-		Response<List<ColumnsDetails>> response = mapper.readValue(
-				representation.getText(),
-				new TypeReference<Response<List<ColumnsDetails>>>() {
-				});
-		List<ColumnsDetails> payload = response.getData();
-		// List<RowData> gridData = payload.getRows();
-		// for (RowData rowData : gridData) {
-		// List<Object> columnData = rowData.getColumnData();
-		// ColumnDefinition columnDefinition = new ColumnDefinition((String)
-		// columnData.get(1));
-		// getSkysailData().getColumns().getAsList().add(columnDefinition);
-		// }
-		for (ColumnsDetails columnsDetails : payload) {
-			ColumnDefinition columnDefinition = new ColumnDefinition(
-					columnsDetails.getId());
-			// getSkysailData().getColumns().getAsList().add(columnDefinition);
-		}
-	}
+    private GridData getRows(List<ColumnsDetails> columns, GridData grid) throws SQLException {
+        ResultSet executeQuery;
+//        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
+//        em.getTransaction().begin();
+//        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+        DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName, getChallengeResponse());
+        Connection connection = ds.getConnection();
+        connection.setCatalog(schemaName);
 
-	private ResultSet getRows(GridData grid) throws SQLException {
-		ResultSet executeQuery;
-		EntityManager em = ((DbViewerApplication) getApplication())
-				.getEntityManager();
-		em.getTransaction().begin();
-		java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+        Statement createStatement = connection.createStatement();
+        executeQuery = createStatement.executeQuery("SELECT * FROM " + tableName);
 
-		connection.setCatalog(schemaName);
+        int count = 0;
+        while (executeQuery.next()) {
+            RowData row = new RowData();
+            for (ColumnsDetails column : columns) {
+                String result = executeQuery.getString(column.getId());
+                row.add(column.getId(), result != null ? result : "null");
+            }
+            grid.addRowData(row);
+            count++;
+        }
+        setMessage("found " + count + " rows");
+        return grid;
+    }
 
-		Statement createStatement = connection.createStatement();
-		executeQuery = createStatement.executeQuery("SELECT * FROM "
-				+ tableName);
-
-		int count = 0;
-		while (executeQuery.next()) {
-			// Columns queryColumns = getSkysailData().getColumns();
-			// RowData row = new RowData(queryColumns);
-			// for (ColumnDefinition column :
-			// queryColumns.getColumnsInSortOrder()) {
-			// String result = executeQuery.getString(column.getName());
-			// row.add(result != null ? result : "null");
-			// }
-			// grid.addRowData(row);
-			count++;
-		}
-		setMessage("found " + count + " rows");
-		return executeQuery;
-	}
-
-	private void closeResultSet(ResultSet resultSet) {
-		if (resultSet != null) {
-			try {
-				resultSet.close();
-			} catch (SQLException ex) {
-				logger.debug("Could not close  ResultSet", ex);
-			} catch (Throwable ex) {
-				// We don't trust the driver: It might throw RuntimeException or
-				// Error.
-				logger.debug("Unexpected exception on closing  ResultSet", ex);
-			}
-		}
-	}
+    private void closeResultSet(ResultSet resultSet) {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException ex) {
+                logger.debug("Could not close  ResultSet", ex);
+            } catch (Throwable ex) {
+                logger.debug("Unexpected exception on closing  ResultSet", ex);
+            }
+        }
+    }
 
 }

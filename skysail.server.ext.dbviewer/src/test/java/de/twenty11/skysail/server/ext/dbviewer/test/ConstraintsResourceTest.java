@@ -26,7 +26,7 @@ public class ConstraintsResourceTest extends BaseTests {
 
     @Test
     public void can_read_columns_from_table() throws Exception {
-        List<ConstraintDetails> columns = getConstraints("testDb", "skysail", "SKYSAILUSERS");
+        List<ConstraintDetails> columns = getConstraints("testdb", "skysail", "SKYSAILUSERS");
         assertThat(columns.size(), is(equalTo(1)));
     }
 }

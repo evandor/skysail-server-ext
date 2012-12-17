@@ -17,6 +17,7 @@
 
 package de.twenty11.skysail.server.ext.dbviewer;
 
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.sql.DataSource;
 
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
@@ -47,11 +49,6 @@ public class TablesResource extends ListServerResource<String> implements Restfu
     public TablesResource() {
         setName("dbviewer tables resource");
         setDescription("The resource containing the list of tables for the current connection and schema");
-
-        // Configuration<?> config = Validation.byDefaultProvider().providerResolver(new OSGiServiceDiscoverer())
-        // .configure();
-        // ValidatorFactory factory = config.buildValidatorFactory();
-        // validator = factory.getValidator();
     }
 
     @Override
@@ -71,12 +68,14 @@ public class TablesResource extends ListServerResource<String> implements Restfu
 
 
     private List<String> allTables() {
-        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-        em.getTransaction().begin();
-        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+//        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
+//        em.getTransaction().begin();
+//        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+        DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName, getChallengeResponse());
         List<String> result = new ArrayList<String>();
         int count = 0;
         try {
+            Connection connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
             ResultSet tables = meta.getTables(schemaName, null, null, new String[] { "TABLE" });
@@ -88,8 +87,6 @@ public class TablesResource extends ListServerResource<String> implements Restfu
             return result;
         } catch (SQLException e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
-        } finally {
-            em.getTransaction().commit();
         }
     }
 

@@ -22,7 +22,7 @@ public class DataResourceTest extends BaseTests {
     @Test
     public void can_read_data_from_table() {
     	try {
-			getData("testDb", "skysail", "SKYSAILUSERS");
+			getData("testdb", "skysail", "SKYSAILUSERS");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail();

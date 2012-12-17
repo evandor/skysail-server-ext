@@ -19,11 +19,19 @@ package de.twenty11.skysail.server.ext.dbviewer.internal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 
+import org.apache.commons.dbcp.BasicDataSource;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
+import org.restlet.data.ChallengeResponse;
+import org.restlet.representation.Representation;
+import org.restlet.resource.ClientResource;
 
+import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.server.listener.SkysailApplicationServiceListener;
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
@@ -36,6 +44,10 @@ public class DbViewerApplication extends RestletOsgiApplication {
 
     private EntityManagerFactory emf;
     private static DbViewerApplication self;
+
+    /** deals with json objects */
+    private final ObjectMapper mapper = new ObjectMapper();
+
 
     /**
      * @param staticPathTemplate
@@ -92,6 +104,37 @@ public class DbViewerApplication extends RestletOsgiApplication {
         return this.emf != null ? this.emf.createEntityManager() : null;
     }
 
+    public DataSource getDataSource(String connectionName, ChallengeResponse challengeResponse) {
+//        EntityManager em = emf.createEntityManager();
+//        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name=:name", ConnectionDetails.class);
+//        query.setParameter("name", connectionName);
+//        ConnectionDetails result = query.getSingleResult();
+        ConnectionDetails result = getConnection(connectionName, challengeResponse);
+        BasicDataSource ds = new BasicDataSource();
+        ds.setUrl(result.getUrl());
+        ds.setUsername(result.getUsername());
+        ds.setDriverClassName(result.getDriverName());
+        ds.setPassword(result.getPassword());
+        return ds;
+    }
+
+    private ConnectionDetails getConnection(String connectionName, ChallengeResponse challengeResponse) {
+        ClientResource columns = new ClientResource("riap://application/"
+                + DbViewerApplicationDescriptor.APPLICATION_NAME + "/connections/" + connectionName);
+        columns.setChallengeResponse(challengeResponse);
+        Representation representation = columns.get();
+        de.twenty11.skysail.common.responses.Response<ConnectionDetails> response;
+        try {
+            response = mapper.readValue(representation.getText(),
+                    new TypeReference<de.twenty11.skysail.common.responses.Response<ConnectionDetails>>() {
+                    });
+            return response.getData();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
 //    public ConnectionDetails getConnectionByName(String connectionName) {
 //        EntityManager em = emf.createEntityManager();
 //        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name=:name", ConnectionDetails.class);
