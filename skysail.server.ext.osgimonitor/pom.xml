@@ -44,7 +44,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<!-- make eclipse aware about this bundle (+ ManifestBuilder in .project!) -->
-					<manifestLocation>etc</manifestLocation>
+					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
 						<_include>-bnd.bnd</_include>
 						<Include-Resource>
