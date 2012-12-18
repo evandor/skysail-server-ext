@@ -12,7 +12,7 @@ mvn:org.slf4j/jul-to-slf4j/1.6.4
 ### skysail common and dependencies 
 ### -------------------------------
 
-mvn:de.twentyeleven.skysail/skysail.common/0.3.8-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.common/0.3.9-SNAPSHOT@update
 ### done via felix fileinstall!
 ### mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.1-SNAPSHOT@update
 mvn:commons-lang/commons-lang/2.6
@@ -64,6 +64,9 @@ mvn:commons-pool/commons-pool/1.6
 mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 
 mvn:org.eclipse.persistence/javax.persistence/2.0.3 
 mvn:de.twentyeleven.skysail/org.json-osgi/20080701
+mvn:de.twentyeleven.skysail/skysail.server.graphs/0.0.1-SNAPSHOT@update
+mvn:org.javassist/javassist/3.17.1-GA
+
 
 ### -------------------------------
 ### Client Side 

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
+import de.twenty11.skysail.common.graphs.Graph;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.Activator;
 import de.twenty11.skysail.server.restlet.ListServerResource;
@@ -29,6 +30,7 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * what is needed to actually connect to a datasource.
  * 
  */
+@Graph(nodesPath="/osgimonitor/bundles", edgesPath="/osgimonitor/services")
 public class BundlesResource extends ListServerResource<BundleDetails> implements RestfulBundles {
 
     /** slf4j based logger implementation */
