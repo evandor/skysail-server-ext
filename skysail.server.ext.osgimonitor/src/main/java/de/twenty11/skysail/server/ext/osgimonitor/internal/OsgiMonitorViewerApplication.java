@@ -17,16 +17,10 @@
 
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.TypedQuery;
-
-import org.apache.commons.dbcp.BasicDataSource;
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
 
-import de.twenty11.skysail.server.listener.SkysailApplicationServiceListener;
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
 import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
 

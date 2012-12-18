@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1355497113136
-Build-Jdk: 1.7.0_04
-Built-By: carsten
+Bnd-LastModified: 1355843290813
+Build-Jdk: 1.7.0_05
+Built-By: graefca
 Bundle-Description: This is the parent pom for all skysail maven artifac
  ts. Should be run with maven3.
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: skysail dbviewer server extension
 Bundle-SymbolicName: skysail.server.ext.dbviewer
-Bundle-Version: 0.0.17.qualifier
+Bundle-Version: 0.0.17.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 DynamicImport-Package: *
 Export-Package: de.twenty11.skysail.server.ext.dbviewer;uses:="org.restl
  et.resource,de.twenty11.skysail.common.responses,org.restlet,org.slf4j,
- de.twenty11.skysail.common.ext.dbviewer,javax.persistence,de.twenty11.s
- kysail.server.restlet,de.twenty11.skysail.common.forms,javax.validation
- ,org.codehaus.jackson.type,org.restlet.representation,javax.sql,org.res
- tlet.data,org.codehaus.jackson.map,org.codehaus.jackson,de.twenty11.sky
+ de.twenty11.skysail.common.ext.dbviewer,org.restlet.data,javax.sql,de.t
+ wenty11.skysail.server.restlet,de.twenty11.skysail.common.forms,javax.p
+ ersistence,javax.validation,org.codehaus.jackson.type,org.restlet.repre
+ sentation,org.codehaus.jackson.map,org.codehaus.jackson,de.twenty11.sky
  sail.common.grids,javax.validation.spi,org.hibernate.validator,org.rest
  let.routing,org.restlet.util,de.twenty11.skysail.common.selfdescription
  ";version="0.0.17.SNAPSHOT"
