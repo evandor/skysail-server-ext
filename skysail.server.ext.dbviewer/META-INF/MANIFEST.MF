@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1355843290813
+Bnd-LastModified: 1356021847424
 Build-Jdk: 1.7.0_05
 Built-By: graefca
 Bundle-Description: This is the parent pom for all skysail maven artifac
