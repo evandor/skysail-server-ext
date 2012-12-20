@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1355843290813
-Build-Jdk: 1.7.0_05
-Built-By: graefca
+Bnd-LastModified: 1355987869293
+Build-Jdk: 1.7.0_04
+Built-By: carsten
 Bundle-Description: This is the parent pom for all skysail maven artifac
  ts. Should be run with maven3.
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
