@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.osgimonitor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -83,6 +84,7 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
         }
         for (ServiceReference serviceReference : registeredServices) {
             ServiceReferenceDetails srd = new ServiceReferenceDetails();
+            srd.setBundleId(serviceReference.getBundle().getBundleId());
             srd.setName(serviceReference.toString());
             srd.setPropertyKeys(serviceReference.getPropertyKeys());
             srd.setUsingBundles(getDetails(serviceReference.getUsingBundles()));
