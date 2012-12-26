@@ -47,8 +47,7 @@ public class DbViewerApplication extends RestletOsgiApplication {
 
     /** deals with json objects */
     private final ObjectMapper mapper = new ObjectMapper();
-
-
+    
     /**
      * @param staticPathTemplate
      */
@@ -76,22 +75,10 @@ public class DbViewerApplication extends RestletOsgiApplication {
         super.handle(request, response);
     }
 
-//    public javax.sql.DataSource getConnections(String connectionName) {
-//        EntityManager em = emf.createEntityManager();
-//        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name=:name", ConnectionDetails.class);
-//        query.setParameter("name", connectionName);
-//        ConnectionDetails result = query.getSingleResult();
-//        BasicDataSource ds = new BasicDataSource();
-//        ds.setUrl(result.getUrl());
-//        ds.setUsername(result.getUsername());
-//        ds.setDriverClassName(result.getDriverName());
-//        ds.setPassword(result.getPassword());
-//        return ds;
-//    }
     // TODO proper place for this here? what about multiple instances?
     protected void attach() {
         if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
-            new UrlMappingServiceListener(this);
+            urlMappingServiceListener = new UrlMappingServiceListener(this);
             new SkysailApplicationServiceListener(this);
         }
     }
@@ -105,10 +92,6 @@ public class DbViewerApplication extends RestletOsgiApplication {
     }
 
     public DataSource getDataSource(String connectionName, ChallengeResponse challengeResponse) {
-//        EntityManager em = emf.createEntityManager();
-//        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name=:name", ConnectionDetails.class);
-//        query.setParameter("name", connectionName);
-//        ConnectionDetails result = query.getSingleResult();
         ConnectionDetails result = getConnection(connectionName, challengeResponse);
         BasicDataSource ds = new BasicDataSource();
         ds.setUrl(result.getUrl());
@@ -135,11 +118,5 @@ public class DbViewerApplication extends RestletOsgiApplication {
         }
         return null;
     }
-//    public ConnectionDetails getConnectionByName(String connectionName) {
-//        EntityManager em = emf.createEntityManager();
-//        TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name=:name", ConnectionDetails.class);
-//        query.setParameter(0, connectionName);
-//        return query.getSingleResult();
-//    }
-
+    
 }

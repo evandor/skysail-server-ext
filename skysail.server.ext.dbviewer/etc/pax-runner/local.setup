@@ -12,7 +12,8 @@ mvn:org.slf4j/jul-to-slf4j/1.6.4
 ### skysail common and dependencies 
 ### -------------------------------
 
-mvn:de.twentyeleven.skysail/skysail.common/0.3.9-SNAPSHOT@update
+
+### handled by local.sh - mvn:de.twentyeleven.skysail/skysail.common/0.3.9-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.um/0.0.1-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.ext.dbviewer/0.0.1-SNAPSHOT@update
 mvn:commons-lang/commons-lang/2.6
@@ -84,6 +85,8 @@ http://download.eclipse.org/gemini/dbaccess/updates/1.1-M3/plugins/org.eclipse.g
 http://download.eclipse.org/gemini/dbaccess/updates/1.1-M3/plugins/org.apache.derby_10.8.2.2.jar
 ### needed for skysail.server.form
 mvn:org.javassist/javassist/3.17.1-GA
+mvn:de.twentyeleven.skysail/skysail.server.graphs/0.0.1-SNAPSHOT@update @nostart
+
 
 ### -------------------------------
 ### Client Side 
