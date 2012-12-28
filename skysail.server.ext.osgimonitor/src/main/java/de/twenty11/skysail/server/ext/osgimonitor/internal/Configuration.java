@@ -21,12 +21,14 @@ import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Properties;
 
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
+import org.restlet.routing.VirtualHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +41,7 @@ public class Configuration implements ManagedService {
     private OsgiMonitorComponent dbViewerComponent;
     private Server server;
     private ComponentContext context;
+    private ServiceRegistration registration;
 
     protected void activate(ComponentContext ctxt) {
         logger.info("Activating Skysail Ext DbViewer Configuration Component");
@@ -50,6 +53,14 @@ public class Configuration implements ManagedService {
             startStandaloneServer(port);
         }
         // not standalone: see restlet book chapter 3.5.6
+        VirtualHost virtualHost = createVirtualHost();
+        this.registration = ctxt.getBundleContext().registerService("org.restlet.routing.VirtualHost", virtualHost,
+                null);
+    }
+
+    private VirtualHost createVirtualHost() {
+        VirtualHost vh = new VirtualHost();
+        return vh;
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -58,6 +69,9 @@ public class Configuration implements ManagedService {
             server.stop();
         } catch (Exception e) {
             logger.error("Exception when trying to stop standalone server", e);
+        }
+        if (registration != null) {
+            registration.unregister();
         }
     }
 
