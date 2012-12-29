@@ -13,7 +13,7 @@ mvn:org.slf4j/jul-to-slf4j/1.6.4
 ### -------------------------------
 
 
-### handled by local.sh - mvn:de.twentyeleven.skysail/skysail.common/0.3.9-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.common/0.3.9-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.um/0.0.1-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.ext.dbviewer/0.0.1-SNAPSHOT@update
 mvn:commons-lang/commons-lang/2.6

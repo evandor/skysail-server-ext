@@ -60,6 +60,10 @@ public class Configuration implements ManagedService {
 
     private VirtualHost createVirtualHost() {
         VirtualHost vh = new VirtualHost();
+        vh.setHostDomain("localhost");
+        vh.setHostPort("2013");
+        vh.attach(dbViewerComponent);
+
         return vh;
     }
 
