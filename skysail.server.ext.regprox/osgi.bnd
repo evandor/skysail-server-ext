@@ -1,0 +1,2 @@
+Bundle-SymbolicName: skysail.server.ext.regprox
+Service-Component: OSGI-INF/*.xml
