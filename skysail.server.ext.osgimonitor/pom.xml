@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +10,7 @@
 	</parent>
 
 	<artifactId>skysail.server.ext.osgimonitor</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>skysail osgimonitor server extension</name>
 	<packaging>bundle</packaging>
 
@@ -22,7 +21,8 @@
 		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
 		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
-	</scm>
+	  <tag>skysail.server.ext.osgimonitor-0.1.0</tag>
+  </scm>
 
     <properties>
         <skysail.common.version>[0.3.9, 1.0)</skysail.common.version>
@@ -97,21 +97,16 @@
 						<configuration>
 							<tasks>
 								<!-- delete zip file first to have an exact copy (even if files have 
-									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
-									/> -->
-								<zip destfile="target/skysail-osgimonitor-${project.version}.zip"
-									encoding="UTF-8" update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner"
-										prefix="skysail-osgimonitor-${project.version}" filemode="775">
+									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" /> -->
+								<zip destfile="target/skysail-osgimonitor-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor-${project.version}" filemode="775">
 										<include name="run_standalone.sh" />
 										<include name="run_standalone.setup" />
 									</zipfileset>
-									<zipfileset dir="src/main/resources"
-										prefix="skysail-osgimonitor-${project.version}/conf">
+									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor-${project.version}/conf">
 										<include name="logback.xml" />
 									</zipfileset>
-									<zipfileset dir="conf/prod"
-										prefix="skysail-osgimonitor-${project.version}/conf">
+									<zipfileset dir="conf/prod" prefix="skysail-osgimonitor-${project.version}/conf">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
