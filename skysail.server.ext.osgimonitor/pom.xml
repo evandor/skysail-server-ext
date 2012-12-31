@@ -99,20 +99,19 @@
 								<!-- delete zip file first to have an exact copy (even if files have 
 									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
 									/> -->
-								<zip destfile="target/skysail-dbviewer-${project.version}.zip"
+								<zip destfile="target/skysail-osgimonitor-${project.version}.zip"
 									encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner"
-										prefix="skysail-dbviewer-${project.version}" filemode="775">
-										<include name="dbviewer.sh" />
-										<include name="dbviewer.composite" />
-										<include name="dbviewer.setup" />
+										prefix="skysail-osgimonitor-${project.version}" filemode="775">
+										<include name="run_standalone.sh" />
+										<include name="run_standalone.setup" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources"
-										prefix="skysail-dbviewer-${project.version}/conf">
+										prefix="skysail-osgimonitor-${project.version}/conf">
 										<include name="logback.xml" />
 									</zipfileset>
 									<zipfileset dir="conf/prod"
-										prefix="skysail-dbviewer-${project.version}/conf">
+										prefix="skysail-osgimonitor-${project.version}/conf">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>

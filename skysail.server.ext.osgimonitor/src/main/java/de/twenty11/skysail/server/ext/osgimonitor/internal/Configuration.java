@@ -21,14 +21,12 @@ import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Properties;
 
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
-import org.restlet.routing.VirtualHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +39,8 @@ public class Configuration implements ManagedService {
     private OsgiMonitorComponent dbViewerComponent;
     private Server server;
     private ComponentContext context;
-    private ServiceRegistration registration;
+
+    // private ServiceRegistration registration;
 
     protected void activate(ComponentContext ctxt) {
         logger.info("Activating Skysail Ext DbViewer Configuration Component");
@@ -49,23 +48,15 @@ public class Configuration implements ManagedService {
         if (startStandaloneServer()) {
             String port = "8554";// configService.getString(Constants.STANDALONE_PORT, "8554");
             logger.info("Starting standalone dbviewer server on port {}", port);
-            dbViewerComponent = new OsgiMonitorComponent();
+            dbViewerComponent = new OsgiMonitorComponent(ctxt);
             startStandaloneServer(port);
         }
         // not standalone: see restlet book chapter 3.5.6
-        VirtualHost virtualHost = createVirtualHost();
-        this.registration = ctxt.getBundleContext().registerService("org.restlet.routing.VirtualHost", virtualHost,
-                null);
+        // VirtualHost virtualHost = createVirtualHost();
+        // this.registration = ctxt.getBundleContext().registerService("org.restlet.routing.VirtualHost", virtualHost,
+        // null);
     }
 
-    private VirtualHost createVirtualHost() {
-        VirtualHost vh = new VirtualHost();
-        vh.setHostDomain("localhost");
-        vh.setHostPort("2013");
-        vh.attach(dbViewerComponent);
-
-        return vh;
-    }
 
     protected void deactivate(ComponentContext ctxt) {
         this.context = null;
@@ -74,8 +65,8 @@ public class Configuration implements ManagedService {
         } catch (Exception e) {
             logger.error("Exception when trying to stop standalone server", e);
         }
-        if (registration != null) {
-            registration.unregister();
+        if (dbViewerComponent != null && dbViewerComponent.getRegistration() != null) {
+            dbViewerComponent.getRegistration().unregister();
         }
     }
 

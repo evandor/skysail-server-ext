@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.twenty11.skysail.server.ext.regprox.MyRootResource;
+import de.twenty11.skysail.server.ext.regprox.UrlResource;
 import de.twenty11.skysail.server.services.UrlMapper;
 
 public class MyUrlMapper implements UrlMapper {
@@ -16,7 +17,7 @@ public class MyUrlMapper implements UrlMapper {
 
         queue.put(APP_PREFIX, MyRootResource.class.getName());
         queue.put(APP_PREFIX + "/", MyRootResource.class.getName());
-
+        queue.put(APP_PREFIX + "/{url}", UrlResource.class.getName());
         return queue;
     }
 
