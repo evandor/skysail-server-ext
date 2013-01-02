@@ -67,6 +67,7 @@ mvn:commons-dbcp/commons-dbcp/1.4
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1-SNAPSHOT
 mvn:commons-pool/commons-pool/1.6 
 mvn:mysql/mysql-connector-java/5.1.21 
+mvn:de.twentyeleven.skysail/ojdbc-osgi/11.1.0.7.0 
 mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 
 mvn:org.eclipse.persistence/javax.persistence/2.0.3 
 #mvn:org.eclipse.persistence/org.eclipse.persistence.osgi/2.3.0 - do not install when using gemini
