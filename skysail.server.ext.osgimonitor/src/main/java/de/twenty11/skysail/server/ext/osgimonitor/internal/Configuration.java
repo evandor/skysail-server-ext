@@ -40,17 +40,23 @@ public class Configuration implements ManagedService {
     private Server server;
     private ComponentContext context;
 
+    // private ServiceRegistration registration;
+
     protected void activate(ComponentContext ctxt) {
         logger.info("Activating Skysail Ext DbViewer Configuration Component");
         this.context = ctxt;
         if (startStandaloneServer()) {
             String port = "8554";// configService.getString(Constants.STANDALONE_PORT, "8554");
             logger.info("Starting standalone dbviewer server on port {}", port);
-            dbViewerComponent = new OsgiMonitorComponent();
+            dbViewerComponent = new OsgiMonitorComponent(ctxt);
             startStandaloneServer(port);
         }
         // not standalone: see restlet book chapter 3.5.6
+        // VirtualHost virtualHost = createVirtualHost();
+        // this.registration = ctxt.getBundleContext().registerService("org.restlet.routing.VirtualHost", virtualHost,
+        // null);
     }
+
 
     protected void deactivate(ComponentContext ctxt) {
         this.context = null;
@@ -58,6 +64,9 @@ public class Configuration implements ManagedService {
             server.stop();
         } catch (Exception e) {
             logger.error("Exception when trying to stop standalone server", e);
+        }
+        if (dbViewerComponent != null && dbViewerComponent.getRegistration() != null) {
+            dbViewerComponent.getRegistration().unregister();
         }
     }
 

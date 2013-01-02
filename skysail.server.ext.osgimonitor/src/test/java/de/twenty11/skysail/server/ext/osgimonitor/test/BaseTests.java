@@ -12,7 +12,6 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-import org.mockito.Mockito;
 import org.restlet.Application;
 import org.restlet.Request;
 import org.restlet.Restlet;
@@ -37,7 +36,7 @@ public class BaseTests {
     protected ObjectMapper mapper = new ObjectMapper();
     
     protected OsgiMonitorViewerApplication setUpRestletApplication() throws ClassNotFoundException {
-        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent();
+        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(null);
         osgiMonitorViewerApplication = osgiMonitorComponent.getApplication();
 
         //OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);

@@ -15,6 +15,7 @@
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 \
  -Dfelix.fileinstall.dir=../../../target,../config \
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \
+ -Dfelix.fileinstall.start.level=4 \
  -Dfelix.fileinstall.noInitialDelay=true \
  -Dfelix.fileinstall.poll=1000 \
  -Dfelix.fileinstall.log.level=4 \

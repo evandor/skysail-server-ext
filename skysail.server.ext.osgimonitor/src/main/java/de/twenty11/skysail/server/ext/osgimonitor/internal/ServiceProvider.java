@@ -39,7 +39,7 @@ public class ServiceProvider {
         if (startStandaloneServer()) {
             String port = configService.getString(Constants.STANDALONE_PORT, "8554");
             logger.info("starting standalone dbviewer server on port {}", port);
-            osgiMonitorComponent = new OsgiMonitorComponent();
+            osgiMonitorComponent = new OsgiMonitorComponent(null);
             startStandaloneServer(port);
         }
     }
