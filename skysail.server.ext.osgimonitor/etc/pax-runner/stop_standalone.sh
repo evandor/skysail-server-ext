@@ -4,7 +4,7 @@
 #######################################################################################################
 
 ### --log=WARNING \
-PID=$(cat osgimonitor.pid)
+PID=$(cat skysail-osgimonitor/osgimonitor.pid)
 kill -9 $PID
 
 

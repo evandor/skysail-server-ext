@@ -103,6 +103,7 @@
 									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor" filemode="775">
 										<include name="run_standalone.sh" />
 										<include name="run_standalone.setup" />
+										<include name="stop_standalone.sh" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/conf">
 										<include name="logback.xml" />
