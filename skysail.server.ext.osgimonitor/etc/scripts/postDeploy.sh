@@ -6,6 +6,9 @@ cp skysail-*.zip /home/carsten/paxrunner/pax-runner-1.7.6/
 cp *.zip /var/www/skysail/
 
 cd /home/carsten/paxrunner/pax-runner-1.7.6/
+
+./skysail-osgimonitor/stop_standalone.sh
+
 rm -rf unzip skysail-osgimonitor
 unzip skysail-osgimonitor.zip
 cd skysail-osgimonitor

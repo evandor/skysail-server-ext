@@ -11,9 +11,6 @@
 # -DGEMINI_DEBUG" \
 # --clean \
 #  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 \
-PID=$(cat osgimonitor.pid)
-kill -9 $PID
-
 
 ../bin/pax-run.sh \
 --log=DEBUG \
