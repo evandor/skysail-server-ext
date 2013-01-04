@@ -20,7 +20,7 @@ public class App {
 		Dependency dependency = new Dependency(new DefaultArtifact(
 				"org.apache.maven:maven-profile:2.2.1"), "compile");
 		RemoteRepository central = new RemoteRepository("central", "default",
-				"http://repo1.maven.org/maven2/");
+				"http://repo1.maven.org/maven2/"); // repo1.maven.org
 
 		CollectRequest collectRequest = new CollectRequest();
 		collectRequest.setRoot(dependency);
@@ -29,7 +29,6 @@ public class App {
 				collectRequest).getRoot();
 
 		DependencyRequest dependencyRequest = new DependencyRequest(node, null);
-
 		repoSystem.resolveDependencies(session, dependencyRequest);
 
 		PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();

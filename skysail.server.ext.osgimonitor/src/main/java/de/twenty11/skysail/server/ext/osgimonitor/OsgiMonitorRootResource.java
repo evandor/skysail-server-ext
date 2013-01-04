@@ -33,7 +33,7 @@ public class OsgiMonitorRootResource extends ListServerResource<ResourceDetails>
     @Override
     @Get
     public Response<List<ResourceDetails>> getMethods() {
-        return getEntities(allMethods(), "skysail osgimonitor application (0.1.1-SNAPSHOT): listing all entry points");
+        return getEntities(allMethods(), "skysail osgimonitor application (x.y.z-SNAPSHOT): listing all entry points");
     }
 
     private List<ResourceDetails> allMethods() {

@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.ext.osgimonitor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -10,7 +9,11 @@ import java.util.Map;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
+import org.restlet.Application;
+import org.restlet.representation.Representation;
+import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +23,7 @@ import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
 import de.twenty11.skysail.common.graphs.Graph;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.Activator;
+import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**
@@ -35,7 +39,7 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
 public class BundlesResource extends ListServerResource<BundleDetails> implements RestfulBundles {
 
     /** slf4j based logger implementation */
-    private static Logger logger = LoggerFactory.getLogger(BundlesResource.class);
+    //private static Logger logger = LoggerFactory.getLogger(BundlesResource.class);
 
     public BundlesResource() {
         setName("osgimonitor bundles resource");
@@ -48,6 +52,17 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
         return getEntities(allBundles(), "all Bundles");
     }
 
+    @Post
+    public Representation install(String location) {
+    	String prefix = "prefix";
+    	if (!location.startsWith(prefix)) {
+        	return new StringRepresentation("location didn't start with '"+prefix+"'");
+    	}
+    	OsgiMonitorViewerApplication application = (OsgiMonitorViewerApplication)getApplication();
+    	//application
+    	return new StringRepresentation("success");
+    }
+    
     private List<BundleDetails> allBundles() {
         List<BundleDetails> result = new ArrayList<BundleDetails>();
         List<Bundle> bundles = Activator.getBundles();
