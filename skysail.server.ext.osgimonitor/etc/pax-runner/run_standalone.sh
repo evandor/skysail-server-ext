@@ -7,6 +7,12 @@
 # You need to configure the path to your local pax-runner installation in the first line!             #
 #######################################################################################################
 
+
+#### change in bin/pax-run.sh:
+###PID=$!
+###echo $PID > osgimonitor2.pid
+
+
 ### --log=WARNING \
 # -DGEMINI_DEBUG" \
 # --clean \
