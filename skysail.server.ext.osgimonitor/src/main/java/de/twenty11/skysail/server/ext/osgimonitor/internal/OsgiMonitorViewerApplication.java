@@ -60,7 +60,7 @@ public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
     // TODO proper place for this here? what about multiple instances?
     protected void attach() {
         if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
-            new UrlMappingServiceListener(this);
+            urlMappingServiceListener = new UrlMappingServiceListener(this);
             //new SkysailApplicationServiceListener(this);
         }
     }
