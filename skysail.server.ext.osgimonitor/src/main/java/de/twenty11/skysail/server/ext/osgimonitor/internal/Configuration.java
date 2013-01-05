@@ -69,26 +69,31 @@ public class Configuration implements ManagedService {
             org.osgi.service.cm.Configuration secrets;
             MapVerifier verifier = new MapVerifier();
             try {
-                secrets = configadmin.getConfiguration("secrets");
-                Dictionary secretsProperties = secrets.getProperties();
-                Enumeration keys = secretsProperties.keys();
-                while (keys.hasMoreElements()) {
-                    String key = (String) keys.nextElement();
-                    if (key.startsWith("user.")) {
-                        String passCandidate = (String) secretsProperties.get(key);
-                        if (!passCandidate.startsWith("password.")) {
-                            continue;
-                        }
-                        verifier.getLocalSecrets().put(key.substring("user.".length()),
-                                passCandidate.substring("password.".length()).toCharArray());
-                    }
-                }
+                setSecretVerifier(verifier);
             } catch (IOException e) {
                 throw new ConfigurationException("secrets", "file not found", e);
             }
             logger.info("Starting standalone dbviewer server on port {}", port);
             restletComponent = new OsgiMonitorComponent(this.context, verifier);
             startStandaloneServer(port);
+        }
+    }
+
+    private void setSecretVerifier(MapVerifier verifier) throws IOException {
+        org.osgi.service.cm.Configuration secrets;
+        secrets = configadmin.getConfiguration("secrets");
+        Dictionary secretsProperties = secrets.getProperties();
+        Enumeration keys = secretsProperties.keys();
+        while (keys.hasMoreElements()) {
+            String key = (String) keys.nextElement();
+            if (key.startsWith("user.")) {
+                String passCandidate = (String) secretsProperties.get(key);
+                if (!passCandidate.startsWith("password.")) {
+                    continue;
+                }
+                verifier.getLocalSecrets().put(key.substring("user.".length()),
+                        passCandidate.substring("password.".length()).toCharArray());
+            }
         }
     }
 

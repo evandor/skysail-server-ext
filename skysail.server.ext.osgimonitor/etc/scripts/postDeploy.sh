@@ -11,6 +11,11 @@ cd /home/carsten/paxrunner/pax-runner-1.7.6/
 
 rm -rf unzip skysail-osgimonitor
 unzip skysail-osgimonitor.zip
+
+### copy secrets
+cp secrets.cfg skysail-osgimonitor/conf
+
+### run standalone
 cd skysail-osgimonitor
 ./run_standalone.sh
 
