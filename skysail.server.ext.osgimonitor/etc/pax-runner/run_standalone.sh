@@ -28,7 +28,7 @@
  -Dfelix.fileinstall.log.level=4 \
  -Dlogback.configurationFile=../../../src/main/resources/logback.xml \
  -Dorg.apache.felix.log.storeDebug=true" \
-scan-file:file:run_standalone.setup &
+scan-file:file:run_standalone.setup 
 
 PID=$!
 echo $PID > osgimonitor.pid

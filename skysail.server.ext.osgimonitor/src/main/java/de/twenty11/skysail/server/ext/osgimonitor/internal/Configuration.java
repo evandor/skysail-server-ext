@@ -85,6 +85,10 @@ public class Configuration implements ManagedService {
     private void setSecretVerifier(MapVerifier verifier) throws IOException {
         org.osgi.service.cm.Configuration secrets;
         logger.info("gettings 'secrets' configuration...");
+        if (configadmin == null) {
+            logger.error("configadmin is not set, cannot proceed with configuration; no one will be able to log in!");
+            return;
+        }
         secrets = configadmin.getConfiguration("secrets");
         if (secrets == null) {
             logger.error("could not find 'secrets' configuration; no one will be able to log in!");
@@ -107,6 +111,7 @@ public class Configuration implements ManagedService {
     }
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
+        logger.info("setting configadmin in OsgiMonitor Configuration");
         this.configadmin = configadmin;
     }
 
