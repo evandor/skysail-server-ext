@@ -68,6 +68,7 @@ public class Configuration implements ManagedService {
         Dictionary config = getDefaultConfig();// properties == null ? getDefaultConfig() : properties;
         if (startStandaloneServer()) {
             String port = (String) config.get("port");
+            logger.info("port was configured on {}", port);
             MapVerifier verifier = new MapVerifier();
             try {
                 setSecretVerifier(verifier);
@@ -85,6 +86,10 @@ public class Configuration implements ManagedService {
         org.osgi.service.cm.Configuration secrets;
         logger.info("gettings 'secrets' configuration...");
         secrets = configadmin.getConfiguration("secrets");
+        if (secrets == null) {
+            logger.error("could not find 'secrets' configuration; no one will be able to log in!");
+            return;
+        }
         Dictionary secretsProperties = secrets.getProperties();
         Enumeration keys = secretsProperties.keys();
         while (keys.hasMoreElements()) {
