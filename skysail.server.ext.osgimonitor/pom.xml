@@ -105,10 +105,10 @@
 										<include name="run_standalone.setup" />
 										<include name="stop_standalone.sh" />
 									</zipfileset>
-									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/conf">
+									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/config">
 										<include name="logback.xml" />
 									</zipfileset>
-									<zipfileset dir="conf/prod" prefix="skysail-osgimonitor/conf">
+									<zipfileset dir="conf/prod" prefix="skysail-osgimonitor/config">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
