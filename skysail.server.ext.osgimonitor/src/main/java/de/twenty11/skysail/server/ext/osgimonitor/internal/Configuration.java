@@ -65,7 +65,7 @@ public class Configuration implements ManagedService {
     @Override
     public synchronized void updated(Dictionary properties) throws ConfigurationException {
         logger.info("Configuring Skysail Ext Osgimonitor...");
-        Dictionary config = getDefaultConfig();// properties == null ? getDefaultConfig() : properties;
+        Dictionary config = properties == null ? getDefaultConfig() : properties;
         if (startStandaloneServer()) {
             String port = (String) config.get("port");
             logger.info("port was configured on {}", port);
@@ -96,6 +96,10 @@ public class Configuration implements ManagedService {
             return;
         }
         Dictionary secretsProperties = secrets.getProperties();
+        if (secretsProperties == null || secretsProperties.keys() == null) {
+            logger.error("secretProperties is null or empty; no one will be able to log in!");
+            return;
+        }
         Enumeration keys = secretsProperties.keys();
         while (keys.hasMoreElements()) {
             String key = (String) keys.nextElement();

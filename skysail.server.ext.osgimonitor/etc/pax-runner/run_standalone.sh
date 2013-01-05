@@ -19,7 +19,7 @@
 #  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 \
 
 ../bin/pax-run.sh \
---log=DEBUG \
+--log=INFO \
 --vmOptions="\
  -Dfelix.fileinstall.dir=../config \
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \

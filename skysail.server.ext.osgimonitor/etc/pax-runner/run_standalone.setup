@@ -58,7 +58,7 @@ mvn:org.jboss.logging/jboss-logging/3.1.2.GA
 ### --------------------
  
 mvn:commons-dbcp/commons-dbcp/1.4 
-mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1-SNAPSHOT
+mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1-SNAPSHOT@nostart
 mvn:commons-pool/commons-pool/1.6 
 mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 
 mvn:org.eclipse.persistence/javax.persistence/2.0.3 
