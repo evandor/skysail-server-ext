@@ -65,17 +65,17 @@ public class Configuration implements ManagedService {
     @Override
     public synchronized void updated(Dictionary properties) throws ConfigurationException {
         logger.info("Configuring Skysail Ext Osgimonitor...");
-        Dictionary config = properties == null ? getDefaultConfig() : properties;
+        Dictionary config = getDefaultConfig();// properties == null ? getDefaultConfig() : properties;
         if (startStandaloneServer()) {
             String port = (String) config.get("port");
             MapVerifier verifier = new MapVerifier();
             try {
                 setSecretVerifier(verifier);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
                 throw new ConfigurationException("secrets", "file not found", e);
             }
-            logger.info("Starting standalone dbviewer server on port {}", port);
+            logger.info("Starting standalone osgimonitor server on port {}", port);
             restletComponent = new OsgiMonitorComponent(this.context, verifier);
             startStandaloneServer(port);
         }
@@ -83,6 +83,7 @@ public class Configuration implements ManagedService {
 
     private void setSecretVerifier(MapVerifier verifier) throws IOException {
         org.osgi.service.cm.Configuration secrets;
+        logger.info("gettings 'secrets' configuration...");
         secrets = configadmin.getConfiguration("secrets");
         Dictionary secretsProperties = secrets.getProperties();
         Enumeration keys = secretsProperties.keys();
@@ -93,6 +94,7 @@ public class Configuration implements ManagedService {
                 if (!passCandidate.startsWith("password.")) {
                     continue;
                 }
+                logger.info("setting password for user {}", key.substring("user.".length()));
                 verifier.getLocalSecrets().put(key.substring("user.".length()),
                         passCandidate.substring("password.".length()).toCharArray());
             }
