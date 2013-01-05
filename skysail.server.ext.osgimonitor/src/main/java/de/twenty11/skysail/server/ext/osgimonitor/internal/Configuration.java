@@ -71,7 +71,10 @@ public class Configuration implements ManagedService {
             logger.info("port was configured on {}", port);
             MapVerifier verifier = new MapVerifier();
             try {
-                setSecretVerifier(verifier);
+                if (!setSecretVerifier(verifier)) {
+                    logger.warn("not starting up the application due to encountered configuration problems.");
+                    return;
+                }
             } catch (Exception e) {
                 logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
                 e.printStackTrace();
@@ -83,22 +86,22 @@ public class Configuration implements ManagedService {
         }
     }
 
-    private void setSecretVerifier(MapVerifier verifier) throws IOException {
+    private boolean setSecretVerifier(MapVerifier verifier) throws IOException {
         org.osgi.service.cm.Configuration secrets;
         logger.info("gettings 'secrets' configuration...");
         if (configadmin == null) {
             logger.error("configadmin is not set, cannot proceed with configuration; no one will be able to log in!");
-            return;
+            return false;
         }
         secrets = configadmin.getConfiguration("secrets");
         if (secrets == null) {
             logger.error("could not find 'secrets' configuration; no one will be able to log in!");
-            return;
+            return false;
         }
         Dictionary secretsProperties = secrets.getProperties();
         if (secretsProperties == null || secretsProperties.keys() == null) {
             logger.error("secretProperties is null or empty; no one will be able to log in!");
-            return;
+            return false;
         }
         Enumeration keys = secretsProperties.keys();
         while (keys.hasMoreElements()) {
@@ -113,6 +116,7 @@ public class Configuration implements ManagedService {
                         passCandidate.substring("password.".length()).toCharArray());
             }
         }
+        return true;
     }
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
