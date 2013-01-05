@@ -80,6 +80,6 @@ mvn:org.javassist/javassist/3.17.1-GA
 -Dfelix.fileinstall.noInitialDelay=true 
 -Dfelix.fileinstall.poll=1000 
 -Dfelix.fileinstall.log.level=4 
--Dlogback.configurationFile=../../../src/main/resources/logback.xml 
+-Dlogback.configurationFile=../config/logback.xml 
 -Dorg.apache.felix.log.storeDebug=true 
 
