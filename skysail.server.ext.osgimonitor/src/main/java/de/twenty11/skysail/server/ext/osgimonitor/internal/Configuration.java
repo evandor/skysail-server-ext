@@ -74,6 +74,7 @@ public class Configuration implements ManagedService {
                 setSecretVerifier(verifier);
             } catch (Exception e) {
                 logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
+                e.printStackTrace();
                 throw new ConfigurationException("secrets", "file not found", e);
             }
             logger.info("Starting standalone osgimonitor server on port {}", port);
