@@ -22,6 +22,7 @@ import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
 import org.restlet.routing.VirtualHost;
+import org.restlet.security.SecretVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +48,7 @@ public class OsgiMonitorComponent extends Component {
 	 * @param ctxt
 	 * 
 	 */
-	public OsgiMonitorComponent(ComponentContext ctxt) {
+    public OsgiMonitorComponent(ComponentContext ctxt, SecretVerifier verifier) {
 		getClients().add(Protocol.CLAP);
 		getClients().add(Protocol.HTTP);
 
@@ -55,6 +56,8 @@ public class OsgiMonitorComponent extends Component {
 		logger.info("new restlet application: {}",
 				OsgiMonitorViewerApplication.class.getName());
 		application = new OsgiMonitorViewerApplication("/static");
+
+        application.setVerifier(verifier);
 
 		// Attach the application to the component and start it
 		logger.info("attaching application and starting {}", this.toString());

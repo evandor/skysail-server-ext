@@ -61,9 +61,8 @@ public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
     protected void attach() {
         if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
             urlMappingServiceListener = new UrlMappingServiceListener(this);
-            //new SkysailApplicationServiceListener(this);
+            // new SkysailApplicationServiceListener(this);
         }
     }
-
 
 }

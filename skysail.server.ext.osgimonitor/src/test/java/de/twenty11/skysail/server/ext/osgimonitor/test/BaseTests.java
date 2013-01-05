@@ -36,7 +36,7 @@ public class BaseTests {
     protected ObjectMapper mapper = new ObjectMapper();
     
     protected OsgiMonitorViewerApplication setUpRestletApplication() throws ClassNotFoundException {
-        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(null);
+        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(null, null);
         osgiMonitorViewerApplication = osgiMonitorComponent.getApplication();
 
         //OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
