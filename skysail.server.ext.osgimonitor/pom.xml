@@ -101,9 +101,8 @@
 									<!-- -${project.version} -->
 								<zip destfile="target/skysail-osgimonitor.zip" encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor" filemode="775">
-										<include name="run_standalone.sh" />
-										<include name="run_standalone.setup" />
-										<include name="stop_standalone.sh" />
+										<include name="rund.sh" />
+										<include name="rund.setup" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/config">
 										<include name="logback.xml" />

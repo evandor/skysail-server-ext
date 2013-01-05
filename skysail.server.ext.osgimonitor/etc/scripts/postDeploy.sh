@@ -7,7 +7,7 @@ cp *.zip /var/www/skysail/
 
 cd /home/carsten/paxrunner/pax-runner-1.8.5/
 
-./skysail-osgimonitor/stop_standalone.sh
+###./skysail-osgimonitor/stop_standalone.sh
 
 rm -rf unzip skysail-osgimonitor
 unzip skysail-osgimonitor.zip
@@ -18,7 +18,7 @@ cp de.twenty11.skysail.server.ext.osgimonitor.cfg skysail-osgimonitor/config
 
 ### run standalone
 cd skysail-osgimonitor
-./run_standalone.sh
+./rund.sh
 
 ### doing this to avoid build failure on jenkins
 cd
