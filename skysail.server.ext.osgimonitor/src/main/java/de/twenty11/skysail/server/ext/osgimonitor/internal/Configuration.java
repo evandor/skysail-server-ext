@@ -50,7 +50,9 @@ public class Configuration implements ManagedService {
         logger.info("Deactivating Skysail Ext Osgimonitor Configuration Component");
         this.context = null;
         try {
-            server.stop();
+            if (server != null) {
+                server.stop();
+            }
         } catch (Exception e) {
             logger.error("Exception when trying to stop standalone server", e);
         }
@@ -66,11 +68,11 @@ public class Configuration implements ManagedService {
         Dictionary config = properties == null ? getDefaultConfig() : properties;
         if (startStandaloneServer()) {
             String port = (String) config.get("port");
-            org.osgi.service.cm.Configuration secrets;
             MapVerifier verifier = new MapVerifier();
             try {
                 setSecretVerifier(verifier);
             } catch (IOException e) {
+                logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
                 throw new ConfigurationException("secrets", "file not found", e);
             }
             logger.info("Starting standalone dbviewer server on port {}", port);
