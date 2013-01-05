@@ -41,7 +41,7 @@ mvn:org.restlet.osgi/org.restlet.ext.json/2.1.0
 ### config admin
 ### ------------------
 
-mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0 
+mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0@3 
 
 ### --------------------
 ### declarative services

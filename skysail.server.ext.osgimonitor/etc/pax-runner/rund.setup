@@ -39,7 +39,7 @@ mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.1-SNAPSHOT@update
 ### config admin
 ### ------------------
 
-mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0 
+mvn:org.apache.felix/org.apache.felix.configadmin/1.4.0@3
 
 ### --------------------
 ### declarative services
