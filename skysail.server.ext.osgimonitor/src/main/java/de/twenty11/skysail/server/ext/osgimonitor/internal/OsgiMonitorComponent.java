@@ -45,17 +45,17 @@ public class OsgiMonitorComponent extends Component {
 	private ServiceRegistration registration;
 
 	/**
-	 * @param ctxt
+	 * @param componentContext
 	 * 
 	 */
-    public OsgiMonitorComponent(ComponentContext ctxt, SecretVerifier verifier) {
+    public OsgiMonitorComponent(ComponentContext componentContext, SecretVerifier verifier) {
 		getClients().add(Protocol.CLAP);
 		getClients().add(Protocol.HTTP);
 
 		// Create a restlet application
 		logger.info("new restlet application: {}",
 				OsgiMonitorViewerApplication.class.getName());
-		application = new OsgiMonitorViewerApplication("/static");
+        application = new OsgiMonitorViewerApplication("/static", componentContext.getBundleContext());
 
         application.setVerifier(verifier);
 
@@ -63,9 +63,9 @@ public class OsgiMonitorComponent extends Component {
 		logger.info("attaching application and starting {}", this.toString());
 		getDefaultHost().attachDefault(application);
 
-		if (ctxt != null) {
+		if (componentContext != null) {
 			VirtualHost virtualHost = createVirtualHost();
-			this.registration = ctxt.getBundleContext().registerService(
+			this.registration = componentContext.getBundleContext().registerService(
 					"org.restlet.routing.VirtualHost", virtualHost, null);
 		}
 

@@ -17,6 +17,7 @@
 
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -34,12 +35,14 @@ public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
 
     /**
      * @param staticPathTemplate
+     * @param bundleContext
      */
-    public OsgiMonitorViewerApplication(String staticPathTemplate) {
+    public OsgiMonitorViewerApplication(String staticPathTemplate, BundleContext bundleContext) {
         super(OsgiMonitorApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         self = this;
+        setBundleContext(bundleContext);
     }
 
     /**

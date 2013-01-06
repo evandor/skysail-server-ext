@@ -86,6 +86,11 @@ public class Configuration implements ManagedService {
         }
     }
 
+    public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
+        logger.info("setting configadmin in OsgiMonitor Configuration");
+        this.configadmin = configadmin;
+    }
+
     private boolean setSecretVerifier(MapVerifier verifier) throws IOException {
         org.osgi.service.cm.Configuration secrets;
         logger.info("gettings 'secrets' configuration...");
@@ -117,11 +122,6 @@ public class Configuration implements ManagedService {
             }
         }
         return true;
-    }
-
-    public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
-        logger.info("setting configadmin in OsgiMonitor Configuration");
-        this.configadmin = configadmin;
     }
 
     @SuppressWarnings("rawtypes")

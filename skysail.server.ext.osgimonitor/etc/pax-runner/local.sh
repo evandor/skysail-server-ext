@@ -13,7 +13,7 @@
 --log=DEBUG \
 --clean \
 --vmOptions="\
- -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
+ -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 \
  -Dfelix.fileinstall.dir=../../../target,../../../../../skysail-common/skysail.common.ext.osgimonitor/target,../config \
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \
  -Dfelix.fileinstall.noInitialDelay=true \

@@ -1,6 +1,8 @@
 package de.twenty11.skysail.server.ext.osgimonitor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -8,21 +10,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.restlet.Application;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
 import de.twenty11.skysail.common.graphs.Graph;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.Activator;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -35,11 +35,13 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * what is needed to actually connect to a datasource.
  * 
  */
-@Graph(nodesPath="/osgimonitor/bundles", edgesPath="/osgimonitor/services")
+@Graph(nodesPath = "/osgimonitor/bundles", edgesPath = "/osgimonitor/services")
 public class BundlesResource extends ListServerResource<BundleDetails> implements RestfulBundles {
 
+    private List<Bundle> bundles;
+
     /** slf4j based logger implementation */
-    //private static Logger logger = LoggerFactory.getLogger(BundlesResource.class);
+    // private static Logger logger = LoggerFactory.getLogger(BundlesResource.class);
 
     public BundlesResource() {
         setName("osgimonitor bundles resource");
@@ -52,25 +54,38 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
         return getEntities(allBundles(), "all Bundles");
     }
 
+    @Override
+    protected void doInit() throws ResourceException {
+        // BundleContext bundleContext = (BundleContext) getContext().getAttributes().get(
+        // OsgiMonitorViewerApplication.class.getName() + ".bundleContext");
+        OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
+        BundleContext bundleContext = app.getBundleContext();
+        if (bundleContext == null) {
+            bundles = Collections.emptyList();
+        } else {
+            bundles = Arrays.asList(bundleContext.getBundles());
+        }
+    }
+
     @Post
     public Representation install(String location) {
-    	String prefix = "prefix";
-    	if (!location.startsWith(prefix)) {
-        	return new StringRepresentation("location didn't start with '"+prefix+"'");
-    	}
-    	OsgiMonitorViewerApplication application = (OsgiMonitorViewerApplication)getApplication();
-    	//application
-    	return new StringRepresentation("success");
+        String prefix = "prefix";
+        if (!location.startsWith(prefix)) {
+            return new StringRepresentation("location didn't start with '" + prefix + "'");
+        }
+        OsgiMonitorViewerApplication application = (OsgiMonitorViewerApplication) getApplication();
+        // application
+        return new StringRepresentation("success");
     }
-    
+
     private List<BundleDetails> allBundles() {
         List<BundleDetails> result = new ArrayList<BundleDetails>();
-        List<Bundle> bundles = Activator.getBundles();
+        // List<Bundle> bundles = Activator.getBundles();
         for (Bundle bundle : bundles) {
             BundleDetails bundleDetail = new BundleDetails();
             bundleDetail.setSymbolicName(bundle.getLocation());
             bundleDetail.setBundleId(bundle.getBundleId());
-            //bundleDetail.setHeaders(getDetails(bundle.getHeaders()));
+            // bundleDetail.setHeaders(getDetails(bundle.getHeaders()));
             bundleDetail.setLastModified(bundle.getLastModified());
             bundleDetail.setRegisteredServices(getDetails(bundle.getRegisteredServices()));
             bundleDetail.setServicesInUse(getDetails(bundle.getServicesInUse()));
