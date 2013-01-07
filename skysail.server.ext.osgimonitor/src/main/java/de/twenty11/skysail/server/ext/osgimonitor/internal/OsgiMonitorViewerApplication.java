@@ -31,8 +31,6 @@ import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
  */
 public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
 
-    private static OsgiMonitorViewerApplication self;
-
     /**
      * @param staticPathTemplate
      * @param bundleContext
@@ -41,18 +39,7 @@ public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
         super(OsgiMonitorApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
-        self = this;
         setBundleContext(bundleContext);
-    }
-
-    /**
-     * this is done to give osgi a chance to inject serives to restlet; should be changed to some javax.inject approach
-     * (like using InjectedServerResource) once this is available.
-     * 
-     * @return
-     */
-    public static OsgiMonitorViewerApplication get() {
-        return self;
     }
 
     @Override

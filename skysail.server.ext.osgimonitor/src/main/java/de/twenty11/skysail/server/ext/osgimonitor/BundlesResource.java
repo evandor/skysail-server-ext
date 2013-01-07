@@ -12,8 +12,10 @@ import java.util.Map;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
+import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
+import org.restlet.representation.Variant;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
@@ -49,7 +51,7 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
     }
 
     @Override
-    @Get
+    @Get("html")
     public Response<List<BundleDetails>> getBundles() {
         return getEntities(allBundles(), "all Bundles");
     }
@@ -58,6 +60,7 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
     protected void doInit() throws ResourceException {
         // BundleContext bundleContext = (BundleContext) getContext().getAttributes().get(
         // OsgiMonitorViewerApplication.class.getName() + ".bundleContext");
+        getVariants().add(new Variant(MediaType.TEXT_HTML));
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
         BundleContext bundleContext = app.getBundleContext();
         if (bundleContext == null) {

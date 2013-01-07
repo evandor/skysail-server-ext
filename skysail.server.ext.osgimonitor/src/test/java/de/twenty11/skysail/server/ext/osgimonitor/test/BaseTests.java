@@ -12,6 +12,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
 import org.restlet.Request;
 import org.restlet.Restlet;
@@ -21,6 +22,7 @@ import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ServerResource;
+import org.restlet.security.MapVerifier;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.responses.Response;
@@ -35,8 +37,11 @@ public class BaseTests {
     protected Restlet inboundRoot;
     protected ObjectMapper mapper = new ObjectMapper();
     
-    protected OsgiMonitorViewerApplication setUpRestletApplication() throws ClassNotFoundException {
-        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(null, null);
+    protected OsgiMonitorViewerApplication setUpRestletApplication(ComponentContext componentContext)
+            throws ClassNotFoundException {
+        MapVerifier secretVerifier = new MapVerifier();
+        secretVerifier.getLocalSecrets().put("testadmin", "testpassword".toCharArray());
+        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContext, secretVerifier);
         osgiMonitorViewerApplication = osgiMonitorComponent.getApplication();
 
         //OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
@@ -88,7 +93,8 @@ public class BaseTests {
     }
 
     protected org.restlet.Response handleRequest(Request request) {
-        ChallengeResponse authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "scott", "tiger");
+        ChallengeResponse authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "testadmin",
+                "testpassword");
         request.setChallengeResponse(authentication);
         org.restlet.Response response = new org.restlet.Response(request);
         inboundRoot.handle(request, response);

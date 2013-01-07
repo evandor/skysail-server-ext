@@ -3,12 +3,14 @@ package de.twenty11.skysail.server.ext.osgimonitor.test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
@@ -21,7 +23,8 @@ public class BundlesResourceTest extends BaseTests {
 
 	@Before
     public void setUp() throws Exception {
-        OsgiMonitorViewerApplication spy = setUpRestletApplication();
+        ComponentContext componentContextMock = mock(ComponentContext.class);
+        OsgiMonitorViewerApplication spy = setUpRestletApplication(componentContextMock);
         resource = new BundlesResource();
     }
     
