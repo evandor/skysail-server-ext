@@ -13,6 +13,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.restlet.data.MediaType;
+import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
@@ -53,6 +54,7 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
     @Override
     @Get("html")
     public Response<List<BundleDetails>> getBundles() {
+    	getVariants(Method.GET);
         return getEntities(allBundles(), "all Bundles");
     }
 
