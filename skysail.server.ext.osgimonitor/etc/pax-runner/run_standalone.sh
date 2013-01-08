@@ -1,10 +1,7 @@
 #!/bin/bash
 
 #######################################################################################################
-# Meant to be used for testing during development. Navigate to pax-runner folder of your checked-out  #
-# skysail project and run local.sh in a terminal                                                      #
-#                                                                                                     #
-# You need to configure the path to your local pax-runner installation in the first line!             #
+# to delete                                                                                           #
 #######################################################################################################
 
 

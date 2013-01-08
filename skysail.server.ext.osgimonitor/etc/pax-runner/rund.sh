@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #######################################################################################################
-# Meant to be used for continuous deployment                                                          #
+# Meant to be used for continuous deployment on linux box                                             #
 #######################################################################################################
 
 ### stop existing daemon
