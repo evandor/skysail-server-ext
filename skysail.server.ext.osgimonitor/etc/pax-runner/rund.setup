@@ -12,8 +12,8 @@ mvn:org.slf4j/jul-to-slf4j/1.6.4
 ### skysail common and dependencies 
 ### -------------------------------
 
-mvn:de.twentyeleven.skysail/skysail.common/0.3.9-SNAPSHOT@update
-mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.1-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.common/0.3.10@update
+mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.3@update
 mvn:commons-lang/commons-lang/2.6
 mvn:org.codehaus.jackson/jackson-core-lgpl/1.9.5
 mvn:org.codehaus.jackson/jackson-mapper-lgpl/1.9.5
@@ -25,7 +25,7 @@ mvn:com.thoughtworks.xstream/com.springsource.com.thoughtworks.xstream/1.3.1
 ### skysail server and dependencies 
 ### -------------------------------
 
-mvn:de.twentyeleven.skysail/skysail.server/0.2.7-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.server/0.2.7@update
 ###mvn:de.twentyeleven.skysail/skysail.server.management/0.0.1-SNAPSHOT@update
 mvn:org.codehaus.jettison/com.springsource.org.codehaus.jettison/1.0.1
 mvn:org.restlet.osgi/org.restlet/2.1.0
@@ -33,7 +33,7 @@ mvn:org.restlet.osgi/org.restlet.ext.xml/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.jackson/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.xstream/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.json/2.1.0
-mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.1-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.1@update
 
 ### ------------------
 ### config admin
