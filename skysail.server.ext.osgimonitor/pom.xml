@@ -111,6 +111,19 @@
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
+								
+								<zip destfile="target/skysail-osgimonitor-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor-${project.version}" filemode="775">
+										<include name="rund.sh" />
+										<include name="rund.setup" />
+									</zipfileset>
+									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor-${project.version}/conf">
+										<include name="logback.xml" />
+									</zipfileset>
+									<zipfileset dir="conf/prod" prefix="skysail-osgimonitor-${project.version}/conf">
+										<include name="*.*" />
+									</zipfileset>
+								</zip>
 
 							</tasks>
 						</configuration>
