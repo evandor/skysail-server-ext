@@ -26,7 +26,7 @@
 
     <properties>
         <skysail.common.version>[0.3.10, 1.0)</skysail.common.version>
-        <skysail.server.version>[0.2.7, 1.0)</skysail.server.version>
+        <skysail.server.version>[0.2.8, 1.0)</skysail.server.version>
     </properties>
 
 	<build>
