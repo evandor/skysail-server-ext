@@ -31,7 +31,7 @@ public class OsgiMonitorRootResource extends ListServerResource<ResourceDetails>
     }
     
     @Override
-    @Get
+    @Get("html|json")
     public Response<List<ResourceDetails>> getMethods() {
         return getEntities(allMethods(), "skysail osgimonitor application (x.y.z-SNAPSHOT): listing all entry points");
     }
@@ -53,7 +53,7 @@ public class OsgiMonitorRootResource extends ListServerResource<ResourceDetails>
         String from = (tr.getTemplate() == null) ? super.toString() : tr.getTemplate().getPattern();
         
         if (!from.contains("{")) { // some link we can acutally follow
-            from = getHostRef() + from + "?media=json";
+            from = getHostRef() + from;// + "?media=json";
             String to = (tr.getNext() == null) ? "null" : tr.getNext().toString();
             String desc = "no description available";
             if (tr.getNext() != null) {
