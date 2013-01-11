@@ -17,18 +17,25 @@
 
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
+import java.util.logging.Level;
+
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentContext;
+import org.restlet.Application;
 import org.restlet.Component;
+import org.restlet.Restlet;
 import org.restlet.data.Protocol;
+import org.restlet.data.Reference;
+import org.restlet.resource.Directory;
 import org.restlet.routing.VirtualHost;
 import org.restlet.security.SecretVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Concurrency note from parent class: instances of this class or its subclasses can be invoked by several threads at
- * the same time and therefore must be thread-safe. You should be especially careful when storing state in member
+ * Concurrency note from parent class: instances of this class or its subclasses
+ * can be invoked by several threads at the same time and therefore must be
+ * thread-safe. You should be especially careful when storing state in member
  * variables.
  * 
  * @author carsten
@@ -36,53 +43,61 @@ import org.slf4j.LoggerFactory;
  */
 public class OsgiMonitorComponent extends Component {
 
-    /** slf4j based logger implementation. */
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+	/** slf4j based logger implementation. */
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private OsgiMonitorViewerApplication application;
+	private OsgiMonitorViewerApplication application;
 
-    private ServiceRegistration registration;
+	private ServiceRegistration registration;
 
-    /**
-     * @param componentContext
-     * 
-     */
-    public OsgiMonitorComponent(ComponentContext componentContext, SecretVerifier verifier) {
-        getClients().add(Protocol.CLAP);
-        getClients().add(Protocol.HTTP);
+	/**
+	 * @param componentContext
+	 * 
+	 */
+	public OsgiMonitorComponent(ComponentContext componentContext,
+			SecretVerifier verifier) {
+		getClients().add(Protocol.CLAP);
+		getClients().add(Protocol.HTTP);
+		getClients().add(Protocol.FILE);
 
-        // Create a restlet application
-        logger.info("new restlet application: {}", OsgiMonitorViewerApplication.class.getName());
-        application = new OsgiMonitorViewerApplication("/static", componentContext.getBundleContext());
+		// Create a restlet application
+		logger.info("new restlet application: {}",
+				OsgiMonitorViewerApplication.class.getName());
+		application = new OsgiMonitorViewerApplication("/static",
+				componentContext.getBundleContext());
+		application.setVerifier(verifier);
 
-        application.setVerifier(verifier);
+		// Attach the application to the component and start it
+		logger.info("attaching application and starting {}", this.toString());
+		getDefaultHost().attachDefault(application);
 
-        // Attach the application to the component and start it
-        logger.info("attaching application and starting {}", this.toString());
-        getDefaultHost().attachDefault(application);
+		VirtualHost virtualHost = createVirtualHost();
+		if (componentContext.getBundleContext() != null) {
+			this.registration = componentContext.getBundleContext()
+					.registerService("org.restlet.routing.VirtualHost",
+							virtualHost, null);
+		}
 
-        VirtualHost virtualHost = createVirtualHost();
-        if (componentContext.getBundleContext() != null) {
-            this.registration = componentContext.getBundleContext().registerService("org.restlet.routing.VirtualHost",
-                    virtualHost, null);
-        }
+		String rootUri = "war:///WEB-INF/js/";//"file:///" + System.getProperty("user.home");
+		Directory directory = new Directory(getContext(), rootUri);
+		directory.setListingAllowed(true);
+		getDefaultHost().attach("/js", directory);
+	}
 
-    }
+	private VirtualHost createVirtualHost() {
+		VirtualHost vh = new VirtualHost();
+		vh.setHostDomain("127.0.0.1");
+		vh.setHostPort("2013");
+		vh.attach(this);
+		return vh;
+	}
 
-    private VirtualHost createVirtualHost() {
-        VirtualHost vh = new VirtualHost();
-        vh.setHostDomain("127.0.0.1");
-        vh.setHostPort("2013");
-        vh.attach(this);
-        return vh;
-    }
+	public ServiceRegistration getRegistration() {
+		return registration;
+	}
 
-    public ServiceRegistration getRegistration() {
-        return registration;
-    }
-
-    @Override
-    public OsgiMonitorViewerApplication getApplication() {
-        return this.application;
-    }
+	@Override
+	public OsgiMonitorViewerApplication getApplication() {
+		return this.application;
+	}
 }
