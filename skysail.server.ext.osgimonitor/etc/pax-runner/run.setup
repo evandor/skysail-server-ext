@@ -33,6 +33,12 @@ mvn:org.restlet.osgi/org.restlet.ext.jackson/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.xstream/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.json/2.1.0
 
+### -------------------------------
+### skysail server ext 
+### -------------------------------
+mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.2-SNAPSHOT@update
+
+
 ### ------------------
 ### config admin
 ### ------------------
