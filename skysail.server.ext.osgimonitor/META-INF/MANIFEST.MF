@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1357921909234
-Build-Jdk: 1.7.0_05
-Built-By: graefca
+Bnd-LastModified: 1357988537883
+Build-Jdk: 1.7.0_04
+Built-By: carsten
 Bundle-Description: This is the parent pom for all skysail maven artifac
  ts. Should be run with maven3.
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
@@ -21,14 +21,15 @@ Import-Package: de.twenty11.skysail.common;version="[0.2.0,1.0.0)",de.tw
  enty11.skysail.common.app,de.twenty11.skysail.common.ext.osgimonitor,de
  .twenty11.skysail.common.graphs,de.twenty11.skysail.common.responses,de
  .twenty11.skysail.common.selfdescription;version="[0.1.0,1.0.0)",de.twe
- nty11.skysail.server.listener,de.twenty11.skysail.server.restlet,de.twe
- nty11.skysail.server.services,javax.persistence;jpa="2.0";version="1.1.
- 0",javax.validation;version="[1.0,2)",javax.validation.spi;version="[1.
- 0,2)",org.apache.commons.dbcp;version="[1.4,2)",org.hibernate.validator
- ;version="[4.3,5)",org.json,org.osgi.framework;version="[1.5,2)",org.os
- gi.service.cm;version="[1.3,2)",org.osgi.service.component;version="[1.
- 1,2)",org.restlet,org.restlet.data,org.restlet.representation,org.restl
- et.resource,org.restlet.routing,org.restlet.security,org.restlet.util,o
- rg.slf4j;version="[1.6,2)"
+ nty11.skysail.server.directory;version="[0.1.0,1.0.0)",de.twenty11.skys
+ ail.server.listener,de.twenty11.skysail.server.restlet,de.twenty11.skys
+ ail.server.services,javax.persistence;jpa="2.0";version="1.1.0",javax.v
+ alidation;version="[1.0,2)",javax.validation.spi;version="[1.0,2)",org.
+ apache.commons.dbcp;version="[1.4,2)",org.hibernate.validator;version="
+ [4.3,5)",org.json,org.osgi.framework;version="[1.5,2)",org.osgi.service
+ .cm;version="[1.3,2)",org.osgi.service.component;version="[1.1,2)",org.
+ restlet,org.restlet.data,org.restlet.representation,org.restlet.resourc
+ e,org.restlet.routing,org.restlet.security,org.restlet.util,org.slf4j;v
+ ersion="[1.6,2)"
 Service-Component: OSGI-INF/*.xml
 Tool: Bnd-1.50.0

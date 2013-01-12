@@ -17,20 +17,20 @@
 
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
-import java.util.logging.Level;
-
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentContext;
-import org.restlet.Application;
 import org.restlet.Component;
-import org.restlet.Restlet;
+import org.restlet.data.LocalReference;
 import org.restlet.data.Protocol;
-import org.restlet.data.Reference;
 import org.restlet.resource.Directory;
+import org.restlet.routing.Router;
 import org.restlet.routing.VirtualHost;
 import org.restlet.security.SecretVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.twenty11.skysail.server.directory.ClassLoaderDirectory;
+import de.twenty11.skysail.server.directory.CompositeClassLoader;
 
 /**
  * Concurrency note from parent class: instances of this class or its subclasses
@@ -56,9 +56,13 @@ public class OsgiMonitorComponent extends Component {
 	 */
 	public OsgiMonitorComponent(ComponentContext componentContext,
 			SecretVerifier verifier) {
+
+        // Engine.getInstance().getRegisteredClients().add(new ServletWarClientHelper(null, null));
+
 		getClients().add(Protocol.CLAP);
 		getClients().add(Protocol.HTTP);
 		getClients().add(Protocol.FILE);
+        // getClients().add(Protocol.WAR);
 
 		// Create a restlet application
 		logger.info("new restlet application: {}",
@@ -77,11 +81,25 @@ public class OsgiMonitorComponent extends Component {
 					.registerService("org.restlet.routing.VirtualHost",
 							virtualHost, null);
 		}
-
-		String rootUri = "war:///WEB-INF/js/";//"file:///" + System.getProperty("user.home");
+        // String rootUri = "war:///js/"; // "file:///" + System.getProperty("user.home");
+        String rootUri = "clap://class/js/index.html";
 		Directory directory = new Directory(getContext(), rootUri);
 		directory.setListingAllowed(true);
 		getDefaultHost().attach("/js", directory);
+
+        VirtualHost defaultHost2 = getDefaultHost();
+        LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD,
+ "/");
+
+        CompositeClassLoader customCL = new CompositeClassLoader();
+        customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
+        customCL.addClassLoader(Router.class.getClassLoader());
+        customCL.addClassLoader(this.getClass().getClassLoader());
+
+        ClassLoaderDirectory directory2 = new ClassLoaderDirectory(getContext(), localReference, customCL);
+
+        defaultHost2.attach("/www", directory2);
+
 	}
 
 	private VirtualHost createVirtualHost() {
