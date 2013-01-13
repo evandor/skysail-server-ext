@@ -106,9 +106,10 @@
 								<zip destfile="target/skysail-osgimonitor.zip" encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor" filemode="775">
 										<include name="run.sh" />
+										<include name="run.composite" />
 										<include name="rund.sh" />
 										<include name="rund.setup" />
-										<include name="run.composite" />
+										<include name="rund.composite" />
 									</zipfileset>
 									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin" filemode="775">
 										<include name="*.jar" />
