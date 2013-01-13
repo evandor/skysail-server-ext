@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>skysail.server.ext.osgimonitor</artifactId>
-	<version>0.1.5-SNAPSHOT</version>
+	<version>0.1.5</version>
 	<name>skysail osgimonitor server extension</name>
 	<packaging>bundle</packaging>
 
@@ -21,7 +21,7 @@
 		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
 		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
-	  <tag>HEAD</tag>
+	  <tag>skysail.server.ext.osgimonitor-0.1.5</tag>
   </scm>
 
     <properties>
