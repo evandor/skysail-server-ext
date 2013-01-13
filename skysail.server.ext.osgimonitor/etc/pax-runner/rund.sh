@@ -9,5 +9,5 @@
 
 ### start up new one
 ../bin/pax-rund-osgimonitor.sh \
---startd scan-file:file:/home/carsten/paxrunner/pax-runner-1.8.5/skysail-osgimonitor/rund.setup \
+--startd scan-composite:file:/home/carsten/paxrunner/pax-runner-1.8.5/skysail-osgimonitor/run.composite \
 --log=INFO \

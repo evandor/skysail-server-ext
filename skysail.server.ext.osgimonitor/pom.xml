@@ -107,6 +107,7 @@
 									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor" filemode="775">
 										<include name="rund.sh" />
 										<include name="rund.setup" />
+										<include name="run.composite" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/config">
 										<include name="logback.xml" />
