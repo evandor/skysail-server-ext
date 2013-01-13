@@ -105,9 +105,13 @@
 									<!-- -${project.version} -->
 								<zip destfile="target/skysail-osgimonitor.zip" encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor" filemode="775">
+										<include name="run.sh" />
 										<include name="rund.sh" />
 										<include name="rund.setup" />
 										<include name="run.composite" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-osgimonitor/bundledefs" filemode="775">
+										<include name="*.setup" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/config">
 										<include name="logback.xml" />
@@ -122,6 +126,9 @@
 										<include name="run.sh" />
 										<include name="run.bat" />
 										<include name="run.setup" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-osgimonitor/bundledefs" filemode="775">
+										<include name="*.setup" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor-${project.version}/conf">
 										<include name="logback.xml" />
