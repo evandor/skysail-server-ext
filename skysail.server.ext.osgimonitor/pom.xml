@@ -25,14 +25,18 @@
   </scm>
 
     <properties>
-        <skysail.common.version>[0.3.11-SNAPSHOT, 1.0)</skysail.common.version>
-        <skysail.server.version>[0.2.9-SNAPSHOT, 1.0)</skysail.server.version>
+        <skysail.common.version>[0.3.12, 1.0)</skysail.common.version>
+        <skysail.server.version>[0.2.9, 1.0)</skysail.server.version>
     </properties>
 
 	<build>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>

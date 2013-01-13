@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1357988537883
+Bnd-LastModified: 1358078820208
 Build-Jdk: 1.7.0_04
 Built-By: carsten
 Bundle-Description: This is the parent pom for all skysail maven artifac
@@ -11,10 +11,10 @@ Bundle-SymbolicName: skysail.server.ext.osgimonitor
 Bundle-Version: 0.1.4.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: de.twenty11.skysail.server.ext.osgimonitor;uses:="de.twe
- nty11.skysail.common.ext.osgimonitor,org.restlet.resource,org.restlet.r
- epresentation,de.twenty11.skysail.common.responses,org.osgi.framework,d
- e.twenty11.skysail.common.graphs,org.restlet,de.twenty11.skysail.server
- .restlet,javax.validation,javax.validation.spi,org.hibernate.validator,
+ nty11.skysail.common.ext.osgimonitor,org.restlet.resource,de.twenty11.s
+ kysail.common.responses,org.osgi.framework,de.twenty11.skysail.common.g
+ raphs,org.restlet,de.twenty11.skysail.server.restlet,org.restlet.repres
+ entation,javax.validation,javax.validation.spi,org.hibernate.validator,
  org.restlet.routing,org.restlet.data,org.restlet.util,de.twenty11.skysa
  il.common.selfdescription";version="0.1.4.SNAPSHOT"
 Import-Package: de.twenty11.skysail.common;version="[0.2.0,1.0.0)",de.tw

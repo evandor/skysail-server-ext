@@ -22,7 +22,6 @@ import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 import org.restlet.data.LocalReference;
 import org.restlet.data.Protocol;
-import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
 import org.restlet.routing.VirtualHost;
 import org.restlet.security.SecretVerifier;
@@ -57,8 +56,6 @@ public class OsgiMonitorComponent extends Component {
 	public OsgiMonitorComponent(ComponentContext componentContext,
 			SecretVerifier verifier) {
 
-        // Engine.getInstance().getRegisteredClients().add(new ServletWarClientHelper(null, null));
-
 		getClients().add(Protocol.CLAP);
 		getClients().add(Protocol.HTTP);
 		getClients().add(Protocol.FILE);
@@ -81,24 +78,22 @@ public class OsgiMonitorComponent extends Component {
 					.registerService("org.restlet.routing.VirtualHost",
 							virtualHost, null);
 		}
-        // String rootUri = "war:///js/"; // "file:///" + System.getProperty("user.home");
-        String rootUri = "clap://class/js/index.html";
-		Directory directory = new Directory(getContext(), rootUri);
-		directory.setListingAllowed(true);
-		getDefaultHost().attach("/js", directory);
+        // // String rootUri = "war:///js/"; // "file:///" + System.getProperty("user.home");
+        // String rootUri = "clap://class/js/index.html";
+        // Directory directory = new Directory(getContext(), rootUri);
+        // directory.setListingAllowed(true);
+        // getDefaultHost().attach("/js", directory);
 
-        VirtualHost defaultHost2 = getDefaultHost();
-        LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD,
- "/");
+        LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
 
         CompositeClassLoader customCL = new CompositeClassLoader();
         customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
         customCL.addClassLoader(Router.class.getClassLoader());
         customCL.addClassLoader(this.getClass().getClassLoader());
 
-        ClassLoaderDirectory directory2 = new ClassLoaderDirectory(getContext(), localReference, customCL);
+        ClassLoaderDirectory staticDirectory = new ClassLoaderDirectory(getContext(), localReference, customCL);
 
-        defaultHost2.attach("/www", directory2);
+        getDefaultHost().attach("/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/static", staticDirectory);
 
 	}
 

@@ -3,20 +3,22 @@ package de.twenty11.skysail.server.ext.osgimonitor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.restlet.representation.Representation;
-import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
-import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
+import de.twenty11.skysail.common.graphs.Graph;
+import de.twenty11.skysail.common.graphs.NodeProvider;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
@@ -30,12 +32,12 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * what is needed to actually connect to a datasource.
  * 
  */
-// @Graph(nodesPath = "/osgimonitor/bundles", edgesPath = "/osgimonitor/services")
-public class BundlesResource extends ListServerResource<BundleDetails> implements RestfulBundles {
+@Graph(nodesPath = "/osgimonitor/bundles", edgesPath = "/osgimonitor/services")
+public class BundlesAsGraphResource extends ListServerResource<NodeProvider> {
 
     private List<Bundle> bundles;
 
-    public BundlesResource() {
+    public BundlesAsGraphResource() {
         setName("osgimonitor bundles resource");
         setDescription("The resource containing the list of bundles");
     }
@@ -51,27 +53,68 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
         }
     }
 
-    @Override
     @Get("html|json")
-    public Response<List<BundleDetails>> getBundles() {
-        return getEntities(allBundles(), "all Bundles");
+    public Response<List<NodeProvider>> getBundles() {
+        List<NodeProvider> allBundlesAsNodes = new ArrayList<NodeProvider>();
+        List<BundleDetails> allBundles = allBundles();
+        for (BundleDetails bundleDetails : allBundles) {
+            allBundlesAsNodes.add(bundleDetails.asNode());
+        }
+        return getEntities(allBundlesAsNodes, "all Bundles as Graph");
     }
 
-    @Post
-    public Representation install(String location) {
-        String prefix = "prefix";
-        if (!location.startsWith(prefix)) {
-            return new StringRepresentation("location didn't start with '" + prefix + "'");
-        }
-        return new StringRepresentation("success");
-    }
+    // protected Response<List<NodeProvider>> getEntities2(List<NodeProvider> data, String defaultMsg) {
+    // try {
+    // RestletOsgiApplication app = (RestletOsgiApplication) getApplication();
+    // Set<String> mappings = app.getUrlMappingServiceListener() != null ? app.getUrlMappingServiceListener()
+    // .getMappings() : null;
+    // Reference ref = getReference();
+    //
+    // for (NodeProvider payload : data) {
+    // if (payload instanceof DetailsLinkProvider) {
+    // Map<String, String> links = new HashMap<String, String>();
+    // DetailsLinkProvider dlp = (DetailsLinkProvider) payload;
+    // for (Entry<String, String> linkEntry : dlp.getLinkMap().entrySet()) {
+    // links.put(linkEntry.getKey(), ref.toString() + linkEntry.getValue() + "?media=json");
+    // }
+    // dlp.setLinks(links);
+    // }
+    //
+    // }
+    //
+    // SuccessResponse<List<NodeProvider>> successResponse = new SuccessResponse<List<NodeProvider>>(data,
+    // getRequest(),
+    // mappings);
+    // successResponse.setMessage(defaultMsg);
+    // if (this.getMessage() != null && !"".equals(this.getMessage().trim())) {
+    // successResponse.setMessage(getMessage());
+    // }
+    // return successResponse;
+    // } catch (Exception e) {
+    // // logger.error(e.getMessage(), e);
+    // return new FailureResponse<List<NodeProvider>>(e);
+    // }
+    // }
+    //
+    // @Post
+    // public Representation install(String location) {
+    // String prefix = "prefix";
+    // if (!location.startsWith(prefix)) {
+    // return new StringRepresentation("location didn't start with '" + prefix + "'");
+    // }
+    // OsgiMonitorViewerApplication application = (OsgiMonitorViewerApplication) getApplication();
+    // // application
+    // return new StringRepresentation("success");
+    // }
 
     private List<BundleDetails> allBundles() {
         List<BundleDetails> result = new ArrayList<BundleDetails>();
+        // List<Bundle> bundles = Activator.getBundles();
         for (Bundle bundle : bundles) {
             BundleDetails bundleDetail = new BundleDetails();
             bundleDetail.setSymbolicName(bundle.getLocation());
             bundleDetail.setBundleId(bundle.getBundleId());
+            // bundleDetail.setHeaders(getDetails(bundle.getHeaders()));
             bundleDetail.setLastModified(bundle.getLastModified());
             bundleDetail.setRegisteredServices(getDetails(bundle.getRegisteredServices()));
             bundleDetail.setServicesInUse(getDetails(bundle.getServicesInUse()));
@@ -79,6 +122,16 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
             bundleDetail.setVersion(bundle.getVersion());
             bundleDetail.setSymbolicName(bundle.getSymbolicName());
             result.add(bundleDetail);
+        }
+        return result;
+    }
+
+    private Map<String, String> getDetails(Dictionary headers) {
+        Map<String, String> result = new HashMap<String, String>();
+        Enumeration keys = headers.keys();
+        while (keys.hasMoreElements()) {
+            Object nextElement = keys.nextElement();
+            result.put(nextElement.toString(), headers.get(nextElement).toString());
         }
         return result;
     }
