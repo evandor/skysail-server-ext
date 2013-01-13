@@ -9,7 +9,8 @@
 # -DGEMINI_DEBUG" \
 # --clean \
 
-/home/carsten/install/pax-runner-1.8.5/bin/pax-run.sh \
+###/home/carsten/install/pax-runner-1.8.5/bin/pax-run.sh \
+java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
 --log=INFO \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \

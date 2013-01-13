@@ -5,9 +5,10 @@
 #######################################################################################################
 
 ### stop existing daemon
-../bin/pax-rund-osgimonitor.sh --stop
+java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.daemon.DaemonLauncher --stop
 
 ### start up new one
-../bin/pax-rund-osgimonitor.sh \
---startd scan-composite:file:/home/carsten/paxrunner/pax-runner-1.8.5/skysail-osgimonitor/run.composite \
---log=INFO \
+###../bin/pax-rund-osgimonitor.sh \
+java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.daemon.DaemonLauncher \
+--startd --clean scan-composite:file:rund.composite \
+--log=DEBUG \
