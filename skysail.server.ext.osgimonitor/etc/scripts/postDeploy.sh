@@ -9,7 +9,7 @@ cd /home/carsten/paxrunner/pax-runner-1.8.5/
 
 ###./skysail-osgimonitor/stop_standalone.sh
 
-rm -rf unzip skysail-osgimonitor
+rm -rf skysail-osgimonitor
 unzip skysail-osgimonitor.zip
 
 ### copy secrets and configuration
