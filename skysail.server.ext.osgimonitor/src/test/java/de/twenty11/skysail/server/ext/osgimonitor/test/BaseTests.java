@@ -12,6 +12,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+import org.mockito.Mockito;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
 import org.restlet.Request;
@@ -44,7 +45,7 @@ public class BaseTests {
         OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContext, secretVerifier);
         osgiMonitorViewerApplication = osgiMonitorComponent.getApplication();
 
-        //OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
+        OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
         Application.setCurrent(osgiMonitorViewerApplication);
         inboundRoot = osgiMonitorViewerApplication.getInboundRoot();
         addMappings();
