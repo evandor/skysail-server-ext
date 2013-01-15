@@ -24,6 +24,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -50,14 +51,14 @@ public class DbViewerApplication extends RestletOsgiApplication {
     
     /**
      * @param staticPathTemplate
+     * @param bundleContext 
      */
-    public DbViewerApplication(String staticPathTemplate) {
+    public DbViewerApplication(String staticPathTemplate, BundleContext bundleContext) {
         super(DbViewerApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
         getLogger().info("Starting DbViewerApplication");
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");
-        //setRoles(roles);
-        self = this;
+        setBundleContext(bundleContext);
     }
 
     /**

@@ -19,6 +19,7 @@ package de.twenty11.skysail.server.ext.dbviewer.internal;
 
 import java.io.IOException;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -27,124 +28,122 @@ import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
+import org.restlet.security.MapVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.twenty11.skysail.server.Constants;
 
 public class Configuration implements ManagedService {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
-    private static ConfigurationAdmin configadmin;
-    private DbViewerComponent dbViewerComponent;
+    private DbViewerComponent restletComponent;
     private Server server;
+    private ComponentContext context;
+    private ConfigurationAdmin configadmin;
 
+    // Component itself is started once the configuration has been retrieved (in method "updated")
     protected void activate(ComponentContext ctxt) {
-        logger.info("Activating Skysail Ext DbViewer Configuration Component");
-        if (startStandaloneServer()) {
-            String port = "8554";//configService.getString(Constants.STANDALONE_PORT, "8554");
-            try {
-                org.osgi.service.cm.Configuration configuration = configadmin.getConfiguration("de.twenty11.skysail.server.ext.dbviewer");
-                Dictionary properties = configuration.getProperties();
-                System.out.println(properties);
-                port = (String)properties.get("port");
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            logger.info("Starting standalone dbviewer server on port {}", port);
-            dbViewerComponent = new DbViewerComponent();
-            startStandaloneServer(port);
-        }
-        // not standalone: see restlet book chapter 3.5.6
+        logger.info("Activating Skysail DbViewer Configuration Component");
+        this.context = ctxt;
     }
 
     protected void deactivate(ComponentContext ctxt) {
+        logger.info("Deactivating Skysail Ext Osgimonitor Configuration Component");
+        this.context = null;
         try {
-            server.stop();
+            if (server != null) {
+                server.stop();
+            }
         } catch (Exception e) {
             logger.error("Exception when trying to stop standalone server", e);
         }
+        if (restletComponent != null && restletComponent.getRegistration() != null) {
+            restletComponent.getRegistration().unregister();
+        }
     }
 
-    private boolean startStandaloneServer() {
-        // String standalone = configService.getString(Constants.STANDALONE, "false");
-        // if (!"true".equals(standalone)) {
-        // logger.info("not starting standalone server, as {} is set to false or not configured", Constants.STANDALONE);
-        // return false;
-        // }
-        return true;
-
-    }
-
-    private void startStandaloneServer(String portAsString) {
-        try {
-            server = new Server(Protocol.HTTP, Integer.valueOf(portAsString), dbViewerComponent);
-            server.start();
-        } catch (Exception e) {
-            logger.error("Exception when starting standalone server", e);
+    @SuppressWarnings("rawtypes")
+    @Override
+    public synchronized void updated(Dictionary properties) throws ConfigurationException {
+        logger.info("Configuring Skysail Ext Osgimonitor...");
+        Dictionary config = properties == null ? getDefaultConfig() : properties;
+        if (startStandaloneServer()) {
+            String port = (String) config.get("port");
+            logger.info("port was configured on {}", port);
+            MapVerifier verifier = new MapVerifier();
+            try {
+                if (!setSecretVerifier(verifier)) {
+                    logger.warn("not starting up the application due to encountered configuration problems.");
+                    return;
+                }
+            } catch (Exception e) {
+                logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
+                e.printStackTrace();
+                throw new ConfigurationException("secrets", "file not found", e);
+            }
+            logger.info("Starting standalone osgimonitor server on port {}", port);
+            restletComponent = new DbViewerComponent(this.context, verifier);
+            startStandaloneServer(port);
         }
     }
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
-        Configuration.configadmin = configadmin;
+        logger.info("setting configadmin in OsgiMonitor Configuration");
+        this.configadmin = configadmin;
     }
 
-    public static String getDriverClassName() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_DRIVERCLASSNAME);
-    }
-
-    public static String getUsername() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_USERNAME);
-    }
-
-    public static String getPasswort() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_PASSWORD);
-    }
-
-    public static String getUrl() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_URL);
-    }
-
-    private static String getStringFromConfigAdmin(String configElementName) {
-        if (!isConfigAdminAvailable(configElementName))
-            return "";
-        try {
-            return getConfigFromAdmin(configElementName);
-        } catch (IOException e) {
-            logger.error("could not retrieve key '{}' from configuration", e, configElementName);
-            return null;
-        }
-    }
-
-    private static String getConfigFromAdmin(String configElementName) throws IOException {
-        org.osgi.service.cm.Configuration config = configadmin
-                .getConfiguration("de.twenty11.skysail.server.config.Configuration");
-        Object configObject = config.getProperties().get(configElementName);
-        if (configObject == null) {
-            logger.warn("could not retrieve configuration for key '{}'", configElementName);
-            return null;
-        }
-        return configObject.toString();
-    }
-
-    private static boolean isConfigAdminAvailable(String configElementName) {
+    private boolean setSecretVerifier(MapVerifier verifier) throws IOException {
+        org.osgi.service.cm.Configuration secrets;
+        logger.info("gettings 'secrets' configuration...");
         if (configadmin == null) {
-            logger.warn("could not retrieve key '{}' for skysail database as configadmin service does not exist",
-                    configElementName);
+            logger.error("configadmin is not set, cannot proceed with configuration; no one will be able to log in!");
             return false;
+        }
+        secrets = configadmin.getConfiguration("secrets");
+        if (secrets == null) {
+            logger.error("could not find 'secrets' configuration; no one will be able to log in!");
+            return false;
+        }
+        Dictionary secretsProperties = secrets.getProperties();
+        if (secretsProperties == null || secretsProperties.keys() == null) {
+            logger.error("secretProperties is null or empty; no one will be able to log in!");
+            return false;
+        }
+        Enumeration keys = secretsProperties.keys();
+        while (keys.hasMoreElements()) {
+            String key = (String) keys.nextElement();
+            if (key.startsWith("user.")) {
+                String passCandidate = (String) secretsProperties.get(key);
+                if (!passCandidate.startsWith("password.")) {
+                    continue;
+                }
+                logger.info("setting password for user {}", key.substring("user.".length()));
+                verifier.getLocalSecrets().put(key.substring("user.".length()),
+                        passCandidate.substring("password.".length()).toCharArray());
+            }
         }
         return true;
     }
 
-    @Override
-    public void updated(Dictionary properties) throws ConfigurationException {
-        Dictionary config = properties == null ? getDefaultConfig() : properties;
-        // this.context.getServiceReference().
+    @SuppressWarnings("rawtypes")
+    private Dictionary getDefaultConfig() {
+        logger.info("Configuring Skysail DbViewer with defaults");
+        Properties properties = new Properties();
+        properties.put("port", "8555");
+        return properties;
     }
 
-    private Dictionary getDefaultConfig() {
-        return new Properties();
+    private boolean startStandaloneServer() {
+        // for now
+        return true;
+    }
+
+    private void startStandaloneServer(String portAsString) {
+        try {
+            server = new Server(Protocol.HTTP, Integer.valueOf(portAsString), restletComponent);
+            server.start();
+        } catch (Exception e) {
+            logger.error("Exception when starting standalone server", e);
+        }
     }
 
 }

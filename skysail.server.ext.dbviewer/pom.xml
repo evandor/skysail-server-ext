@@ -25,8 +25,8 @@
 	</scm>
 
 	<properties>
-		<skysail.common.version>[0.3.9-SNAPSHOT, 1.0)</skysail.common.version>
-		<skysail.server.version>[0.2.6-SNAPSHOT, 1.0)</skysail.server.version>
+		<skysail.common.version>[0.3.13-SNAPSHOT, 1.0)</skysail.common.version>
+		<skysail.server.version>[0.2.10-SNAPSHOT, 1.0)</skysail.server.version>
 	</properties>
 
 	<build>
@@ -97,22 +97,46 @@
 						<configuration>
 							<tasks>
 								<!-- delete zip file first to have an exact copy (even if files have 
-									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
-									/> -->
-								<zip destfile="target/skysail-dbviewer-${project.version}.zip"
-									encoding="UTF-8" update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner"
-										prefix="skysail-dbviewer-${project.version}" filemode="775">
-										<include name="dbviewer.sh" />
-										<include name="dbviewer.composite" />
-										<include name="dbviewer.setup" />
+									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" /> -->
+									<!-- -${project.version} -->
+								<zip destfile="target/skysail-dbviewer.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer" filemode="775">
+										<include name="run.sh" />
+										<include name="run.composite" />
+										<include name="rund.sh" />
+										<include name="rund.setup" />
+										<include name="rund.composite" />
 									</zipfileset>
-									<zipfileset dir="src/main/resources"
-										prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin" filemode="775">
+										<include name="*.jar" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs" filemode="775">
+										<include name="*.setup" />
+									</zipfileset>
+									<zipfileset dir="src/main/resources" prefix="skysail-dbviewer/config">
 										<include name="logback.xml" />
 									</zipfileset>
-									<zipfileset dir="conf/prod"
-										prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="conf/prod" prefix="skysail-dbviewer/config">
+										<include name="*.*" />
+									</zipfileset>
+								</zip>
+								
+								<zip destfile="target/skysail-dbviewer-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer-${project.version}" filemode="775">
+										<include name="run.sh" />
+										<include name="run.bat" />
+										<include name="run.setup" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin" filemode="775">
+										<include name="*.jar" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs" filemode="775">
+										<include name="*.setup" />
+									</zipfileset>
+									<zipfileset dir="src/main/resources" prefix="skysail-dbviewer-${project.version}/conf">
+										<include name="logback.xml" />
+									</zipfileset>
+									<zipfileset dir="conf/prod" prefix="skysail-dbviewer-${project.version}/conf">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>

@@ -17,8 +17,12 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
+import org.osgi.framework.ServiceRegistration;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
+import org.restlet.routing.VirtualHost;
+import org.restlet.security.SecretVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,20 +41,41 @@ public class DbViewerComponent extends Component {
 
     private DbViewerApplication application;
 
+    private ServiceRegistration registration;
+
     /**
      * 
      */
-    public DbViewerComponent() {
+    public DbViewerComponent(ComponentContext componentContext, SecretVerifier verifier) {
         getClients().add(Protocol.CLAP);
         getClients().add(Protocol.HTTP);
 
         // Create a restlet application
         logger.info("new restlet application: {}", DbViewerApplication.class.getName());
-        application = new DbViewerApplication("/static");
+        application = new DbViewerApplication("/static", componentContext.getBundleContext());
+        application.setVerifier(verifier);
 
         // Attach the application to the component and start it
         logger.info("attaching application and starting {}", this.toString());
         getDefaultHost().attachDefault(application);
+
+        VirtualHost virtualHost = createVirtualHost();
+        if (componentContext.getBundleContext() != null) {
+            this.registration = componentContext.getBundleContext().registerService("org.restlet.routing.VirtualHost",
+                    virtualHost, null);
+        }
+    }
+
+    private VirtualHost createVirtualHost() {
+        VirtualHost vh = new VirtualHost();
+        vh.setHostDomain("127.0.0.1");
+        vh.setHostPort("2013");
+        vh.attach(this);
+        return vh;
+    }
+
+    public ServiceRegistration getRegistration() {
+        return registration;
     }
 
     @Override

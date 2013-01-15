@@ -7,6 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -36,6 +37,7 @@ public class BundleResourceTest extends BaseTests {
     }
     
     @Test
+    @Ignore
     public void gives_vlidation_error_for_missing_name() throws Exception {
     	Response<BundleDetails> bundle = bundleResource.getBundle();
     	BundleDetails details = bundle.getData();

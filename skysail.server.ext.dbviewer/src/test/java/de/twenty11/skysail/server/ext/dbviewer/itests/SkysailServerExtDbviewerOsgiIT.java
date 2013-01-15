@@ -68,8 +68,8 @@ public class SkysailServerExtDbviewerOsgiIT {
     @Ignore
     public void test() {
         RestAssured.baseURI = "http://localhost";
-        RestAssured.port = 8554;
-        expect().body("success", equalTo(true)).given().auth().basic("scott", "tiger").when()
+        RestAssured.port = 8555;
+        expect().body("success", equalTo(true)).given().auth().basic("admin", "skysail").when()
                 .get("/" + DbViewerApplicationDescriptor.APPLICATION_NAME +"/?media=json");
     }
 
@@ -77,7 +77,7 @@ public class SkysailServerExtDbviewerOsgiIT {
     @Ignore
     public void testPostConnectionDetails() {
         RestAssured.baseURI = "http://localhost";
-        RestAssured.port = 8554;
+        RestAssured.port = 8555;
 
         // RequestSpecification spec = getRequestSpec();
 
@@ -85,7 +85,7 @@ public class SkysailServerExtDbviewerOsgiIT {
         expect()
             .body(not(equalTo(""))) //"greeting.firstName", equalTo("John"))
         .given()
-            .auth().basic("scott", "tiger")
+            .auth().basic("admin", "skysail")
             .contentType("application/json")
             .request().body("{\"connectionName\" : \"there\", \"username\" : \"root\"}")
         .when()
@@ -96,10 +96,10 @@ public class SkysailServerExtDbviewerOsgiIT {
         expect()
             .body("success", equalTo(true))
             .body("message", equalTo("all DataSource"))
-            .body("navigation.parent", equalTo("http://localhost:8554/?media=json"))
+            .body("navigation.parent", equalTo("http://localhost:8555/?media=json"))
             .body("pagination.totalResults", equalTo(1))
         .given()
-            .auth().basic("scott", "tiger")
+            .auth().basic("admin", "skysail")
         .when()
             .get("/"+DbViewerApplicationDescriptor.APPLICATION_NAME+"/?media=json");
 
