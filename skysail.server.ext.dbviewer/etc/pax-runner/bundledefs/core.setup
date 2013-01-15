@@ -31,7 +31,9 @@ mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.3.0
 mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.3.0 
 mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.3.0 
 mvn:de.twentyeleven.skysail/org.json-osgi/20080701
-http://80.86.88.102/skysail/gemini.jpa/org.eclipse.gemini.jpa_1.0.0.RELEASE.jar
+###http://80.86.88.102/skysail/gemini.jpa/org.eclipse.gemini.jpa_1.0.0.RELEASE.jar
+http://mirrors.ibiblio.org/eclipse/gemini/updates/jpa/1.0.0/plugins/org.eclipse.gemini.jpa_1.0.0.RELEASE.jar
+###mvn:org.eclipse/org.eclipse.gemini.jpa/1.0.0
 http://download.eclipse.org/gemini/dbaccess/updates/1.1-M3/plugins/org.eclipse.gemini.dbaccess.util_1.1.0.201209190714.jar
 http://download.eclipse.org/gemini/dbaccess/updates/1.1-M3/plugins/org.eclipse.gemini.dbaccess.derby_1.1.0.201209190714.jar
 http://download.eclipse.org/gemini/dbaccess/updates/1.1-M3/plugins/org.apache.derby_10.8.2.2.jar
