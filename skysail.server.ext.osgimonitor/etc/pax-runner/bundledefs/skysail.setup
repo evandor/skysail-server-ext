@@ -1,6 +1,6 @@
 mvn:de.twentyeleven.skysail/skysail.common/0.3.12@update
-mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.4@update
+mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.5-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.server/0.2.9@update
-mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.4@update
+mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.6-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1@nostart
 mvn:de.twentyeleven.skysail/org.json-osgi/20080701

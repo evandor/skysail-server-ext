@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.ext.osgimonitor.test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,23 +38,26 @@ public class BaseTests {
     protected OsgiMonitorViewerApplication osgiMonitorViewerApplication;
     protected Restlet inboundRoot;
     protected ObjectMapper mapper = new ObjectMapper();
+
+    private ComponentContext componentContextMock = mock(ComponentContext.class);
     
-    protected OsgiMonitorViewerApplication setUpRestletApplication(ComponentContext componentContext)
+    protected OsgiMonitorViewerApplication setUpRestletApplication()
             throws ClassNotFoundException {
+    	
         MapVerifier secretVerifier = new MapVerifier();
         secretVerifier.getLocalSecrets().put("testadmin", "testpassword".toCharArray());
-        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContext, secretVerifier);
+        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContextMock, secretVerifier);
         osgiMonitorViewerApplication = osgiMonitorComponent.getApplication();
 
         OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
-        Application.setCurrent(osgiMonitorViewerApplication);
+        Application.setCurrent(spy);
         inboundRoot = osgiMonitorViewerApplication.getInboundRoot();
         addMappings();
-        return osgiMonitorViewerApplication;
+        return spy;
     }
 
 
-    protected void addMappings() throws ClassNotFoundException {
+    private void addMappings() throws ClassNotFoundException {
         Map<String, String> urlMapping = new OsgiMonitorUrlMapper().provideUrlMapping();
         for (Map.Entry<String, String> mapping : urlMapping.entrySet()) {
             @SuppressWarnings("unchecked")

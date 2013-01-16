@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.ext.osgimonitor.internal;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
@@ -18,6 +19,7 @@ public class OsgiMonitorUrlMapper implements UrlMapper {
         routes.put(APP_PREFIX + "/", OsgiMonitorRootResource.class.getName());
         routes.put(APP_PREFIX + "/bundles?variant=graph", BundlesAsGraphResource.class.getName());
         routes.put(APP_PREFIX + "/bundles", BundlesResource.class.getName());
+        routes.put(APP_PREFIX + "/bundle", BundleResource.class.getName());
 
         return routes;
     }

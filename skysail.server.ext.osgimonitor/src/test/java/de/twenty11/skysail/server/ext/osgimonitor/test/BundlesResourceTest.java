@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Before;
@@ -24,10 +25,17 @@ public class BundlesResourceTest extends BaseTests {
 	@Before
     public void setUp() throws Exception {
         ComponentContext componentContextMock = mock(ComponentContext.class);
-        OsgiMonitorViewerApplication spy = setUpRestletApplication(componentContextMock);
+        OsgiMonitorViewerApplication spy = setUpRestletApplication();
         resource = new BundlesResource();
     }
-    
+
+	@Test
+	public void a() throws Exception {
+		Representation jsGraph = resource.getJSGraph();
+		String text = jsGraph.getText();
+		System.out.println(text);
+	}
+	
     @Test
     @Ignore
     public void gives_validation_error_for_missing_name() throws Exception {
