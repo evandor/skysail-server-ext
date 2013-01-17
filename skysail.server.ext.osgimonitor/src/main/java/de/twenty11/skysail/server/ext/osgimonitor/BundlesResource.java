@@ -8,7 +8,6 @@ import java.util.List;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
@@ -60,36 +59,9 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
 		return getEntities(allBundles(), "all Bundles");
 	}
 
-	@Get("jsGraph")
-	public Representation getJSGraph() {
-		 // @formatter:off
-		 StringBuffer sb = new StringBuffer("<!DOCTYPE html>\n")
-         .append("<html><head><title>Skysail Json Html Viewer</title>\n")
-         .append("<link rel=\"stylesheet\" type=\"text/css\" href=\"static/css/default.css\">\n")
-         .append("<script type=\"text/javascript\" src=\"static/js/collapseAndExplode.js\"></script>\n")
-         .append("</head>\n<body>\n")
-         .append("<script type=\"text/javascript\">\n")
-         .append("var redraw, g, renderer;\n")
-		 .append("window.onload = function() {\n")
-		 .append("var width = $(document).width() - 20;\n")
-		 .append("var height = $(document).height() - 60;\n")
-		 .append("g = new Graph();\n")
-		 .append("g.addNode(\"strawberry\");\n")
-		 .append("g.addNode(\"cherry\");\n")
-		 .append("g.addEdge(\"strawberry\", \"cherry\");\n")
-		 .append("var layouter = new Graph.Layout.Spring(g);\n")
-		 .append("renderer = new Graph.Renderer.Raphael('canvas', g, width, height);\n")
-		 .append("}\n")
-		 .append("</script>\n")
-         .append("\n</body>\n</html>");
-		// @formatter:on
-		 
-		Representation representation = new StringRepresentation(sb.toString());
-		representation.setMediaType(MediaType.TEXT_HTML);
-		return representation;
-	}
 
-	@Post
+
+    @Post
 	public Representation install(String location) {
 		String prefix = "prefix";
 		if (!location.startsWith(prefix)) {
