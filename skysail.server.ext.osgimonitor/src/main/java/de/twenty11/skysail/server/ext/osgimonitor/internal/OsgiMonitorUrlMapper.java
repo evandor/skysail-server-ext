@@ -18,10 +18,10 @@ public class OsgiMonitorUrlMapper implements UrlMapper {
     public Map<String, String> provideUrlMapping() {
         Map<String, String> routes = new HashMap<String, String>();
         routes.put(APP_PREFIX + "/", OsgiMonitorRootResource.class.getName());
-        routes.put(APP_PREFIX + "/bundle", BundleResource.class.getName());
         routes.put(APP_PREFIX + "/bundles", BundlesResource.class.getName());
         routes.put(APP_PREFIX + "/bundles/asGraph", BundlesAsGraphResource.class.getName());
         routes.put(APP_PREFIX + "/bundles/asJsGraph", BundlesAsJsGraphResource.class.getName());
+        routes.put(APP_PREFIX + "/bundles/details/{bundleId}", BundleResource.class.getName());
 
         return routes;
     }

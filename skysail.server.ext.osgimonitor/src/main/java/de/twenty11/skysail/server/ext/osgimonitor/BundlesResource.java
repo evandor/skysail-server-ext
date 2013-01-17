@@ -14,6 +14,7 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
@@ -31,9 +32,7 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * datasource.
  * 
  */
-// @Graph(nodesPath = "/osgimonitor/bundles", edgesPath =
-// "/osgimonitor/services")
-public class BundlesResource extends ListServerResource<BundleDetails> implements RestfulBundles {
+public class BundlesResource extends ListServerResource<BundleDescriptor> implements RestfulBundles {
 
 	private List<Bundle> bundles;
 
@@ -55,7 +54,7 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
 
 	@Override
 	@Get("html|json")
-	public Response<List<BundleDetails>> getBundles() {
+    public Response<List<BundleDescriptor>> getBundles() {
 		return getEntities(allBundles(), "all Bundles");
 	}
 
@@ -70,18 +69,10 @@ public class BundlesResource extends ListServerResource<BundleDetails> implement
 		return new StringRepresentation("success");
 	}
 
-	private List<BundleDetails> allBundles() {
-		List<BundleDetails> result = new ArrayList<BundleDetails>();
+    private List<BundleDescriptor> allBundles() {
+        List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
 		for (Bundle bundle : bundles) {
-			BundleDetails bundleDetail = new BundleDetails();
-			bundleDetail.setSymbolicName(bundle.getLocation());
-			bundleDetail.setBundleId(bundle.getBundleId());
-			bundleDetail.setLastModified(bundle.getLastModified());
-			bundleDetail.setRegisteredServices(getDetails(bundle.getRegisteredServices()));
-			bundleDetail.setServicesInUse(getDetails(bundle.getServicesInUse()));
-			bundleDetail.setState(bundle.getState());
-			bundleDetail.setVersion(bundle.getVersion());
-			bundleDetail.setSymbolicName(bundle.getSymbolicName());
+            BundleDescriptor bundleDetail = new BundleDescriptor(bundle);
 			result.add(bundleDetail);
 		}
 		return result;

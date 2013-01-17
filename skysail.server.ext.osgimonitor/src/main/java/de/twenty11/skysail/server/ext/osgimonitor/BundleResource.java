@@ -20,8 +20,8 @@ public class BundleResource extends UniqueResultServerResource<BundleDetails> im
 	private String bundleId;
 
     public BundleResource() {
-        setName("osgimonitor bundles resource");
-        setDescription("The resource containing the list of bundles");
+        setName("osgimonitor bundle resource");
+        setDescription("The resource containing bundle detail information");
     }
 
     @Override

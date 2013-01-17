@@ -11,13 +11,13 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.restlet.Request;
 import org.restlet.representation.Representation;
 
+import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
@@ -50,14 +50,13 @@ public class BundleResourceTest extends BaseTests {
     @Test
     public void getBundle_returns_bundleDetails_for_bundleId_from_request() throws Exception {
     	Response<BundleDetails> bundle = bundleResource.getBundle();
-    	BundleDetails details = bundle.getData();
+    	BundleDescriptor details = bundle.getData();
     	assertThat(details.getBundleId(), is(equalTo(99l)));
     }
     
     @Test 
-    @Ignore
     public void canIssue_GET_request() throws Exception {
-    	org.restlet.Response response = get("bundle");
+        org.restlet.Response response = get("bundles/details/99");
         assertDefaults(response);
         Representation entity = response.getEntity();
         System.out.println(entity.getText());
