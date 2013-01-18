@@ -1,5 +1,6 @@
 body {
 	font-family: Verdana, sans-serif;
+	color:gray;
 }
 
 .prop {
@@ -19,12 +20,12 @@ body {
 }
 
 .string {
-	color: gray;
+	color: black;
 	white-space: inherit;
 }
 
 .message {
-	color: black;
+	color: red;
 }
 
 .collapser {

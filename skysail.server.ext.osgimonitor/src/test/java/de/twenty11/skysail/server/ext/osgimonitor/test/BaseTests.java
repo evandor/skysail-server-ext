@@ -90,6 +90,11 @@ public class BaseTests {
         return handleRequest(request);
     }
 
+    protected org.restlet.Response put(String uri) {
+        Request request = new Request(Method.PUT, "/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        return handleRequest(request);
+    }
+
     protected org.restlet.Response post(String uri, Object connection) throws JsonGenerationException,
             JsonMappingException, IOException {
         Request request = new Request(Method.POST, "/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/" + uri);

@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,13 +27,14 @@ import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerAppl
 public class BundleResourceTest extends BaseTests {
     
     private BundleResource bundleResource;
+    private Bundle bundle;
 
 	@Before
     public void setUp() throws Exception {
         
         OsgiMonitorViewerApplication spy = setUpRestletApplication();
         BundleContext context = mock(BundleContext.class);
-        Bundle bundle = mock(Bundle.class);
+        bundle = mock(Bundle.class);
         when(bundle.getBundleId()).thenReturn(99l);
         when(bundle.getSymbolicName()).thenReturn("symbolic");
         when(bundle.getLastModified()).thenReturn(111l);
@@ -67,6 +69,31 @@ public class BundleResourceTest extends BaseTests {
        
     }
 
-    
-   
+    @Test
+    public void canIssue_PUT_request_to_start_bundle() throws Exception {
+        org.restlet.Response response = put("bundles/details/99/start");
+        assertDefaults(response);
+        Representation entity = response.getEntity();
+        assertThat(entity.getText(), is(equalTo("Success!")));
+        verify(bundle).start();
+    }
+
+    @Test
+    public void canIssue_PUT_request_to_stop_bundle() throws Exception {
+        org.restlet.Response response = put("bundles/details/99/stop");
+        assertDefaults(response);
+        Representation entity = response.getEntity();
+        assertThat(entity.getText(), is(equalTo("Success!")));
+        verify(bundle).stop();
+    }
+
+    @Test
+    public void canIssue_PUT_request_to_update_bundle() throws Exception {
+        org.restlet.Response response = put("bundles/details/99/update");
+        assertDefaults(response);
+        Representation entity = response.getEntity();
+        assertThat(entity.getText(), is(equalTo("Success!")));
+        verify(bundle).update();
+    }
+
 }
