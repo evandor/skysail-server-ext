@@ -22,6 +22,9 @@ public class OsgiMonitorUrlMapper implements UrlMapper {
         routes.put(APP_PREFIX + "/bundles/asGraph", BundlesAsGraphResource.class.getName());
         routes.put(APP_PREFIX + "/bundles/asJsGraph", BundlesAsJsGraphResource.class.getName());
         routes.put(APP_PREFIX + "/bundles/details/{bundleId}", BundleResource.class.getName());
+        routes.put(APP_PREFIX + "/bundles/details/{bundleId}/{action}", BundleResource.class.getName());
+        // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/stop", BundleResource.class.getName());
+        // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/update", BundleResource.class.getName());
 
         return routes;
     }
