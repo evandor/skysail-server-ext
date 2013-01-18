@@ -26,6 +26,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ServerResource;
 import org.restlet.security.MapVerifier;
 
+import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorApplicationDescriptor;
@@ -67,13 +68,13 @@ public class BaseTests {
         }
     }
 
-    protected List<BundleDetails> getBundles() throws Exception {
+    protected List<BundleDescriptor> getBundles() throws Exception {
         org.restlet.Response response = get("bundles");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        System.out.println(entity.getText());
-        Response<List<BundleDetails>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<BundleDetails>>>() {
+        //System.out.println(entity.getText());
+        Response<List<BundleDescriptor>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<Response<List<BundleDescriptor>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();

@@ -15,9 +15,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Version;
 import org.restlet.Request;
 import org.restlet.representation.Representation;
 
+import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
@@ -34,6 +36,8 @@ public class BundlesResourceTest extends BaseTests {
         when(bundle.getBundleId()).thenReturn(99l);
         when(bundle.getSymbolicName()).thenReturn("symbolic");
         when(bundle.getLastModified()).thenReturn(111l);
+        when(bundle.getVersion()).thenReturn(new Version("1.2.3.qualifier"));
+        when(bundle.getState()).thenReturn(32);
         Bundle[] bundles = new Bundle[1];
         bundles[0] = bundle;
         when(context.getBundles()).thenReturn(bundles);
@@ -48,11 +52,11 @@ public class BundlesResourceTest extends BaseTests {
     }
 
     @Test
-    @Ignore
-    public void gives_validation_error_for_missing_name() throws Exception {
-        List<BundleDetails> bundles = getBundles();
-        assertThat(bundles.size(), is(equalTo(0)));
-        //assertThat(createViolations.getViolations().get(0).getMessage(), is(equalTo("Name is mandatory")));
+    public void returns_bundles_with_proper_values() throws Exception {
+        List<BundleDescriptor> bundles = getBundles();
+        assertThat(bundles.size(), is(equalTo(1)));
+        assertThat(bundles.get(0).getVersion(), is(equalTo("1.2.3.qualifier")));
+        assertThat(bundles.get(0).getState(), is(equalTo("Active")));
        
     }
 
