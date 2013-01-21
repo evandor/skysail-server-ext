@@ -91,7 +91,7 @@ public class BundlesAsGraphResource extends ListServerResource<NodeProvider> {
     // }
     // return successResponse;
     // } catch (Exception e) {
-    // // logger.error(e.getMessage(), e);
+    // // log4jLogger.error(e.getMessage(), e);
     // return new FailureResponse<List<NodeProvider>>(e);
     // }
     // }
