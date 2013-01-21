@@ -42,7 +42,7 @@ import de.twenty11.skysail.server.directory.CompositeClassLoader;
  */
 public class OsgiMonitorComponent extends Component {
 
-	/** slf4j based logger implementation. */
+	/** slf4j based log4jLogger implementation. */
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private OsgiMonitorViewerApplication application;
