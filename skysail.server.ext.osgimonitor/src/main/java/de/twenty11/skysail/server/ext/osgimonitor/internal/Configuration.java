@@ -100,7 +100,12 @@ public class Configuration implements ManagedService {
         }
         secrets = configadmin.getConfiguration("secrets");
         if (secrets == null) {
-            logger.error("could not find 'secrets' configuration; no one will be able to log in!");
+            logger.error("could not find 'secrets' configuration; will try to use eclipse preference mechanism");
+            if (settingEclipsePreferences(verifier)) {
+                logger.info("found eclipse preference store");
+                return true;
+            }
+            logger.error("could not find 'secrets' configuration; cannot proceed with configuration; no one will be able to log in!");
             return false;
         }
         Dictionary secretsProperties = secrets.getProperties();
@@ -122,6 +127,11 @@ public class Configuration implements ManagedService {
             }
         }
         return true;
+    }
+
+    private boolean settingEclipsePreferences(MapVerifier verifier) {
+        // Preferences preferences = ConfigurationScope..getNode("skysail.server.ext.osgimonitor");
+        return false;
     }
 
     @SuppressWarnings("rawtypes")
