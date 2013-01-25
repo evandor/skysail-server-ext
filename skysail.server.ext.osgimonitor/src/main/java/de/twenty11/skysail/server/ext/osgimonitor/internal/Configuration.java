@@ -32,6 +32,8 @@ import org.restlet.security.MapVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.server.config.ServerConfiguration;
+
 public class Configuration implements ManagedService {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
@@ -39,11 +41,33 @@ public class Configuration implements ManagedService {
     private Server server;
     private ComponentContext context;
     private ConfigurationAdmin configadmin;
+    private ServerConfiguration serverConfig;
 
     // Component itself is started once the configuration has been retrieved (in method "updated")
-    protected void activate(ComponentContext ctxt) {
+    protected void activate(ComponentContext ctxt) throws ConfigurationException {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
         this.context = ctxt;
+
+        logger.info("Configuring Skysail Ext Osgimonitor...");
+        if (startStandaloneServer()) {
+            String port = (String) serverConfig.getConfigForKey("port");
+            logger.info("port was configured on {}", port);
+            MapVerifier verifier = new MapVerifier();
+            try {
+                if (!setSecretVerifier(verifier)) {
+                    logger.warn("not starting up the application due to encountered configuration problems.");
+                    return;
+                }
+            } catch (Exception e) {
+                logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
+                e.printStackTrace();
+                throw new ConfigurationException("secrets", "file not found", e);
+            }
+            logger.info("Starting standalone osgimonitor server on port {}", port);
+            restletComponent = new OsgiMonitorComponent(this.context, verifier);
+            startStandaloneServer(port);
+        }
+
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -65,25 +89,25 @@ public class Configuration implements ManagedService {
     @Override
     public synchronized void updated(Dictionary properties) throws ConfigurationException {
         logger.info("Configuring Skysail Ext Osgimonitor...");
-        Dictionary config = properties == null ? getDefaultConfig() : properties;
-        if (startStandaloneServer()) {
-            String port = (String) config.get("port");
-            logger.info("port was configured on {}", port);
-            MapVerifier verifier = new MapVerifier();
-            try {
-                if (!setSecretVerifier(verifier)) {
-                    logger.warn("not starting up the application due to encountered configuration problems.");
-                    return;
-                }
-            } catch (Exception e) {
-                logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
-                e.printStackTrace();
-                throw new ConfigurationException("secrets", "file not found", e);
-            }
-            logger.info("Starting standalone osgimonitor server on port {}", port);
-            restletComponent = new OsgiMonitorComponent(this.context, verifier);
-            startStandaloneServer(port);
-        }
+        // Dictionary config = properties == null ? getDefaultConfig() : properties;
+        // if (startStandaloneServer()) {
+        // String port = (String) config.get("port");
+        // logger.info("port was configured on {}", port);
+        // MapVerifier verifier = new MapVerifier();
+        // try {
+        // if (!setSecretVerifier(verifier)) {
+        // logger.warn("not starting up the application due to encountered configuration problems.");
+        // return;
+        // }
+        // } catch (Exception e) {
+        // logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
+        // e.printStackTrace();
+        // throw new ConfigurationException("secrets", "file not found", e);
+        // }
+        // logger.info("Starting standalone osgimonitor server on port {}", port);
+        // restletComponent = new OsgiMonitorComponent(this.context, verifier);
+        // startStandaloneServer(port);
+        // }
     }
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
@@ -93,7 +117,7 @@ public class Configuration implements ManagedService {
 
     public synchronized void setServerConfiguration(de.twenty11.skysail.server.config.ServerConfiguration serverConfig) {
         logger.info("setting configadmin in OsgiMonitor Configuration");
-        this.configadmin = configadmin;
+        this.serverConfig = serverConfig;
     }
 
     private boolean setSecretVerifier(MapVerifier verifier) throws IOException {
