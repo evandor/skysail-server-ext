@@ -91,6 +91,11 @@ public class Configuration implements ManagedService {
         this.configadmin = configadmin;
     }
 
+    public synchronized void setServerConfiguration(de.twenty11.skysail.server.config.ServerConfiguration serverConfig) {
+        logger.info("setting configadmin in OsgiMonitor Configuration");
+        this.configadmin = configadmin;
+    }
+
     private boolean setSecretVerifier(MapVerifier verifier) throws IOException {
         org.osgi.service.cm.Configuration secrets;
         logger.info("gettings 'secrets' configuration...");
