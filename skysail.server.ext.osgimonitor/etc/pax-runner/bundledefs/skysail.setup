@@ -1,6 +1,6 @@
 mvn:de.twentyeleven.skysail/skysail.common.config.configadmin/0.0.2-SNAPSHOT@3@update
 mvn:de.twentyeleven.skysail/skysail.common/0.3.13-SNAPSHOT@update
-mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.5-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.5@update
 mvn:de.twentyeleven.skysail/skysail.server/0.2.10-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.6-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1@nostart

@@ -187,7 +187,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common.ext.osgimonitor</artifactId>
-			<version>[0.0.5-SNAPSHOT, 1.0.0)</version>
+			<version>[0.0.5, 1.0.0)</version>
 		</dependency>
 
 		<dependency>
