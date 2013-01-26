@@ -87,7 +87,7 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
 			ServiceReferenceDetails srd = new ServiceReferenceDetails();
 			srd.setBundleId(serviceReference.getBundle().getBundleId());
 			srd.setName(serviceReference.toString());
-			srd.setPropertyKeys(serviceReference.getPropertyKeys());
+            // srd.setProperties(serviceReference.getPropertyKeys());
 			srd.setUsingBundles(getDetails(serviceReference.getUsingBundles()));
 			details.add(srd);
 		}

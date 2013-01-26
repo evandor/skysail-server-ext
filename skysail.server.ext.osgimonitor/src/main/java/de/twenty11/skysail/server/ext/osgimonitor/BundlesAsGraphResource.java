@@ -145,7 +145,7 @@ public class BundlesAsGraphResource extends ListServerResource<NodeProvider> {
             ServiceReferenceDetails srd = new ServiceReferenceDetails();
             srd.setBundleId(serviceReference.getBundle().getBundleId());
             srd.setName(serviceReference.toString());
-            srd.setPropertyKeys(serviceReference.getPropertyKeys());
+            // srd.setPropertyKeys(serviceReference.getPropertyKeys());
             srd.setUsingBundles(getDetails(serviceReference.getUsingBundles()));
             details.add(srd);
         }
