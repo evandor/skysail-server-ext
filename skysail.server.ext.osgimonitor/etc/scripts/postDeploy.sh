@@ -15,6 +15,7 @@ unzip skysail-osgimonitor.zip
 ### copy secrets and configuration
 cp secrets.cfg skysail-osgimonitor/config
 cp de.twenty11.skysail.server.ext.osgimonitor.cfg skysail-osgimonitor/config
+cp de.twenty11.skysail.common.config.Configuration.cfg skysail-osgimonitor/config
 
 ### run standalone
 cd skysail-osgimonitor
