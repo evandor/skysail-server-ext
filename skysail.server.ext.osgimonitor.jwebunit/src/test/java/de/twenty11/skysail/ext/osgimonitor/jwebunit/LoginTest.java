@@ -51,6 +51,6 @@ public class LoginTest {
     @Test
     public void returns_json_startpage_when_providing_proper_credentials_and_media_type() {
         tester.beginAt("?media=json");
-        tester.assertTitleEquals("Skysail Json Html Viewer");
+        tester.assertTitleEquals("");
     }
 }
