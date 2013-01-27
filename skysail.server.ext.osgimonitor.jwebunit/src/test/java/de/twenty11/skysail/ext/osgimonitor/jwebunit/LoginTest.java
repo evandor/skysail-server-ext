@@ -25,10 +25,11 @@ public class LoginTest {
             username  = prop.getProperty("user");
             password = prop.getProperty("pass");
         } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
         tester = new WebTester();
-        tester.setBaseUrl("http://80.86.88.102:2011/osgimonitor/");
+        tester.setBaseUrl("http://localhost:2011/osgimonitor/");
         tester.getTestContext().setAuthorization(username, password);
     }
 
