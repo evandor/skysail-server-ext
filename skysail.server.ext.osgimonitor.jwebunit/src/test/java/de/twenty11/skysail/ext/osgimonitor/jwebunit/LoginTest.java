@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import net.sourceforge.jwebunit.exception.TestingEngineResponseException;
 import net.sourceforge.jwebunit.junit.WebTester;
 
 import org.junit.Before;
@@ -33,14 +34,23 @@ public class LoginTest {
         tester.getTestContext().setAuthorization(username, password);
     }
 
+    @Test(expected = TestingEngineResponseException.class)
+    public void gives_401_for_wrong_password() {
+        tester.getTestContext().setAuthorization(username, "wrongOneForSure");
+        tester.beginAt("");
+
+    }
+
     @Test
-    public void test1() {
-        tester.beginAt(""); // Open the browser on http://localhost:8080/test/home.xhtml
-        // tester.clickLink("login");
-        // tester.assertTitleEquals("Login");
-        // tester.setTextField("username", "test");
-        // tester.setTextField("password", "test123");
-        // tester.submit();
-        tester.assertTitleEquals("");
+    public void returns_html_startpage_when_providing_proper_credentials_and_media_type() {
+        tester.beginAt("?media=html");
+        // System.out.println(tester.getPageSource());
+        tester.assertTitleEquals("Skysail Json Html Viewer");
+    }
+
+    @Test
+    public void returns_json_startpage_when_providing_proper_credentials_and_media_type() {
+        tester.beginAt("?media=json");
+        tester.assertTitleEquals("Skysail Json Html Viewer");
     }
 }
