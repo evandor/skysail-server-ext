@@ -31,12 +31,15 @@ public class LoginTest {
     private void loadProperties(Properties prop, String filename) {
         try {
             prop.load(new FileInputStream(filename));
-            username  = prop.getProperty("user");
+            username = prop.getProperty("user");
             password = prop.getProperty("pass");
             url = prop.getProperty("url");
         } catch (IOException ex) {
-            loadProperties(prop, "/home/ec2-user/jwebunit/passwd.txt");
-            ex.printStackTrace();
+            try {
+                loadProperties(prop, "/home/ec2-user/jwebunit/passwd.txt");
+            } catch (Exception ex2) {
+                ex.printStackTrace();
+            }
         }
     }
 
