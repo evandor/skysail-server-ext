@@ -15,23 +15,29 @@ public class LoginTest {
     private WebTester tester;
     private String username = "admin";
     private String password = "skysail";
+    private String url = "localhost:2011";
 
     @Before
     public void setup() {
         Properties prop = new Properties();
 
-        try {
-            // load a properties file
-            prop.load(new FileInputStream("/home/carsten/jwebunit/passwd.txt"));
-            username  = prop.getProperty("user");
-            password = prop.getProperty("pass");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        loadProperties(prop, "/home/carsten/jwebunit/passwd.txt");
 
         tester = new WebTester();
-        tester.setBaseUrl("http://localhost:2011/osgimonitor/");
+        tester.setBaseUrl("http://" + url + "/osgimonitor/");
         tester.getTestContext().setAuthorization(username, password);
+    }
+
+    private void loadProperties(Properties prop, String filename) {
+        try {
+            prop.load(new FileInputStream(filename));
+            username  = prop.getProperty("user");
+            password = prop.getProperty("pass");
+            url = prop.getProperty("url");
+        } catch (IOException ex) {
+            loadProperties(prop, "/home/ec2-user/jwebunit/passwd.txt");
+            ex.printStackTrace();
+        }
     }
 
     @Test(expected = TestingEngineResponseException.class)
