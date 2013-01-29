@@ -21,26 +21,29 @@ public class LoginTest {
     public void setup() {
         Properties prop = new Properties();
 
-        loadProperties(prop, "/home/carsten/jwebunit/passwd.txt");
+        if (!loadProperties(prop, "/home/carsten/jwebunit/passwd.txt")) {
+            if (!loadProperties(prop, "/home/ec2-user/jwebunit/passwd.txt")) {
+                loadProperties(prop, "/home/ubuntu/jwebunit/passwd.txt");
+            }
+        }
 
         tester = new WebTester();
         tester.setBaseUrl("http://" + url + "/osgimonitor/");
         tester.getTestContext().setAuthorization(username, password);
     }
 
-    private void loadProperties(Properties prop, String filename) {
+    private boolean loadProperties(Properties prop, String filename) {
         try {
             prop.load(new FileInputStream(filename));
             username = prop.getProperty("user");
             password = prop.getProperty("pass");
             url = prop.getProperty("url");
+            return true;
         } catch (IOException ex) {
-            try {
-                loadProperties(prop, "/home/ec2-user/jwebunit/passwd.txt");
-            } catch (Exception ex2) {
-                ex.printStackTrace();
-            }
+            ex.printStackTrace();
+            return false;
         }
+
     }
 
     @Test(expected = TestingEngineResponseException.class)
