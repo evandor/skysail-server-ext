@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +10,7 @@
 	</parent>
 
 	<artifactId>skysail.server.ext.osgimonitor</artifactId>
-	<version>0.1.6-SNAPSHOT</version>
+	<version>0.1.6</version>
 	<name>skysail osgimonitor server extension</name>
 	<packaging>bundle</packaging>
 
@@ -22,7 +21,7 @@
 		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
 		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
-		<tag>HEAD</tag>
+		<tag>skysail.server.ext.osgimonitor-0.1.6</tag>
 	</scm>
 
 	<properties>
@@ -102,25 +101,20 @@
 						<configuration>
 							<tasks>
 								<!-- delete zip file first to have an exact copy (even if files have 
-									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
-									/> -->
+									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" /> -->
 								<!-- -${project.version} -->
-								<zip destfile="target/skysail-osgimonitor.zip" encoding="UTF-8"
-									update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor"
-										filemode="775">
+								<zip destfile="target/skysail-osgimonitor.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor" filemode="775">
 										<include name="run.sh" />
 										<include name="run.composite" />
 										<include name="rund.sh" />
 										<include name="rund.setup" />
 										<include name="rund.composite" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin"
-										filemode="775">
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin" filemode="775">
 										<include name="*.jar" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-osgimonitor/bundledefs"
-										filemode="775">
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-osgimonitor/bundledefs" filemode="775">
 										<include name="*.setup" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/config">
@@ -131,28 +125,22 @@
 									</zipfileset>
 								</zip>
 
-								<zip destfile="target/skysail-osgimonitor-${project.version}.zip"
-									encoding="UTF-8" update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner"
-										prefix="skysail-osgimonitor-${project.version}" filemode="775">
+								<zip destfile="target/skysail-osgimonitor-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor-${project.version}" filemode="775">
 										<include name="run.sh" />
 										<include name="run.bat" />
 										<include name="run.setup" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin"
-										filemode="775">
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin" filemode="775">
 										<include name="*.jar" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-osgimonitor/bundledefs"
-										filemode="775">
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-osgimonitor/bundledefs" filemode="775">
 										<include name="*.setup" />
 									</zipfileset>
-									<zipfileset dir="src/main/resources"
-										prefix="skysail-osgimonitor-${project.version}/conf">
+									<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor-${project.version}/conf">
 										<include name="logback.xml" />
 									</zipfileset>
-									<zipfileset dir="conf/prod"
-										prefix="skysail-osgimonitor-${project.version}/conf">
+									<zipfileset dir="conf/prod" prefix="skysail-osgimonitor-${project.version}/conf">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
