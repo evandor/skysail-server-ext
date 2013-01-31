@@ -11,7 +11,7 @@
 
 	<artifactId>skysail.server.ext.osgimonitor</artifactId>
 	<version>0.1.7-SNAPSHOT</version>
-	<name>skysail osgimonitor server extension</name>
+	<name>SKYSAIL :: server :: ext :: osgimonitor - OSGi monitor server app</name>
 	<packaging>bundle</packaging>
 
 	<scm>
@@ -113,6 +113,7 @@
 								<!-- -${project.version} -->
 								<zip destfile="target/skysail-osgimonitor.zip" encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor" filemode="775">
+										<include name="run.bat" />
 										<include name="run.sh" />
 										<include name="run.composite" />
 										<include name="rund.sh" />
@@ -135,9 +136,12 @@
 
 								<zip destfile="target/skysail-osgimonitor-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor-${project.version}" filemode="775">
-										<include name="run.sh" />
 										<include name="run.bat" />
-										<include name="run.setup" />
+										<include name="run.sh" />
+										<include name="run.composite" />
+										<include name="rund.sh" />
+										<include name="rund.setup" />
+										<include name="rund.composite" />
 									</zipfileset>
 									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin" filemode="775">
 										<include name="*.jar" />
