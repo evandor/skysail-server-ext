@@ -1,0 +1,10 @@
+### load all bundles defined here:
+
+scan-file:bundledefs/core.setup
+scan-file:bundledefs/logging.setup
+scan-file:bundledefs/restlet.setup
+scan-file:bundledefs/skysail.setup
+
+#scan-file:deploy
+### use the jar in the target directory for the current bundle (for testing)
+### scan-bundle:../../target/skysail.server.ext.dbviewer-0.0.12-SNAPSHOT.jar@update

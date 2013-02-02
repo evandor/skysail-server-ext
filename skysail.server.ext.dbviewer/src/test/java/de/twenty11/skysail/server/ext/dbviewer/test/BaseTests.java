@@ -36,10 +36,10 @@ import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 
 public class BaseTests {
 
@@ -184,7 +184,7 @@ public class BaseTests {
     }
 
     protected org.restlet.Response handleRequest(Request request) {
-        ChallengeResponse authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "scott", "tiger");
+        ChallengeResponse authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "skysail");
         request.setChallengeResponse(authentication);
         org.restlet.Response response = new org.restlet.Response(request);
         inboundRoot.handle(request, response);
@@ -209,7 +209,7 @@ public class BaseTests {
     }
 
     protected DbViewerApplication setUpRestletApplication() throws ClassNotFoundException {
-        DbViewerComponent dbViewerComponent = new DbViewerComponent();
+        DbViewerComponent dbViewerComponent = new DbViewerComponent(null, null);
         dbViewerApplication = dbViewerComponent.getApplication();
 
         DbViewerApplication spy = Mockito.spy(dbViewerApplication);

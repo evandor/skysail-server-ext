@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+	name="de.twenty11.skysail.server.ext.osgimonitor">
+	<service>
+      <provide interface='org.osgi.service.cm.ManagedService'/>
+    </service>
+    <property name='service.pid' value='de.twenty11.skysail.server.ext.osgimonitor'/>
+    
+	<implementation
+		class="de.twenty11.skysail.server.ext.osgimonitor.internal.Configuration" />
+	<reference bind="setConfigAdmin" cardinality="1..1"
+		interface="org.osgi.service.cm.ConfigurationAdmin" name="ConfigAdmin"
+		policy="static" />
+	<reference bind="setServerConfiguration" cardinality="1..1" 
+		interface="de.twenty11.skysail.server.config.ServerConfiguration" name="ServerConfiguration" 
+		policy="static"/>
+</scr:component>

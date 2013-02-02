@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.is;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
@@ -25,6 +26,7 @@ public class SchemasResourceTest extends BaseTests {
     }
 
     @Test
+    @Ignore
     public void can_read_tables_from_schema() throws Exception {
         List<SchemaDetails> schemas = getSchemas("testdb");
         assertThat(schemas.size(), is(greaterThan(0)));

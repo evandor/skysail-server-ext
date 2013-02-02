@@ -1,0 +1,11 @@
+Include-Resource: {maven-resources}
+Import-Package:	de.twenty11.skysail.common;version="[0.2.0, 1.0.0)",\
+ de.twenty11.skysail.common.selfdescription;version="[0.1.0, 1.0.0)",\
+ de.twenty11.skysail.server.directory;version="[0.1.0, 1.0.0)",\
+ de.twenty11.skysail.server.config;version="[0.1.0,0.2)",\
+ org.apache.commons.dbcp,\
+ org.json,\
+ javax.persistence;jpa="2.0";version="1.1.0",\
+ *
+Bundle-SymbolicName: skysail.server.ext.osgimonitor
+Service-Component: OSGI-INF/*.xml

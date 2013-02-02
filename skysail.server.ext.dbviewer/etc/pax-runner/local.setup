@@ -12,7 +12,8 @@ mvn:org.slf4j/jul-to-slf4j/1.6.4
 ### skysail common and dependencies 
 ### -------------------------------
 
-mvn:de.twentyeleven.skysail/skysail.common/0.3.8-SNAPSHOT@update
+
+mvn:de.twentyeleven.skysail/skysail.common/0.3.9-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.um/0.0.1-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.ext.dbviewer/0.0.1-SNAPSHOT@update
 mvn:commons-lang/commons-lang/2.6
@@ -27,7 +28,7 @@ mvn:com.thoughtworks.xstream/com.springsource.com.thoughtworks.xstream/1.3.1
 ### -------------------------------
 
 mvn:de.twentyeleven.skysail/skysail.server/0.2.6-SNAPSHOT@update
-mvn:de.twentyeleven.skysail/skysail.server.forms/0.0.1-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.server.forms/0.0.1-SNAPSHOT@update @nostart
 ### mvn:org.freemarker/com.springsource.freemarker/2.3.18
 mvn:org.codehaus.jettison/com.springsource.org.codehaus.jettison/1.0.1
 mvn:org.osgi/org.osgi.compendium/4.2.0
@@ -39,7 +40,7 @@ mvn:org.restlet.osgi/org.restlet.ext.jackson/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.xstream/2.1.0
 ###mvn:org.restlet.osgi/org.restlet.ext.wadl/2.1.0
 mvn:org.restlet.osgi/org.restlet.ext.json/2.1.0
-#mvn:de.twentyeleven.skysail/skysail.server.um/0.0.1-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.server.um/0.0.1-SNAPSHOT@update
 
 ### ------------------
 ### config admin
@@ -67,6 +68,7 @@ mvn:commons-dbcp/commons-dbcp/1.4
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1-SNAPSHOT
 mvn:commons-pool/commons-pool/1.6 
 mvn:mysql/mysql-connector-java/5.1.21 
+###mvn:de.twentyeleven.skysail/ojdbc-osgi/11.1.0.7.0 
 mvn:org.apache.felix/org.apache.felix.fileinstall/3.2.4 
 mvn:org.eclipse.persistence/javax.persistence/2.0.3 
 #mvn:org.eclipse.persistence/org.eclipse.persistence.osgi/2.3.0 - do not install when using gemini
@@ -84,6 +86,8 @@ http://download.eclipse.org/gemini/dbaccess/updates/1.1-M3/plugins/org.eclipse.g
 http://download.eclipse.org/gemini/dbaccess/updates/1.1-M3/plugins/org.apache.derby_10.8.2.2.jar
 ### needed for skysail.server.form
 mvn:org.javassist/javassist/3.17.1-GA
+mvn:de.twentyeleven.skysail/skysail.server.graphs/0.0.1-SNAPSHOT@update @nostart
+
 
 ### -------------------------------
 ### Client Side 

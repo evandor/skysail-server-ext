@@ -1,11 +1,14 @@
 package de.twenty11.skysail.server.ext.dbviewer.test;
 
+import static org.mockito.Mockito.mock;
+
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.Server;
@@ -14,9 +17,9 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.data.Protocol;
 import org.restlet.resource.ServerResource;
 
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 
 public class ComponentTests {
 
@@ -29,14 +32,15 @@ public class ComponentTests {
 
     @BeforeClass
     public static void startTests() throws Exception {
-        dbViewerComponent = new DbViewerComponent();
+        ComponentContext mock = mock(ComponentContext.class);
+        dbViewerComponent = new DbViewerComponent(mock, null);
         server = new Server(Protocol.HTTP, 8111, dbViewerComponent);
         server.start();
     }
 
     @Before
     public void setUp() throws Exception {
-        authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "scott", "tiger");
+        authentication = new ChallengeResponse(ChallengeScheme.HTTP_BASIC, "admin", "skysail");
         dbViewerApplication = dbViewerComponent.getApplication();
         Application.setCurrent(dbViewerApplication);
         inboundRoot = dbViewerApplication.getInboundRoot();

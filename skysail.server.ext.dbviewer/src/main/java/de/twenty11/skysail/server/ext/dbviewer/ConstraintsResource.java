@@ -17,6 +17,7 @@
 
 package de.twenty11.skysail.server.ext.dbviewer;
 
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,10 +70,12 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
     }
 
     private List<ConstraintDetails> allConstraints() {
-        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
+        //EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
         try {
-            em.getTransaction().begin();
-            java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+//            em.getTransaction().begin();
+//            java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+            DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName, getChallengeResponse());
+            Connection connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet columns = meta.getIndexInfo(schemaName, null, tableName, false, true);
             List<ConstraintDetails> result = new ArrayList<ConstraintDetails>();
@@ -82,9 +85,6 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
             return result;
         } catch (SQLException e) {
             throw new RuntimeException("could not execute select statement: " + e.getMessage(), e);
-        }
-        finally {
-        	em.getTransaction().commit();
         }
     }
 }

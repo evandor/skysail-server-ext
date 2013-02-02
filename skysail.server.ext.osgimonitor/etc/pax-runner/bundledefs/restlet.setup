@@ -1,0 +1,8 @@
+mvn:org.restlet.osgi/org.restlet/2.1.0
+mvn:org.restlet.osgi/org.restlet.ext.xml/2.1.0
+mvn:org.restlet.osgi/org.restlet.ext.jackson/2.1.0
+mvn:org.restlet.osgi/org.restlet.ext.xstream/2.1.0
+mvn:org.restlet.osgi/org.restlet.ext.json/2.1.0
+
+### needed for DirectoryServerResource dealing with "war" protocol
+mvn:org.restlet.osgi/org.restlet.ext.servlet/2.1.0

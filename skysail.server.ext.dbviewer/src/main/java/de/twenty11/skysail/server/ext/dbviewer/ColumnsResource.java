@@ -17,6 +17,7 @@
 
 package de.twenty11.skysail.server.ext.dbviewer;
 
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -68,9 +69,11 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
 
     private List<ColumnsDetails> allColumns() {
         try {
-            EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-            em.getTransaction().begin();
-            java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+//            EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
+//            em.getTransaction().begin();
+//            java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+            DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName, getChallengeResponse());
+            Connection connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet columns = meta.getColumns(schemaName, null, tableName, null);
             List<ColumnsDetails> result = new ArrayList<ColumnsDetails>();

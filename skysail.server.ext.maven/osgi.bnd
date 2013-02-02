@@ -1,0 +1,2 @@
+Bundle-SymbolicName: skysail.server.ext.maven
+Service-Component: OSGI-INF/*.xml

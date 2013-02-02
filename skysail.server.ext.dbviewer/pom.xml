@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.8.16-SNAPSHOT</version>
+		<version>0.8.17</version>
 		<relativePath />
 	</parent>
 
@@ -24,10 +24,10 @@
 		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
 	</scm>
 
-    <properties>
-        <skysail.common.version>[0.3.8-SNAPSHOT, 1.0)</skysail.common.version>
-        <skysail.server.version>[0.2.6-SNAPSHOT, 1.0)</skysail.server.version>
-    </properties>
+	<properties>
+		<skysail.common.version>[0.3.13-SNAPSHOT, 1.0)</skysail.common.version>
+		<skysail.server.version>[0.2.10-SNAPSHOT, 1.0)</skysail.server.version>
+	</properties>
 
 	<build>
 		<resources>
@@ -43,6 +43,8 @@
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
+					<!-- make eclipse aware about this bundle (+ ManifestBuilder in .project!) -->
+					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
 						<_include>-bnd.bnd</_include>
 						<Include-Resource>
@@ -95,22 +97,46 @@
 						<configuration>
 							<tasks>
 								<!-- delete zip file first to have an exact copy (even if files have 
-									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
-									/> -->
-								<zip destfile="target/skysail-dbviewer-${project.version}.zip"
-									encoding="UTF-8" update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner"
-										prefix="skysail-dbviewer-${project.version}" filemode="775">
-										<include name="dbviewer.sh" />
-										<include name="dbviewer.composite" />
-										<include name="dbviewer.setup" />
+									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" /> -->
+									<!-- -${project.version} -->
+								<zip destfile="target/skysail-dbviewer.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer" filemode="775">
+										<include name="run.sh" />
+										<include name="run.composite" />
+										<include name="rund.sh" />
+										<include name="rund.setup" />
+										<include name="rund.composite" />
 									</zipfileset>
-									<zipfileset dir="src/main/resources"
-										prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin" filemode="775">
+										<include name="*.jar" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs" filemode="775">
+										<include name="*.setup" />
+									</zipfileset>
+									<zipfileset dir="src/main/resources" prefix="skysail-dbviewer/config">
 										<include name="logback.xml" />
 									</zipfileset>
-									<zipfileset dir="conf/prod"
-										prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="conf/prod" prefix="skysail-dbviewer/config">
+										<include name="*.*" />
+									</zipfileset>
+								</zip>
+								
+								<zip destfile="target/skysail-dbviewer-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer-${project.version}" filemode="775">
+										<include name="run.sh" />
+										<include name="run.bat" />
+										<include name="run.setup" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin" filemode="775">
+										<include name="*.jar" />
+									</zipfileset>
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs" filemode="775">
+										<include name="*.setup" />
+									</zipfileset>
+									<zipfileset dir="src/main/resources" prefix="skysail-dbviewer-${project.version}/conf">
+										<include name="logback.xml" />
+									</zipfileset>
+									<zipfileset dir="conf/prod" prefix="skysail-dbviewer-${project.version}/conf">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
@@ -137,11 +163,11 @@
 
 
 	<dependencies>
-        <dependency>
-            <groupId>de.twentyeleven.skysail</groupId>
-            <artifactId>skysail.common.ext.dbviewer</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.common.ext.dbviewer</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
@@ -293,7 +319,7 @@
 			<version>2.2.8</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.core </artifactId>
@@ -311,5 +337,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 </project>
