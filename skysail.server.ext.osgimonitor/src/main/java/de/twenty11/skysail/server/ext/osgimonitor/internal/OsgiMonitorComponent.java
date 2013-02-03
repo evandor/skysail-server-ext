@@ -78,11 +78,6 @@ public class OsgiMonitorComponent extends Component {
 					.registerService("org.restlet.routing.VirtualHost",
 							virtualHost, null);
 		}
-        // // String rootUri = "war:///js/"; // "file:///" + System.getProperty("user.home");
-        // String rootUri = "clap://class/js/index.html";
-        // Directory directory = new Directory(getContext(), rootUri);
-        // directory.setListingAllowed(true);
-        // getDefaultHost().attach("/js", directory);
 
         LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
 
