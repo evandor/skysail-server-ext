@@ -209,7 +209,7 @@ public class BaseTests {
     }
 
     protected DbViewerApplication setUpRestletApplication() throws ClassNotFoundException {
-        DbViewerComponent dbViewerComponent = new DbViewerComponent(null, null);
+        DbViewerComponent dbViewerComponent = new DbViewerComponent(null, null, null);
         dbViewerApplication = dbViewerComponent.getApplication();
 
         DbViewerApplication spy = Mockito.spy(dbViewerApplication);

@@ -20,11 +20,11 @@ package de.twenty11.skysail.server.ext.dbviewer.internal;
 import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Enumeration;
-import java.util.Properties;
+
+import javax.persistence.EntityManagerFactory;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
@@ -32,42 +32,25 @@ import org.restlet.security.MapVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Configuration implements ManagedService {
+import de.twenty11.skysail.server.config.ServerConfiguration;
+
+public class Configuration {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
     private DbViewerComponent restletComponent;
     private Server server;
     private ComponentContext context;
     private ConfigurationAdmin configadmin;
+    private ServerConfiguration serverConfig;
+    private EntityManagerFactory emf;
 
-    // Component itself is started once the configuration has been retrieved (in method "updated")
-    protected void activate(ComponentContext ctxt) {
-        logger.info("Activating Skysail DbViewer Configuration Component");
+    protected void activate(ComponentContext ctxt) throws ConfigurationException {
+        logger.info("Activating Skysail Ext DbViewer Configuration Component");
         this.context = ctxt;
-    }
 
-    protected void deactivate(ComponentContext ctxt) {
-        logger.info("Deactivating Skysail Ext Osgimonitor Configuration Component");
-        this.context = null;
-        try {
-            if (server != null) {
-                server.stop();
-            }
-        } catch (Exception e) {
-            logger.error("Exception when trying to stop standalone server", e);
-        }
-        if (restletComponent != null && restletComponent.getRegistration() != null) {
-            restletComponent.getRegistration().unregister();
-        }
-    }
-
-    @SuppressWarnings("rawtypes")
-    @Override
-    public synchronized void updated(Dictionary properties) throws ConfigurationException {
-        logger.info("Configuring Skysail Ext Osgimonitor...");
-        Dictionary config = properties == null ? getDefaultConfig() : properties;
+        logger.info("Configuring Skysail Ext DbViewer...");
         if (startStandaloneServer()) {
-            String port = (String) config.get("port");
+            String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
             MapVerifier verifier = new MapVerifier();
             try {
@@ -81,9 +64,33 @@ public class Configuration implements ManagedService {
                 throw new ConfigurationException("secrets", "file not found", e);
             }
             logger.info("Starting standalone osgimonitor server on port {}", port);
-            restletComponent = new DbViewerComponent(this.context, verifier);
+            restletComponent = new DbViewerComponent(this.context, verifier, emf);
             startStandaloneServer(port);
         }
+    }
+
+    protected void deactivate(ComponentContext ctxt) {
+        logger.info("Deactivating Skysail Ext DbViewer Configuration Component");
+        this.context = null;
+        try {
+            if (server != null) {
+                server.stop();
+            }
+        } catch (Exception e) {
+            logger.error("Exception when trying to stop standalone server", e);
+        }
+        if (restletComponent != null && restletComponent.getRegistration() != null) {
+            restletComponent.getRegistration().unregister();
+        }
+    }
+
+    public synchronized void setServerConfiguration(de.twenty11.skysail.server.config.ServerConfiguration serverConfig) {
+        logger.info("setting configadmin in DbViewer Configuration");
+        this.serverConfig = serverConfig;
+    }
+
+    public synchronized void setEntityManager(EntityManagerFactory emf) {
+        this.emf = emf;
     }
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
@@ -122,14 +129,6 @@ public class Configuration implements ManagedService {
             }
         }
         return true;
-    }
-
-    @SuppressWarnings("rawtypes")
-    private Dictionary getDefaultConfig() {
-        logger.info("Configuring Skysail DbViewer with defaults");
-        Properties properties = new Properties();
-        properties.put("port", "8555");
-        return properties;
     }
 
     private boolean startStandaloneServer() {

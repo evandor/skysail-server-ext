@@ -6,13 +6,13 @@
 	<parent>
 		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.8.17</version>
+		<version>0.8.30</version>
 		<relativePath />
 	</parent>
 
 	<artifactId>skysail.server.ext.dbviewer</artifactId>
 	<version>0.0.17-SNAPSHOT</version>
-	<name>skysail dbviewer server extension</name>
+	<name>SKYSAIL :: server :: ext :: dbviewer - dbviever server app</name>
 	<packaging>bundle</packaging>
 
 	<scm>
@@ -25,14 +25,18 @@
 	</scm>
 
 	<properties>
-		<skysail.common.version>[0.3.13-SNAPSHOT, 1.0)</skysail.common.version>
-		<skysail.server.version>[0.2.10-SNAPSHOT, 1.0)</skysail.server.version>
+		<skysail.common.version>[0.3.16, 1.0)</skysail.common.version>
+		<skysail.server.version>[0.2.10, 1.0)</skysail.server.version>
 	</properties>
 
 	<build>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
@@ -87,6 +91,14 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<preparationGoals>site:site site:deploy</preparationGoals>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -101,6 +113,7 @@
 									<!-- -${project.version} -->
 								<zip destfile="target/skysail-dbviewer.zip" encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer" filemode="775">
+										<include name="run.bat" />
 										<include name="run.sh" />
 										<include name="run.composite" />
 										<include name="rund.sh" />
@@ -123,9 +136,12 @@
 								
 								<zip destfile="target/skysail-dbviewer-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
 									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer-${project.version}" filemode="775">
-										<include name="run.sh" />
 										<include name="run.bat" />
-										<include name="run.setup" />
+										<include name="run.sh" />
+										<include name="run.composite" />
+										<include name="rund.sh" />
+										<include name="rund.setup" />
+										<include name="rund.composite" />
 									</zipfileset>
 									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin" filemode="775">
 										<include name="*.jar" />
@@ -166,7 +182,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common.ext.dbviewer</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>[0.0.2,0.1.0)</version>
 		</dependency>
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
@@ -260,14 +276,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.antlr</groupId> <artifactId>com.springsource.antlr</artifactId> 
-			<scope>test</scope> <version>2.7.7</version> </dependency> -->
-
-		<!-- <dependency> <groupId>org.apache.bval</groupId> <artifactId>org.apache.bval.bundle</artifactId> 
-			<version>0.4</version> </dependency> <dependency> <groupId>org.apache.geronimo.specs</groupId> 
-			<artifactId>geronimo-validation_1.0_spec</artifactId> <version>1.1</version> 
-			</dependency> -->
-
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
@@ -287,8 +295,6 @@
 			<version>3.2.1</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-core</artifactId> 
-			<scope>test</scope> <version>1.3.RC2</version> </dependency> -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient-osgi</artifactId>

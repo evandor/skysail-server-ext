@@ -1,10 +1,9 @@
-mvn:de.twentyeleven.skysail/skysail.common/0.3.12@update
-mvn:de.twentyeleven.skysail/skysail.common.ext.dbviewer/0.0.1@update
-mvn:de.twentyeleven.skysail/skysail.server/0.2.9@update
+mvn:de.twentyeleven.skysail/skysail.common/0.3.17-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.common.config.configadmin/0.0.2@3@update
+mvn:de.twentyeleven.skysail/skysail.common.ext.dbviewer/0.0.2@update
+mvn:de.twentyeleven.skysail/skysail.server/0.2.11-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.17-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1@nostart
 mvn:de.twentyeleven.skysail/org.json-osgi/20080701
 
 mvn:de.twentyeleven.skysail/skysail.common.um/0.0.3@update
-###mvn:de.twentyeleven.skysail/skysail.server.forms/0.0.1-SNAPSHOT@update @nostart
-###mvn:de.twentyeleven.skysail/skysail.server.um/0.0.1-SNAPSHOT@update

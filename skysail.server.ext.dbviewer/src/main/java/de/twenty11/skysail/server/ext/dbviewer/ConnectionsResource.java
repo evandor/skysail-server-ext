@@ -38,7 +38,7 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
     }
 
     @Override
-    @Get
+    @Get("html|json")
     public Response<List<ConnectionDetails>> getConnections() {
         return getEntities(allConnections(), "all Connections");
     }

@@ -33,7 +33,7 @@ public class ComponentTests {
     @BeforeClass
     public static void startTests() throws Exception {
         ComponentContext mock = mock(ComponentContext.class);
-        dbViewerComponent = new DbViewerComponent(mock, null);
+        dbViewerComponent = new DbViewerComponent(mock, null, null);
         server = new Server(Protocol.HTTP, 8111, dbViewerComponent);
         server.start();
     }

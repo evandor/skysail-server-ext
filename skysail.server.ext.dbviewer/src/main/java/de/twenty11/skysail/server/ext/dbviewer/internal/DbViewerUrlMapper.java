@@ -16,8 +16,6 @@ import de.twenty11.skysail.server.services.UrlMapper;
 
 public class DbViewerUrlMapper implements UrlMapper {
 
-    //public static final String CONTEXT_ID = "dbviewer";
-
     public static final String CONNECTION_PREFIX = "/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/connections/";
 
     public static final String CONNECTION_NAME = "connectionName";

@@ -24,7 +24,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import org.codehaus.jackson.JsonParseException;
@@ -91,7 +90,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
     }
 
     @Override
-    @Get
+    @Get("html|json")
     public Response<GridData> getData() {
         Response<GridData> response;
         try {
