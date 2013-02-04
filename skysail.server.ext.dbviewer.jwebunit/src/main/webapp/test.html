@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><title>Skysail Json Html Viewer</title>
+<link rel="stylesheet" type="text/css" href="static/css/default.css">
+<script type="text/javascript" src="static/js/graphdracula/raphael-min.js"></script>
+<script type="text/javascript" src="static/js/graphdracula/dracula_graffle.js"></script>
+<script type="text/javascript" src="static/js/graphdracula/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="static/js/graphdracula/dracula_graph.js"></script>
+<script type="text/javascript">
+var redraw, g, renderer;
+
+window.onload = function() {
+  var width = $(document).width() - 20;
+  var height = $(document).height() - 60;
+  var g = new Graph();
+ 
+    g.addEdge("strawberry", "cherry");
+    g.addEdge("strawberry", "apple");
+    g.addEdge("strawberry", "tomato");
+     
+    g.addEdge("tomato", "apple");
+    g.addEdge("tomato", "kiwi");
+     
+    g.addEdge("cherry", "apple");
+    g.addEdge("cherry", "kiwi");
+     
+    var layouter = new Graph.Layout.Spring(g);
+    layouter.layout();
+     
+    var renderer = new Graph.Renderer.Raphael('canvas', g, 400, 300);
+    //renderer.draw();
+};
+</script>
+
+<body> sdfdsfdsf
+</body>
+</html>
