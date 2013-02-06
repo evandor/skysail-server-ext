@@ -94,9 +94,10 @@ public class OsgiMonitorComponent extends Component {
 
 	private VirtualHost createVirtualHost() {
 		VirtualHost vh = new VirtualHost();
-		vh.setHostDomain("127.0.0.1");
-		vh.setHostPort("2013");
-		vh.attach(this);
+        // vh.setHostDomain("127.0.0.1");
+        // vh.setHostPort("2013");
+        // vh.setDefaultRoute(new HostRoute(
+        vh.attach("/osgimonitor", this);
 		return vh;
 	}
 

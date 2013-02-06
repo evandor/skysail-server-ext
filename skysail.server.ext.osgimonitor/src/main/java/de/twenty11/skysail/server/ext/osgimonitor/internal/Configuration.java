@@ -21,12 +21,14 @@ import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Enumeration;
 
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
+import org.restlet.routing.VirtualHost;
 import org.restlet.security.MapVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,10 +43,11 @@ public class Configuration implements ManagedService {
     private ComponentContext context;
     private ConfigurationAdmin configadmin;
     private ServerConfiguration serverConfig;
+    private ServiceRegistration registration;
 
-    protected void activate(ComponentContext ctxt) throws ConfigurationException {
+    protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
-        this.context = ctxt;
+        this.context = componentContext;
 
         logger.info("Configuring Skysail Ext Osgimonitor...");
         if (startStandaloneServer()) {
@@ -64,8 +67,27 @@ public class Configuration implements ManagedService {
             logger.info("Starting standalone osgimonitor server on port {}", port);
             restletComponent = new OsgiMonitorComponent(this.context, verifier);
             startStandaloneServer(port);
+        } else {
+            VirtualHost virtualHost = createVirtualHost();
+            if (componentContext.getBundleContext() != null) {
+                this.registration = componentContext.getBundleContext().registerService(
+                        "org.restlet.routing.VirtualHost", virtualHost, null);
+            }
         }
 
+    }
+
+    private VirtualHost createVirtualHost() {
+        OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication("/static",
+                context.getBundleContext());
+
+        VirtualHost vh = new VirtualHost();
+        // vh.getRoutes().get(0).get
+        // vh.setHostDomain("127.0.0.1");
+        // vh.setHostPort("2013");
+        // vh.setDefaultRoute(new HostRoute(
+        vh.attach(application);
+        return vh;
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -144,7 +166,7 @@ public class Configuration implements ManagedService {
 
     private boolean startStandaloneServer() {
         // for now
-        return true;
+        return false;
     }
 
     private void startStandaloneServer(String portAsString) {
