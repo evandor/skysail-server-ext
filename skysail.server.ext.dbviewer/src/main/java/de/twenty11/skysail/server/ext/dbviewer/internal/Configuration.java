@@ -52,7 +52,7 @@ public class Configuration {
         this.context = componentContext;
 
         logger.info("Configuring Skysail Ext DbViewer...");
-        if (startStandaloneServer()) {
+        if (serverConfig.startComponent()) {
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
             MapVerifier verifier = new MapVerifier();
@@ -146,23 +146,6 @@ public class Configuration {
             }
         }
         return true;
-    }
-
-    private boolean startStandaloneServer() {
-        String componentToStart = (String) serverConfig.getConfigForKey("component");
-        if (componentToStart == null || componentToStart.trim().length() == 0) {
-            return true;
-        }
-        String[] packageParts = this.getClass().getName().split("\\.");
-        for (String part : packageParts) {
-            if (part.equals("de") || part.equals("server") || part.equals("ext") || part.equals("internal")) {
-                continue;
-            }
-            if (part.equals(componentToStart)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void startStandaloneServer(String portAsString) {

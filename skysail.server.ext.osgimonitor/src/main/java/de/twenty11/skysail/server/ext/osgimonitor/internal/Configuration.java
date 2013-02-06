@@ -50,7 +50,7 @@ public class Configuration implements ManagedService {
         this.context = componentContext;
 
         logger.info("Configuring Skysail Ext Osgimonitor...");
-        if (startStandaloneServer()) {
+        if (serverConfig.startComponent()) {
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
             MapVerifier verifier = new MapVerifier();
@@ -157,11 +157,6 @@ public class Configuration implements ManagedService {
 
     private boolean settingEclipsePreferences(MapVerifier verifier) {
         // Preferences preferences = ConfigurationScope..getNode("skysail.server.ext.osgimonitor");
-        return false;
-    }
-
-    private boolean startStandaloneServer() {
-        // for now
         return false;
     }
 
