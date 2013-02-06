@@ -82,10 +82,6 @@ public class Configuration implements ManagedService {
                 context.getBundleContext());
 
         VirtualHost vh = new VirtualHost();
-        // vh.getRoutes().get(0).get
-        // vh.setHostDomain("127.0.0.1");
-        // vh.setHostPort("2013");
-        // vh.setDefaultRoute(new HostRoute(
         vh.attach(application);
         return vh;
     }

@@ -23,11 +23,13 @@ import java.util.Enumeration;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
 import org.restlet.data.Protocol;
+import org.restlet.routing.VirtualHost;
 import org.restlet.security.MapVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,10 +45,11 @@ public class Configuration {
     private ConfigurationAdmin configadmin;
     private ServerConfiguration serverConfig;
     private EntityManagerFactory emf;
+    private ServiceRegistration registration;
 
-    protected void activate(ComponentContext ctxt) throws ConfigurationException {
+    protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Skysail Ext DbViewer Configuration Component");
-        this.context = ctxt;
+        this.context = componentContext;
 
         logger.info("Configuring Skysail Ext DbViewer...");
         if (startStandaloneServer()) {
@@ -66,7 +69,21 @@ public class Configuration {
             logger.info("Starting standalone osgimonitor server on port {}", port);
             restletComponent = new DbViewerComponent(this.context, verifier, emf);
             startStandaloneServer(port);
+        } else {
+            VirtualHost virtualHost = createVirtualHost();
+            if (componentContext.getBundleContext() != null) {
+                this.registration = componentContext.getBundleContext().registerService(
+                        "org.restlet.routing.VirtualHost", virtualHost, null);
+            }
         }
+    }
+
+    private VirtualHost createVirtualHost() {
+        DbViewerApplication application = new DbViewerApplication("/static", context.getBundleContext(), emf);
+
+        VirtualHost vh = new VirtualHost();
+        vh.attach(application);
+        return vh;
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -132,8 +149,20 @@ public class Configuration {
     }
 
     private boolean startStandaloneServer() {
-        // for now
-        return true;
+        String componentToStart = (String) serverConfig.getConfigForKey("component");
+        if (componentToStart == null || componentToStart.trim().length() == 0) {
+            return true;
+        }
+        String[] packageParts = this.getClass().getName().split("\\.");
+        for (String part : packageParts) {
+            if (part.equals("de") || part.equals("server") || part.equals("ext") || part.equals("internal")) {
+                continue;
+            }
+            if (part.equals(componentToStart)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void startStandaloneServer(String portAsString) {
