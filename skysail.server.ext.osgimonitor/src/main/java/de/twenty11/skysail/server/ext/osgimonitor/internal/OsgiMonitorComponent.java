@@ -72,12 +72,12 @@ public class OsgiMonitorComponent extends Component {
 		logger.info("attaching application and starting {}", this.toString());
 		getDefaultHost().attachDefault(application);
 
-		VirtualHost virtualHost = createVirtualHost();
-		if (componentContext.getBundleContext() != null) {
-			this.registration = componentContext.getBundleContext()
-					.registerService("org.restlet.routing.VirtualHost",
-							virtualHost, null);
-		}
+        // VirtualHost virtualHost = createVirtualHost();
+        // if (componentContext.getBundleContext() != null) {
+        // this.registration = componentContext.getBundleContext()
+        // .registerService("org.restlet.routing.VirtualHost",
+        // virtualHost, null);
+        // }
 
         LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
 

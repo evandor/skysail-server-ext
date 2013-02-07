@@ -47,8 +47,8 @@ public class Configuration implements ManagedService {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
         this.context = componentContext;
 
-        logger.info("Configuring Skysail Ext Osgimonitor...");
         if (serverConfig.startComponent()) {
+            logger.info("Starting component for Skysail Ext Osgimonitor...");
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
             MapVerifier verifier = new MapVerifier();
@@ -66,6 +66,7 @@ public class Configuration implements ManagedService {
             restletComponent = new OsgiMonitorComponent(this.context, verifier);
             startStandaloneServer(port);
         } else {
+            logger.info("Starting virtual host for Skysail Osgimonitor...");
             VirtualHost virtualHost = createVirtualHost();
             if (componentContext.getBundleContext() != null) {
                 this.registration = componentContext.getBundleContext().registerService(
@@ -73,15 +74,6 @@ public class Configuration implements ManagedService {
             }
         }
 
-    }
-
-    private VirtualHost createVirtualHost() {
-        OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication("/static",
-                context.getBundleContext());
-
-        VirtualHost vh = new VirtualHost();
-        vh.attach(application);
-        return vh;
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -99,6 +91,14 @@ public class Configuration implements ManagedService {
         }
     }
 
+    private VirtualHost createVirtualHost() {
+        OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication("/static",
+                context.getBundleContext());
+        VirtualHost vh = new VirtualHost();
+        vh.attach(application);
+        return vh;
+    }
+
     @SuppressWarnings("rawtypes")
     @Override
     public synchronized void updated(Dictionary properties) throws ConfigurationException {
@@ -113,11 +113,6 @@ public class Configuration implements ManagedService {
     public synchronized void setServerConfiguration(de.twenty11.skysail.server.config.ServerConfiguration serverConfig) {
         logger.info("setting configadmin in OsgiMonitor Configuration");
         this.serverConfig = serverConfig;
-    }
-
-    private boolean settingEclipsePreferences(MapVerifier verifier) {
-        // Preferences preferences = ConfigurationScope..getNode("skysail.server.ext.osgimonitor");
-        return false;
     }
 
     private void startStandaloneServer(String portAsString) {

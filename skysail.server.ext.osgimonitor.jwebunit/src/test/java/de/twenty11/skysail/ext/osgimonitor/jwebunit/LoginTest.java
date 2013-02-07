@@ -16,6 +16,7 @@ public class LoginTest {
     private String username = "admin";
     private String password = "skysail";
     private String url = "localhost:2011";
+    private String baseUrl;
 
     @Before
     public void setup() {
@@ -28,7 +29,8 @@ public class LoginTest {
         }
 
         tester = new WebTester();
-        tester.setBaseUrl("http://" + url + "/osgimonitor/");
+        baseUrl = "http://" + url + "/osgimonitor/";
+        tester.setBaseUrl(baseUrl);
         tester.getTestContext().setAuthorization(username, password);
     }
 
@@ -50,13 +52,11 @@ public class LoginTest {
     public void gives_401_for_wrong_password() {
         tester.getTestContext().setAuthorization(username, "wrongOneForSure");
         tester.beginAt("");
-
     }
 
     @Test
     public void returns_html_startpage_when_providing_proper_credentials_and_media_type() {
         tester.beginAt("?media=html");
-        // System.out.println(tester.getPageSource());
         tester.assertTitleEquals("Skysail Json Html Viewer");
     }
 
@@ -65,4 +65,23 @@ public class LoginTest {
         tester.beginAt("?media=json");
         tester.assertTitleEquals("");
     }
+
+    @Test
+    public void follows_bundles_link_in_html_mode() {
+        tester.beginAt("?media=html");
+        tester.clickLinkWithExactText(getLinkText("bundles"));
+        tester.assertTextPresent("skysail.server");
+    }
+
+    @Test
+    public void follows_asGraph_link_in_html_mode() {
+        tester.beginAt("?media=html");
+        tester.clickLinkWithExactText(getLinkText("bundles/asGraph"));
+        tester.assertTextPresent("de.twenty11.skysail.common.ext.osgimonitor.BundleDetails");
+    }
+
+    private String getLinkText(String part) {
+        return "\"" + baseUrl + part + "\"";
+    }
+
 }
