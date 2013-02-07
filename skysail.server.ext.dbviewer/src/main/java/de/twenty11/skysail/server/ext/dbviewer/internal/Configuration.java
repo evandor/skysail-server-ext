@@ -17,10 +17,6 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
-import java.io.IOException;
-import java.util.Dictionary;
-import java.util.Enumeration;
-
 import javax.persistence.EntityManagerFactory;
 
 import org.osgi.framework.ServiceRegistration;
@@ -57,7 +53,7 @@ public class Configuration {
             logger.info("port was configured on {}", port);
             MapVerifier verifier = new MapVerifier();
             try {
-                if (!setSecretVerifier(verifier)) {
+                if (!serverConfig.setSecretVerifier(verifier, configadmin)) {
                     logger.warn("not starting up the application due to encountered configuration problems.");
                     return;
                 }
@@ -115,38 +111,7 @@ public class Configuration {
         this.configadmin = configadmin;
     }
 
-    private boolean setSecretVerifier(MapVerifier verifier) throws IOException {
-        org.osgi.service.cm.Configuration secrets;
-        logger.info("gettings 'secrets' configuration...");
-        if (configadmin == null) {
-            logger.error("configadmin is not set, cannot proceed with configuration; no one will be able to log in!");
-            return false;
-        }
-        secrets = configadmin.getConfiguration("secrets");
-        if (secrets == null) {
-            logger.error("could not find 'secrets' configuration; no one will be able to log in!");
-            return false;
-        }
-        Dictionary secretsProperties = secrets.getProperties();
-        if (secretsProperties == null || secretsProperties.keys() == null) {
-            logger.error("secretProperties is null or empty; no one will be able to log in!");
-            return false;
-        }
-        Enumeration keys = secretsProperties.keys();
-        while (keys.hasMoreElements()) {
-            String key = (String) keys.nextElement();
-            if (key.startsWith("user.")) {
-                String passCandidate = (String) secretsProperties.get(key);
-                if (!passCandidate.startsWith("password.")) {
-                    continue;
-                }
-                logger.info("setting password for user {}", key.substring("user.".length()));
-                verifier.getLocalSecrets().put(key.substring("user.".length()),
-                        passCandidate.substring("password.".length()).toCharArray());
-            }
-        }
-        return true;
-    }
+
 
     private void startStandaloneServer(String portAsString) {
         try {
