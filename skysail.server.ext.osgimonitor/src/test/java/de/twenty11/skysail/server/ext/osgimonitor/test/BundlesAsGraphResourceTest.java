@@ -39,13 +39,4 @@ public class BundlesAsGraphResourceTest extends BaseTests {
         resource.init(spy.getContext(), request, null);
     }
 
-    // @Test
-    // public void a() throws Exception {
-    // Representation jsGraph = resource.getJSGraph();
-    // String text = jsGraph.getText();
-    // System.out.println(text);
-    // }
-	
-
-
 }
