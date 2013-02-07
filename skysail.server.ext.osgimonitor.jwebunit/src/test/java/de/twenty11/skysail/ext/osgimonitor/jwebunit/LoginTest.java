@@ -45,7 +45,6 @@ public class LoginTest {
             ex.printStackTrace();
             return false;
         }
-
     }
 
     @Test(expected = TestingEngineResponseException.class)

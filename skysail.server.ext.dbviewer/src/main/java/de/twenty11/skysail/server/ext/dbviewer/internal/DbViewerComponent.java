@@ -19,13 +19,11 @@ package de.twenty11.skysail.server.ext.dbviewer.internal;
 
 import javax.persistence.EntityManagerFactory;
 
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 import org.restlet.data.LocalReference;
 import org.restlet.data.Protocol;
 import org.restlet.routing.Router;
-import org.restlet.routing.VirtualHost;
 import org.restlet.security.SecretVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +46,6 @@ public class DbViewerComponent extends Component {
 
     private DbViewerApplication application;
 
-    private ServiceRegistration registration;
-
     /**
      * @param emf
      * 
@@ -68,12 +64,6 @@ public class DbViewerComponent extends Component {
         logger.info("attaching application and starting {}", this.toString());
         getDefaultHost().attachDefault(application);
 
-        VirtualHost virtualHost = createVirtualHost();
-        if (componentContext.getBundleContext() != null) {
-            this.registration = componentContext.getBundleContext().registerService("org.restlet.routing.VirtualHost",
-                    virtualHost, null);
-        }
-        
         LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
 
         CompositeClassLoader customCL = new CompositeClassLoader();
@@ -85,18 +75,6 @@ public class DbViewerComponent extends Component {
 
         getDefaultHost().attach("/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/static", staticDirectory);
 
-    }
-
-    private VirtualHost createVirtualHost() {
-        VirtualHost vh = new VirtualHost();
-        vh.setHostDomain("127.0.0.1");
-        vh.setHostPort("2013");
-        vh.attach(this);
-        return vh;
-    }
-
-    public ServiceRegistration getRegistration() {
-        return registration;
     }
 
     @Override

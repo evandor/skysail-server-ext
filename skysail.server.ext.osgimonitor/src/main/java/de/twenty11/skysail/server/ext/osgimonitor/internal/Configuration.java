@@ -25,7 +25,6 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Server;
-import org.restlet.data.Protocol;
 import org.restlet.routing.VirtualHost;
 import org.restlet.security.MapVerifier;
 import org.slf4j.Logger;
@@ -47,24 +46,15 @@ public class Configuration implements ManagedService {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
         this.context = componentContext;
 
-        if (serverConfig.startComponent()) {
+        if (serverConfig.shouldStartComponent()) {
             logger.info("Starting component for Skysail Ext Osgimonitor...");
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
-            MapVerifier verifier = new MapVerifier();
-            try {
-                if (!serverConfig.setSecretVerifier(verifier, configadmin)) {
-                    logger.warn("not starting up the application due to encountered configuration problems.");
-                    return;
-                }
-            } catch (Exception e) {
-                logger.error("Configuring secretVerifier encountered a problem: {}", e.getMessage());
-                e.printStackTrace();
-                throw new ConfigurationException("secrets", "file not found", e);
-            }
+
+            MapVerifier verifier = serverConfig.getVerifier(configadmin);
             logger.info("Starting standalone osgimonitor server on port {}", port);
             restletComponent = new OsgiMonitorComponent(this.context, verifier);
-            startStandaloneServer(port);
+            server = serverConfig.startStandaloneServer(port, restletComponent);
         } else {
             logger.info("Starting virtual host for Skysail Osgimonitor...");
             VirtualHost virtualHost = createVirtualHost();
@@ -86,8 +76,8 @@ public class Configuration implements ManagedService {
         } catch (Exception e) {
             logger.error("Exception when trying to stop standalone server", e);
         }
-        if (restletComponent != null && restletComponent.getRegistration() != null) {
-            restletComponent.getRegistration().unregister();
+        if (registration != null) {
+            registration.unregister();
         }
     }
 
@@ -115,13 +105,5 @@ public class Configuration implements ManagedService {
         this.serverConfig = serverConfig;
     }
 
-    private void startStandaloneServer(String portAsString) {
-        try {
-            server = new Server(Protocol.HTTP, Integer.valueOf(portAsString), restletComponent);
-            server.start();
-        } catch (Exception e) {
-            logger.error("Exception when starting standalone server", e);
-        }
-    }
 
 }
