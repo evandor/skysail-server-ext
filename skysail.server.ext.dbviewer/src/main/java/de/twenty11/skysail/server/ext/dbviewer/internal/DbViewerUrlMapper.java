@@ -28,7 +28,7 @@ public class DbViewerUrlMapper implements UrlMapper {
     public Map<String, String> provideUrlMapping() {
         Map<String, String> queue = Collections.synchronizedMap(new LinkedHashMap<String, String>());
         // @formatter:off
-        queue.put("/", RootResource.class.getName());
+        //queue.put("/", RootResource.class.getName());
         queue.put("/dbviewer", RootResource.class.getName());
         queue.put("/dbviewer/", RootResource.class.getName());
 

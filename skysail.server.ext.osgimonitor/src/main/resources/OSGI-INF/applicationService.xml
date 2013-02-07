@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="SSEDV Application Service Provider">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorApplicationDescriptor">
  <implementation class="de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorApplicationDescriptor"/>
  <service>
      <provide interface="de.twenty11.skysail.server.services.ApplicationDescriptor"/>
