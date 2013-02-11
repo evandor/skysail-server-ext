@@ -47,7 +47,7 @@ public class Configuration {
         this.context = componentContext;
 
         logger.info("Configuring Skysail Ext DbViewer...");
-        if (serverConfig.shouldStartComponent()) {
+        if (serverConfig.shouldStartComponent(this.getClass().getName())) {
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
             MapVerifier verifier = serverConfig.getVerifier(configadmin);

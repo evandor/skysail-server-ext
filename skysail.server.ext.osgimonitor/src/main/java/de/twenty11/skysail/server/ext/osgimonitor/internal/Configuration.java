@@ -46,7 +46,7 @@ public class Configuration implements ManagedService {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
         this.context = componentContext;
 
-        if (serverConfig.shouldStartComponent()) {
+        if (serverConfig.shouldStartComponent(this.getClass().getName())) {
             logger.info("Starting component for Skysail Ext Osgimonitor...");
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
