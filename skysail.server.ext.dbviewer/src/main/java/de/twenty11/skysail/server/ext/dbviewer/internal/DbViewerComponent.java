@@ -17,14 +17,19 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
-import org.osgi.framework.ServiceRegistration;
+import javax.persistence.EntityManagerFactory;
+
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
+import org.restlet.data.LocalReference;
 import org.restlet.data.Protocol;
-import org.restlet.routing.VirtualHost;
+import org.restlet.routing.Router;
 import org.restlet.security.SecretVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.twenty11.skysail.server.directory.ClassLoaderDirectory;
+import de.twenty11.skysail.server.directory.CompositeClassLoader;
 
 /**
  * Concurrency note from parent class: instances of this class or its subclasses can be invoked by several threads at
@@ -41,41 +46,35 @@ public class DbViewerComponent extends Component {
 
     private DbViewerApplication application;
 
-    private ServiceRegistration registration;
-
     /**
+     * @param emf
      * 
      */
-    public DbViewerComponent(ComponentContext componentContext, SecretVerifier verifier) {
+    public DbViewerComponent(ComponentContext componentContext, SecretVerifier verifier, EntityManagerFactory emf) {
         getClients().add(Protocol.CLAP);
         getClients().add(Protocol.HTTP);
+        getClients().add(Protocol.FILE);
 
         // Create a restlet application
         logger.info("new restlet application: {}", DbViewerApplication.class.getName());
-        application = new DbViewerApplication("/static", componentContext.getBundleContext());
+        application = new DbViewerApplication("/static", componentContext.getBundleContext(), emf);
         application.setVerifier(verifier);
 
         // Attach the application to the component and start it
         logger.info("attaching application and starting {}", this.toString());
         getDefaultHost().attachDefault(application);
 
-        VirtualHost virtualHost = createVirtualHost();
-        if (componentContext.getBundleContext() != null) {
-            this.registration = componentContext.getBundleContext().registerService("org.restlet.routing.VirtualHost",
-                    virtualHost, null);
-        }
-    }
+        LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
 
-    private VirtualHost createVirtualHost() {
-        VirtualHost vh = new VirtualHost();
-        vh.setHostDomain("127.0.0.1");
-        vh.setHostPort("2013");
-        vh.attach(this);
-        return vh;
-    }
+        CompositeClassLoader customCL = new CompositeClassLoader();
+        customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
+        customCL.addClassLoader(Router.class.getClassLoader());
+        customCL.addClassLoader(this.getClass().getClassLoader());
 
-    public ServiceRegistration getRegistration() {
-        return registration;
+        ClassLoaderDirectory staticDirectory = new ClassLoaderDirectory(getContext(), localReference, customCL);
+
+        getDefaultHost().attach("/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/static", staticDirectory);
+
     }
 
     @Override

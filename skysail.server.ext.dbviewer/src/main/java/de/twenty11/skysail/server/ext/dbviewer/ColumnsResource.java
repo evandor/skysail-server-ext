@@ -24,7 +24,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import org.restlet.resource.Get;
@@ -35,8 +34,8 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class ColumnsResource extends ListServerResource<ColumnsDetails> implements RestfulColumns {
@@ -62,7 +61,7 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
     }
 
     @Override
-    @Get
+    @Get("html|json")
     public Response<List<ColumnsDetails>> getColumns() {
         return getEntities(allColumns(), "all Columns");
     }

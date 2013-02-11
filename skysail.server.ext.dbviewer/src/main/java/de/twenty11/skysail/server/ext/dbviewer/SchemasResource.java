@@ -39,7 +39,7 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
     }
 
     @Override
-    @Get
+    @Get("html|json")
     public Response<List<SchemaDetails>> getSchemas() {
         return getEntities(allSchemas(), "all Schemas");
     }

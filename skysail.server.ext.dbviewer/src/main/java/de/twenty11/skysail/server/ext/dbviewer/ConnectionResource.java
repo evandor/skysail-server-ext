@@ -15,8 +15,8 @@ import de.twenty11.skysail.common.ext.dbviewer.RestfulConnection;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class ConnectionResource extends ListServerResource<ConnectionDetails> implements RestfulConnection {
@@ -37,7 +37,7 @@ public class ConnectionResource extends ListServerResource<ConnectionDetails> im
     }
 
     @Override
-    @Get
+    @Get("html|json")
     public Response<ConnectionDetails> getConnection() {
         TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name = :name",
                 ConnectionDetails.class);

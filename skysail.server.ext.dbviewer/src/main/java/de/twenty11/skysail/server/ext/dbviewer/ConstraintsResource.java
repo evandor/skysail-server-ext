@@ -24,7 +24,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import org.restlet.resource.Get;
@@ -32,13 +31,11 @@ import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.ConstraintDetails;
-import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConstraints;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
+import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class ConstraintsResource extends ListServerResource<ConstraintDetails> implements RestfulConstraints {
@@ -64,7 +61,7 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
     }
 
     @Override
-    @Get
+    @Get("html|json")
     public Response<List<ConstraintDetails>> getConstraints() {
         return getEntities(allConstraints(), "all Constraints");
     }

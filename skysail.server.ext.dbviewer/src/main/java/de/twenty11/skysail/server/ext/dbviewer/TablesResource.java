@@ -63,7 +63,7 @@ public class TablesResource extends ListServerResource<TableDetails> implements 
     }
     
     @Override
-    @Get
+    @Get("html|json")
     public Response<List<TableDetails>> getTables() {
         return getEntities(allTables(), "all Tables");
     }

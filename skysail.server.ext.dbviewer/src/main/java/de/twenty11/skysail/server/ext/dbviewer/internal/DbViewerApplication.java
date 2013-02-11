@@ -44,31 +44,22 @@ import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
 public class DbViewerApplication extends RestletOsgiApplication {
 
     private EntityManagerFactory emf;
-    private static DbViewerApplication self;
 
     /** deals with json objects */
     private final ObjectMapper mapper = new ObjectMapper();
     
     /**
      * @param staticPathTemplate
-     * @param bundleContext 
+     * @param bundleContext
+     * @param emf
      */
-    public DbViewerApplication(String staticPathTemplate, BundleContext bundleContext) {
+    public DbViewerApplication(String staticPathTemplate, BundleContext bundleContext, EntityManagerFactory emf) {
         super(DbViewerApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
         getLogger().info("Starting DbViewerApplication");
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");
         setBundleContext(bundleContext);
-    }
-
-    /**
-     * this is done to give osgi a chance to inject services to restlet; should be changed to some javax.inject approach
-     * (like using InjectedServerResource) once this is available.
-     * 
-     * @return
-     */
-    public static DbViewerApplication get() {
-        return self;
+        this.emf = emf;
     }
 
     @Override
@@ -82,10 +73,6 @@ public class DbViewerApplication extends RestletOsgiApplication {
             urlMappingServiceListener = new UrlMappingServiceListener(this);
             new SkysailApplicationServiceListener(this);
         }
-    }
-
-    public void setEntityManagerProvider(EntityManagerFactory emf) {
-        this.emf = emf;
     }
 
     public EntityManager getEntityManager() {

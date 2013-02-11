@@ -31,7 +31,7 @@ public class RootResource extends ListServerResource<ResourceDetails> implements
     }
     
     @Override
-    @Get
+    @Get("html|json")
     public Response<List<ResourceDetails>> getMethods() {
         return getEntities(allMethods(), "listing all entry points for the skysail dbViewer application");
     }
