@@ -1,0 +1,27 @@
+Introduction
+
+ This project provides the classes meant to be used by both 
+ skysail clients and server components. 
+ 
+ A skysail setup usually consists of one server part and one or more clients. The server
+ provides the "business data" communication (based on REST), the clients task is to make it
+ "look nice" and to provide features on top of the actual data (like, e.g. drag-and-drop, 
+ date pickers and so on). Clients can be standalone, remote applications, or, for convenience,
+ they can be deployed on the server side as well and be accessed via a browser.
+ 
+* Building
+
+ run "mvn clean install" (maven version 3.0+) to build the project
+  
+* Deployment
+
+ to be done: karaf
+ 
+* Testing 
+
+ to be done
+
+ 
+ 
+
+

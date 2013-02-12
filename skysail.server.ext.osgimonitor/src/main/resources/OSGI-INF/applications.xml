@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="de.twenty11.skysail.server.ext.osgimonitor.internal.Applications">
+   <implementation class="de.twenty11.skysail.server.ext.osgimonitor.internal.Applications"/>
+   <reference 
+        cardinality="0..n" 
+        bind="setApplicationProvider"
+        interface="de.twenty11.skysail.server.services.ApplicationProvider" 
+        name="ApplicationProvider" policy="dynamic"/>
+</scr:component>

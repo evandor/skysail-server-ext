@@ -31,6 +31,11 @@ import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
  */
 public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
 
+    // non-arg constructor needed for scr
+    public OsgiMonitorViewerApplication() {
+        this("dummy", null);
+    }
+
     /**
      * @param staticPathTemplate
      * @param bundleContext
