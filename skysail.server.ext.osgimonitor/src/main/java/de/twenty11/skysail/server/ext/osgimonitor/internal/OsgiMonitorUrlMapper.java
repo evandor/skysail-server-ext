@@ -8,6 +8,7 @@ import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsJsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
+import de.twenty11.skysail.server.ext.osgimonitor.ServicesResource;
 import de.twenty11.skysail.server.services.UrlMapper;
 
 public class OsgiMonitorUrlMapper implements UrlMapper {
@@ -25,6 +26,8 @@ public class OsgiMonitorUrlMapper implements UrlMapper {
         routes.put(APP_PREFIX + "/bundles/details/{bundleId}/{action}", BundleResource.class.getName());
         // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/stop", BundleResource.class.getName());
         // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/update", BundleResource.class.getName());
+
+        routes.put(APP_PREFIX + "/services", ServicesResource.class.getName());
 
         return routes;
     }

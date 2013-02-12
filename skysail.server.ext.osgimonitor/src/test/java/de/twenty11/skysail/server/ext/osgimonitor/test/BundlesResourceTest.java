@@ -20,7 +20,6 @@ import org.restlet.Request;
 import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 
