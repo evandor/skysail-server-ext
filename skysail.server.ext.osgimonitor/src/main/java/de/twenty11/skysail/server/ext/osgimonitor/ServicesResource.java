@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
@@ -15,12 +14,8 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
-import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulServices;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
-import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;

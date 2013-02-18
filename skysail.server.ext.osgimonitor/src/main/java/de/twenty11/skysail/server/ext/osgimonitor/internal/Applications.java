@@ -9,14 +9,14 @@ import de.twenty11.skysail.server.services.ApplicationProvider;
 
 public class Applications {
 
-    private List<Application> applications = new ArrayList<Application>();
+    private static List<Application> applications = new ArrayList<Application>();
 
     public void setApplicationProvider(ApplicationProvider provider) {
-        this.applications.add(provider.getApplication());
+        Applications.applications.add(provider.getApplication());
     }
 
     public void unsetApplicationProvider(ApplicationProvider provider) {
-        this.applications.remove(provider.getApplication());
+        Applications.applications.remove(provider.getApplication());
     }
 
 }
