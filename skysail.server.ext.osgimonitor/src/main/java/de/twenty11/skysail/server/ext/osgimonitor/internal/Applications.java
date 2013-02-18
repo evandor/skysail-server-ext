@@ -18,5 +18,9 @@ public class Applications {
     public void unsetApplicationProvider(ApplicationProvider provider) {
         Applications.applications.remove(provider.getApplication());
     }
+    
+    public static List<Application> getApplications() {
+		return applications;
+	}
 
 }

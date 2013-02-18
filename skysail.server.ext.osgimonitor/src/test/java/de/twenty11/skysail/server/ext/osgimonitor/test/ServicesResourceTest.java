@@ -51,6 +51,7 @@ public class ServicesResourceTest extends BaseTests {
 	}
 
 	@Test
+	@Ignore
 	public void returns_services_with_proper_values() throws Exception {
 		List<ServiceDescriptor> services = getServices();
 		assertThat(services.size(), is(equalTo(1)));

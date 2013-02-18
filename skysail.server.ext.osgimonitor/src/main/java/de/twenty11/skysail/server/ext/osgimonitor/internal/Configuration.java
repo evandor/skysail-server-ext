@@ -18,12 +18,14 @@
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
 import java.util.Dictionary;
+import java.util.List;
 
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
+import org.restlet.Application;
 import org.restlet.Server;
 import org.restlet.routing.VirtualHost;
 import org.restlet.security.MapVerifier;
@@ -54,6 +56,12 @@ public class Configuration implements ManagedService {
             MapVerifier verifier = serverConfig.getVerifier(configadmin);
             logger.info("Starting standalone osgimonitor server on port {}", port);
             restletComponent = new OsgiMonitorComponent(this.context, verifier);
+            
+            List<Application> applications = Applications.getApplications();
+            for (Application application : applications) {
+				restletComponent.getInternalRouter().attach(application);
+			}
+            
             server = serverConfig.startStandaloneServer(port, restletComponent);
         } else {
             logger.info("Starting virtual host for Skysail Osgimonitor...");
