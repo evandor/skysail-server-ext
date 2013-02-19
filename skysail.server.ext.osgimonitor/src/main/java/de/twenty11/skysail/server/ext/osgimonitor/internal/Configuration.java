@@ -53,8 +53,9 @@ public class Configuration implements ManagedService {
         this.context = componentContext;
 
         if (serverConfig.shouldStartComponent(this.getClass().getName())) {
-            Engine.setLogLevel(Level.ALL);
+            //Engine.setLogLevel(Level.ALL);
             Engine.setRestletLogLevel(Level.ALL);
+            //System.setProperty("java.util.logging.config.file", "logging.config");
             logger.info("Starting component for Skysail Ext Osgimonitor...");
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
@@ -117,17 +118,19 @@ public class Configuration implements ManagedService {
     public void setApplicationProvider(ApplicationProvider provider) {
         logger.info("adding new application from {}", provider);
         Application application = provider.getApplication();
-        VirtualHost virtualHost = new VirtualHost(restletComponent.getContext());
-        virtualHost.attach(application);
-        restletComponent.getHosts().add(virtualHost);
+//        VirtualHost virtualHost = new VirtualHost(restletComponent.getContext());
+//        virtualHost.attach(application);
+//        restletComponent.getHosts().add(virtualHost);
+        restletComponent.getDefaultHost().attach(application);
         // restletComponent.getDefaultHost().attach(application);
         // restletComponent.getInternalRouter().attach(application);
     }
 
     public void unsetApplicationProvider(ApplicationProvider provider) {
-        restletComponent.getHosts().remove(provider.getApplication());
+        //restletComponent.getHosts().remove(provider.getApplication());
         // restletComponent.getDefaultHost().detach(provider.getApplication());
         // restletComponent.getInternalRouter().detach(provider.getApplication());
+    	 restletComponent.getDefaultHost().detach(provider.getApplication());
     }
 
 }
