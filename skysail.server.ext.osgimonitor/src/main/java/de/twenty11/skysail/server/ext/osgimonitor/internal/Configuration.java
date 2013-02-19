@@ -18,7 +18,7 @@
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
 import java.util.Dictionary;
-import java.util.List;
+import java.util.logging.Level;
 
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -27,12 +27,14 @@ import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
 import org.restlet.Server;
+import org.restlet.engine.Engine;
 import org.restlet.routing.VirtualHost;
 import org.restlet.security.MapVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.config.ServerConfiguration;
+import de.twenty11.skysail.server.services.ApplicationProvider;
 
 public class Configuration implements ManagedService {
 
@@ -44,11 +46,15 @@ public class Configuration implements ManagedService {
     private ServerConfiguration serverConfig;
     private ServiceRegistration registration;
 
+    // private List<Application> applications = new ArrayList<Application>();
+
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
         this.context = componentContext;
 
         if (serverConfig.shouldStartComponent(this.getClass().getName())) {
+            Engine.setLogLevel(Level.ALL);
+            Engine.setRestletLogLevel(Level.ALL);
             logger.info("Starting component for Skysail Ext Osgimonitor...");
             String port = (String) serverConfig.getConfigForKey("port");
             logger.info("port was configured on {}", port);
@@ -56,11 +62,6 @@ public class Configuration implements ManagedService {
             MapVerifier verifier = serverConfig.getVerifier(configadmin);
             logger.info("Starting standalone osgimonitor server on port {}", port);
             restletComponent = new OsgiMonitorComponent(this.context, verifier);
-            
-            List<Application> applications = Applications.getApplications();
-            for (Application application : applications) {
-				restletComponent.getInternalRouter().attach(application);
-			}
             
             server = serverConfig.startStandaloneServer(port, restletComponent);
         } else {
@@ -113,5 +114,20 @@ public class Configuration implements ManagedService {
         this.serverConfig = serverConfig;
     }
 
+    public void setApplicationProvider(ApplicationProvider provider) {
+        logger.info("adding new application from {}", provider);
+        Application application = provider.getApplication();
+        VirtualHost virtualHost = new VirtualHost(restletComponent.getContext());
+        virtualHost.attach(application);
+        restletComponent.getHosts().add(virtualHost);
+        // restletComponent.getDefaultHost().attach(application);
+        // restletComponent.getInternalRouter().attach(application);
+    }
+
+    public void unsetApplicationProvider(ApplicationProvider provider) {
+        restletComponent.getHosts().remove(provider.getApplication());
+        // restletComponent.getDefaultHost().detach(provider.getApplication());
+        // restletComponent.getInternalRouter().detach(provider.getApplication());
+    }
 
 }
