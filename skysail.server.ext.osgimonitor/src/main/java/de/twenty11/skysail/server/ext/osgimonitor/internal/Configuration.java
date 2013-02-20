@@ -121,7 +121,7 @@ public class Configuration implements ManagedService {
 //        VirtualHost virtualHost = new VirtualHost(restletComponent.getContext());
 //        virtualHost.attach(application);
 //        restletComponent.getHosts().add(virtualHost);
-        restletComponent.getDefaultHost().attach(application);
+        restletComponent.getDefaultHost().attach("/tmp", application);
         // restletComponent.getDefaultHost().attach(application);
         // restletComponent.getInternalRouter().attach(application);
     }

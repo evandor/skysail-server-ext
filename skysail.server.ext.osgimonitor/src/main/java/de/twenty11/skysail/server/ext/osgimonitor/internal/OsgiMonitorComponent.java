@@ -66,7 +66,7 @@ public class OsgiMonitorComponent extends Component {
 
 		// Attach the application to the component and start it
 		logger.info("attaching application and starting {}", this.toString());
-		getDefaultHost().attachDefault(application);
+        getDefaultHost().attach(application);
 
         LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
 
