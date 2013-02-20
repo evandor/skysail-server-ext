@@ -23,13 +23,13 @@ import org.restlet.Request;
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
-import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
+import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
  * @author carsten
  * 
  */
-public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
+public class OsgiMonitorViewerApplication extends SkysailApplication {
 
     // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication() {
@@ -54,7 +54,7 @@ public class OsgiMonitorViewerApplication extends RestletOsgiApplication {
 
     // TODO proper place for this here? what about multiple instances?
     protected void attach() {
-        if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
+        if (FrameworkUtil.getBundle(SkysailApplication.class) != null) {
             urlMappingServiceListener = new UrlMappingServiceListener(this);
             // new SkysailApplicationServiceListener(this);
         }

@@ -35,13 +35,13 @@ import org.restlet.resource.ClientResource;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.server.listener.SkysailApplicationServiceListener;
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
-import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
+import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
  * @author carsten
  * 
  */
-public class DbViewerApplication extends RestletOsgiApplication {
+public class DbViewerApplication extends SkysailApplication {
 
     private EntityManagerFactory emf;
 
@@ -69,7 +69,7 @@ public class DbViewerApplication extends RestletOsgiApplication {
 
     // TODO proper place for this here? what about multiple instances?
     protected void attach() {
-        if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
+        if (FrameworkUtil.getBundle(SkysailApplication.class) != null) {
             urlMappingServiceListener = new UrlMappingServiceListener(this);
             new SkysailApplicationServiceListener(this);
         }

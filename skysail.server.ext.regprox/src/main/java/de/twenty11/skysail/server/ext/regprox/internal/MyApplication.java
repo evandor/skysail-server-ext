@@ -22,13 +22,13 @@ import org.restlet.Request;
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
-import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
+import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
  * @author carsten
  * 
  */
-public class MyApplication extends RestletOsgiApplication {
+public class MyApplication extends SkysailApplication {
 
     private static MyApplication self;
 
@@ -59,7 +59,7 @@ public class MyApplication extends RestletOsgiApplication {
 
     // TODO proper place for this here? what about multiple instances?
     protected void attach() {
-        if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
+        if (FrameworkUtil.getBundle(SkysailApplication.class) != null) {
             new UrlMappingServiceListener(this);
             //new SkysailApplicationServiceListener(this);
         }
