@@ -33,8 +33,6 @@ import org.restlet.routing.VirtualHost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.Constants;
-
 public class Configuration implements ManagedService {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
@@ -149,22 +147,6 @@ public class Configuration implements ManagedService {
 
     public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
         Configuration.configadmin = configadmin;
-    }
-
-    public static String getDriverClassName() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_DRIVERCLASSNAME);
-    }
-
-    public static String getUsername() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_USERNAME);
-    }
-
-    public static String getPasswort() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_PASSWORD);
-    }
-
-    public static String getUrl() {
-        return getStringFromConfigAdmin(Constants.SKYSAIL_DB_URL);
     }
 
     private static String getStringFromConfigAdmin(String configElementName) {

@@ -46,8 +46,6 @@ public class Configuration implements ManagedService {
     private ServerConfiguration serverConfig;
     private ServiceRegistration registration;
 
-    // private List<Application> applications = new ArrayList<Application>();
-
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
         this.context = componentContext;
@@ -73,7 +71,6 @@ public class Configuration implements ManagedService {
                         "org.restlet.routing.VirtualHost", virtualHost, null);
             }
         }
-
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -121,7 +118,7 @@ public class Configuration implements ManagedService {
 //        VirtualHost virtualHost = new VirtualHost(restletComponent.getContext());
 //        virtualHost.attach(application);
 //        restletComponent.getHosts().add(virtualHost);
-        restletComponent.getDefaultHost().attach("/tmp", application);
+        restletComponent.getDefaultHost().attach("/" + application.getName(), application);
         // restletComponent.getDefaultHost().attach(application);
         // restletComponent.getInternalRouter().attach(application);
     }
