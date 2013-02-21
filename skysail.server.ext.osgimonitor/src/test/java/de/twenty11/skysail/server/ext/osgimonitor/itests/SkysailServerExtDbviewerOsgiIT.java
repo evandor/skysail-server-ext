@@ -22,7 +22,7 @@ import org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory;
 
 import com.jayway.restassured.RestAssured;
 
-import de.twenty11.skysail.common.osgi.PaxExamOptionSet;
+import de.twenty11.skysail.common.testing.utils.PaxExamOptionSet;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorApplicationDescriptor;
 
 /**

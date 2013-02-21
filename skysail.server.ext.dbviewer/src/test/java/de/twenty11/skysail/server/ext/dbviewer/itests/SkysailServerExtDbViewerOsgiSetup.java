@@ -9,8 +9,8 @@ import org.ops4j.pax.exam.Option;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.common.osgi.PaxExamOptionSet;
-import de.twenty11.skysail.common.osgi.SkysailCommonOsgiSetup;
+import de.twenty11.skysail.common.testing.utils.PaxExamOptionSet;
+import de.twenty11.skysail.common.testing.utils.SkysailCommonOsgiSetup;
 import de.twenty11.skysail.server.integrationtest.SkysailServerOsgiSetup;
 
 public class SkysailServerExtDbViewerOsgiSetup extends SkysailServerOsgiSetup {
