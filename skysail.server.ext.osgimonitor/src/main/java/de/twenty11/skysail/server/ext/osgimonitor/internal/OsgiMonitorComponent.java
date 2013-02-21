@@ -19,15 +19,10 @@ package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
-import org.restlet.data.LocalReference;
 import org.restlet.data.Protocol;
-import org.restlet.routing.Router;
 import org.restlet.security.SecretVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.twenty11.skysail.server.directory.ClassLoaderDirectory;
-import de.twenty11.skysail.server.directory.CompositeClassLoader;
 
 /**
  * Concurrency note from parent class: instances of this class or its subclasses
@@ -68,16 +63,17 @@ public class OsgiMonitorComponent extends Component {
 		logger.info("attaching application and starting {}", this.toString());
         getDefaultHost().attach(application);
 
-        LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
-
-        CompositeClassLoader customCL = new CompositeClassLoader();
-        customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
-        customCL.addClassLoader(Router.class.getClassLoader());
-        customCL.addClassLoader(this.getClass().getClassLoader());
-
-        ClassLoaderDirectory staticDirectory = new ClassLoaderDirectory(getContext(), localReference, customCL);
-
-        getDefaultHost().attach("/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/static", staticDirectory);
+        // LocalReference localReference = LocalReference.createClapReference(LocalReference.CLAP_THREAD, "/static/");
+        //
+        // CompositeClassLoader customCL = new CompositeClassLoader();
+        // customCL.addClassLoader(Thread.currentThread().getContextClassLoader());
+        // customCL.addClassLoader(Router.class.getClassLoader());
+        // customCL.addClassLoader(this.getClass().getClassLoader());
+        //
+        // ClassLoaderDirectory staticDirectory = new ClassLoaderDirectory(getContext(), localReference, customCL);
+        //
+        // getDefaultHost().attach("/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/static",
+        // staticDirectory);
 
 	}
 
