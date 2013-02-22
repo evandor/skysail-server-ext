@@ -1,5 +1,5 @@
 
-mvn:de.twentyeleven.skysail/skysail.common/0.3.18@update
+mvn:de.twentyeleven.skysail/skysail.common/0.3.19-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.config.configadmin/0.0.2@3@update
 mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.7-SNAPSHOT@update
 
