@@ -25,8 +25,8 @@
 	</scm>
 
 	<properties>
-		<skysail.common.version>[0.3.17, 1.0)</skysail.common.version>
-		<skysail.server.version>[0.2.10, 1.0)</skysail.server.version>
+		<skysail.common.version>[0.3.19, 1.0)</skysail.common.version>
+		<skysail.server.version>[0.2.11, 1.0)</skysail.server.version>
 	</properties>
 
 	<build>
@@ -187,7 +187,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common.ext.osgimonitor</artifactId>
-			<version>[0.0.6, 1.0.0)</version>
+			<version>[0.0.7, 1.0.0)</version>
 		</dependency>
 
 		<dependency>
