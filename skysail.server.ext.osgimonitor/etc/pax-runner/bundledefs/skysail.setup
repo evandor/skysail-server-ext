@@ -3,8 +3,8 @@ mvn:de.twentyeleven.skysail/skysail.common/0.3.19@update
 mvn:de.twentyeleven.skysail/skysail.common.config.configadmin/0.0.2@3@update
 mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.7@update
 
-mvn:de.twentyeleven.skysail/skysail.server/0.2.11@update
-mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.8@update
+mvn:de.twentyeleven.skysail/skysail.server/0.2.12-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.9-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.server.static/0.0.2@update
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1@nostart
 

@@ -198,14 +198,6 @@
 
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>skysail.server</artifactId>
-			<version>${skysail.server.version}</version>
-			<scope>test</scope>
-			<type>test-jar</type>
-		</dependency>
-
-		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common</artifactId>
 			<version>${skysail.common.version}</version>
 			<scope>test</scope>

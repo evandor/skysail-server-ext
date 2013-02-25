@@ -54,7 +54,7 @@ public class DbViewerApplication extends SkysailApplication {
      * @param emf
      */
     public DbViewerApplication(String staticPathTemplate, BundleContext bundleContext, EntityManagerFactory emf) {
-        super(DbViewerApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
+        super(DbViewerApplicationDescriptor.APPLICATION_NAME);
         getLogger().info("Starting DbViewerApplication");
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");

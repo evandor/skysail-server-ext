@@ -30,7 +30,6 @@ import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorApplicationDescriptor;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorComponent;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorUrlMapper;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 
@@ -47,8 +46,9 @@ public class BaseTests {
     	
         MapVerifier secretVerifier = new MapVerifier();
         secretVerifier.getLocalSecrets().put("testadmin", "testpassword".toCharArray());
-        OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContextMock, secretVerifier);
-        osgiMonitorViewerApplication = osgiMonitorComponent.getApplication();
+        // OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContextMock, secretVerifier);
+        osgiMonitorViewerApplication = new OsgiMonitorViewerApplication(null);
+        osgiMonitorViewerApplication.setVerifier(secretVerifier);
 
         OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
         Application.setCurrent(spy);

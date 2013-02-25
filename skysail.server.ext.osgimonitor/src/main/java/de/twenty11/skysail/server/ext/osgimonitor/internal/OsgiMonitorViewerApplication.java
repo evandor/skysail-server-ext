@@ -33,15 +33,15 @@ public class OsgiMonitorViewerApplication extends SkysailApplication {
 
     // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication() {
-        this("dummy", null);
+        this(null);
     }
 
     /**
      * @param staticPathTemplate
      * @param bundleContext
      */
-    public OsgiMonitorViewerApplication(String staticPathTemplate, BundleContext bundleContext) {
-        super(OsgiMonitorApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
+    public OsgiMonitorViewerApplication(BundleContext bundleContext) {
+        super(OsgiMonitorApplicationDescriptor.APPLICATION_NAME);
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setBundleContext(bundleContext);
