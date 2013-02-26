@@ -18,16 +18,16 @@ public class OsgiMonitorUrlMapper implements UrlMapper {
     @Override
     public Map<String, String> provideUrlMapping() {
         Map<String, String> routes = new HashMap<String, String>();
-        routes.put(APP_PREFIX + "/", OsgiMonitorRootResource.class.getName());
-        routes.put(APP_PREFIX + "/bundles", BundlesResource.class.getName());
-        routes.put(APP_PREFIX + "/bundles/asGraph", BundlesAsGraphResource.class.getName());
-        routes.put(APP_PREFIX + "/bundles/asJsGraph", BundlesAsJsGraphResource.class.getName());
-        routes.put(APP_PREFIX + "/bundles/details/{bundleId}", BundleResource.class.getName());
-        routes.put(APP_PREFIX + "/bundles/details/{bundleId}/{action}", BundleResource.class.getName());
-        // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/stop", BundleResource.class.getName());
-        // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/update", BundleResource.class.getName());
-
-        routes.put(APP_PREFIX + "/services", ServicesResource.class.getName());
+//        routes.put(APP_PREFIX + "/", OsgiMonitorRootResource.class.getName());
+//        routes.put(APP_PREFIX + "/bundles", BundlesResource.class.getName());
+//        routes.put(APP_PREFIX + "/bundles/asGraph", BundlesAsGraphResource.class.getName());
+//        routes.put(APP_PREFIX + "/bundles/asJsGraph", BundlesAsJsGraphResource.class.getName());
+//        routes.put(APP_PREFIX + "/bundles/details/{bundleId}", BundleResource.class.getName());
+//        routes.put(APP_PREFIX + "/bundles/details/{bundleId}/{action}", BundleResource.class.getName());
+//        // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/stop", BundleResource.class.getName());
+//        // routes.put(APP_PREFIX + "/bundles/details/{bundleId}/update", BundleResource.class.getName());
+//
+//        routes.put(APP_PREFIX + "/services", ServicesResource.class.getName());
 
         return routes;
     }

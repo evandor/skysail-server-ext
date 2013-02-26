@@ -91,23 +91,23 @@ public class BaseTests {
     }
 
     private org.restlet.Response delete(String uri) {
-        Request request = new Request(Method.DELETE, "/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        Request request = new Request(Method.DELETE, "/" + uri);
         return handleRequest(request);
     }
 
     protected org.restlet.Response get(String uri) {
-        Request request = new Request(Method.GET, "/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        Request request = new Request(Method.GET, "/" + uri);
         return handleRequest(request);
     }
 
     protected org.restlet.Response put(String uri) {
-        Request request = new Request(Method.PUT, "/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        Request request = new Request(Method.PUT, "/" + uri);
         return handleRequest(request);
     }
 
     protected org.restlet.Response post(String uri, Object connection) throws JsonGenerationException,
             JsonMappingException, IOException {
-        Request request = new Request(Method.POST, "/" + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        Request request = new Request(Method.POST, "/" + uri);
         String writeValueAsString = mapper.writeValueAsString(connection);
         request.setEntity(writeValueAsString, MediaType.APPLICATION_JSON);
         return handleRequest(request);

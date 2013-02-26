@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.ext.osgimonitor.internal.test;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Before;
@@ -23,10 +26,8 @@ public class ConfigurationTest {
 
     @Mock
     private ApplicationProvider applicationProvider;
-
     @Mock
     private ComponentProvider componentProvider;
-
     @Mock
     private ComponentContext componentContext;
 
@@ -37,12 +38,16 @@ public class ConfigurationTest {
         protected void activate(ComponentContext componentContext) throws ConfigurationException {
             super.activate(componentContext);
         }
+        @Override
+        protected void deactivate(ComponentContext componentContext) {
+        	super.deactivate(componentContext);
+        }
     }
 
     @Before
     public void createConfiguration() throws Exception {
-        // componentContext = mock(ComponentContext.class);
         BundleContext bundleContext = mock(BundleContext.class);
+        //Mockito.when(bundleContext.)
         Mockito.when(componentContext.getBundleContext()).thenReturn(bundleContext);
         OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication(componentContext.getBundleContext());
 
@@ -51,13 +56,20 @@ public class ConfigurationTest {
         Mockito.when(applicationProvider.getApplication()).thenReturn(application);
         testConfiguration = new TestConfiguration();
         // testConfiguration.setApplicationProvider(applicationProvider);
-        // testConfiguration.setComponentProvider(componentProvider);
+        testConfiguration.setComponentProvider(componentProvider);
     }
 
     @Test
-    public void aaa() throws Exception {
+    public void can_activate_component() throws Exception {
+        testConfiguration.activate(componentContext);
+        assertThat(testConfiguration.getApplication().getName(), is(equalTo("osgimonitor")));
+    }
 
-        // testConfiguration.activate(componentContext);
+    @Test
+    public void can_deactivate_component() throws Exception {
+        testConfiguration.activate(componentContext);
+        testConfiguration.deactivate(componentContext);
+        assertThat(testConfiguration.getApplication().getName(), is(equalTo("osgimonitor")));
     }
 
 }

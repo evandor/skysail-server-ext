@@ -18,11 +18,15 @@
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
 import org.restlet.Request;
 import org.restlet.Response;
 
-import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
+import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
+import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
+import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsJsGraphResource;
+import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
+import de.twenty11.skysail.server.ext.osgimonitor.ServicesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
@@ -44,7 +48,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication {
         super(OsgiMonitorApplicationDescriptor.APPLICATION_NAME);
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
-        setName("osgi");
+        setName("osgimonitor");
         setBundleContext(bundleContext);
     }
 
@@ -53,12 +57,14 @@ public class OsgiMonitorViewerApplication extends SkysailApplication {
         super.handle(request, response);
     }
 
-    // TODO proper place for this here? what about multiple instances?
     protected void attach() {
-        if (FrameworkUtil.getBundle(SkysailApplication.class) != null) {
-            urlMappingServiceListener = new UrlMappingServiceListener(this);
-            // new SkysailApplicationServiceListener(this);
-        }
+    	router.attach("/", OsgiMonitorRootResource.class);
+    	router.attach("/bundles", BundlesResource.class);
+    	router.attach("/bundles/asGraph", BundlesAsGraphResource.class);
+    	router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
+    	router.attach("/bundles/details/{bundleId}", BundleResource.class);
+    	router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
+    	router.attach("/services", ServicesResource.class);
     }
 
 }
