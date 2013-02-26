@@ -17,59 +17,45 @@
 
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedService;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
 import org.restlet.Component;
-import org.restlet.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.services.ApplicationProvider;
 import de.twenty11.skysail.server.services.ComponentProvider;
 
-public class Configuration implements ManagedService {
+public class Configuration implements ApplicationProvider {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
-    private Server server;
-    private ServiceRegistration registration;
     private ComponentProvider componentProvider;
     private Component component;
+    private OsgiMonitorViewerApplication application;
+    private ServiceRegistration thisApplicationService;
 
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Skysail Ext Osgimonitor Configuration Component");
 
         component = componentProvider.getComponent();
-        OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication(
+        application = new OsgiMonitorViewerApplication(
                 componentContext.getBundleContext());
         application.setVerifier(componentProvider.getVerifier());
-        logger.info("attaching application and starting {}", this.toString());
-        component.getDefaultHost().attach(application);
+        // logger.info("attaching application and starting {}", this.toString());
+        // component.getDefaultHost().attach(application);
+
+        thisApplicationService = componentContext.getBundleContext().registerService(
+                ApplicationProvider.class.getName(), this, null);
 
     }
 
-    protected void deactivate(ComponentContext ctxt) {
+    protected void deactivate(ComponentContext componentContext) {
         logger.info("Deactivating Skysail Ext Osgimonitor Configuration Component");
-        try {
-            if (server != null) {
-                server.stop();
-            }
-        } catch (Exception e) {
-            logger.error("Exception when trying to stop standalone server", e);
-        }
-        if (registration != null) {
-            registration.unregister();
-        }
-    }
-
-    @SuppressWarnings("rawtypes")
-    @Override
-    public synchronized void updated(Dictionary properties) throws ConfigurationException {
-        logger.info("Configuring Skysail Ext Osgimonitor...");
+        componentContext.getBundleContext().ungetService(thisApplicationService.getReference());
+        component.getDefaultHost().detach(application);
+        application = null;
     }
 
     public void setApplicationProvider(ApplicationProvider provider) {
@@ -84,6 +70,11 @@ public class Configuration implements ManagedService {
 
     public void unsetApplicationProvider(ApplicationProvider provider) {
         component.getDefaultHost().detach(provider.getApplication());
+    }
+
+    @Override
+    public Application getApplication() {
+        return application;
     }
 
 }
