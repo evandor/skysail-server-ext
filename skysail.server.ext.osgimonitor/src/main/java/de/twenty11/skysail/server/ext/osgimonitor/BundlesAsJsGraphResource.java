@@ -22,7 +22,6 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.graphs.EdgeProvider;
 import de.twenty11.skysail.common.graphs.NodeProvider;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorApplicationDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.SkysailServerResource2;
 
@@ -119,8 +118,7 @@ public class BundlesAsJsGraphResource extends SkysailServerResource2 { // extend
     }
 
     private List<NodeProvider> getGraphRepresentation() throws IOException, JsonParseException, JsonMappingException {
-        ClientResource columns = new ClientResource("riap://application/"
-                + OsgiMonitorApplicationDescriptor.APPLICATION_NAME + "/bundles/asGraph");
+        ClientResource columns = new ClientResource("riap://application/bundles/asGraph");
         columns.setChallengeResponse(getChallengeResponse());
         Representation representation = columns.get();
         Response<List<NodeProvider>> response = mapper.readValue(representation.getText(),

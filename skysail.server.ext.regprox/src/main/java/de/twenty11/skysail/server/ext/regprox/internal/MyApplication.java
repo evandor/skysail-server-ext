@@ -36,9 +36,10 @@ public class MyApplication extends SkysailApplication {
      * @param staticPathTemplate
      */
     public MyApplication(String staticPathTemplate) {
-        super(MyApplicationDescriptor.APPLICATION_NAME);
+        super();
         setDescription("RESTful RegProx bundle");
         setOwner("twentyeleven");
+        setName("regprox");
         self = this;
     }
 

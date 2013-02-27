@@ -7,7 +7,6 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -23,14 +22,11 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
-import org.restlet.resource.ServerResource;
 import org.restlet.security.MapVerifier;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
 import de.twenty11.skysail.common.responses.Response;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorApplicationDescriptor;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorUrlMapper;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 
 public class BaseTests {
@@ -53,20 +49,20 @@ public class BaseTests {
         OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
         Application.setCurrent(spy);
         inboundRoot = osgiMonitorViewerApplication.getInboundRoot();
-        addMappings();
+        // addMappings();
         return spy;
     }
 
 
-    private void addMappings() throws ClassNotFoundException {
-        Map<String, String> urlMapping = new OsgiMonitorUrlMapper().provideUrlMapping();
-        for (Map.Entry<String, String> mapping : urlMapping.entrySet()) {
-            @SuppressWarnings("unchecked")
-            Class<? extends ServerResource> resourceClass = (Class<? extends ServerResource>) Class.forName(mapping
-                    .getValue());
-            osgiMonitorViewerApplication.attachToRouter("" + mapping.getKey(), resourceClass);
-        }
-    }
+    // private void addMappings() throws ClassNotFoundException {
+    // Map<String, String> urlMapping = new OsgiMonitorUrlMapper().provideUrlMapping();
+    // for (Map.Entry<String, String> mapping : urlMapping.entrySet()) {
+    // @SuppressWarnings("unchecked")
+    // Class<? extends ServerResource> resourceClass = (Class<? extends ServerResource>) Class.forName(mapping
+    // .getValue());
+    // osgiMonitorViewerApplication.attachToRouter("" + mapping.getKey(), resourceClass);
+    // }
+    // }
 
     protected List<BundleDescriptor> getBundles() throws Exception {
         org.restlet.Response response = get("bundles");
