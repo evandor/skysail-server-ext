@@ -53,7 +53,7 @@ public class OsgiMonitorRootResource extends ListServerResource<ResourceDetails>
         String from = (tr.getTemplate() == null) ? super.toString() : tr.getTemplate().getPattern();
         
         if (!from.contains("{")) { // some link we can acutally follow
-            from = getHostRef() + from;// + "?media=json";
+            from = getHostRef() + "/" + getApplication().getName() + from;
             String to = (tr.getNext() == null) ? "null" : tr.getNext().toString();
             String desc = "no description available";
             if (tr.getNext() != null) {

@@ -25,8 +25,7 @@
 	</scm>
 
 	<properties>
-		<skysail.common.version>[0.3.19, 1.0)</skysail.common.version>
-		<skysail.server.version>[0.2.11, 1.0)</skysail.server.version>
+		<skysail.server.version>[0.2.12-SNAPSHOT, 1.0)</skysail.server.version>
 	</properties>
 
 	<build>
@@ -187,21 +186,13 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common.ext.osgimonitor</artifactId>
-			<version>[0.0.7, 1.0.0)</version>
+			<version>[0.0.8-SNAPSHOT, 1.0.0)</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.eclipse.core</groupId>
 			<artifactId>org.eclipse.core.runtime</artifactId>
 			<version>3.6.0.v20100505</version>
-		</dependency>
-
-		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>skysail.common</artifactId>
-			<version>${skysail.common.version}</version>
-			<scope>test</scope>
-			<type>test-jar</type>
 		</dependency>
 
 		<dependency>
