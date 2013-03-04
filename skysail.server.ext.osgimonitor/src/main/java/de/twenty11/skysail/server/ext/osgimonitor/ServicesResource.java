@@ -77,35 +77,4 @@ public class ServicesResource extends ListServerResource<ServiceDescriptor> impl
 		return result;
 	}
 
-//	private List<ServiceReferenceDetails> getDetails(ServiceReference[] registeredServices) {
-//		List<ServiceReferenceDetails> details = new ArrayList<ServiceReferenceDetails>();
-//		if (registeredServices == null) {
-//			return details;
-//		}
-//		for (ServiceReference serviceReference : registeredServices) {
-//			ServiceReferenceDetails srd = new ServiceReferenceDetails();
-//			srd.setBundleId(serviceReference.getBundle().getBundleId());
-//			srd.setName(serviceReference.toString());
-//            // srd.setProperties(serviceReference.getPropertyKeys());
-//			srd.setUsingBundles(getDetails(serviceReference.getUsingBundles()));
-//			details.add(srd);
-//		}
-//		return details;
-//	}
-
-//	private List<BundleDetails> getDetails(Bundle[] usingBundles) {
-//		List<BundleDetails> details = new ArrayList<BundleDetails>();
-//		if (usingBundles == null) {
-//			return details;
-//		}
-//		for (Bundle bundle : usingBundles) {
-//			BundleDetails bundleDetails = new BundleDetails();
-//			bundleDetails.setBundleId(bundle.getBundleId());
-//			bundleDetails.setSymbolicName(bundle.getSymbolicName());
-//			bundleDetails.setVersion(bundle.getVersion());
-//			details.add(bundleDetails);
-//		}
-//		return details;
-//	}
-
 }

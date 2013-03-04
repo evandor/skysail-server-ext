@@ -1,0 +1,253 @@
+<,evandor@gmail.com,evandor@gmail.com,evandor@gmail.com,evandor@gmail.com> <http://www.architexa.com/rdf/core#creator> "true" .
+
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_sldoc_slsequenceDiagram.atxa> a atxa-core:chronoFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_sldoc_slsequenceDiagram.atxa> atxa-core:contains _:node17kqh9r0dx1 .
+
+_:node17kqh9r0dx1 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$Configuration> ;
+	atxa-jdt:index "0" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node17kqh9r0dx2 .
+
+_:node17kqh9r0dx2 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$Configuration.setComponentProvider(ComponentProvider,)> ;
+	atxa-jdt:index "0" .
+
+_:node17kqh9r0dx1 atxa-core:contains _:node17kqh9r0dx3 .
+
+_:node17kqh9r0dx3 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$Configuration.activate(ComponentContext,)> ;
+	atxa-jdt:index "1" ;
+	atxa-core:contains _:node17kqb7ql4x3305 .
+
+_:node17kqb7ql4x3305 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.services$ComponentProvider.getComponent()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.services$ComponentProvider.getComponent()> atxa-core:link _:node17kqb7ql4x3306 .
+
+_:node17kqb7ql4x3307 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17kqb7ql4x3305 ;
+	rdf:object _:node17kqb7ql4x3306 ;
+	atxa-core:name "getComponent()" .
+
+_:node17kqh9r0dx3 atxa-core:contains _:node17kqb7ql4x3308 .
+
+_:node17kqb7ql4x3308 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$OsgiMonitorViewerApplication.OsgiMonitorViewerApplication(BundleContext,)> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$OsgiMonitorViewerApplication.OsgiMonitorViewerApplication(BundleContext,)> atxa-core:link _:node17kqb7ql4x3309 .
+
+_:node17kqb7ql4x3310 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17kqb7ql4x3308 ;
+	rdf:object _:node17kqb7ql4x3309 ;
+	atxa-core:name "OsgiMonitorViewerApplication(getBundleContext())" .
+
+_:node17kqh9r0dx3 atxa-core:contains _:node17kqb7ql4x3311 .
+
+_:node17kqb7ql4x3311 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.restlet$SkysailApplication.setVerifier(Verifier,)> ;
+	atxa-jdt:index "2" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.restlet$SkysailApplication.setVerifier(Verifier,)> atxa-core:link _:node17kqb7ql4x3312 .
+
+_:node17kqb7ql4x3313 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17kqb7ql4x3311 ;
+	rdf:object _:node17kqb7ql4x3312 ;
+	atxa-core:name "setVerifier(getVerifier())" .
+
+_:node17kqh9r0dx3 atxa-core:contains _:node17kqb7ql4x3314 .
+
+_:node17kqb7ql4x3314 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.osgi.framework$BundleContext.registerService(String,Object,Dictionary,)> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.osgi.framework$BundleContext.registerService(String,Object,Dictionary,)> atxa-core:link _:node17kqb7ql4x3315 .
+
+_:node17kqb7ql4x3316 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17kqb7ql4x3314 ;
+	rdf:object _:node17kqb7ql4x3315 ;
+	atxa-core:name "componentContext.getBundleContext().registerService(getName(), this, null)" .
+
+_:node17kqh9r0dx1 atxa-core:contains _:node17kqh9r0dx4 .
+
+_:node17kqh9r0dx4 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$Configuration.getApplication()> ;
+	atxa-jdt:index "2" .
+
+_:node17kqh9r0dx1 atxa-core:contains _:node17kqh9r0dx5 .
+
+_:node17kqh9r0dx5 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$Configuration.deactivate(ComponentContext,)> ;
+	atxa-jdt:index "3" ;
+	atxa-core:contains _:node17kqb7ql4x3324 .
+
+_:node17kqb7ql4x3324 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.osgi.framework$BundleContext.ungetService(ServiceReference,)> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.osgi.framework$BundleContext.ungetService(ServiceReference,)> atxa-core:link _:node17kqb7ql4x3325 .
+
+_:node17kqb7ql4x3326 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17kqb7ql4x3324 ;
+	rdf:object _:node17kqb7ql4x3325 ;
+	atxa-core:name "componentContext.getBundleContext().ungetService(getReference())" .
+
+_:node17kqh9r0dx5 atxa-core:contains _:node17kqb7ql4x3327 .
+
+_:node17kqb7ql4x3327 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.restlet.routing$Router.detach(Restlet,)> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.restlet.routing$Router.detach(Restlet,)> atxa-core:link _:node17kqb7ql4x3328 .
+
+_:node17kqb7ql4x3329 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17kqb7ql4x3327 ;
+	rdf:object _:node17kqb7ql4x3328 ;
+	atxa-core:name "component.getDefaultHost().detach(application)" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_sldoc_slsequenceDiagram.atxa> atxa-core:contains _:node17kqb7ql4x3304 .
+
+_:node17kqb7ql4x3304 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.services$ComponentProvider> ;
+	atxa-jdt:index "1" ;
+	atxa-core:instanceName "componentProvider" ;
+	atxa-core:contains _:node17kqb7ql4x3306 .
+
+_:node17kqb7ql4x3306 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.services$ComponentProvider.getComponent()> ;
+	atxa-jdt:index "0" .
+
+_:node17kqb7ql4x3317 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node17kqb7ql4x3306 ;
+	rdf:object _:node17kqb7ql4x3305 ;
+	atxa-core:name "Component" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_sldoc_slsequenceDiagram.atxa> atxa-core:contains _:node17kqb7ql4x3318 .
+
+_:node17kqb7ql4x3318 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$OsgiMonitorViewerApplication> ;
+	atxa-jdt:index "2" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node17kqb7ql4x3309 .
+
+_:node17kqb7ql4x3309 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.osgimonitor.internal$OsgiMonitorViewerApplication.OsgiMonitorViewerApplication(BundleContext,)> ;
+	atxa-jdt:index "0" .
+
+_:node17kqb7ql4x3319 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node17kqb7ql4x3309 ;
+	rdf:object _:node17kqb7ql4x3308 ;
+	atxa-core:name "OsgiMonitorViewerApplication" .
+
+_:node17kqb7ql4x3309 atxa-core:contains _:node17kqb7ql4x3463 .
+
+_:node17kqb7ql4x3463 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.restlet$SkysailApplication.SkysailApplication()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.restlet$SkysailApplication.SkysailApplication()> atxa-core:link _:node17kqb7ql4x3464 .
+
+_:node17kqb7ql4x3465 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17kqb7ql4x3463 ;
+	rdf:object _:node17kqb7ql4x3464 ;
+	atxa-core:name "SkysailApplication()" .
+
+_:node17kqb7ql4x3318 atxa-core:contains _:node17kqb7ql4x3312 .
+
+_:node17kqb7ql4x3312 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.restlet$SkysailApplication.setVerifier(Verifier,)> ;
+	atxa-jdt:index "1" .
+
+_:node17kqb7ql4x3320 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node17kqb7ql4x3312 ;
+	rdf:object _:node17kqb7ql4x3311 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_sldoc_slsequenceDiagram.atxa> atxa-core:contains _:node17kqb7ql4x3466 .
+
+_:node17kqb7ql4x3466 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.restlet$SkysailApplication> ;
+	atxa-jdt:index "3" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node17kqb7ql4x3464 .
+
+_:node17kqb7ql4x3464 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.restlet$SkysailApplication.SkysailApplication()> ;
+	atxa-jdt:index "0" .
+
+_:node17kqb7ql4x3467 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node17kqb7ql4x3464 ;
+	rdf:object _:node17kqb7ql4x3463 ;
+	atxa-core:name "SkysailApplication" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_sldoc_slsequenceDiagram.atxa> atxa-core:contains _:node17kqb7ql4x3321 .
+
+_:node17kqb7ql4x3321 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.osgi.framework$BundleContext> ;
+	atxa-jdt:index "4" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node17kqb7ql4x3315 .
+
+_:node17kqb7ql4x3315 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.osgi.framework$BundleContext.registerService(String,Object,Dictionary,)> ;
+	atxa-jdt:index "0" .
+
+_:node17kqb7ql4x3322 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node17kqb7ql4x3315 ;
+	rdf:object _:node17kqb7ql4x3314 ;
+	atxa-core:name "org/osgi/framework/ServiceRegistration" .
+
+_:node17kqb7ql4x3321 atxa-core:contains _:node17kqb7ql4x3325 .
+
+_:node17kqb7ql4x3325 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.osgi.framework$BundleContext.ungetService(ServiceReference,)> ;
+	atxa-jdt:index "1" .
+
+_:node17kqb7ql4x3330 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node17kqb7ql4x3325 ;
+	rdf:object _:node17kqb7ql4x3324 ;
+	atxa-core:name "boolean" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_sldoc_slsequenceDiagram.atxa> atxa-core:contains _:node17kqb7ql4x3331 .
+
+_:node17kqb7ql4x3331 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.restlet.routing$VirtualHost> ;
+	atxa-jdt:index "5" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node17kqb7ql4x3328 .
+
+_:node17kqb7ql4x3328 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.restlet.routing$Router.detach(Restlet,)> ;
+	atxa-jdt:index "0" .
+
+_:node17kqb7ql4x3332 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node17kqb7ql4x3328 ;
+	rdf:object _:node17kqb7ql4x3327 ;
+	atxa-core:name "void" .
+

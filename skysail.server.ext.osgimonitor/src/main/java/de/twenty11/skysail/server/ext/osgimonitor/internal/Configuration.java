@@ -57,16 +57,6 @@ public class Configuration implements ApplicationProvider {
         application = null;
     }
 
-    // public void setApplicationProvider(ApplicationProvider provider) {
-    // logger.info("adding new application from {}", provider);
-    // Application application = provider.getApplication();
-    // component.getDefaultHost().attach("/" + application.getName(), application);
-    // }
-
-    // public void unsetApplicationProvider(ApplicationProvider provider) {
-    // component.getDefaultHost().detach(provider.getApplication());
-    // }
-    
     public void setComponentProvider(ComponentProvider componentProvider) {
         this.componentProvider = componentProvider;
     }
