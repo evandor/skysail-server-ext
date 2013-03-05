@@ -46,7 +46,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication {
      * @param bundleContext
      */
     public OsgiMonitorViewerApplication(BundleContext bundleContext, Context componentContext) {
-        super(componentContext.createChildContext());
+        super(componentContext == null ? null : componentContext.createChildContext());
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setName("osgimonitor");

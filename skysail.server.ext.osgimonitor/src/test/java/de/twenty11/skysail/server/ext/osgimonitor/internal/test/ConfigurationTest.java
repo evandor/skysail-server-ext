@@ -22,6 +22,7 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
+import org.restlet.Context;
 
 import de.twenty11.skysail.server.ext.osgimonitor.internal.Configuration;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
@@ -41,6 +42,8 @@ public class ConfigurationTest {
     private BundleContext bundleContext;
     @Mock
     private ServiceRegistration serviceRegistration;
+    @Mock
+    private Context context;
 
     private TestConfiguration testConfiguration = new TestConfiguration();
     private Component component = new Component();
@@ -58,7 +61,7 @@ public class ConfigurationTest {
 
     @Before
     public void createConfiguration() throws Exception {
-        OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication(bundleContext);
+		OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication(bundleContext, context);
 
         Mockito.when(bundleContext.registerService(anyString(), anyObject(), (Dictionary<?, ?>) isNull()))
                 .thenReturn(serviceRegistration);
