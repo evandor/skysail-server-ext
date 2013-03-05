@@ -18,6 +18,7 @@
 package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
 import org.osgi.framework.BundleContext;
+import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
 
@@ -36,16 +37,16 @@ import de.twenty11.skysail.server.restlet.SkysailApplication;
 public class OsgiMonitorViewerApplication extends SkysailApplication {
 
     // non-arg constructor needed for scr
-    public OsgiMonitorViewerApplication() {
-        this(null);
+    public OsgiMonitorViewerApplication(Context componentContext) {
+        this(null, componentContext);
     }
 
     /**
      * @param staticPathTemplate
      * @param bundleContext
      */
-    public OsgiMonitorViewerApplication(BundleContext bundleContext) {
-        super();
+    public OsgiMonitorViewerApplication(BundleContext bundleContext, Context componentContext) {
+        super(componentContext.createChildContext());
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setName("osgimonitor");
