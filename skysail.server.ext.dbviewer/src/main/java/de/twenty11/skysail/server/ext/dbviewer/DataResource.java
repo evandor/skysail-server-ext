@@ -46,7 +46,6 @@ import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
 
 public class DataResource extends GenericServerResource<List<String>> implements RestfulData {
@@ -70,8 +69,8 @@ public class DataResource extends GenericServerResource<List<String>> implements
 
     @Override
     protected void doInit() throws ResourceException {
-        tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
-        connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        tableName = (String) getRequest().getAttributes().get(Constants.TABLE_NAME);
+        connectionName = (String) getRequest().getAttributes().get(Constants.CONNECTION_NAME);
         schemaName = (String) getRequest().getAttributes().get("schema");
         setDescription("The resource describing the data found in the table '" + tableName + "'");
     }

@@ -17,7 +17,6 @@ import de.twenty11.skysail.common.ext.dbviewer.RestfulSchemas;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class SchemasResource extends ListServerResource<SchemaDetails> implements RestfulSchemas {
@@ -34,7 +33,7 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
 
     @Override
     protected void doInit() {
-        connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        connectionName = (String) getRequest().getAttributes().get(Constants.CONNECTION_NAME);
         setDescription("The resource containing the list of schemas for '" + connectionName + "'");
     }
 

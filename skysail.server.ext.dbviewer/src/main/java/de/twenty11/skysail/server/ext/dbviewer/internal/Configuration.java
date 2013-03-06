@@ -20,85 +20,53 @@ package de.twenty11.skysail.server.ext.dbviewer.internal;
 import javax.persistence.EntityManagerFactory;
 
 import org.osgi.framework.ServiceRegistration;
-import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
-import org.restlet.Server;
-import org.restlet.routing.VirtualHost;
-import org.restlet.security.MapVerifier;
+import org.restlet.Application;
+import org.restlet.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.config.ServerConfiguration;
+import de.twenty11.skysail.server.services.ApplicationProvider;
+import de.twenty11.skysail.server.services.ComponentProvider;
 
-public class Configuration {
+public class Configuration implements ApplicationProvider {
 
-    private static Logger logger = LoggerFactory.getLogger(Configuration.class);
-    private DbViewerComponent restletComponent;
-    private Server server;
-    private ComponentContext context;
-    private ConfigurationAdmin configadmin;
-    private ServerConfiguration serverConfig;
-    private EntityManagerFactory emf;
-    private ServiceRegistration registration;
+	private static Logger logger = LoggerFactory.getLogger(Configuration.class);
+    private ComponentProvider componentProvider;
+    private Component component;
+    private DbViewerApplication application;
+    private ServiceRegistration currentApplicationService;
+	private EntityManagerFactory emf;
 
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
-        logger.info("Activating Skysail Ext DbViewer Configuration Component");
-        this.context = componentContext;
+        logger.info("Activating Configuration Component for Skysail Osgimonitor Extension");
+        component = componentProvider.getComponent();
+        application = new DbViewerApplication(componentContext.getBundleContext(), component.getContext(), emf);
+        application.setVerifier(componentProvider.getVerifier());
 
-        logger.info("Configuring Skysail Ext DbViewer...");
-        if (serverConfig.shouldStartComponent(this.getClass().getName())) {
-            String port = (String) serverConfig.getConfigForKey("port");
-            logger.info("port was configured on {}", port);
-            MapVerifier verifier = serverConfig.getVerifier(configadmin);
-            logger.info("Starting standalone osgimonitor server on port {}", port);
-            restletComponent = new DbViewerComponent(this.context, verifier, emf);
-            server = serverConfig.startStandaloneServer(port, restletComponent);
-        } else {
-            VirtualHost virtualHost = createVirtualHost();
-            if (componentContext.getBundleContext() != null) {
-                this.registration = componentContext.getBundleContext().registerService(
-                        "org.restlet.routing.VirtualHost", virtualHost, null);
-            }
-        }
+        currentApplicationService = componentContext.getBundleContext().registerService(
+                ApplicationProvider.class.getName(), this, null);
     }
 
-    private VirtualHost createVirtualHost() {
-        DbViewerApplication application = new DbViewerApplication("/static", context.getBundleContext(), emf);
-
-        VirtualHost vh = new VirtualHost();
-        vh.attach(application);
-        return vh;
+    protected void deactivate(ComponentContext componentContext) {
+        logger.info("Deactivating Configuration Component for Skysail Osgimonitor Extension");
+        componentContext.getBundleContext().ungetService(currentApplicationService.getReference());
+        component.getDefaultHost().detach(application);
+        application = null;
     }
 
-    protected void deactivate(ComponentContext ctxt) {
-        logger.info("Deactivating Skysail Ext DbViewer Configuration Component");
-        this.context = null;
-        try {
-            if (server != null) {
-                server.stop();
-            }
-        } catch (Exception e) {
-            logger.error("Exception when trying to stop standalone server", e);
-        }
-        if (registration != null) {
-            registration.unregister();
-        }
-
+    public void setComponentProvider(ComponentProvider componentProvider) {
+        this.componentProvider = componentProvider;
     }
 
-    public synchronized void setServerConfiguration(de.twenty11.skysail.server.config.ServerConfiguration serverConfig) {
-        logger.info("setting configadmin in DbViewer Configuration");
-        this.serverConfig = serverConfig;
+    @Override
+    public Application getApplication() {
+        return application;
     }
-
+    
     public synchronized void setEntityManager(EntityManagerFactory emf) {
         this.emf = emf;
-    }
-
-    public synchronized void setConfigAdmin(ConfigurationAdmin configadmin) {
-        logger.info("setting configadmin in OsgiMonitor Configuration");
-        this.configadmin = configadmin;
     }
 
 }

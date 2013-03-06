@@ -35,7 +35,6 @@ import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 public class ColumnsResource extends ListServerResource<ColumnsDetails> implements RestfulColumns {
@@ -53,9 +52,9 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
 
     @Override
     protected void doInit() throws ResourceException {
-        connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
+        connectionName = (String) getRequest().getAttributes().get(Constants.CONNECTION_NAME);
         schemaName = (String) getRequest().getAttributes().get("schema");
-        tableName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.TABLE_NAME);
+        tableName = (String) getRequest().getAttributes().get(Constants.TABLE_NAME);
         setDescription("The resource describing the columns of the table '" + tableName + "' of the schema '"
                 + schemaName + "' of the connection '" + connectionName + "'");
     }

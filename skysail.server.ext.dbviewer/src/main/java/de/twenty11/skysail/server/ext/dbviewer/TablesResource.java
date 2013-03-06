@@ -36,7 +36,6 @@ import de.twenty11.skysail.common.ext.dbviewer.TableDetails;
 import de.twenty11.skysail.common.graphs.Graph;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 @Graph
@@ -56,8 +55,8 @@ public class TablesResource extends ListServerResource<TableDetails> implements 
     @Override
     protected void doInit() throws ResourceException {
         super.doInit();
-        connectionName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.CONNECTION_NAME);
-        schemaName = (String) getRequest().getAttributes().get(DbViewerUrlMapper.SCHEMA_NAME);
+        connectionName = (String) getRequest().getAttributes().get(Constants.CONNECTION_NAME);
+        schemaName = (String) getRequest().getAttributes().get(Constants.SCHEMA_NAME);
         setDescription("The resource containing the list of tables for the connection " + connectionName
                 + " and schema " + schemaName);
     }

@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +39,6 @@ import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.Response;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerComponent;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerUrlMapper;
 
 public class BaseTests {
 
@@ -48,7 +47,7 @@ public class BaseTests {
     protected ObjectMapper mapper = new ObjectMapper();
 
     protected void addMappings() throws ClassNotFoundException {
-        Map<String, String> urlMapping = new DbViewerUrlMapper().provideUrlMapping();
+        Map<String, String> urlMapping = Collections.emptyMap();//new Constants().provideUrlMapping();
         for (Map.Entry<String, String> mapping : urlMapping.entrySet()) {
             @SuppressWarnings("unchecked")
             Class<? extends ServerResource> resourceClass = (Class<? extends ServerResource>) Class.forName(mapping
@@ -209,8 +208,8 @@ public class BaseTests {
     }
 
     protected DbViewerApplication setUpRestletApplication() throws ClassNotFoundException {
-        DbViewerComponent dbViewerComponent = new DbViewerComponent(null, null, null);
-        dbViewerApplication = dbViewerComponent.getApplication();
+        //DbViewerComponent dbViewerComponent = new DbViewerComponent(null, null, null);
+        dbViewerApplication = new DbViewerApplication(null, null, null);
 
         DbViewerApplication spy = Mockito.spy(dbViewerApplication);
         Application.setCurrent(spy);

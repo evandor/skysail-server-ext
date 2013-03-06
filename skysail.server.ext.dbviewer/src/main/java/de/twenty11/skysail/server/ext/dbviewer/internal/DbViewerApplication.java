@@ -25,7 +25,7 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
+import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.ChallengeResponse;
@@ -33,9 +33,18 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
-import de.twenty11.skysail.server.listener.SkysailApplicationServiceListener;
-import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
+import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
+import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
+import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
+import de.twenty11.skysail.server.ext.dbviewer.Constants;
+import de.twenty11.skysail.server.ext.dbviewer.ConstraintsResource;
+import de.twenty11.skysail.server.ext.dbviewer.DataResource;
+import de.twenty11.skysail.server.ext.dbviewer.RootResource;
+import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
+import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
+
+import static de.twenty11.skysail.server.ext.dbviewer.internal.*;
 
 /**
  * @author carsten
@@ -53,8 +62,8 @@ public class DbViewerApplication extends SkysailApplication {
      * @param bundleContext
      * @param emf
      */
-    public DbViewerApplication(String staticPathTemplate, BundleContext bundleContext, EntityManagerFactory emf) {
-        super(null);
+    public DbViewerApplication(BundleContext bundleContext, Context componentContext, EntityManagerFactory emf) {
+        super(componentContext == null ? null : componentContext.createChildContext());
         getLogger().info("Starting DbViewerApplication");
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");
@@ -68,12 +77,21 @@ public class DbViewerApplication extends SkysailApplication {
         super.handle(request, response);
     }
 
-    // TODO proper place for this here? what about multiple instances?
     protected void attach() {
-        if (FrameworkUtil.getBundle(SkysailApplication.class) != null) {
-            urlMappingServiceListener = new UrlMappingServiceListener(this);
-            new SkysailApplicationServiceListener(this);
-        }
+    	
+    	String conn = Constants.CONNECTION_NAME;
+    	String schema = Constants.SCHEMA_NAME;
+    	String table = Constants.TABLE_NAME;
+    	
+        router.attach("", RootResource.class);
+        router.attach("/", RootResource.class);
+        router.attach("/connections/", ConnectionsResource.class);
+        router.attach("/connections/{"+conn+"}", ConnectionResource.class);
+        router.attach("/connections/schemas", SchemasResource.class);
+        router.attach("/connections/schemas/{"+schema+"}/tables", TablesResource.class);
+        router.attach("/connections/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class);
+        router.attach("/connections/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class);
+        router.attach("/connections/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class);
     }
 
     public EntityManager getEntityManager() {
