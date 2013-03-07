@@ -7,6 +7,7 @@
 
 java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
 --log=INFO \
+--clean \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 \
  -Dfelix.fileinstall.dir=../config \
