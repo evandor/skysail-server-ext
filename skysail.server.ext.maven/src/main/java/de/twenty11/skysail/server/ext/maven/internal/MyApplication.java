@@ -1,52 +1,32 @@
 package de.twenty11.skysail.server.ext.maven.internal;
 
-import org.osgi.framework.FrameworkUtil;
-import org.restlet.Request;
-import org.restlet.Response;
+import org.restlet.Context;
 
-import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
-import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
+import de.twenty11.skysail.server.ext.maven.MyRootResource;
+import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
  * @author carsten
  * 
  */
-public class MyApplication extends RestletOsgiApplication {
-
-    private static MyApplication self;
+public class MyApplication extends SkysailApplication {
 
     /**
      * @param staticPathTemplate
      */
-    public MyApplication(String staticPathTemplate) {
-        super(MyApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
+    public MyApplication(Context componentContext) {
+        super(componentContext == null ? null : componentContext.createChildContext());
         setDescription("RESTful skysail.server.ext.maven bundle");
         setOwner("twentyeleven");
-        self = this;
+        setAuthor("twenty11");
     }
 
-    /**
-     * this is done to give osgi a chance to inject serives to restlet; should be changed to some javax.inject approach
-     * (like using InjectedServerResource) once this is available.
-     * 
-     * @return
-     */
-    public static MyApplication get() {
-        return self;
-    }
+	@Override
+	protected void attach() {
+		router.attach("", MyRootResource.class);
+		router.attach("/", MyRootResource.class);
+	}
 
-    @Override
-    public void handle(Request request, Response response) {
-        super.handle(request, response);
-    }
-
-    // TODO proper place for this here? what about multiple instances?
-    protected void attach() {
-        if (FrameworkUtil.getBundle(RestletOsgiApplication.class) != null) {
-            new UrlMappingServiceListener(this);
-            //new SkysailApplicationServiceListener(this);
-        }
-    }
 
 
 }
