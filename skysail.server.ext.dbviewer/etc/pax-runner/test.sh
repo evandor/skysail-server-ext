@@ -6,10 +6,13 @@
 #######################################################################################################
 
 java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
---log=INFO \
+--log=DEBUG \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
- -Dfelix.fileinstall.dir=../config \
+ -Dfelix.fileinstall.dir=\
+../config,\
+../../../../../skysail-server/skysail.server/target,\
+../../../../skysail.server.ext.dbviewer/target\
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \
  -Dfelix.fileinstall.noInitialDelay=true \
  -Dfelix.fileinstall.poll=1000 \
@@ -17,6 +20,6 @@ java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
  -DGEMINI_DEBUG \
  -Dlogback.configurationFile=../../../src/main/resources/logback.xml \
  -Dorg.apache.felix.log.storeDebug=true" \
-scan-composite:file:run.composite
+scan-composite:file:test.composite
 
 

@@ -44,8 +44,6 @@ import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
-import static de.twenty11.skysail.server.ext.dbviewer.internal.*;
-
 /**
  * @author carsten
  * 
@@ -83,15 +81,17 @@ public class DbViewerApplication extends SkysailApplication {
     	String schema = Constants.SCHEMA_NAME;
     	String table = Constants.TABLE_NAME;
     	
+        // @formatter:off
         router.attach("", RootResource.class);
         router.attach("/", RootResource.class);
         router.attach("/connections/", ConnectionsResource.class);
         router.attach("/connections/{"+conn+"}", ConnectionResource.class);
-        router.attach("/connections/schemas", SchemasResource.class);
-        router.attach("/connections/schemas/{"+schema+"}/tables", TablesResource.class);
-        router.attach("/connections/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class);
-        router.attach("/connections/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class);
-        router.attach("/connections/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class);
+        router.attach("/connections/{"+conn+"}/schemas", SchemasResource.class);
+        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables", TablesResource.class);
+        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class);
+        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class);
+        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class);
+        // @formatter:on
     }
 
     public EntityManager getEntityManager() {
@@ -110,7 +110,8 @@ public class DbViewerApplication extends SkysailApplication {
 
     private ConnectionDetails getConnection(String connectionName, ChallengeResponse challengeResponse) {
         ClientResource columns = new ClientResource("riap://application/"
-                + DbViewerApplicationDescriptor.APPLICATION_NAME + "/connections/" + connectionName);
+        // + DbViewerApplicationDescriptor.APPLICATION_NAME +
+                + "connections/" + connectionName);
         columns.setChallengeResponse(challengeResponse);
         Representation representation = columns.get();
         de.twenty11.skysail.common.responses.Response<ConnectionDetails> response;
