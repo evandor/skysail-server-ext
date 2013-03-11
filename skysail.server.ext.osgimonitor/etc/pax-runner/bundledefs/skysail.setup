@@ -5,7 +5,7 @@ mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.8-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.restlet/0.0.1-SNAPSHOT@update
 
 mvn:de.twentyeleven.skysail/skysail.server/0.2.12-SNAPSHOT@update
-mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.9-SNAPSHOT@update
+mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.9-SNAPSHOT@update@nostart
 mvn:de.twentyeleven.skysail/skysail.server.restlet/0.0.1-SNAPSHOT@update@nostart
 mvn:de.twentyeleven.skysail/skysail.server.static/0.0.3-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1@nostart

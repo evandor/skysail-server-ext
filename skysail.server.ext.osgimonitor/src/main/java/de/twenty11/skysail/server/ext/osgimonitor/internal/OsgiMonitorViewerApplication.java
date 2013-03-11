@@ -29,12 +29,17 @@ import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
 import de.twenty11.skysail.server.ext.osgimonitor.ServicesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
+import de.twenty11.skysail.server.services.ApplicationProvider;
 
 /**
  * @author carsten
  * 
  */
-public class OsgiMonitorViewerApplication extends SkysailApplication {
+public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider {
+
+    public OsgiMonitorViewerApplication() {
+        this(null, null);
+    }
 
     // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication(Context componentContext) {
