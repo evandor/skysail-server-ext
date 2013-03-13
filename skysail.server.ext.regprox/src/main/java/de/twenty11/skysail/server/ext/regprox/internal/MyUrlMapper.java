@@ -9,7 +9,7 @@ import de.twenty11.skysail.server.services.UrlMapper;
 
 public class MyUrlMapper implements UrlMapper {
 
-    public static final String APP_PREFIX = "/" + MyApplicationDescriptor.APPLICATION_NAME;
+    public static final String APP_PREFIX = "/";// + MyApplicationDescriptor.APPLICATION_NAME;
 
     @Override
     public Map<String, String> provideUrlMapping() {

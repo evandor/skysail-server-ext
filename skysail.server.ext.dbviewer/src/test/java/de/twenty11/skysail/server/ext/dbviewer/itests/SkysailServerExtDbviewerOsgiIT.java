@@ -23,7 +23,6 @@ import org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory;
 import com.jayway.restassured.RestAssured;
 
 import de.twenty11.skysail.common.testing.utils.PaxExamOptionSet;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
 
 /**
  * @author carsten
@@ -70,7 +69,7 @@ public class SkysailServerExtDbviewerOsgiIT {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8555;
         expect().body("success", equalTo(true)).given().auth().basic("admin", "skysail").when()
-                .get("/" + DbViewerApplicationDescriptor.APPLICATION_NAME +"/?media=json");
+.get("/?media=json");
     }
 
     @Test
@@ -89,7 +88,7 @@ public class SkysailServerExtDbviewerOsgiIT {
             .contentType("application/json")
             .request().body("{\"connectionName\" : \"there\", \"username\" : \"root\"}")
         .when()
-            .post("/"+DbViewerApplicationDescriptor.APPLICATION_NAME+"/");
+            .post("/");
 
         //String json = given().auth().basic("scott", "tiger").get("/dbviewer/?media=json").asString();
         
@@ -101,7 +100,7 @@ public class SkysailServerExtDbviewerOsgiIT {
         .given()
             .auth().basic("admin", "skysail")
         .when()
-            .get("/"+DbViewerApplicationDescriptor.APPLICATION_NAME+"/?media=json");
+            .get("/?media=json");
 
     }
 

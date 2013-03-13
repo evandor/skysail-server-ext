@@ -11,7 +11,7 @@ import org.restlet.routing.Route;
 import org.restlet.routing.TemplateRoute;
 import org.restlet.util.RouteList;
 
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.selfdescription.ResourceDetails;
 import de.twenty11.skysail.common.selfdescription.RestfulRoot;
 import de.twenty11.skysail.server.restlet.ListServerResource;
@@ -32,7 +32,7 @@ public class OsgiMonitorRootResource extends ListServerResource<ResourceDetails>
     
     @Override
     @Get("html|json")
-    public Response<List<ResourceDetails>> getMethods() {
+    public SkysailResponse<List<ResourceDetails>> getMethods() {
         return getEntities(allMethods(), "skysail osgimonitor application (x.y.z-SNAPSHOT): listing all entry points");
     }
 

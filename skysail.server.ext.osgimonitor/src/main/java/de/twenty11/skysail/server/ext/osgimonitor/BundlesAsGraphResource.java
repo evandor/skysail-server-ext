@@ -19,7 +19,7 @@ import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
 import de.twenty11.skysail.common.graphs.Graph;
 import de.twenty11.skysail.common.graphs.NodeProvider;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -54,7 +54,7 @@ public class BundlesAsGraphResource extends ListServerResource<NodeProvider> {
     }
 
     @Get("html|json")
-    public Response<List<NodeProvider>> getBundles() {
+    public SkysailResponse<List<NodeProvider>> getBundles() {
         List<NodeProvider> allBundlesAsNodes = new ArrayList<NodeProvider>();
         List<BundleDetails> allBundles = allBundles();
         for (BundleDetails bundleDetails : allBundles) {

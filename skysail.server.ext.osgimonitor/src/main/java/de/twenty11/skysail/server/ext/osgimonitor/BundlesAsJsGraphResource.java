@@ -21,7 +21,7 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.graphs.EdgeProvider;
 import de.twenty11.skysail.common.graphs.NodeProvider;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.SkysailServerResource2;
 
@@ -121,8 +121,8 @@ public class BundlesAsJsGraphResource extends SkysailServerResource2 { // extend
         ClientResource columns = new ClientResource("riap://application/bundles/asGraph");
         columns.setChallengeResponse(getChallengeResponse());
         Representation representation = columns.get();
-        Response<List<NodeProvider>> response = mapper.readValue(representation.getText(),
-                new TypeReference<Response<List<NodeProvider>>>() {
+        SkysailResponse<List<NodeProvider>> response = mapper.readValue(representation.getText(),
+                new TypeReference<SkysailResponse<List<NodeProvider>>>() {
                 });
         return response.getData();
     }

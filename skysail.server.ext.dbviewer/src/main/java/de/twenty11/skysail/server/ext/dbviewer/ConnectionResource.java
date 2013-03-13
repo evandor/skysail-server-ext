@@ -14,7 +14,7 @@ import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnection;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.responses.FailureResponse;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -37,7 +37,7 @@ public class ConnectionResource extends ListServerResource<ConnectionDetails> im
 
     @Override
     @Get("html|json")
-    public Response<ConnectionDetails> getConnection() {
+    public SkysailResponse<ConnectionDetails> getConnection() {
         TypedQuery<ConnectionDetails> query = em.createQuery("SELECT c FROM ConnectionDetails c WHERE c.name = :name",
                 ConnectionDetails.class);
         query.setParameter("name", connectionName);
@@ -50,15 +50,15 @@ public class ConnectionResource extends ListServerResource<ConnectionDetails> im
 
     @Override
     @Put
-    public Response<ConstraintViolations<ConnectionDetails>> updateConnection(ConnectionDetails connection) {
+    public SkysailResponse<ConstraintViolations<ConnectionDetails>> updateConnection(ConnectionDetails connection) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     @Delete
-    public Response<String> deleteConnection() {
-        Response<ConnectionDetails> connectionResponse = getConnection();
+    public SkysailResponse<String> deleteConnection() {
+        SkysailResponse<ConnectionDetails> connectionResponse = getConnection();
         return deleteEntity(em, connectionResponse.getData());
     }
 }

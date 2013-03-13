@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulTables;
 import de.twenty11.skysail.common.ext.dbviewer.TableDetails;
 import de.twenty11.skysail.common.graphs.Graph;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -63,7 +63,7 @@ public class TablesResource extends ListServerResource<TableDetails> implements 
     
     @Override
     @Get("html|json")
-    public Response<List<TableDetails>> getTables() {
+    public SkysailResponse<List<TableDetails>> getTables() {
         return getEntities(allTables(), "all Tables");
     }
 

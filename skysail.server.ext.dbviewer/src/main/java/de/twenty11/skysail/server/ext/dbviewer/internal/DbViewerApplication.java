@@ -114,10 +114,10 @@ public class DbViewerApplication extends SkysailApplication {
                 + "connections/" + connectionName);
         columns.setChallengeResponse(challengeResponse);
         Representation representation = columns.get();
-        de.twenty11.skysail.common.responses.Response<ConnectionDetails> response;
+        de.twenty11.skysail.common.responses.SkysailResponse<ConnectionDetails> response;
         try {
             response = mapper.readValue(representation.getText(),
-                    new TypeReference<de.twenty11.skysail.common.responses.Response<ConnectionDetails>>() {
+                    new TypeReference<de.twenty11.skysail.common.responses.SkysailResponse<ConnectionDetails>>() {
                     });
             return response.getData();
         } catch (Exception e) {

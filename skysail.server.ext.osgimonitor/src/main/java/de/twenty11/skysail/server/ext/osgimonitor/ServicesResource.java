@@ -16,7 +16,7 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulServices;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -53,7 +53,7 @@ public class ServicesResource extends ListServerResource<ServiceDescriptor> impl
 
 	@Override
 	@Get("html|json")
-    public Response<List<ServiceDescriptor>> getServices() {
+    public SkysailResponse<List<ServiceDescriptor>> getServices() {
 		return getEntities(allServices(), "all Services");
 	}
 

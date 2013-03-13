@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.RestfulSchemas;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -39,7 +39,7 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
 
     @Override
     @Get("html|json")
-    public Response<List<SchemaDetails>> getSchemas() {
+    public SkysailResponse<List<SchemaDetails>> getSchemas() {
         return getEntities(allSchemas(), "all Schemas");
     }
 

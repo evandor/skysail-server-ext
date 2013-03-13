@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
@@ -17,13 +16,12 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
-import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**
- * Restlet Resource class for handling Connections.
+ * Restlet Resource class for handling Bundles.
  * 
  * Provides a method to retrieve the existing connections and to add a new one.
  * 
@@ -43,8 +41,8 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
 
     @Override
     protected void doInit() throws ResourceException {
-        OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
         filterExpression = getQuery().getFirstValue("filter");
+        OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
         BundleContext bundleContext = app.getBundleContext();
         if (bundleContext == null) {
             bundles = Collections.emptyList();
@@ -55,7 +53,7 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
 
     @Override
     @Get("html|json")
-    public Response<List<BundleDescriptor>> getBundles() {
+    public SkysailResponse<List<BundleDescriptor>> getBundles() {
         String infoMsg = filterExpression == null ? "allBundles" : "all Bundles filtered by '" + filterExpression + "'";
         return getEntities(allBundles(), infoMsg);
     }
@@ -82,37 +80,6 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
             }
         }
         return result;
-    }
-
-    private List<ServiceReferenceDetails> getDetails(ServiceReference[] registeredServices) {
-        List<ServiceReferenceDetails> details = new ArrayList<ServiceReferenceDetails>();
-        if (registeredServices == null) {
-            return details;
-        }
-        for (ServiceReference serviceReference : registeredServices) {
-            ServiceReferenceDetails srd = new ServiceReferenceDetails();
-            srd.setBundleId(serviceReference.getBundle().getBundleId());
-            srd.setName(serviceReference.toString());
-            // srd.setProperties(serviceReference.getPropertyKeys());
-            srd.setUsingBundles(getDetails(serviceReference.getUsingBundles()));
-            details.add(srd);
-        }
-        return details;
-    }
-
-    private List<BundleDetails> getDetails(Bundle[] usingBundles) {
-        List<BundleDetails> details = new ArrayList<BundleDetails>();
-        if (usingBundles == null) {
-            return details;
-        }
-        for (Bundle bundle : usingBundles) {
-            BundleDetails bundleDetails = new BundleDetails();
-            bundleDetails.setBundleId(bundle.getBundleId());
-            bundleDetails.setSymbolicName(bundle.getSymbolicName());
-            bundleDetails.setVersion(bundle.getVersion());
-            details.add(bundleDetails);
-        }
-        return details;
     }
 
 }

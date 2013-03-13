@@ -26,7 +26,7 @@ import org.restlet.security.MapVerifier;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 
 public class BaseTests {
@@ -68,8 +68,8 @@ public class BaseTests {
         org.restlet.Response response = get("bundles");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<BundleDescriptor>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<BundleDescriptor>>>() {
+        SkysailResponse<List<BundleDescriptor>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<List<BundleDescriptor>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
@@ -79,8 +79,8 @@ public class BaseTests {
         org.restlet.Response response = get("services");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<ServiceDescriptor>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<ServiceDescriptor>>>() {
+        SkysailResponse<List<ServiceDescriptor>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<List<ServiceDescriptor>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();

@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConstraintDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConstraints;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -61,7 +61,7 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
 
     @Override
     @Get("html|json")
-    public Response<List<ConstraintDetails>> getConstraints() {
+    public SkysailResponse<List<ConstraintDetails>> getConstraints() {
         return getEntities(allConstraints(), "all Constraints");
     }
 

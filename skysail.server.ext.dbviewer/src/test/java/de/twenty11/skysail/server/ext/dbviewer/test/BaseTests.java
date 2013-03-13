@@ -36,9 +36,8 @@ import de.twenty11.skysail.common.ext.dbviewer.ConstraintDetails;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.grids.GridData;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
 
 public class BaseTests {
 
@@ -59,8 +58,8 @@ public class BaseTests {
     protected ConstraintViolations<ConnectionDetails> create(ConnectionDetails connection) throws Exception {
         org.restlet.Response response = post("connections/", connection);
         assertDefaults(response);
-        Response<ConstraintViolations<ConnectionDetails>> skysailResponse = mapper.readValue(response.getEntity()
-                .getText(), new TypeReference<Response<ConstraintViolations<ConnectionDetails>>>() {
+        SkysailResponse<ConstraintViolations<ConnectionDetails>> skysailResponse = mapper.readValue(response.getEntity()
+                .getText(), new TypeReference<SkysailResponse<ConstraintViolations<ConnectionDetails>>>() {
         });
         // assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getValidationViolations();
@@ -70,8 +69,8 @@ public class BaseTests {
         org.restlet.Response response = get("connections/");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<ConnectionDetails>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<ConnectionDetails>>>() {
+        SkysailResponse<List<ConnectionDetails>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<List<ConnectionDetails>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
@@ -82,8 +81,8 @@ public class BaseTests {
         org.restlet.Response response = get("connections/" + connectionName);
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<ConnectionDetails> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<ConnectionDetails>>() {
+        SkysailResponse<ConnectionDetails> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<ConnectionDetails>>() {
                 });
         ConnectionDetails data = skysailResponse.getData();
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
@@ -94,8 +93,8 @@ public class BaseTests {
         org.restlet.Response response = get("connections/" + connectionName + "/schemas");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<SchemaDetails>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<SchemaDetails>>>() {
+        SkysailResponse<List<SchemaDetails>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<List<SchemaDetails>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
@@ -106,8 +105,8 @@ public class BaseTests {
                 + "/tables");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<String>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<String>>>() {
+        SkysailResponse<List<String>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<List<String>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
@@ -119,8 +118,8 @@ public class BaseTests {
                 + "/tables/" + tableName + "/columns");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<ColumnsDetails>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<ColumnsDetails>>>() {
+        SkysailResponse<List<ColumnsDetails>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<List<ColumnsDetails>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
@@ -132,8 +131,8 @@ public class BaseTests {
                 + "/tables/" + tableName + "/constraints");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<List<ConstraintDetails>> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<List<ConstraintDetails>>>() {
+        SkysailResponse<List<ConstraintDetails>> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<List<ConstraintDetails>>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
@@ -145,8 +144,8 @@ public class BaseTests {
                 + "/tables/" + tableName + "/data");
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<GridData> skysailResponse = mapper.readValue(entity.getText(),
-                new TypeReference<Response<GridData>>() {
+        SkysailResponse<GridData> skysailResponse = mapper.readValue(entity.getText(),
+                new TypeReference<SkysailResponse<GridData>>() {
                 });
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
         return skysailResponse.getData();
@@ -156,7 +155,7 @@ public class BaseTests {
         org.restlet.Response response = delete("connections/" + connectionName);
         assertDefaults(response);
         Representation entity = response.getEntity();
-        Response<String> skysailResponse = mapper.readValue(entity.getText(), new TypeReference<Response<String>>() {
+        SkysailResponse<String> skysailResponse = mapper.readValue(entity.getText(), new TypeReference<SkysailResponse<String>>() {
         });
         String data = skysailResponse.getData();
         assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
@@ -165,18 +164,18 @@ public class BaseTests {
     }
 
     private org.restlet.Response delete(String uri) {
-        Request request = new Request(Method.DELETE, "/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        Request request = new Request(Method.DELETE, "/" + uri);
         return handleRequest(request);
     }
 
     protected org.restlet.Response get(String uri) {
-        Request request = new Request(Method.GET, "/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        Request request = new Request(Method.GET, "/" + uri);
         return handleRequest(request);
     }
 
     protected org.restlet.Response post(String uri, Object connection) throws JsonGenerationException,
             JsonMappingException, IOException {
-        Request request = new Request(Method.POST, "/" + DbViewerApplicationDescriptor.APPLICATION_NAME + "/" + uri);
+        Request request = new Request(Method.POST, "/" + uri);
         String writeValueAsString = mapper.writeValueAsString(connection);
         request.setEntity(writeValueAsString, MediaType.APPLICATION_JSON);
         return handleRequest(request);

@@ -42,10 +42,9 @@ import de.twenty11.skysail.common.ext.dbviewer.RestfulData;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.grids.RowData;
 import de.twenty11.skysail.common.responses.FailureResponse;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
-import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplicationDescriptor;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
 
 public class DataResource extends GenericServerResource<List<String>> implements RestfulData {
@@ -90,8 +89,8 @@ public class DataResource extends GenericServerResource<List<String>> implements
 
     @Override
     @Get("html|json")
-    public Response<GridData> getData() {
-        Response<GridData> response;
+    public SkysailResponse<GridData> getData() {
+        SkysailResponse<GridData> response;
         try {
             response = new SuccessResponse<GridData>(getFilteredData());
         } catch (Exception e) {
@@ -116,12 +115,13 @@ public class DataResource extends GenericServerResource<List<String>> implements
 
     private List<ColumnsDetails> getColumns() throws IOException, JsonParseException, JsonMappingException {
         ClientResource columns = new ClientResource("riap://application/"
-                + DbViewerApplicationDescriptor.APPLICATION_NAME + "/connections/" + connectionName + "/schemas/"
+ + "/connections/" + connectionName
+                + "/schemas/"
                 + schemaName + "/tables/" + tableName + "/columns");
         columns.setChallengeResponse(getChallengeResponse());
         Representation representation = columns.get();
-        Response<List<ColumnsDetails>> response = mapper.readValue(representation.getText(),
-                new TypeReference<Response<List<ColumnsDetails>>>() {
+        SkysailResponse<List<ColumnsDetails>> response = mapper.readValue(representation.getText(),
+                new TypeReference<SkysailResponse<List<ColumnsDetails>>>() {
                 });
         List<ColumnsDetails> payload = response.getData();
         return payload;

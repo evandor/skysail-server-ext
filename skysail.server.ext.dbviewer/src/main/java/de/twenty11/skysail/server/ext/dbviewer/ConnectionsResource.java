@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -39,7 +39,7 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
 
     @Override
     @Get("html|json")
-    public Response<List<ConnectionDetails>> getConnections() {
+    public SkysailResponse<List<ConnectionDetails>> getConnections() {
         return getEntities(allConnections(), "all Connections");
     }
 
@@ -51,7 +51,7 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
 
     @Override
     @Post
-    public Response<ConstraintViolations<ConnectionDetails>> addConnection(ConnectionDetails entity) {
+    public SkysailResponse<ConstraintViolations<ConnectionDetails>> addConnection(ConnectionDetails entity) {
         logger.info("trying to persist connection {}", entity);
         EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);

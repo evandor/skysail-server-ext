@@ -15,7 +15,7 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundle;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
@@ -41,7 +41,7 @@ public class BundleResource extends UniqueResultServerResource<BundleDetails> im
 
     @Override
     @Get("html|json")
-    public Response<BundleDetails> getBundle() {
+    public SkysailResponse<BundleDetails> getBundle() {
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
         BundleContext bundleContext = app.getBundleContext();
         Bundle bundle = bundleContext.getBundle(Long.parseLong(bundleId));

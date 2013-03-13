@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulColumns;
-import de.twenty11.skysail.common.responses.Response;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
@@ -61,7 +61,7 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
 
     @Override
     @Get("html|json")
-    public Response<List<ColumnsDetails>> getColumns() {
+    public SkysailResponse<List<ColumnsDetails>> getColumns() {
         return getEntities(allColumns(), "all Columns");
     }
 
