@@ -57,8 +57,6 @@ public class ServicesResource extends ListServerResource<ServiceDescriptor> impl
 		return getEntities(allServices(), "all Services");
 	}
 
-
-
     @Post
 	public Representation install(String location) {
 		String prefix = "prefix";
@@ -71,7 +69,7 @@ public class ServicesResource extends ListServerResource<ServiceDescriptor> impl
     private List<ServiceDescriptor> allServices() {
         List<ServiceDescriptor> result = new ArrayList<ServiceDescriptor>();
 		for (ServiceReference sr : services) {
-			ServiceDescriptor descriptor = new ServiceDescriptor(sr);
+			ServiceDescriptor descriptor = new ServiceDescriptor(sr, getReference());
 			result.add(descriptor);
 		}
 		return result;

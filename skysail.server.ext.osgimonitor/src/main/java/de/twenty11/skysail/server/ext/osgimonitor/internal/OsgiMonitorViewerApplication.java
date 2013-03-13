@@ -37,11 +37,11 @@ import de.twenty11.skysail.server.services.ApplicationProvider;
  */
 public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider {
 
+    // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication() {
         this(null, null);
     }
 
-    // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication(Context componentContext) {
         this(null, componentContext);
     }
@@ -65,13 +65,13 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
 
     protected void attach() {
         router.attach("", OsgiMonitorRootResource.class);
-    	router.attach("/", OsgiMonitorRootResource.class);
-    	router.attach("/bundles", BundlesResource.class);
-    	router.attach("/bundles/asGraph", BundlesAsGraphResource.class);
-    	router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
-    	router.attach("/bundles/details/{bundleId}", BundleResource.class);
-    	router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
-    	router.attach("/services", ServicesResource.class);
+        router.attach("/", OsgiMonitorRootResource.class);
+        router.attach("/bundles", BundlesResource.class);
+        router.attach("/bundles/asGraph", BundlesAsGraphResource.class);
+        router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
+        router.attach("/bundles/details/{bundleId}", BundleResource.class);
+        router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
+        router.attach("/services", ServicesResource.class);
     }
 
 }
