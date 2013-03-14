@@ -52,7 +52,7 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
     }
 
     @Override
-    @Get("html|json")
+    @Get("html|json|csv")
     public SkysailResponse<List<BundleDescriptor>> getBundles() {
         String infoMsg = filterExpression == null ? "allBundles" : "all Bundles filtered by '" + filterExpression + "'";
         return getEntities(allBundles(), infoMsg);
