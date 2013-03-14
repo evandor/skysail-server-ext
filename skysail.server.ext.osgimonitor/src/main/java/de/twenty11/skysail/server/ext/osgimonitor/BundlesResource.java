@@ -70,7 +70,7 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
     private List<BundleDescriptor> allBundles() {
         List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
         for (Bundle bundle : bundles) {
-            BundleDescriptor bundleDetail = new BundleDescriptor(bundle);
+            BundleDescriptor bundleDetail = new BundleDescriptor(bundle, null);
             if (filterExpression != null && filterExpression.trim().length() != 0) {
                 if (bundleDetail.getSymbolicName().contains(filterExpression)) {
                     result.add(bundleDetail);
