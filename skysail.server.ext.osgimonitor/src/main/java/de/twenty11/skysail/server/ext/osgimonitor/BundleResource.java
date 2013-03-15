@@ -16,6 +16,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundle;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.osgimonitor.commands.StartCommand;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
@@ -31,6 +32,7 @@ public class BundleResource extends UniqueResultServerResource<BundleDetails> im
     public BundleResource() {
         setName("osgimonitor bundle resource");
         setDescription("The resource containing bundle detail information");
+        
     }
 
     @Override
@@ -46,6 +48,7 @@ public class BundleResource extends UniqueResultServerResource<BundleDetails> im
         BundleContext bundleContext = app.getBundleContext();
         Bundle bundle = bundleContext.getBundle(Long.parseLong(bundleId));
         BundleDetails details = new BundleDetails(bundle);
+        registerCommand(new StartCommand(bundle));
         return getEntity(details);
     }
 
