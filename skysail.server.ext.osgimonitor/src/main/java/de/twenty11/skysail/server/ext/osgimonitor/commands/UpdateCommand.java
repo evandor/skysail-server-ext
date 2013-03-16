@@ -6,11 +6,11 @@ import org.osgi.framework.BundleException;
 
 import de.twenty11.skysail.common.commands.Command;
 
-public class StopCommand implements Command {
+public class UpdateCommand implements Command {
 
     private final Bundle bundle;
 
-    public StopCommand(Bundle bundle) {
+    public UpdateCommand(Bundle bundle) {
         Validate.notNull(bundle, "bundle may not be null");
         this.bundle = bundle;
     }
@@ -23,7 +23,7 @@ public class StopCommand implements Command {
     @Override
     public void execute() {
         try {
-            bundle.stop();
+            bundle.update();
         } catch (BundleException e) {
             throw new RuntimeException(e);
         }
@@ -31,11 +31,11 @@ public class StopCommand implements Command {
 
     @Override
     public String getName() {
-        return "Stop Bundle";
+        return "Update Bundle";
     }
 
     @Override
     public String getDescription() {
-        return "Stops the bundle (available if bundle is started)";
+        return "Updates the bundle (available if bundle is started)";
     }
 }

@@ -33,6 +33,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
+import de.twenty11.skysail.server.ext.dbviewer.AddConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
@@ -84,7 +85,8 @@ public class DbViewerApplication extends SkysailApplication {
         // @formatter:off
         router.attach("", RootResource.class);
         router.attach("/", RootResource.class);
-        router.attach("/connections/", ConnectionsResource.class);
+        router.attach("/connections", ConnectionsResource.class);
+        router.attach("/connections/", AddConnectionResource.class);
         router.attach("/connections/{"+conn+"}", ConnectionResource.class);
         router.attach("/connections/{"+conn+"}/schemas", SchemasResource.class);
         router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables", TablesResource.class);

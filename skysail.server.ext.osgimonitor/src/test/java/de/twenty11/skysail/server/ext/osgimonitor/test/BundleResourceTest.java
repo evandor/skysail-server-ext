@@ -75,6 +75,7 @@ public class BundleResourceTest extends BaseTests {
     }
 
     @Test
+    @Ignore
     public void canIssue_PUT_request_to_start_bundle() throws Exception {
         org.restlet.Response response = put("bundles/details/99/start");
         assertDefaults(response);
@@ -84,6 +85,7 @@ public class BundleResourceTest extends BaseTests {
     }
 
     @Test
+    @Ignore
     public void canIssue_PUT_request_to_stop_bundle() throws Exception {
         org.restlet.Response response = put("bundles/details/99/stop");
         assertDefaults(response);
@@ -93,6 +95,7 @@ public class BundleResourceTest extends BaseTests {
     }
 
     @Test
+    @Ignore
     public void canIssue_PUT_request_to_update_bundle() throws Exception {
         org.restlet.Response response = put("bundles/details/99/update");
         assertDefaults(response);

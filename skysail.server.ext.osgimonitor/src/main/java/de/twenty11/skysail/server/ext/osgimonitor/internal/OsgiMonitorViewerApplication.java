@@ -70,6 +70,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach("/bundles/asGraph", BundlesAsGraphResource.class);
         router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
         router.attach("/bundles/details/{bundleId}", BundleResource.class);
+        // router.attach("/bundles/details/{bundleId}/", BundleResource.class);
         router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
         router.attach("/services", ServicesResource.class);
     }
