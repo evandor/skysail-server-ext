@@ -23,15 +23,15 @@ public class ConnectionsResourceTest extends BaseTests {
         setUpPersistence(spy);
     }
     
-    @Test
-    @Ignore
-    public void gives_validation_error_for_missing_name() throws Exception {
-        ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
-        ConstraintViolations<ConnectionDetails> createViolations = create(connection);
-        assertThat(createViolations.size(), is(equalTo(1)));
-        assertThat(createViolations.getViolations().get(0).getMessage(), is(equalTo("Name is mandatory")));
-       
-    }
+//    @Test
+//    @Ignore
+//    public void gives_validation_error_for_missing_name() throws Exception {
+//        ConnectionDetails connection = new ConnectionDetails(null, "username", "password", "url", "driverClassName");
+//        ConstraintViolations<ConnectionDetails> createViolations = create(connection);
+//        assertThat(createViolations.size(), is(equalTo(1)));
+//        assertThat(createViolations.getViolations().get(0).getMessage(), is(equalTo("Name is mandatory")));
+//       
+//    }
 
     @Test
     @Ignore

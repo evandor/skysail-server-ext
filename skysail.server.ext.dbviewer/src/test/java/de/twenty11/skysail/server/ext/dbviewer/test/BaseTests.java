@@ -55,14 +55,14 @@ public class BaseTests {
         }
     }
 
-    protected ConstraintViolations<ConnectionDetails> create(ConnectionDetails connection) throws Exception {
+    protected SkysailResponse<ConstraintViolations<ConnectionDetails>> create(ConnectionDetails connection) throws Exception {
         org.restlet.Response response = post("connections/", connection);
         assertDefaults(response);
         SkysailResponse<ConstraintViolations<ConnectionDetails>> skysailResponse = mapper.readValue(response.getEntity()
                 .getText(), new TypeReference<SkysailResponse<ConstraintViolations<ConnectionDetails>>>() {
         });
         // assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
-        return skysailResponse.getValidationViolations();
+        return skysailResponse;//.getValidationViolations();
     }
 
     protected List<ConnectionDetails> getConnections() throws Exception {

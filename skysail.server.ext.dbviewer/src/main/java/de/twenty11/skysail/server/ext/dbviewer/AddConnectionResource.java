@@ -46,13 +46,11 @@ public class AddConnectionResource extends UniqueResultServerResource<Connection
     public SkysailResponse<ConnectionDetails> addConnection(Form form) {
         logger.info("trying to persist connection");
         EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-        ConnectionDetails details = new ConnectionDetails(form.getFirstValue("username").toString(), form.getFirst(
-                "username").toString(), form.getFirst("password").toString(), form.getFirst("driverName").toString(),
-                form.getFirst("url").toString());
+        ConnectionDetails details = new ConnectionDetails(form.getFirstValue("username"), form.getFirstValue(
+                "username"), form.getFirstValue("password"), form.getFirstValue("url"),
+                form.getFirstValue("driverName"));
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(details);
-        ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(
-                constraintViolations);
-        return addEntity(em, details, violations);
+        return addEntity(em, details, constraintViolations);
     }
 
     @Override
