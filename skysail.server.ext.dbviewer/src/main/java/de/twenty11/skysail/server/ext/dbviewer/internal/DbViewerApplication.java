@@ -26,8 +26,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.osgi.framework.BundleContext;
 import org.restlet.Context;
-import org.restlet.Request;
-import org.restlet.Response;
 import org.restlet.data.ChallengeResponse;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
@@ -69,11 +67,6 @@ public class DbViewerApplication extends SkysailApplication {
         setBundleContext(bundleContext);
         setName("dbviewer");
         this.emf = emf;
-    }
-
-    @Override
-    public void handle(Request request, Response response) {
-        super.handle(request, response);
     }
 
     protected void attach() {

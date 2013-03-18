@@ -9,6 +9,8 @@ import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnection;
@@ -22,6 +24,9 @@ public class ConnectionResource extends ListServerResource<ConnectionDetails> im
 
     private String connectionName;
     private EntityManager em;
+
+    /** slf4j based logger implementation */
+    private static Logger logger = LoggerFactory.getLogger(ConnectionResource.class);
 
     public ConnectionResource() {
         setName("dbviewer connection resource");

@@ -1,12 +1,12 @@
 package de.twenty11.skysail.server.ext.dbviewer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.validation.ConstraintViolation;
 
-import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.slf4j.Logger;
@@ -39,37 +39,30 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
         setDescription("The resource containing the list of connections");
     }
 
-    // @Override
+    @Override
     @Get("html|json")
     public SkysailResponse<List<ConnectionDetails>> getConnections() {
         registerLinkedPage(new ConnectionPage());
         List<ConnectionDetails> allConnections = allConnections();
-        return getEntities(allConnections, "all Connections (" + allConnections.size() + ")");
+        return getEntities(allConnections, augmentWithFilterMsg("all Connections (" + allConnections.size() + ")"));
     }
 
     @SuppressWarnings("unchecked")
     private List<ConnectionDetails> allConnections() {
         EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-        return em.createQuery("SELECT c FROM ConnectionDetails c").getResultList();
+        List<ConnectionDetails> resultList = em.createQuery("SELECT c FROM ConnectionDetails c").getResultList();
+        List<ConnectionDetails> filteredResults = new ArrayList<ConnectionDetails>();
+        for (ConnectionDetails details : resultList) {
+            if (filterMatches(details)) {
+                filteredResults.add(details);
+            }
+        }
+        return filteredResults;
     }
 
-    // @Get("putform")
-    // public SkysailResponse<ConnectionDetails> formWithPut() {
-    // ConnectionDetails connectionDetails = new ConnectionDetails();
-    // return new SuccessResponse<ConnectionDetails>(connectionDetails);
-    // }
-
-    @Post("x-www-form-urlencoded")
-    public SkysailResponse<ConstraintViolations<ConnectionDetails>> addConnection(Form form) {
-        logger.info("trying to persist connection");
-        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-        ConnectionDetails details = new ConnectionDetails(form.getFirstValue("username").toString(), form.getFirst(
-                "username").toString(), form.getFirst("password").toString(), form.getFirst("driverName").toString(),
-                form.getFirst("url").toString());
-        Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(details);
-        ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(
-                constraintViolations);
-        return addEntity(em, details, violations);
+    @Override
+    protected boolean match(ConnectionDetails object, String pattern) {
+        return object.getName().contains(pattern);
     }
 
     @Override
@@ -80,7 +73,9 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
         Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);
         ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(
                 constraintViolations);
-        return addEntity(em, entity, violations);
+        // return addEntity(em, entity, violations);
+
+        return null;// TO BE DONE
     }
 
 }

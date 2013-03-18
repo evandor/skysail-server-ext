@@ -13,6 +13,8 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.common.Presentation;
+import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
@@ -29,10 +31,10 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * what is needed to actually connect to a datasource.
  * 
  */
+@Presentation(preferred = PresentationStyle.TABLE)
 public class BundlesResource extends ListServerResource<BundleDescriptor> implements RestfulBundles {
 
     private List<Bundle> bundles;
-    private String filterExpression;
 
     public BundlesResource() {
         setName("osgimonitor bundles resource");
@@ -41,7 +43,7 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
 
     @Override
     protected void doInit() throws ResourceException {
-        filterExpression = getQuery().getFirstValue("filter");
+        super.doInit();
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
         BundleContext bundleContext = app.getBundleContext();
         if (bundleContext == null) {
@@ -54,8 +56,7 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
     @Override
     @Get("html|json|csv")
     public SkysailResponse<List<BundleDescriptor>> getBundles() {
-        String infoMsg = filterExpression == null ? "allBundles" : "all Bundles filtered by '" + filterExpression + "'";
-        return getEntities(allBundles(), infoMsg);
+        return getEntities(allBundles(), augmentWithFilterMsg("all Bundles"));
     }
 
     @Post
@@ -70,16 +71,17 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
     private List<BundleDescriptor> allBundles() {
         List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
         for (Bundle bundle : bundles) {
-            BundleDescriptor bundleDetail = new BundleDescriptor(bundle, null);
-            if (filterExpression != null && filterExpression.trim().length() != 0) {
-                if (bundleDetail.getSymbolicName().contains(filterExpression)) {
-                    result.add(bundleDetail);
-                }
-            } else {
-                result.add(bundleDetail);
+            BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle, null);
+            if (filterMatches(bundleDescriptor)) {
+                result.add(bundleDescriptor);
             }
         }
         return result;
+    }
+
+    @Override
+    protected boolean match(BundleDescriptor object, String pattern) {
+        return object.getSymbolicName().contains(pattern);
     }
 
 }
