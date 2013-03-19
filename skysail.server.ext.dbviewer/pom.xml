@@ -87,7 +87,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
@@ -105,10 +105,13 @@
 						<configuration>
 							<tasks>
 								<!-- delete zip file first to have an exact copy (even if files have 
-									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" /> -->
-									<!-- -${project.version} -->
-								<zip destfile="target/skysail-dbviewer.zip" encoding="UTF-8" update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer" filemode="775">
+									been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
+									/> -->
+								<!-- -${project.version} -->
+								<zip destfile="target/skysail-dbviewer.zip" encoding="UTF-8"
+									update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer"
+										filemode="775">
 										<include name="run.bat" />
 										<include name="run.sh" />
 										<include name="run.composite" />
@@ -116,10 +119,12 @@
 										<include name="rund.setup" />
 										<include name="rund.composite" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin" filemode="775">
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin"
+										filemode="775">
 										<include name="*.jar" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs" filemode="775">
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs"
+										filemode="775">
 										<include name="*.setup" />
 									</zipfileset>
 									<zipfileset dir="src/main/resources" prefix="skysail-dbviewer/config">
@@ -129,9 +134,11 @@
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
-								
-								<zip destfile="target/skysail-dbviewer-${project.version}.zip" encoding="UTF-8" update="false" whenempty="create">
-									<zipfileset dir="etc/pax-runner" prefix="skysail-dbviewer-${project.version}" filemode="775">
+
+								<zip destfile="target/skysail-dbviewer-${project.version}.zip"
+									encoding="UTF-8" update="false" whenempty="create">
+									<zipfileset dir="etc/pax-runner"
+										prefix="skysail-dbviewer-${project.version}" filemode="775">
 										<include name="run.bat" />
 										<include name="run.sh" />
 										<include name="run.composite" />
@@ -139,16 +146,20 @@
 										<include name="rund.setup" />
 										<include name="rund.composite" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin" filemode="775">
+									<zipfileset dir="etc/pax-runner/bin" prefix="skysail-dbviewer/bin"
+										filemode="775">
 										<include name="*.jar" />
 									</zipfileset>
-									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs" filemode="775">
+									<zipfileset dir="etc/pax-runner/bundledefs" prefix="skysail-dbviewer/bundledefs"
+										filemode="775">
 										<include name="*.setup" />
 									</zipfileset>
-									<zipfileset dir="src/main/resources" prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="src/main/resources"
+										prefix="skysail-dbviewer-${project.version}/conf">
 										<include name="logback.xml" />
 									</zipfileset>
-									<zipfileset dir="conf/prod" prefix="skysail-dbviewer-${project.version}/conf">
+									<zipfileset dir="conf/prod"
+										prefix="skysail-dbviewer-${project.version}/conf">
 										<include name="*.*" />
 									</zipfileset>
 								</zip>
@@ -200,6 +211,12 @@
 			<version>${skysail.common.version}</version>
 			<scope>test</scope>
 			<type>test-jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.cglib</groupId>
+			<artifactId>com.springsource.net.sf.cglib</artifactId>
+			<version>2.2.0</version>
 		</dependency>
 
 		<dependency>
