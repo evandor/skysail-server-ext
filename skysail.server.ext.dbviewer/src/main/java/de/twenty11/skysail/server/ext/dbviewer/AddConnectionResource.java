@@ -18,8 +18,8 @@ import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnection;
 import de.twenty11.skysail.common.forms.ConstraintViolations;
+import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
@@ -36,10 +36,10 @@ public class AddConnectionResource extends UniqueResultServerResource<Connection
 
     @Override
     @Get("html")
-    public SkysailResponse<ConnectionDetails> getConnection() {
+    public FormResponse<ConnectionDetails> getConnection() {
         ConnectionDetails connectionDetails = new ConnectionDetails();
         setMessage("Adding new Connection");
-        return new SuccessResponse<ConnectionDetails>(connectionDetails);
+        return new FormResponse<ConnectionDetails>(connectionDetails, "../connections/");
     }
 
     @Post("x-www-form-urlencoded:html")

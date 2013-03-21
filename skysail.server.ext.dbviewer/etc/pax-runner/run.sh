@@ -8,7 +8,7 @@
 java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
 --log=INFO \
 --vmOptions="\
- -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
+ -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5006 \
  -Dfelix.fileinstall.dir=../config \
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \
  -Dfelix.fileinstall.noInitialDelay=true \
