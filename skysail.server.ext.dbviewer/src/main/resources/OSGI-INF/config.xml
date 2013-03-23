@@ -7,8 +7,10 @@
 
 	<reference bind="setApplicationProvider" cardinality="0..n" 
 		interface="de.twenty11.skysail.server.services.ApplicationProvider" name="ApplicationProvider" policy="dynamic" unbind="unsetApplicationProvider"/>
+ 	
  	<reference bind="setComponentProvider" cardinality="1..1" interface="de.twenty11.skysail.server.services.ComponentProvider" 
  		name="ComponentProvider" policy="static"/>
+	
 	<reference bind="setEntityManager" cardinality="1..1" 
 		interface="javax.persistence.EntityManagerFactory" name="EntityManagerProvider" 
 		policy="static"/>	

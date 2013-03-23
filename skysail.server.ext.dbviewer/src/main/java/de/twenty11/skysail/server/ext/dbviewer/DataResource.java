@@ -37,6 +37,8 @@ import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.common.Presentation;
+import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulData;
 import de.twenty11.skysail.common.grids.GridData;
@@ -47,6 +49,7 @@ import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.restlet.GenericServerResource;
 
+@Presentation(preferred = PresentationStyle.TABLE)
 public class DataResource extends GenericServerResource<List<String>> implements RestfulData {
 
     /** slf4j based logger implementation */
@@ -115,7 +118,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
 
     private List<ColumnsDetails> getColumns() throws IOException, JsonParseException, JsonMappingException {
         ClientResource columns = new ClientResource("riap://application/"
- + "/connections/" + connectionName
+ + "connections/" + connectionName
                 + "/schemas/"
                 + schemaName + "/tables/" + tableName + "/columns");
         columns.setChallengeResponse(getChallengeResponse());

@@ -23,11 +23,14 @@ import org.restlet.Request;
 import org.restlet.Response;
 
 import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
+import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsD3GraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsJsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
+import de.twenty11.skysail.server.ext.osgimonitor.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
 import de.twenty11.skysail.server.ext.osgimonitor.ServicesResource;
+import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
 
@@ -64,11 +67,14 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
     }
 
     protected void attach() {
+        router.attach(new RouteBuilder("", OsgiMonitorRootResource.class).setVisible(false));
         router.attach("", OsgiMonitorRootResource.class);
         router.attach("/", OsgiMonitorRootResource.class);
         router.attach("/bundles", BundlesResource.class);
-        router.attach("/bundles/asGraph", BundlesAsGraphResource.class);
         router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
+        router.attach("/bundles/asGraph", IFrameResource.class);
+        router.attach("/bundles/asGraph/", BundlesAsGraphResource.class);
+        router.attach("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class);
         router.attach("/bundles/details/{bundleId}", BundleResource.class);
         // router.attach("/bundles/details/{bundleId}/", BundleResource.class);
         router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
