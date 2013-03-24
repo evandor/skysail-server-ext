@@ -73,7 +73,7 @@ public class RootResource extends ListServerResource<ResourceDetails> implements
                     next.getFinderClass();
                 }
             }
-            ResourceDetails resourceDetails = new ResourceDetails(from, to, desc);// + " -> " + to);
+            ResourceDetails resourceDetails = new ResourceDetails(from, from, to, desc);// + " -> " + to);
             result.add(resourceDetails);
         }
     }

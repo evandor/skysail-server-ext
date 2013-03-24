@@ -19,13 +19,10 @@ package de.twenty11.skysail.server.ext.osgimonitor.internal;
 
 import org.osgi.framework.BundleContext;
 import org.restlet.Context;
-import org.restlet.Request;
-import org.restlet.Response;
 
 import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsD3GraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
-import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsJsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
@@ -61,24 +58,30 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         setBundleContext(bundleContext);
     }
 
-    @Override
-    public void handle(Request request, Response response) {
-        super.handle(request, response);
-    }
-
     protected void attach() {
         router.attach(new RouteBuilder("", OsgiMonitorRootResource.class).setVisible(false));
-        router.attach("", OsgiMonitorRootResource.class);
-        router.attach("/", OsgiMonitorRootResource.class);
-        router.attach("/bundles", BundlesResource.class);
-        router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
-        router.attach("/bundles/asGraph", IFrameResource.class);
-        router.attach("/bundles/asGraph/", BundlesAsGraphResource.class);
-        router.attach("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class);
-        router.attach("/bundles/details/{bundleId}", BundleResource.class);
-        // router.attach("/bundles/details/{bundleId}/", BundleResource.class);
-        router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
-        router.attach("/services", ServicesResource.class);
+        router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class).setVisible(false));
+
+        router.attach(new RouteBuilder("/bundles", BundlesResource.class).setText("Show all Bundles"));
+        router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class)
+                .setText("Show Bundles as visualized Graph"));
+
+        // router.attach(new RouteBuilder("/bundles/asJsGraph",
+        // BundlesAsJsGraphResource.class).setText("Show as Graph"));
+        router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class)
+                .setText("Show as json Graph representation"));
+        router.attach(new RouteBuilder("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/bundles/details/{bundleId}", BundleResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/bundles/details/{bundleId}/action", BundleResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Show all used Services"));
+
+        // router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
+        // router.attach("/bundles/asGraph/", BundlesAsGraphResource.class);
+        // router.attach("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class);
+        // router.attach("/bundles/details/{bundleId}", BundleResource.class);
+        // // router.attach("/bundles/details/{bundleId}/", BundleResource.class);
+        // router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
+        // router.attach("/services", ServicesResource.class);
     }
 
 }
