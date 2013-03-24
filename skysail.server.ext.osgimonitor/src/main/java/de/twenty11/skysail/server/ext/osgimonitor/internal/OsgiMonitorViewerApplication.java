@@ -59,29 +59,17 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
     }
 
     protected void attach() {
+        // @formatter:off
         router.attach(new RouteBuilder("", OsgiMonitorRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class).setVisible(false));
-
         router.attach(new RouteBuilder("/bundles", BundlesResource.class).setText("Show all Bundles"));
-        router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class)
-                .setText("Show Bundles as visualized Graph"));
-
-        // router.attach(new RouteBuilder("/bundles/asJsGraph",
-        // BundlesAsJsGraphResource.class).setText("Show as Graph"));
-        router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class)
-                .setText("Show as json Graph representation"));
+        router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class).setText("Show Bundles as visualized Graph"));
+        router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class).setText("Show as json Graph representation"));
         router.attach(new RouteBuilder("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}", BundleResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}/action", BundleResource.class).setVisible(false));
         router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Show all used Services"));
-
-        // router.attach("/bundles/asJsGraph", BundlesAsJsGraphResource.class);
-        // router.attach("/bundles/asGraph/", BundlesAsGraphResource.class);
-        // router.attach("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class);
-        // router.attach("/bundles/details/{bundleId}", BundleResource.class);
-        // // router.attach("/bundles/details/{bundleId}/", BundleResource.class);
-        // router.attach("/bundles/details/{bundleId}/{action}", BundleResource.class);
-        // router.attach("/services", ServicesResource.class);
+        // @formatter:on
     }
 
 }

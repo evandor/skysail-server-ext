@@ -41,6 +41,7 @@ import de.twenty11.skysail.server.ext.dbviewer.DataResource;
 import de.twenty11.skysail.server.ext.dbviewer.RootResource;
 import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
+import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
@@ -76,16 +77,16 @@ public class DbViewerApplication extends SkysailApplication {
     	String table = Constants.TABLE_NAME;
     	
         // @formatter:off
-        router.attach("", RootResource.class);
-        router.attach("/", RootResource.class);
-        router.attach("/connections", ConnectionsResource.class);
-        router.attach("/connections/", AddConnectionResource.class);
-        router.attach("/connections/{"+conn+"}", ConnectionResource.class);
-        router.attach("/connections/{"+conn+"}/schemas", SchemasResource.class);
-        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables", TablesResource.class);
-        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class);
-        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class);
-        router.attach("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class);
+        router.attach(new RouteBuilder("", RootResource.class));
+        router.attach(new RouteBuilder("/", RootResource.class));
+        router.attach(new RouteBuilder("/connections", ConnectionsResource.class));
+        router.attach(new RouteBuilder("/connections/", AddConnectionResource.class));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}", ConnectionResource.class));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas", SchemasResource.class));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables", TablesResource.class));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class));
         // @formatter:on
     }
 
