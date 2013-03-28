@@ -7,14 +7,12 @@ import javax.persistence.TypedQuery;
 
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
-import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.RestfulConnection;
-import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
@@ -53,12 +51,12 @@ public class ConnectionResource extends ListServerResource<ConnectionDetails> im
         return getEntity(resultList.get(0));
     }
 
-    @Override
-    @Put
-    public SkysailResponse<ConstraintViolations<ConnectionDetails>> updateConnection(ConnectionDetails connection) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    // @Override
+    // @Put
+    // public SkysailResponse<ConstraintViolations<ConnectionDetails>> updateConnection(ConnectionDetails connection) {
+    // // TODO Auto-generated method stub
+    // return null;
+    // }
 
     @Override
     @Delete

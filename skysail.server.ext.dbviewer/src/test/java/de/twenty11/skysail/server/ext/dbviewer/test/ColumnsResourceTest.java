@@ -22,7 +22,7 @@ public class ColumnsResourceTest extends BaseTests {
         setUpPersistence(spy);
         ConnectionDetails connection = new ConnectionDetails("testdb", "skysail", "skysail",
                 "jdbc:derby:skysailDerbyTestDb;create=true", "org.apache.derby.jdbc.EmbeddedDriver");
-        create(connection);
+        // create(connection);
     }
 
     @Test

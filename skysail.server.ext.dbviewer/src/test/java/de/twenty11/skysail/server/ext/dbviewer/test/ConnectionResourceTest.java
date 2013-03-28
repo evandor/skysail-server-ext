@@ -21,7 +21,7 @@ public class ConnectionResourceTest extends BaseTests {
         DbViewerApplication spy = setUpRestletApplication();
         setUpPersistence(spy);
         ConnectionDetails connection = new ConnectionDetails("name", "username", "password", "url", "driverClassName");
-        create(connection);
+        // create(connection);
     }
 
     @Test

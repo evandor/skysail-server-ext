@@ -34,7 +34,6 @@ import de.twenty11.skysail.common.ext.dbviewer.ColumnsDetails;
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
 import de.twenty11.skysail.common.ext.dbviewer.ConstraintDetails;
 import de.twenty11.skysail.common.ext.dbviewer.SchemaDetails;
-import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.grids.GridData;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
@@ -55,15 +54,16 @@ public class BaseTests {
         }
     }
 
-    protected SkysailResponse<ConstraintViolations<ConnectionDetails>> create(ConnectionDetails connection) throws Exception {
-        org.restlet.Response response = post("connections/", connection);
-        assertDefaults(response);
-        SkysailResponse<ConstraintViolations<ConnectionDetails>> skysailResponse = mapper.readValue(response.getEntity()
-                .getText(), new TypeReference<SkysailResponse<ConstraintViolations<ConnectionDetails>>>() {
-        });
-        // assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
-        return skysailResponse;//.getValidationViolations();
-    }
+    // protected SkysailResponse<ConstraintViolations<ConnectionDetails>> create(ConnectionDetails connection) throws
+    // Exception {
+    // org.restlet.Response response = post("connections/", connection);
+    // assertDefaults(response);
+    // SkysailResponse<ConstraintViolations<ConnectionDetails>> skysailResponse = mapper.readValue(response.getEntity()
+    // .getText(), new TypeReference<SkysailResponse<ConstraintViolations<ConnectionDetails>>>() {
+    // });
+    // // assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
+    // return skysailResponse;//.getValidationViolations();
+    // }
 
     protected List<ConnectionDetails> getConnections() throws Exception {
         org.restlet.Response response = get("connections/");

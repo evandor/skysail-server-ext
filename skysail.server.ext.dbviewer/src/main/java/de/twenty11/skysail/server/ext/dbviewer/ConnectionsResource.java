@@ -2,19 +2,14 @@ package de.twenty11.skysail.server.ext.dbviewer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.validation.ConstraintViolation;
 
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
-import de.twenty11.skysail.common.ext.dbviewer.RestfulConnections;
-import de.twenty11.skysail.common.forms.ConstraintViolations;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.dbviewer.internal.DbViewerApplication;
 import de.twenty11.skysail.server.ext.dbviewer.links.ConnectionPage;
@@ -29,7 +24,7 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * about what is needed to actually connect to a datasource.
  * 
  */
-public class ConnectionsResource extends ListServerResource<ConnectionDetails> implements RestfulConnections {
+public class ConnectionsResource extends ListServerResource<ConnectionDetails> {
 
     /** slf4j based logger implementation */
     private static Logger logger = LoggerFactory.getLogger(ConnectionsResource.class);
@@ -39,7 +34,7 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
         setDescription("The resource containing the list of connections");
     }
 
-    @Override
+    // @Override
     @Get("html|json")
     public SkysailResponse<List<ConnectionDetails>> getConnections() {
         registerLinkedPage(new ConnectionPage());
@@ -65,17 +60,17 @@ public class ConnectionsResource extends ListServerResource<ConnectionDetails> i
         return object.getName().contains(pattern);
     }
 
-    @Override
-    @Post("html")
-    public SkysailResponse<ConstraintViolations<ConnectionDetails>> addConnection(ConnectionDetails entity) {
-        logger.info("trying to persist connection {}", entity);
-        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-        Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);
-        ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(
-                constraintViolations);
-        // return addEntity(em, entity, violations);
-
-        return null;// TO BE DONE
-    }
+    // @Override
+    // @Post("html")
+    // public SkysailResponse<ConstraintViolations<ConnectionDetails>> addConnection(ConnectionDetails entity) {
+    // logger.info("trying to persist connection {}", entity);
+    // EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
+    // Set<ConstraintViolation<ConnectionDetails>> constraintViolations = getValidator().validate(entity);
+    // ConstraintViolations<ConnectionDetails> violations = new ConstraintViolations<ConnectionDetails>(
+    // constraintViolations);
+    // // return addEntity(em, entity, violations);
+    //
+    // return null;// TO BE DONE
+    // }
 
 }
