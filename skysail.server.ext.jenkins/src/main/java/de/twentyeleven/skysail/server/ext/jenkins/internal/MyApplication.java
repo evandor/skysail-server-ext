@@ -29,9 +29,9 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
      */
     public MyApplication(BundleContext bundleContext, Context componentContext) {
         super(componentContext == null ? null : componentContext.createChildContext());
-        setDescription("RESTful OsgiMonitor bundle");
+        setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
-        setName("osgimonitor");
+        setName("jenkins");
         setBundleContext(bundleContext);
     }
 

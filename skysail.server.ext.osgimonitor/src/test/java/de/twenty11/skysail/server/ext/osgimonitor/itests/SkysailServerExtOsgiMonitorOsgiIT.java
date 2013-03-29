@@ -1,3 +1,4 @@
+package de.twenty11.skysail.server.ext.osgimonitor.itests;
 //package de.twenty11.skysail.server.ext.osgimonitor.itests;
 //
 //import java.util.ArrayList;
@@ -30,7 +31,7 @@
 //        // dependencies.add(PaxExamOptionSet.DEBUGGING);
 //        // dependencies.add(PaxExamOptionSet.SERVICES_VISUALIZATION);
 //        //
-//        // SkysailServerExtDbViewerOsgiSetup setup = new SkysailServerExtDbViewerOsgiSetup();
+//        // SkysailServerExtOsgiMonitorOsgiSetup setup = new SkysailServerExtOsgiMonitorOsgiSetup();
 //        // List<Option> options = setup.getOptions(EnumSet.copyOf(dependencies));
 //        //
 //        // // _this_ bundle from target directory
