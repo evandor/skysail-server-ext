@@ -1,6 +1,5 @@
 package de.twentyeleven.skysail.server.ext.jenkins.internal;
 
-import org.osgi.framework.BundleContext;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.restlet.RouteBuilder;
@@ -16,23 +15,18 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
 
     // non-arg constructor needed for scr
     public MyApplication() {
-        this(null, null);
-    }
-
-    public MyApplication(Context componentContext) {
-        this(null, componentContext);
+        this(null);
     }
 
     /**
      * @param staticPathTemplate
      * @param bundleContext
      */
-    public MyApplication(BundleContext bundleContext, Context componentContext) {
+    public MyApplication(Context componentContext) {
         super(componentContext == null ? null : componentContext.createChildContext());
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("jenkins");
-        setBundleContext(bundleContext);
     }
 
     protected void attach() {

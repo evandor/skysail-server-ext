@@ -22,7 +22,7 @@ public class Configuration implements ApplicationProvider {
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Configuration Component for Skysail Osgimonitor Extension");
         component = componentProvider.getComponent();
-        application = new MyApplication(componentContext.getBundleContext(), component.getContext());
+        application = new MyApplication(component.getContext());
     }
 
     protected void deactivate(ComponentContext componentContext) {
