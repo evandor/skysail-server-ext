@@ -1,52 +1,44 @@
 package de.twentyeleven.skysail.server.ext.jenkins.internal;
 
-import org.osgi.framework.FrameworkUtil;
-import org.restlet.Request;
-import org.restlet.Response;
+import org.osgi.framework.BundleContext;
+import org.restlet.Context;
 
-import de.twenty11.skysail.server.listener.UrlMappingServiceListener;
-import de.twenty11.skysail.server.restlet.RestletOsgiApplication;
+import de.twenty11.skysail.server.restlet.RouteBuilder;
+import de.twenty11.skysail.server.restlet.SkysailApplication;
+import de.twenty11.skysail.server.services.ApplicationProvider;
+import de.twentyeleven.skysail.server.ext.jenkins.MyRootResource;
 
 /**
  * @author carsten
  * 
  */
-public class MyApplication extends SkysailApplication {
+public class MyApplication extends SkysailApplication implements ApplicationProvider {
 
-    private static MyApplication self;
+    // non-arg constructor needed for scr
+    public MyApplication() {
+        this(null, null);
+    }
+
+    public MyApplication(Context componentContext) {
+        this(null, componentContext);
+    }
 
     /**
      * @param staticPathTemplate
+     * @param bundleContext
      */
-    public MyApplication(String staticPathTemplate) {
-        super(MyApplicationDescriptor.APPLICATION_NAME, staticPathTemplate);
-        setDescription("RESTful skysail.server.ext.jenkins bundle");
+    public MyApplication(BundleContext bundleContext, Context componentContext) {
+        super(componentContext == null ? null : componentContext.createChildContext());
+        setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
-        self = this;
+        setName("osgimonitor");
+        setBundleContext(bundleContext);
     }
 
-    /**
-     * this is done to give osgi a chance to inject serives to restlet; should be changed to some javax.inject approach
-     * (like using InjectedServerResource) once this is available.
-     * 
-     * @return
-     */
-    public static MyApplication get() {
-        return self;
-    }
-
-    @Override
-    public void handle(Request request, Response response) {
-        super.handle(request, response);
-    }
-
-    // TODO proper place for this here? what about multiple instances?
     protected void attach() {
-        if (FrameworkUtil.getBundle(SkysailApplication.class) != null) {
-            new UrlMappingServiceListener(this);
-            //new SkysailApplicationServiceListener(this);
-        }
+        // @formatter:off
+        router.attach(new RouteBuilder("", MyRootResource.class).setVisible(true));
+        // @formatter:on
     }
-
 
 }

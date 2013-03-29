@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="de.twentyeleven.skysail.server.ext.jenkins.internal.MyUrlMapper">
-   <implementation class="de.twentyeleven.skysail.server.ext.jenkins.internal.MyUrlMapper" />
-   <service>
-      <provide interface="de.twenty11.skysail.server.services.UrlMapper"/>
-   </service>
-</scr:component>
