@@ -73,17 +73,6 @@ public class SkysailServerExtJenkinsOsgiIT {
 
     @Test
     @Ignore
-    // not true any more
-    public void shouldFindSkysailDatasourceService() {
-        Bundle bundle = OsgiTestingUtils.getBundleForSymbolicName(context, "skysail.server");
-        assertTrue(bundle != null);
-        ServiceReference skysailDatasourceReference = context
-                .getServiceReference("de.twenty11.skysail.server.services.DataSourceProvider");
-        assertTrue(skysailDatasourceReference != null);
-    }
-
-    @Test
-    @Ignore
     public void a() {
         ApplicationProvider dummyApplicationProvider = new ApplicationProvider() {
 
@@ -106,17 +95,5 @@ public class SkysailServerExtJenkinsOsgiIT {
 
         assertTrue(applicationFromService.getAuthor().equals("author"));
     }
-
-    // @Test
-    // public void shouldFindSkysailEntityManagerProvider() {
-    // Bundle bundle = getBundleForSymbolicName("skysail.server");
-    // ServiceReference skysailDatasourceReference = context
-    // .getServiceReference("de.twenty11.skysail.server.services.EntityManagerProvider");
-    // assertTrue(skysailDatasourceReference != null);
-    // EntityManagerProvider service = (EntityManagerProvider) context.getService(skysailDatasourceReference);
-    // assertTrue(service != null);
-    // // EntityManager entityManager = service.getEntityManager("SkysailPU");
-    // }
-
 
 }
