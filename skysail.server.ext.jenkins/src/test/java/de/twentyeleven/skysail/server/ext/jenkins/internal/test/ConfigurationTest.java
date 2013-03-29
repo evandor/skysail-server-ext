@@ -44,7 +44,5 @@ public class ConfigurationTest {
     public void activating_creates_restlet_application() throws Exception {
         configuration.activate(componentContext);
         Assert.assertThat(configuration.getApplication(), is(notNullValue()));
-        // assertThat(configuration.getApplication(), is(nullValue()));
-        // assertThat(configuration.getApplication(),
     }
 }

@@ -40,6 +40,10 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.3</version>
 		</dependency>
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>org.hamcrest.hamcrest-all-osgi</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
