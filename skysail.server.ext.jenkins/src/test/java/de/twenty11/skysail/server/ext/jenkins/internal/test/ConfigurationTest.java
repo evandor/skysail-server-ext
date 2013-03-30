@@ -1,4 +1,4 @@
-package de.twentyeleven.skysail.server.ext.jenkins.internal.test;
+package de.twenty11.skysail.server.ext.jenkins.internal.test;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,8 +10,8 @@ import org.osgi.service.component.ComponentContext;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
+import de.twenty11.skysail.server.ext.jenkins.internal.Configuration;
 import de.twenty11.skysail.server.services.ComponentProvider;
-import de.twentyeleven.skysail.server.ext.jenkins.internal.Configuration;
 import org.restlet.Component;
 
 public class ConfigurationTest {

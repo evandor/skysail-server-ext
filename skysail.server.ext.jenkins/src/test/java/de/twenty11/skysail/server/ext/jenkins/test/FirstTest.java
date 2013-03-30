@@ -1,4 +1,4 @@
-package de.twentyeleven.skysail.server.ext.jenkins.test;
+package de.twenty11.skysail.server.ext.jenkins.test;
 
 import org.junit.Test;
 

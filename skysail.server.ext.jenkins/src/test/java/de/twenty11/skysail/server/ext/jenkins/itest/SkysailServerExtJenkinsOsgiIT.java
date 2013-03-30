@@ -1,4 +1,4 @@
-package de.twentyeleven.skysail.server.ext.jenkins.itest;
+package de.twenty11.skysail.server.ext.jenkins.itest;
 
 import static org.junit.Assert.assertTrue;
 import static org.ops4j.pax.exam.CoreOptions.bundle;

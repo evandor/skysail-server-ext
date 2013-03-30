@@ -1,11 +1,11 @@
-package de.twentyeleven.skysail.server.ext.jenkins.internal;
+package de.twenty11.skysail.server.ext.jenkins.internal;
 
 import org.restlet.Context;
 
+import de.twenty11.skysail.server.ext.jenkins.MyRootResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
-import de.twentyeleven.skysail.server.ext.jenkins.MyRootResource;
 
 /**
  * @author carsten

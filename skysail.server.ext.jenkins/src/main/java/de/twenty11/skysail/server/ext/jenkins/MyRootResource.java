@@ -1,4 +1,4 @@
-package de.twentyeleven.skysail.server.ext.jenkins;
+package de.twenty11.skysail.server.ext.jenkins;
 
 import java.util.List;
 

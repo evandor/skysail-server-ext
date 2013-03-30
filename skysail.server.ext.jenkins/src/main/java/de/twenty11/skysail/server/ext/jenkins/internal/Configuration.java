@@ -1,4 +1,4 @@
-package de.twentyeleven.skysail.server.ext.jenkins.internal;
+package de.twenty11.skysail.server.ext.jenkins.internal;
 
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
