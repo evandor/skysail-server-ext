@@ -17,8 +17,8 @@ public class MyRootResource extends ListServerResource<ResourceDetails> implemen
 
     public MyRootResource() {
         setAutoDescribing(false);
-        setName("osgimonitor root resource");
-        setDescription("The root resource of the osgimonitor application");
+        setName("remote jenkins root resource");
+        setDescription("The root resource of the remote jenkins application");
     }
 
     @Override

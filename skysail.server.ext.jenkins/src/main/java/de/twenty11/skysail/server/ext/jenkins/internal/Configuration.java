@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.ext.jenkins.internal;
 
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
@@ -17,7 +16,6 @@ public class Configuration implements ApplicationProvider {
     private ComponentProvider componentProvider;
     private Component component;
     private MyApplication application;
-    private ServiceRegistration currentApplicationService;
 
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Configuration Component for Skysail Osgimonitor Extension");
@@ -27,8 +25,7 @@ public class Configuration implements ApplicationProvider {
 
     protected void deactivate(ComponentContext componentContext) {
         logger.info("Deactivating Configuration Component for Skysail Osgimonitor Extension");
-        componentContext.getBundleContext().ungetService(currentApplicationService.getReference());
-        component.getDefaultHost().detach(application);
+        // component.getDefaultHost().detach(application);
         application = null;
     }
 

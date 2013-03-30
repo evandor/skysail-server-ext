@@ -9,6 +9,7 @@ import org.osgi.service.component.ComponentContext;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 
 import de.twenty11.skysail.server.ext.jenkins.internal.Configuration;
 import de.twenty11.skysail.server.services.ComponentProvider;
@@ -45,4 +46,12 @@ public class ConfigurationTest {
         configuration.activate(componentContext);
         Assert.assertThat(configuration.getApplication(), is(notNullValue()));
     }
+
+    @Test
+    public void deactivating_nulls_restlet_application() throws Exception {
+        configuration.activate(componentContext);
+        configuration.deactivate(componentContext);
+        Assert.assertThat(configuration.getApplication(), is(nullValue()));
+    }
+
 }
