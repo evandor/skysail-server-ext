@@ -8,13 +8,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.osgi.framework.BundleContext;
 import org.restlet.Context;
 
+import de.twenty11.skysail.server.ext.jenkins.internal.MyApplication;
+
 import static org.junit.Assert.assertThat;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-
-import de.twenty11.skysail.server.ext.jenkins.MyRootResource;
-import de.twenty11.skysail.server.ext.jenkins.internal.MyApplication;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MyApplicationTest {
@@ -33,9 +32,8 @@ public class MyApplicationTest {
     }
 
     @Test
-    public void attach() throws Exception {
+    public void calling_createInboundRoute_attaches_routes_from_MyApplication() throws Exception {
         myApplication.createInboundRoot();
-        //myApplication.attachToRouter("key", MyRootResource.class);
         assertThat(myApplication.getRoutes().size(), is(equalTo(1)));
     }
 
