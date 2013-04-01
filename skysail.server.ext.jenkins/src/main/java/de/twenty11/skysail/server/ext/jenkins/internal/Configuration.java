@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.jenkins.internal;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
@@ -16,11 +18,12 @@ public class Configuration implements ApplicationProvider {
     private ComponentProvider componentProvider;
     private Component component;
     private MyApplication application;
+    private EntityManagerFactory emf;
 
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Configuration Component for Skysail Osgimonitor Extension");
         component = componentProvider.getComponent();
-        application = new MyApplication(component.getContext());
+        application = new MyApplication(component.getContext(), emf);
     }
 
     protected void deactivate(ComponentContext componentContext) {
@@ -37,4 +40,9 @@ public class Configuration implements ApplicationProvider {
     public Application getApplication() {
         return application;
     }
+
+    public synchronized void setEntityManager(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
 }

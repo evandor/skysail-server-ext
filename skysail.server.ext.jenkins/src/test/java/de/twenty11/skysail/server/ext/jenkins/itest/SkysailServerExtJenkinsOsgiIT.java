@@ -1,17 +1,21 @@
 package de.twenty11.skysail.server.ext.jenkins.itest;
 
-import static org.junit.Assert.assertTrue;
-import static org.ops4j.pax.exam.CoreOptions.bundle;
-
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.persistence.Cache;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnitUtil;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.metamodel.Metamodel;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.ExamReactorStrategy;
@@ -21,12 +25,19 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.restlet.Application;
+import org.restlet.Component;
+import org.restlet.security.Verifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.common.testing.utils.OsgiTestingUtils;
 import de.twenty11.skysail.common.testing.utils.PaxExamOptionSet;
 import de.twenty11.skysail.server.services.ApplicationProvider;
+import de.twenty11.skysail.server.services.ComponentProvider;
+
+import static org.junit.Assert.assertTrue;
+
+import static org.ops4j.pax.exam.CoreOptions.bundle;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
@@ -72,28 +83,87 @@ public class SkysailServerExtJenkinsOsgiIT {
     }
 
     @Test
-    @Ignore
     public void a() {
-        ApplicationProvider dummyApplicationProvider = new ApplicationProvider() {
-
+        ComponentProvider dummyComponentProvider = new ComponentProvider() {
             @Override
-            public Application getApplication() {
-                return new Application() {
-                    @Override
-                    public String getAuthor() {
-                        return "author";
-                    }
-                };
+            public Component getComponent() {
+                return new Component();
+            }
+            @Override
+            public Verifier getVerifier() {
+                return Mockito.mock(Verifier.class);
             }
         };
-        assertTrue(dummyApplicationProvider != null);
+        EntityManagerFactory dummyEmf = new EntityManagerFactory() {
 
-        context.registerService(ApplicationProvider.class.getName(), dummyApplicationProvider, null);
+            @Override
+            public EntityManager createEntityManager() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public EntityManager createEntityManager(Map map) {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public CriteriaBuilder getCriteriaBuilder() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public Metamodel getMetamodel() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public boolean isOpen() {
+                // TODO Auto-generated method stub
+                return false;
+            }
+
+            @Override
+            public void close() {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public Map<String, Object> getProperties() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public Cache getCache() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public PersistenceUnitUtil getPersistenceUnitUtil() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+        };// Mockito.mock(EntityManagerFactory.class);
+
+        // provide the required services, so that the configuration constraints are fulfilled.
+        context.registerService(ComponentProvider.class.getName(), dummyComponentProvider, null);
+        context.registerService(EntityManagerFactory.class.getName(), dummyEmf, null);
+
+        // check the service which should have been created by the configuration
         ServiceReference serviceReference = context.getServiceReference(ApplicationProvider.class.getName());
+        // assertThat(serviceReference, is(notNullValue()));
+        
         ApplicationProvider service = (ApplicationProvider) context.getService(serviceReference);
         Application applicationFromService = service.getApplication();
 
-        assertTrue(applicationFromService.getAuthor().equals("author"));
+        assertTrue(applicationFromService.getName().equals("jenkins"));
     }
 
 }

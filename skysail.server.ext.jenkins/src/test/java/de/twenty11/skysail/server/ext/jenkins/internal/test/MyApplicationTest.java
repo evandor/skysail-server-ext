@@ -13,6 +13,7 @@ import de.twenty11.skysail.server.ext.jenkins.internal.MyApplication;
 import static org.junit.Assert.assertThat;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,7 +35,7 @@ public class MyApplicationTest {
     @Test
     public void calling_createInboundRoute_attaches_routes_from_MyApplication() throws Exception {
         myApplication.createInboundRoot();
-        assertThat(myApplication.getRoutes().size(), is(equalTo(1)));
+        assertThat(myApplication.getRoutes().size(), is(greaterThan(1)));
     }
 
 }
