@@ -60,19 +60,20 @@ public class TablesResource extends ListServerResource<TableDetails> implements 
         setDescription("The resource containing the list of tables for the connection " + connectionName
                 + " and schema " + schemaName);
     }
-    
+
     @Override
     @Get("html|json")
     public SkysailResponse<List<TableDetails>> getTables() {
         return getEntities(allTables(), "all Tables");
     }
 
-
     private List<TableDetails> allTables() {
-        DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName, getChallengeResponse());
-        List<TableDetails> result = new ArrayList<TableDetails>();
-        int count = 0;
         try {
+            DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName,
+                    getChallengeResponse());
+            List<TableDetails> result = new ArrayList<TableDetails>();
+            int count = 0;
+
             Connection connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
@@ -84,7 +85,7 @@ public class TablesResource extends ListServerResource<TableDetails> implements 
             }
             setMessage("listing " + count + " tables");
             return result;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
         }
     }

@@ -79,7 +79,7 @@ public class ColumnsResource extends ListServerResource<ColumnsDetails> implemen
                 result.add(new ColumnsDetails(columns.getString("COLUMN_NAME")));
             }
             return result;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException("could not execute select statement: " + e.getMessage(), e);
         }
     }

@@ -79,7 +79,7 @@ public class ConstraintsResource extends ListServerResource<ConstraintDetails> i
                 result.add(new ConstraintDetails(columns.getString("COLUMN_NAME")));
             }
             return result;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException("could not execute select statement: " + e.getMessage(), e);
         }
     }

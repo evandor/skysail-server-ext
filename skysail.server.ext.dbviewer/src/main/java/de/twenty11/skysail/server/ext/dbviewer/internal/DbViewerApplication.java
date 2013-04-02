@@ -17,11 +17,15 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
+import java.io.IOException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.osgi.framework.BundleContext;
@@ -54,7 +58,7 @@ public class DbViewerApplication extends SkysailApplication {
 
     /** deals with json objects */
     private final ObjectMapper mapper = new ObjectMapper();
-    
+
     /**
      * @param staticPathTemplate
      * @param bundleContext
@@ -71,11 +75,11 @@ public class DbViewerApplication extends SkysailApplication {
     }
 
     protected void attach() {
-    	
-    	String conn = Constants.CONNECTION_NAME;
-    	String schema = Constants.SCHEMA_NAME;
-    	String table = Constants.TABLE_NAME;
-    	
+
+        String conn = Constants.CONNECTION_NAME;
+        String schema = Constants.SCHEMA_NAME;
+        String table = Constants.TABLE_NAME;
+
         // @formatter:off
         router.attach(new RouteBuilder("", RootResource.class));
         router.attach(new RouteBuilder("/", RootResource.class));
@@ -94,7 +98,7 @@ public class DbViewerApplication extends SkysailApplication {
         return this.emf != null ? this.emf.createEntityManager() : null;
     }
 
-    public DataSource getDataSource(String connectionName, ChallengeResponse challengeResponse) {
+    public DataSource getDataSource(String connectionName, ChallengeResponse challengeResponse) throws Exception {
         ConnectionDetails result = getConnection(connectionName, challengeResponse);
         BasicDataSource ds = new BasicDataSource();
         ds.setUrl(result.getUrl());
@@ -104,23 +108,18 @@ public class DbViewerApplication extends SkysailApplication {
         return ds;
     }
 
-    private ConnectionDetails getConnection(String connectionName, ChallengeResponse challengeResponse) {
+    private ConnectionDetails getConnection(String connectionName, ChallengeResponse challengeResponse)
+            throws Exception {
         ClientResource columns = new ClientResource("riap://application/"
         // + DbViewerApplicationDescriptor.APPLICATION_NAME +
                 + "connections/" + connectionName);
         columns.setChallengeResponse(challengeResponse);
         Representation representation = columns.get();
         de.twenty11.skysail.common.responses.SkysailResponse<ConnectionDetails> response;
-        try {
-            response = mapper.readValue(representation.getText(),
-                    new TypeReference<de.twenty11.skysail.common.responses.SkysailResponse<ConnectionDetails>>() {
-                    });
-            return response.getData();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
+        response = mapper.readValue(representation.getText(),
+                new TypeReference<de.twenty11.skysail.common.responses.SkysailResponse<ConnectionDetails>>() {
+                });
+        return response.getData();
     }
-    
+
 }

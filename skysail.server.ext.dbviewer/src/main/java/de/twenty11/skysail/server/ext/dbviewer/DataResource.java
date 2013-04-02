@@ -130,7 +130,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
         return payload;
     }
 
-    private GridData getRows(List<ColumnsDetails> columns, GridData grid) throws SQLException {
+    private GridData getRows(List<ColumnsDetails> columns, GridData grid) throws Exception {
         ResultSet executeQuery;
 //        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
 //        em.getTransaction().begin();

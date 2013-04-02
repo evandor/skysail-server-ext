@@ -3,7 +3,6 @@ package de.twenty11.skysail.server.ext.dbviewer;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,18 +39,25 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
     @Override
     @Get("html|json")
     public SkysailResponse<List<SchemaDetails>> getSchemas() {
-        return getEntities(allSchemas(), "all Schemas");
+        return getEntities("all Schemas");
+    }
+
+    @Override
+    protected List<SchemaDetails> getData() {
+        return allSchemas();
     }
 
     private List<SchemaDetails> allSchemas() {
-        DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName, getChallengeResponse());
-//        EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
-//        em.getTransaction().begin();
-//        java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
-
-        List<SchemaDetails> result = new ArrayList<SchemaDetails>();
-        int count = 0;
         try {
+            DataSource ds = ((DbViewerApplication) getApplication()).getDataSource(connectionName,
+                    getChallengeResponse());
+            // EntityManager em = ((DbViewerApplication) getApplication()).getEntityManager();
+            // em.getTransaction().begin();
+            // java.sql.Connection connection = em.unwrap(java.sql.Connection.class);
+
+            List<SchemaDetails> result = new ArrayList<SchemaDetails>();
+            int count = 0;
+
             Connection connection = ds.getConnection();
             DatabaseMetaData meta = connection.getMetaData();
 
@@ -70,10 +76,10 @@ public class SchemasResource extends ListServerResource<SchemaDetails> implement
             }
             setMessage("listing " + count + " schemas");
             return result;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Database Problem: " + e.getMessage(), e);
         } finally {
-            //em.getTransaction().commit();
+            // em.getTransaction().commit();
         }
     }
 
