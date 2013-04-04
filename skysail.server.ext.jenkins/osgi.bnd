@@ -1,2 +1,6 @@
+Include-Resource: {maven-resources}
+Meta-Persistence: META-INF/persistence.xml
+Import-Package:	javax.persistence;jpa="2.0";version="1.1.0",\
+ *
 Bundle-SymbolicName: skysail.server.ext.jenkins
 Service-Component: OSGI-INF/*.xml

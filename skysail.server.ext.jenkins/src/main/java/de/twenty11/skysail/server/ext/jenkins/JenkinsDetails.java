@@ -1,14 +1,29 @@
 package de.twenty11.skysail.server.ext.jenkins;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.PersistenceUnit;
 import javax.validation.constraints.NotNull;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import de.twenty11.skysail.common.forms.Field;
 import de.twenty11.skysail.common.forms.Form;
 
 @Form(name = "JenkinsForm")
 @Entity
+@PersistenceUnit(name = "JenkinsPU")
 public class JenkinsDetails {
+
+    @Id
+    @GeneratedValue
+    @JsonIgnore
+    private int pid;// primary key for db
+
+    public int getPid() {
+        return this.pid;
+    }
 
     @Field
     @NotNull(message = "Name is mandatory")

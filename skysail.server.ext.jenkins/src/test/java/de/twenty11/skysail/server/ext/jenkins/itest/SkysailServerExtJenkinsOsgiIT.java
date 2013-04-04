@@ -1,7 +1,9 @@
 package de.twenty11.skysail.server.ext.jenkins.itest;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.EnumSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -154,7 +156,9 @@ public class SkysailServerExtJenkinsOsgiIT {
 
         // provide the required services, so that the configuration constraints are fulfilled.
         context.registerService(ComponentProvider.class.getName(), dummyComponentProvider, null);
-        context.registerService(EntityManagerFactory.class.getName(), dummyEmf, null);
+        Dictionary props = new Hashtable();
+        props.put("osgi.unit.name", "JenkinsPU");
+        context.registerService(EntityManagerFactory.class.getName(), dummyEmf, props);
 
         // check the service which should have been created by the configuration
         ServiceReference serviceReference = context.getServiceReference(ApplicationProvider.class.getName());
