@@ -9,8 +9,8 @@ mvn:commons-lang/commons-lang/2.6
 mvn:commons-pool/commons-pool/1.6 
 mvn:javax.xml.stream/com.springsource.javax.xml.stream/1.0.1
 mvn:org.codehaus.jettison/com.springsource.org.codehaus.jettison/1.0.1
-mvn:org.codehaus.jackson/jackson-core-lgpl/1.9.5
-mvn:org.codehaus.jackson/jackson-mapper-lgpl/1.9.5
+mvn:org.codehaus.jackson/jackson-core-asl/1.9.8
+mvn:org.codehaus.jackson/jackson-mapper-asl/1.9.8
 mvn:org.eclipse.persistence/javax.persistence/2.0.3 
 mvn:org.javassist/javassist/3.17.1-GA
 mvn:org.osgi/org.osgi.compendium/4.2.0
