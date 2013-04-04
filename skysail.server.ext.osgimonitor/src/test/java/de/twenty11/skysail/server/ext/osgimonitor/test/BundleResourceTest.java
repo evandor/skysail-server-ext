@@ -7,15 +7,20 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import de.twenty11.skysail.common.commands.Command;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Version;
+import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.representation.Representation;
 
@@ -34,25 +39,27 @@ public class BundleResourceTest extends BaseTests {
     public void setUp() throws Exception {
         
         OsgiMonitorViewerApplication spy = setUpRestletApplication();
-        BundleContext context = mock(BundleContext.class);
+        BundleContext bundleContext = mock(BundleContext.class);
         bundle = mock(Bundle.class);
         when(bundle.getBundleId()).thenReturn(99l);
         when(bundle.getSymbolicName()).thenReturn("symbolic");
         when(bundle.getLastModified()).thenReturn(111l);
-		when(context.getBundle(99l)).thenReturn(bundle);
-		when(spy.getBundleContext()).thenReturn(context);
-		
+		when(bundleContext.getBundle(99l)).thenReturn(bundle);
+        when(bundle.getVersion()).thenReturn(new Version("1.0.0"));
+		when(spy.getBundleContext()).thenReturn(bundleContext);
+
+        Context context = mock(Context.class);
+        when(context.getAttributes()).thenReturn(new ConcurrentHashMap<String, Object>());
+
         bundleResource = new BundleResource();
         Request request = mock(Request.class);
         ConcurrentMap<String, Object> attributes = new ConcurrentHashMap<String, Object>();
         attributes.putIfAbsent("bundleId", "99");
 		when(request.getAttributes()).thenReturn(attributes);
-		bundleResource.init(spy.getContext(), request, null);
+		bundleResource.init(context, request, null);
     }
     
     @Test
-    @Ignore
-    // TODO
     public void getBundle_returns_bundleDetails_for_bundleId_from_request() throws Exception {
     	SkysailResponse<BundleDetails> bundle = bundleResource.getBundle();
     	BundleDescriptor details = bundle.getData();
