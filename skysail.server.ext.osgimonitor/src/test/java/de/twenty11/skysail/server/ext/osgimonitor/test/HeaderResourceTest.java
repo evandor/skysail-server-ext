@@ -18,6 +18,8 @@ import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.representation.Representation;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -40,6 +42,10 @@ public class HeaderResourceTest extends BaseTests {
         when(bundle.getBundleId()).thenReturn(99l);
         when(bundle.getSymbolicName()).thenReturn("symbolic");
         when(bundle.getLastModified()).thenReturn(111l);
+        Dictionary<String, String> dictionary = new Hashtable<String, String>();
+        dictionary.put("key1", "value1");
+        dictionary.put("key2", "value2");
+        when(bundle.getHeaders()).thenReturn(dictionary);
 		when(bundleContext.getBundle(99l)).thenReturn(bundle);
         when(bundle.getVersion()).thenReturn(new Version("1.0.0"));
 		when(spy.getBundleContext()).thenReturn(bundleContext);
@@ -57,9 +63,9 @@ public class HeaderResourceTest extends BaseTests {
     
     @Test
     public void getHeader_returns_headerDetails_for_bundleId_from_request() throws Exception {
-    	SkysailResponse<HeaderDescriptor> bundle = headerResource.getHeader();
-    	//BundleDescriptor details = bundle.getData();
-    	//assertThat(details.getBundleId(), is(equalTo(99l)));
+        SkysailResponse<HeaderDescriptor> headers = headerResource.getHeader();
+        HeaderDescriptor details = headers.getData();
+        assertThat(details.getHeaders().size(), is(equalTo(2)));
     }
     
 

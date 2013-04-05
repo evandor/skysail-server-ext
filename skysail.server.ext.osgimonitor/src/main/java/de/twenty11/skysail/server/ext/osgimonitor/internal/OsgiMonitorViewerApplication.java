@@ -24,6 +24,7 @@ import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsD3GraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
+import de.twenty11.skysail.server.ext.osgimonitor.HeaderResource;
 import de.twenty11.skysail.server.ext.osgimonitor.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
 import de.twenty11.skysail.server.ext.osgimonitor.ServicesResource;
@@ -68,6 +69,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}", BundleResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}/action", BundleResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/bundles/details/{bundleId}/headers", HeaderResource.class).setVisible(true));
         router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Show all used Services"));
         // @formatter:on
     }

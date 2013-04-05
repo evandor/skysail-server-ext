@@ -1,13 +1,13 @@
 package de.twenty11.skysail.server.ext.osgimonitor;
 
-import de.twenty11.skysail.common.ext.osgimonitor.HeaderDescriptor;
-import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.osgimonitor.commands.StartCommand;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
-import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.restlet.resource.Get;
+
+import de.twenty11.skysail.common.ext.osgimonitor.HeaderDescriptor;
+import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
 /**
  * Created with IntelliJ IDEA.
