@@ -11,7 +11,7 @@
 
 	<artifactId>skysail.server.ext.osgimonitor</artifactId>
 	<version>0.1.9-SNAPSHOT</version>
-	<name>SKYSAIL :: server :: ext :: osgimonitor - OSGi monitor server app</name>
+	<name>SKYSAIL :: server :: ext :: osgimonitor</name>
 	<packaging>bundle</packaging>
 
 	<scm>

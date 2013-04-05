@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.osgimonitor;
 
 import java.util.Arrays;
 
+import de.twenty11.skysail.common.navigation.LinkedPage;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.restlet.data.Form;
@@ -54,6 +55,22 @@ public class BundleResource extends UniqueResultServerResource<BundleDetails> im
         registerCommand("start", new StartCommand(bundle));
         registerCommand("stop", new StopCommand(bundle));
         registerCommand("update", new UpdateCommand(bundle));
+        registerLinkedPage(new LinkedPage() {
+            @Override
+            public boolean applicable() {
+                return true;
+            }
+
+            @Override
+            public String getHref() {
+                return bundleId + "/headers";
+            }
+
+            @Override
+            public String getLinkText() {
+                return "show Headers";
+            }
+        });
         return getEntity(details);
     }
 

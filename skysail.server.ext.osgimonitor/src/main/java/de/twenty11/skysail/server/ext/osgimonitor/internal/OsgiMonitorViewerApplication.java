@@ -69,7 +69,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}", BundleResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}/action", BundleResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/bundles/details/{bundleId}/headers", HeaderResource.class).setVisible(true));
+        router.attach(new RouteBuilder("/bundles/details/{bundleId}/headers", HeaderResource.class).setVisible(false));
         router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Show all used Services"));
         // @formatter:on
     }
