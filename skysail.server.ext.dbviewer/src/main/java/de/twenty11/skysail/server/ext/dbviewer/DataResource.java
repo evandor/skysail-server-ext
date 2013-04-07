@@ -91,7 +91,7 @@ public class DataResource extends GenericServerResource<List<String>> implements
     }
 
     @Override
-    @Get("html|json")
+    @Get("html|json|csv")
     public SkysailResponse<GridData> getData() {
         SkysailResponse<GridData> response;
         try {

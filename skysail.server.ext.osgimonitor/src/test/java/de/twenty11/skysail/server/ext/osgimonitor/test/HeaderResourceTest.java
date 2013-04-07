@@ -65,7 +65,7 @@ public class HeaderResourceTest extends BaseTests {
     public void getHeader_returns_headerDetails_for_bundleId_from_request() throws Exception {
         SkysailResponse<HeaderDescriptor> headers = headerResource.getHeader();
         HeaderDescriptor details = headers.getData();
-        assertThat(details.getHeaders().size(), is(equalTo(2)));
+        assertThat(details.getContent().size(), is(equalTo(2)));
     }
     
 

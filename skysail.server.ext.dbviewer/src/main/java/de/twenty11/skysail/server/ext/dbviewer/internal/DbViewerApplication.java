@@ -17,15 +17,11 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
-import java.io.IOException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.osgi.framework.BundleContext;
@@ -81,16 +77,16 @@ public class DbViewerApplication extends SkysailApplication {
         String table = Constants.TABLE_NAME;
 
         // @formatter:off
-        router.attach(new RouteBuilder("", RootResource.class));
-        router.attach(new RouteBuilder("/", RootResource.class));
-        router.attach(new RouteBuilder("/connections", ConnectionsResource.class));
-        router.attach(new RouteBuilder("/connections/", AddConnectionResource.class));
-        router.attach(new RouteBuilder("/connections/{"+conn+"}", ConnectionResource.class));
-        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas", SchemasResource.class));
-        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables", TablesResource.class));
-        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class));
-        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class));
-        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class));
+        router.attach(new RouteBuilder("", RootResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/", RootResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/connections", ConnectionsResource.class).setText("all Connections"));
+        router.attach(new RouteBuilder("/connections/", AddConnectionResource.class).setText("add Connection"));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}", ConnectionResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas", SchemasResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables", TablesResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class).setVisible(false));
         // @formatter:on
     }
 

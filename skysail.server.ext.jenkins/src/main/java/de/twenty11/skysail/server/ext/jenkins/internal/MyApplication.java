@@ -39,7 +39,7 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
 
     protected void attach() {
         // @formatter:off
-        router.attach(new RouteBuilder("", MyRootResource.class).setVisible(true));
+        router.attach(new RouteBuilder("", MyRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/installation", JenkinsResource.class).setVisible(true));
         router.attach(new RouteBuilder("/installation/", AddJenkinsResource.class).setText("Add Jenkins Installation"));
         
