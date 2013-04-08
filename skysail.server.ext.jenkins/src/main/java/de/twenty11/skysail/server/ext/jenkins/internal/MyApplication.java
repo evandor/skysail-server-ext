@@ -7,6 +7,7 @@ import org.restlet.Context;
 
 import de.twenty11.skysail.server.ext.jenkins.AddJenkinsResource;
 import de.twenty11.skysail.server.ext.jenkins.JenkinsResource;
+import de.twenty11.skysail.server.ext.jenkins.JobsResource;
 import de.twenty11.skysail.server.ext.jenkins.MyRootResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
@@ -42,6 +43,7 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
         router.attach(new RouteBuilder("", MyRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/installation", JenkinsResource.class).setVisible(true));
         router.attach(new RouteBuilder("/installation/", AddJenkinsResource.class).setText("Add Jenkins Installation"));
+        router.attach(new RouteBuilder("/installation/{name}/jobs", JobsResource.class).setVisible(false));
         
         // @formatter:on
     }

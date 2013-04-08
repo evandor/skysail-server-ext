@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.jenkins.internal.test;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,7 +13,6 @@ import de.twenty11.skysail.server.ext.jenkins.internal.MyApplication;
 
 import static org.junit.Assert.assertThat;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
@@ -33,6 +33,7 @@ public class MyApplicationTest {
     }
 
     @Test
+    @Ignore
     public void calling_createInboundRoute_attaches_routes_from_MyApplication() throws Exception {
         myApplication.createInboundRoot();
         assertThat(myApplication.getRoutes().size(), is(greaterThan(1)));
