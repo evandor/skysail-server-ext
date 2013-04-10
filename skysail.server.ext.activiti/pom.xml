@@ -4,38 +4,30 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.twenty11.skysail</groupId>
+		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.7.0</version>
+		<version>0.8.34-SNAPSHOT</version>
 	</parent>
 
-	<properties>
-		<!-- exam.version>2.3.0.M1-SNAPSHOT</exam.version -->
-		<exam.version>2.2.0</exam.version>
-		<url.version>1.3.5</url.version>
-	</properties>
+	<artifactId>skysail.server.ext.activiti</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>SKYSAIL :: server :: ext :: activiti</name>
+	<packaging>bundle</packaging>
 
 	<scm>
 		<!-- read access -->
 		<connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
 		<!-- write access -->
-		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
+		<url>scm:git:git@github.com:evandor/skysail-server-ext.git</url>
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
-		<url>scm:git:git@github.com:evandor/skysail-server-ext</url>
+		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
 	</scm>
 
-	<artifactId>skysail.server.ext.activiti</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>skysail activiti server extension</name>
-	<packaging>bundle</packaging>
-
 	<build>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.3.4</version>
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
@@ -46,43 +38,102 @@
 		</plugins>
 	</build>
 
-
 	<dependencies>
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.server</artifactId>
+			<version>[0.2.13-SNAPSHOT, 1.0)</version>
+		</dependency>
+
+		<!-- testing with pax exam -->
+		<dependency>
+			<groupId>org.ops4j.pax.exam</groupId>
+			<artifactId>pax-exam-container-native</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.exam</groupId>
+			<artifactId>pax-exam-junit4</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.exam</groupId>
+			<artifactId>pax-exam-link-mvn</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.url</groupId>
+			<artifactId>pax-url-aether</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- testing with pax exam - done -->
 
 
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-engine</artifactId>
-			<version>5.9</version>
+			<version>5.12</version>
 		</dependency>
 
 		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.2.132</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-container-native</artifactId>
-			<version>${exam.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-junit4</artifactId>
-			<version>${exam.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-link-mvn</artifactId>
-			<version>${exam.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.ops4j.pax.url</groupId>
 			<artifactId>pax-url-aether</artifactId>
-			<version>${url.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>Activiti</id>
+			<url>http://maven.alfresco.com/nexus/content/repositories/activiti</url>
+		</repository>
+	</repositories>
+
 </project>
