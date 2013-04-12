@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.ext.activiti.MyRootResource;
+import de.twenty11.skysail.server.ext.activiti.RepositoryResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
@@ -31,14 +32,14 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
         super(componentContext == null ? null : componentContext.createChildContext());
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
-        setName("jenkins");
+        setName("activiti");
         this.emf = emf;
     }
 
     protected void attach() {
         // @formatter:off
         router.attach(new RouteBuilder("", MyRootResource.class).setVisible(false));
-//        router.attach(new RouteBuilder("/installation", JenkinsResource.class).setVisible(true));
+        router.attach(new RouteBuilder("/repository", RepositoryResource.class).setVisible(true));
 //        router.attach(new RouteBuilder("/installation/", AddJenkinsResource.class).setText("Add Jenkins Installation"));
 //        router.attach(new RouteBuilder("/installation/{name}/jobs", JobsResource.class).setVisible(false));
         
