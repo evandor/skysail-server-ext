@@ -1,9 +1,8 @@
 package de.twenty11.skysail.server.ext.activiti.internal;
 
-import javax.persistence.EntityManagerFactory;
-
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.component.ComponentContext;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.restlet.Application;
 import org.restlet.Component;
 import org.slf4j.Logger;
@@ -18,17 +17,19 @@ public class Configuration implements ApplicationProvider {
     private ComponentProvider componentProvider;
     private Component component;
     private MyApplication application;
-    private EntityManagerFactory emf;
+    private RepositoryService repositoryService;
+    private RuntimeService runtimeService;
+    private TaskService taskService;
 
-    protected void activate(ComponentContext componentContext) throws ConfigurationException {
+    public void activate() {
         logger.info("Activating Configuration Component for Skysail Activiti Extension");
         component = componentProvider.getComponent();
-        application = new MyApplication(component.getContext(), emf);
+        application = new MyApplication(component.getContext(), repositoryService, runtimeService);
+        application.setTaskService(this.taskService);
     }
 
-    protected void deactivate(ComponentContext componentContext) {
+    public void deactivate() {
         logger.info("Deactivating Configuration Component for Skysail Activiti Extension");
-        // component.getDefaultHost().detach(application);
         application = null;
     }
 
@@ -41,8 +42,16 @@ public class Configuration implements ApplicationProvider {
         return application;
     }
 
-    public synchronized void setEntityManager(EntityManagerFactory emf) {
-        this.emf = emf;
+    public void setRepositoryService(RepositoryService service) {
+        this.repositoryService = service;
+    }
+
+    public void setRuntimeService(RuntimeService service) {
+        this.runtimeService = service;
+    }
+
+    public void setTaskService(TaskService service) {
+        this.taskService = service;
     }
 
 }

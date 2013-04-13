@@ -5,10 +5,6 @@
 	<implementation
 		class="de.twenty11.skysail.server.ext.activiti.internal.Configuration" />
 
-	<service>
-		<provide interface="de.twenty11.skysail.server.services.ApplicationProvider" />
-	</service>
-
  	<reference 
  		bind="setComponentProvider" 
  		cardinality="1..1" 
@@ -16,10 +12,5 @@
  		name="ComponentProvider" 
  		policy="static" 
  	/>
- 	
-<!-- 	<reference bind="setEntityManager" cardinality="1..1" 
-		interface="javax.persistence.EntityManagerFactory" name="EntityManagerProvider" 
-		target="(osgi.unit.name=ActivitiPU)"
-		policy="static"/>-->	
  	
 </scr:component>

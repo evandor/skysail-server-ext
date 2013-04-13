@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.ext.activiti;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.activiti.engine.repository.ProcessDefinition;
@@ -12,9 +12,21 @@ import de.twenty11.skysail.common.PresentableHeader;
 public class ProcessDescriptor implements Presentable {
 
     private String name;
+    private String deploymentId;
+    private String category;
+    private String description;
+    private String key;
+    private String resourceName;
+    private int version;
 
     public ProcessDescriptor(ProcessDefinition processDefinition) {
-        this.name = processDefinition.getName();
+        name = processDefinition.getName();
+        deploymentId = processDefinition.getDeploymentId();
+        category = processDefinition.getCategory();
+        description = processDefinition.getDescription();
+        key = processDefinition.getKey();
+        resourceName = processDefinition.getResourceName();
+        version = processDefinition.getVersion();
     }
 
     @Override
@@ -26,7 +38,14 @@ public class ProcessDescriptor implements Presentable {
     @Override
     @JsonIgnore
     public Map<String, Object> getContent() {
-        return Collections.emptyMap();
+        Map<String, Object> results = new HashMap<String, Object>();
+        results.put("deploymentId", deploymentId);
+        results.put("category", category);
+        results.put("description", description);
+        results.put("key", key);
+        results.put("resourceName", resourceName);
+        results.put("version", version);
+        return results;
     }
 
 }

@@ -13,8 +13,8 @@ mvn:org.codehaus.jackson/jackson-core-lgpl/1.9.5
 mvn:org.codehaus.jackson/jackson-mapper-lgpl/1.9.5
 mvn:org.eclipse.persistence/javax.persistence/2.0.3 
 mvn:org.javassist/javassist/3.17.1-GA
-###mvn:org.osgi/org.osgi.compendium/4.2.0
-###mvn:org.osgi/org.osgi.enterprise/4.2.0
+mvn:org.osgi/org.osgi.compendium/4.2.0
+mvn:org.osgi/org.osgi.enterprise/4.2.0
 mvn:org.xmlpull/com.springsource.org.xmlpull/1.1.4.c
 
 
