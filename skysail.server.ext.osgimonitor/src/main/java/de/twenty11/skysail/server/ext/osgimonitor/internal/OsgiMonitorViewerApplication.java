@@ -30,13 +30,12 @@ import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
 import de.twenty11.skysail.server.ext.osgimonitor.ServicesResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
-import de.twenty11.skysail.server.services.ApplicationProvider;
 
 /**
  * @author carsten
  * 
  */
-public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider {
+public class OsgiMonitorViewerApplication extends SkysailApplication {
 
     // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication() {
@@ -63,14 +62,14 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         // @formatter:off
         router.attach(new RouteBuilder("", OsgiMonitorRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/bundles", BundlesResource.class).setText("Show all Bundles"));
-        router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class).setText("Show Bundles as visualized Graph"));
-        router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class).setText("Show as json Graph representation"));
+        router.attach(new RouteBuilder("/bundles", BundlesResource.class).setText("Bundles"));
+        router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class).setText("Bundles as visualized Graph"));
+        router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class).setText("Json Graph representation"));
         router.attach(new RouteBuilder("/bundles/asGraph/d3Simple", BundlesAsD3GraphResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}", BundleResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}/action", BundleResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles/details/{bundleId}/headers", HeaderResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Show all used Services"));
+        router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Services"));
         // @formatter:on
     }
 

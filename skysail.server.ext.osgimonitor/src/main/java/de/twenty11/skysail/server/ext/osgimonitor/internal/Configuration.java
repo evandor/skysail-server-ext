@@ -44,8 +44,6 @@ public class Configuration implements ApplicationProvider {
         logger.info("Activating Configuration Component for Skysail Osgimonitor Extension");
         component = componentProvider.getComponent();
         application = new OsgiMonitorViewerApplication(componentContext.getBundleContext(), component.getContext());
-        // application.setVerifier(componentProvider.getVerifier());
-
     }
 
     protected void deactivate(ComponentContext componentContext) {
