@@ -11,6 +11,7 @@ import de.twenty11.skysail.common.PresentableHeader;
 
 public class ProcessDescriptor implements Presentable {
 
+    private String id;
     private String name;
     private String deploymentId;
     private String category;
@@ -20,6 +21,7 @@ public class ProcessDescriptor implements Presentable {
     private int version;
 
     public ProcessDescriptor(ProcessDefinition processDefinition) {
+        id = processDefinition.getId();
         name = processDefinition.getName();
         deploymentId = processDefinition.getDeploymentId();
         category = processDefinition.getCategory();
@@ -32,13 +34,15 @@ public class ProcessDescriptor implements Presentable {
     @Override
     @JsonIgnore
     public PresentableHeader getHeader() {
-        return new PresentableHeader.Builder(name).build();
+        return new PresentableHeader.Builder(name).setLink("/activiti/repository/" + id).setImage("icon-th-large")
+                .build();
     }
 
     @Override
     @JsonIgnore
     public Map<String, Object> getContent() {
         Map<String, Object> results = new HashMap<String, Object>();
+        results.put("id", id);
         results.put("deploymentId", deploymentId);
         results.put("category", category);
         results.put("description", description);

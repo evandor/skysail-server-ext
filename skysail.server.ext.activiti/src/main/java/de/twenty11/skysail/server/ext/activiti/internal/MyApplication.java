@@ -6,7 +6,8 @@ import org.activiti.engine.TaskService;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.ext.activiti.MyRootResource;
-import de.twenty11.skysail.server.ext.activiti.RepositoryResource;
+import de.twenty11.skysail.server.ext.activiti.ProcessResource;
+import de.twenty11.skysail.server.ext.activiti.ProcessesResource;
 import de.twenty11.skysail.server.ext.activiti.TasksResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
@@ -43,7 +44,8 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
     protected void attach() {
         // @formatter:off
         router.attach(new RouteBuilder("", MyRootResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/repository", RepositoryResource.class).setVisible(true));
+        router.attach(new RouteBuilder("/repository", ProcessesResource.class).setText("Activiti Repository"));
+        router.attach(new RouteBuilder("/repository/{id}", ProcessResource.class).setVisible(false));
         router.attach(new RouteBuilder("/tasks", TasksResource.class).setText("Activiti Tasks").setVisible(true));
 //        router.attach(new RouteBuilder("/installation/{name}/jobs", JobsResource.class).setVisible(false));
         
@@ -60,5 +62,9 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
 
     public TaskService getActivitiTaskService() {
         return taskService;
+    }
+
+    public RuntimeService getRuntimeService() {
+        return runtimeService;
     }
 }

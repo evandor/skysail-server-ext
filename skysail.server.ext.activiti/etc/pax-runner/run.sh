@@ -12,7 +12,6 @@
 ###/home/carsten/install/pax-runner-1.8.5/bin/pax-run.sh \
 java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
 --log=INFO \
---clean \
 --org.ops4j.pax.url.mvn.repositories=\
 https://oss.sonatype.org/content/groups/public,\
 https://repository.apache.org/content/groups/public/,\
@@ -24,7 +23,6 @@ https://maven.alfresco.com/nexus/content/groups/public/ \
  -Dfelix.fileinstall.noInitialDelay=true \
  -Dfelix.fileinstall.poll=1000 \
  -Dfelix.fileinstall.log.level=4 \
- -DGEMINI_DEBUG \
  -Dlogback.configurationFile=../../../src/main/resources/logback.xml \
  -Dorg.apache.felix.log.storeDebug=true" \
 scan-composite:file:run.composite

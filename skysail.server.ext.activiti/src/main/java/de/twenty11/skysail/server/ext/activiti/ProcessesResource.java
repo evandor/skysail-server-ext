@@ -12,9 +12,9 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.activiti.internal.MyApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource2;
 
-public class RepositoryResource extends ListServerResource2<ProcessDescriptor> {
+public class ProcessesResource extends ListServerResource2<ProcessDescriptor> {
 
-    public RepositoryResource() {
+    public ProcessesResource() {
         setName("repositoryService");
         setDescription("description");
     }

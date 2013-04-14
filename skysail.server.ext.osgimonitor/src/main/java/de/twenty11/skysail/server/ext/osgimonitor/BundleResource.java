@@ -2,7 +2,6 @@ package de.twenty11.skysail.server.ext.osgimonitor;
 
 import java.util.Arrays;
 
-import de.twenty11.skysail.common.navigation.LinkedPage;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.restlet.data.Form;
@@ -16,6 +15,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.commands.Command;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundle;
+import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.StartCommand;

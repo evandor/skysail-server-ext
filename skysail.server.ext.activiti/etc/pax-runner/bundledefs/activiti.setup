@@ -7,7 +7,8 @@ mvn:javax.transaction/com.springsource.javax.transaction/1.1.0
 mvn:org.activiti/activiti-bpmn-converter/5.12
 mvn:org.activiti/activiti-bpmn-model/5.12
 
-mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.mybatis/3.2.1_1
+###mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.mybatis/3.2.1_1
+http://85.25.22.126/mybatis-3.1.1.jar
 mvn:joda-time/joda-time/2.1
 
 mvn:com.h2database/h2/1.2.143
@@ -18,3 +19,5 @@ mvn:org.apache.aries/org.apache.aries.util/0.3
 
 mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.asm/2.2.3_5
 
+mvn:org.codehaus.woodstox/woodstox-core-asl/4.2.0
+mvn:org.codehaus.woodstox/stax2-api/3.1.1
