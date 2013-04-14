@@ -11,6 +11,9 @@
 
 
 mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xstream/1.4.4_1
+mvn:org.codehaus.woodstox/woodstox-core-asl/4.2.0
+mvn:org.codehaus.woodstox/stax2-api/3.1.1
+
 
 mvn:commons-dbcp/commons-dbcp/1.4 
 mvn:commons-lang/commons-lang/2.6

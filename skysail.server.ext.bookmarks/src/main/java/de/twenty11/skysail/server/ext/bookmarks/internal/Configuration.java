@@ -16,13 +16,13 @@ public class Configuration implements ApplicationProvider {
     private MyApplication application;
 
     public void activate() {
-        logger.info("Activating Configuration Component for Skysail Activiti Extension");
+        logger.info("Activating Configuration Component for Skysail Bookmarks Extension");
         component = componentProvider.getComponent();
         application = new MyApplication(component.getContext());
     }
 
     public void deactivate() {
-        logger.info("Deactivating Configuration Component for Skysail Activiti Extension");
+        logger.info("Deactivating Configuration Component for Skysail Bookmarks Extension");
         application = null;
     }
 
