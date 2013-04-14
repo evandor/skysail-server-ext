@@ -6,25 +6,29 @@ import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.selfdescription.ResourceDetails;
-import de.twenty11.skysail.common.selfdescription.RestfulRoot;
-import de.twenty11.skysail.server.restlet.ListServerResource;
+import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 /**
  * Restlet Root Resource for dbViewer application.
  * 
  */
-public class MyRootResource extends ListServerResource<ResourceDetails> implements RestfulRoot {
+public class MyRootResource extends ListServerResource2<ResourceDetails> {
 
     public MyRootResource() {
         setAutoDescribing(false);
-        setName("activiti root resource");
-        setDescription("The root resource of the activiti application");
+        setName("bookmarks root resource");
+        setDescription("The root resource of the bookmarks application");
     }
 
     @Override
-    @Get("html|json")
-    public SkysailResponse<List<ResourceDetails>> getMethods() {
-        return getEntities(allMethods(), "skysail activiti application (x.y.z-SNAPSHOT): listing all entry points");
+    @Get("html|json|csv")
+    public SkysailResponse<List<ResourceDetails>> getEntities() {
+        return getEntities("all methods");
+    }
+
+    @Override
+    protected List<ResourceDetails> getData() {
+        return allMethods();
     }
 
 }
