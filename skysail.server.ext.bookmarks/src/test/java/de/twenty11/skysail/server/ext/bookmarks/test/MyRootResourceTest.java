@@ -1,46 +1,69 @@
 package de.twenty11.skysail.server.ext.bookmarks.test;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.Method;
+import org.restlet.ext.jackson.JacksonRepresentation;
 
 import de.twenty11.skysail.server.ext.bookmarks.MyRootResource;
-
-import static org.junit.Assert.assertThat;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-
+import de.twenty11.skysail.server.ext.bookmarks.internal.MyApplication;
 
 public class MyRootResourceTest {
 
     private MyRootResource rootResource;
+    private MyApplication application;
 
     @Before
     public void setUp() throws Exception {
-        // System.out.println("Hier");
+        application = new MyApplication(null);
+        application.createInboundRoot();
+        rootResource = new MyRootResource();
+        rootResource.setApplication(application);
     }
 
     @Test
-    public void has_proper_name() {
-        rootResource = new MyRootResource();
+    public void creates_json_response_for_get_request() {
         Request request = new Request(Method.GET, "/");
         Response response = new Response(request);
-        rootResource.init(new Context(), request, response);
-        rootResource.handle();
+        executeRequest(request, response);
 
+        System.out.println(response.getEntityAsText());
         assertThat(response.getStatus().isSuccess(), is(equalTo(true)));
         assertThat(response.getEntityAsText(), is(notNullValue()));
+        assertThat(response.getEntity(), is(instanceOf(JacksonRepresentation.class)));
+        assertThat(response.getEntityAsText(), containsString("\"success\":true"));
     }
 
-    // @Test
-    // public void returns_methods() {
-    // SkysailResponse<List<ResourceDetails>> methods = rootResource.getEntities();
-    // assertThat(methods.getData().size(), is(greaterThan(1)));
+    @Test
+    public void testApplication() {
+        Request request = new Request(Method.GET, "http://localhost:8111/");
+        Response response = new Response(request);
+        application.handle(request, response);
+        assertThat(response.getStatus().isSuccess(), is(equalTo(true)));
+    }
+
+    // public void testComponent() throws Exception {
+    // MailServerComponent component = new MailServerComponent();
+    // component.start();
+    // Request request = new Request(Method.GET, "http://localhost:8111/");
+    // Response response = new Response(request);
+    // component.handle(request, response);
+    // component.stop();
     // }
+
+    private void executeRequest(Request request, Response response) {
+        rootResource.init(new Context(), request, response);
+        rootResource.handle();
+    }
 
 }
