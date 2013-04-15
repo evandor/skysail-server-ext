@@ -4,6 +4,7 @@ import org.quartz.Scheduler;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.ext.quartz.MyRootResource;
+import de.twenty11.skysail.server.ext.quartz.SchedulerResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
@@ -31,12 +32,16 @@ public class MyApplication extends SkysailApplication {
     protected void attach() {
         // @formatter:off
         router.attach(new RouteBuilder("", MyRootResource.class).setVisible(false));
-//        router.attach(new RouteBuilder("/repository", ProcessesResource.class).setText("Activiti Repository"));
+        router.attach(new RouteBuilder("/scheduler", SchedulerResource.class).setText("Quartz Scheduler"));
 //        router.attach(new RouteBuilder("/repository/{id}", ProcessResource.class).setVisible(false));
 //        router.attach(new RouteBuilder("/tasks", TasksResource.class).setText("Activiti Tasks").setVisible(true));
 //        router.attach(new RouteBuilder("/installation/{name}/jobs", JobsResource.class).setVisible(false));
         
         // @formatter:on
+    }
+
+    public Scheduler getScheduler() {
+        return scheduler;
     }
 
 }
