@@ -12,7 +12,6 @@
 ###/home/carsten/install/pax-runner-1.8.5/bin/pax-run.sh \
 java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
 --log=INFO \
---clean \
 --org.ops4j.pax.url.mvn.repositories=\
 https://oss.sonatype.org/content/groups/public,\
 https://repository.apache.org/content/groups/public/,\

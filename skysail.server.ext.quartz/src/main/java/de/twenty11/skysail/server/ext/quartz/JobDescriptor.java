@@ -15,10 +15,8 @@ import de.twenty11.skysail.common.forms.IgnoreValuesProvider;
 @Form(name = "JobDetailForm")
 public class JobDescriptor extends AbstractPresentable {
 
-    private JobDetail jobDetail;
-
     public JobDescriptor(JobDetail jobDetail) {
-        this.jobDetail = jobDetail;
+        instanceToInspect = jobDetail;
     }
 
     public JobDescriptor() {

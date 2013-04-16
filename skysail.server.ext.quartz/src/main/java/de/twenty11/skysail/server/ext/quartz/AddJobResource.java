@@ -67,7 +67,7 @@ public class AddJobResource extends UniqueResultServerResource2<JobDescriptor> {
         MyApplication application = (MyApplication) getApplication();
         Scheduler scheduler = application.getScheduler();
 
-        JobDetail jobDetail = new JobDetail(details.getName(), "skysail", SysoutJob.class);
+        JobDetail jobDetail = new JobDetail(details.getName(), "skysail", SysoutJob.class, true, true, true);
         try {
             scheduler.addJob(jobDetail, false);
         } catch (SchedulerException e) {
