@@ -16,6 +16,7 @@ java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
 --org.ops4j.pax.url.mvn.repositories=\
 https://oss.sonatype.org/content/groups/public,\
 https://repository.apache.org/content/groups/public/,\
+http://download.eclipse.org/rt/eclipselink/maven.repo,\
 https://maven.alfresco.com/nexus/content/groups/public/ \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
