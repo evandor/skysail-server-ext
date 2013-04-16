@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
+import de.twenty11.skysail.server.restlet.AddServerResource;
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -28,7 +29,7 @@ import de.twenty11.skysail.server.ext.quartz.internal.MyApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource2;
 
 @Presentation(preferred = PresentationStyle.EDIT)
-public class AddJobResource extends UniqueResultServerResource2<JobDescriptor> {
+public class AddJobResource extends AddServerResource<JobDescriptor> {
 
     /** slf4j based logger implementation */
     private static Logger logger = LoggerFactory.getLogger(AddJobResource.class);
@@ -43,31 +44,23 @@ public class AddJobResource extends UniqueResultServerResource2<JobDescriptor> {
     }
 
     @Override
-    protected void doInit() throws ResourceException {
-    }
-
     @Get("html")
-    public FormResponse<JobDescriptor> getJob() {
-        JobDescriptor jobDescriptor = new JobDescriptor();
+    public FormResponse<JobDescriptor> createForm() {
         setMessage("Adding new Job");
-        return new FormResponse<JobDescriptor>(jobDescriptor, "../jobs/");
+        return new FormResponse<JobDescriptor>(new JobDescriptor(), "../jobs/");
     }
 
-    @Post("x-www-form-urlencoded:html")
-    public SkysailResponse<JobDescriptor> addConnection(Form form) {
-        logger.info("trying to persist connection");
-        JobDescriptor details = new JobDescriptor(form.getFirstValue("name"));
-        Set<ConstraintViolation<JobDescriptor>> violations = getValidator().validate(details);
-        if (violations.size() > 0) {
-            // if (constraintViolations.getMsg() != null) {
-            logger.warn("contraint violations found on {}: {}", details, violations);
-            // return new FailureResponse<ConstraintViolations<T>>(constraintViolations);
-            return new ConstraintViolationsResponse<JobDescriptor>(details, violations);
-        }
+    @Override
+    protected JobDescriptor getData(Form form) {
+        return new JobDescriptor(form.getFirstValue("name"));
+    }
+
+    @Override
+    protected SkysailResponse<JobDescriptor> addEntity(JobDescriptor entity) {
         MyApplication application = (MyApplication) getApplication();
         Scheduler scheduler = application.getScheduler();
 
-        JobDetail jobDetail = new JobDetail(details.getName(), "skysail", SysoutJob.class, true, true, true);
+        JobDetail jobDetail = new JobDetail(entity.getName(), "skysail", SysoutJob.class, true, true, true);
         try {
             scheduler.addJob(jobDetail, false);
         } catch (SchedulerException e) {
@@ -76,10 +69,27 @@ public class AddJobResource extends UniqueResultServerResource2<JobDescriptor> {
         return new SuccessResponse<JobDescriptor>();
     }
 
-    @Override
-    protected JobDescriptor getData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
+//    @Override
+//    @Post("x-www-form-urlencoded:html")
+//    public SkysailResponse<JobDescriptor> addFromForm(Form form) {
+//        logger.info("trying to add entity");
+//        JobDescriptor details = new JobDescriptor(form.getFirstValue("name"));
+//        Set<ConstraintViolation<JobDescriptor>> violations = getValidator().validate(details);
+//        if (violations.size() > 0) {
+//            // if (constraintViolations.getMsg() != null) {
+//            logger.warn("contraint violations found on {}: {}", details, violations);
+//            // return new FailureResponse<ConstraintViolations<T>>(constraintViolations);
+//            return new ConstraintViolationsResponse<JobDescriptor>(details, violations);
+//        }
+//        MyApplication application = (MyApplication) getApplication();
+//        Scheduler scheduler = application.getScheduler();
+//
+//        JobDetail jobDetail = new JobDetail(details.getName(), "skysail", SysoutJob.class, true, true, true);
+//        try {
+//            scheduler.addJob(jobDetail, false);
+//        } catch (SchedulerException e) {
+//            return new FailureResponse<JobDescriptor>(e);
+//        }
+//        return new SuccessResponse<JobDescriptor>();
+//    }
 }

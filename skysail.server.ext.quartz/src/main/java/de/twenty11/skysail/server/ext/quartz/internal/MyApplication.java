@@ -1,12 +1,9 @@
 package de.twenty11.skysail.server.ext.quartz.internal;
 
+import de.twenty11.skysail.server.ext.quartz.*;
 import org.quartz.Scheduler;
 import org.restlet.Context;
 
-import de.twenty11.skysail.server.ext.quartz.AddJobResource;
-import de.twenty11.skysail.server.ext.quartz.JobsResource;
-import de.twenty11.skysail.server.ext.quartz.MyRootResource;
-import de.twenty11.skysail.server.ext.quartz.SchedulerResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
@@ -37,6 +34,8 @@ public class MyApplication extends SkysailApplication {
         router.attach(new RouteBuilder("/scheduler", SchedulerResource.class).setText("Quartz Scheduler"));
         router.attach(new RouteBuilder("/jobs", JobsResource.class).setText("Quartz Jobs"));
         router.attach(new RouteBuilder("/jobs/", AddJobResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/triggers", TriggersResource.class).setText("Quartz Triggers"));
+        router.attach(new RouteBuilder("/triggers/", AddTriggerResource.class).setVisible(false));
         // @formatter:on
     }
 
