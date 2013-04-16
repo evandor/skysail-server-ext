@@ -30,13 +30,7 @@ public class AddTriggerResource extends AddServerResource<TriggerDescriptor> {
         MyApplication application = (MyApplication) getApplication();
         Scheduler scheduler = application.getScheduler();
 
-        JobDetail jobDetail = new JobDetail(entity.getName(), "skysail", SysoutJob.class, true, true, true);
-        try {
-            scheduler.
-        } catch (SchedulerException e) {
-            return new FailureResponse<JobDescriptor>(e);
-        }
-        return new SuccessResponse<JobDescriptor>();
+       return null;
     }
 
     @Override
