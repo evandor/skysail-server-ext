@@ -1,40 +1,36 @@
 package de.twenty11.skysail.server.ext.quartz;
 
-import de.twenty11.skysail.common.responses.FailureResponse;
+import org.quartz.Scheduler;
+import org.restlet.data.Form;
+
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.quartz.internal.MyApplication;
 import de.twenty11.skysail.server.restlet.AddServerResource;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.restlet.data.Form;
-import org.restlet.resource.ServerResource;
 
 public class AddTriggerResource extends AddServerResource<TriggerDescriptor> {
 
     @Override
-    protected FormResponse<TriggerDescriptor> createForm() {
+    public FormResponse<TriggerDescriptor> createForm() {
         setMessage("new Trigger");
         return new FormResponse<TriggerDescriptor>(new TriggerDescriptor(), "../triggers/");
     }
 
     @Override
-    protected TriggerDescriptor getData(Form form) {
+    public TriggerDescriptor getData(Form form) {
         return new TriggerDescriptor(form.getFirstValue("name"));
     }
 
     @Override
-    protected SkysailResponse<TriggerDescriptor> addEntity(TriggerDescriptor entity) {
+    public SkysailResponse<TriggerDescriptor> addEntity(TriggerDescriptor entity) {
         MyApplication application = (MyApplication) getApplication();
         Scheduler scheduler = application.getScheduler();
 
-       return null;
+        return null;
     }
 
     @Override
-    protected SkysailResponse addFromForm(Form form) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public SkysailResponse addFromForm(Form form) {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 }
