@@ -33,8 +33,14 @@ public class JobDescriptor extends AbstractPresentable {
     @Field(valuesProvider = IgnoreValuesProvider.class)
     private String name;
 
+    @Field(valuesProvider = IgnoreValuesProvider.class)
+    private String code;
+
     public String getName() {
         return name;
     }
 
+    public String getCode() {
+        return code;
+    }
 }

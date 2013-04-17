@@ -1,0 +1,4 @@
+mvn:org.apache.aries.blueprint/org.apache.aries.blueprint/0.3.1
+mvn:org.apache.aries.proxy/org.apache.aries.proxy/0.3
+mvn:org.apache.aries/org.apache.aries.util/0.3
+mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.asm/2.2.3_5
