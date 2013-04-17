@@ -4,8 +4,10 @@ import javax.persistence.EntityManagerFactory;
 
 import org.restlet.Context;
 
+import de.twenty11.skysail.server.ext.mail.AccountResource;
 import de.twenty11.skysail.server.ext.mail.AccountsResource;
 import de.twenty11.skysail.server.ext.mail.AddAccountResource;
+import de.twenty11.skysail.server.ext.mail.MailboxesResource;
 import de.twenty11.skysail.server.ext.mail.MyRootResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
@@ -32,6 +34,8 @@ public class MyApplication extends SkysailApplication {
         router.attach(new RouteBuilder("", MyRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/accounts", AccountsResource.class).setText("Accounts"));
         router.attach(new RouteBuilder("/accounts/", AddAccountResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/accounts/{id}", AccountResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/accounts/{id}/boxes", MailboxesResource.class).setVisible(false));
 
         // @formatter:on
     }

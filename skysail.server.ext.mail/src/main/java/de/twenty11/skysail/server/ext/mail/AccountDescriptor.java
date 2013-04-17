@@ -45,7 +45,7 @@ public class AccountDescriptor implements Presentable {
     @Override
     @JsonIgnore
     public PresentableHeader getHeader() {
-        return new PresentableHeader.Builder("name").setLink("accounts/" + name).build();
+        return new PresentableHeader.Builder(name).setLink("accounts/" + name).build();
     }
 
     @Override

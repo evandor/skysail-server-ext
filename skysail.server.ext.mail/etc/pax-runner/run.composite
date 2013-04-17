@@ -10,4 +10,4 @@ scan-file:bundledefs/skysail.setup
 
 #scan-file:deploy
 ### use the jar in the target directory for the current bundle (for testing)
-### scan-bundle:../../target/skysail.server.ext.dbviewer-0.0.12-SNAPSHOT.jar@update
+###scan-bundle:../../target/skysail.server.ext.mail-0.0.1-SNAPSHOT.jar@update
