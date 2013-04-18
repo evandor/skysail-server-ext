@@ -8,7 +8,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.server.ext.mail.internal.MyApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource2;
 
-public class AccountResource extends UniqueResultServerResource2<AccountDescriptor> {
+public class AccountResource extends UniqueResultServerResource2<AccountDetails> {
 
     private String id;
 
@@ -21,13 +21,13 @@ public class AccountResource extends UniqueResultServerResource2<AccountDescript
     }
 
     @Override
-    protected AccountDescriptor getData() {
+    protected AccountDetails getData() {
         MyApplication app = (MyApplication) getApplication();
         EntityManager em = app.getEmf().createEntityManager();
         TypedQuery<AccountDescriptor> query = em.createQuery("SELECT c FROM AccountDescriptor c WHERE c.name = :name",
                 AccountDescriptor.class);
         query.setParameter("name", id);
-        return query.getSingleResult();
+        return (AccountDetails) query.getSingleResult();
     }
 
 }

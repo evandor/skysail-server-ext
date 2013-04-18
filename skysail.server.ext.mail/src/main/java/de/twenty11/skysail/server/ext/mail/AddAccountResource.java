@@ -30,8 +30,11 @@ public class AddAccountResource extends AddServerResource<AccountDescriptor> {
 
     @Override
     public AccountDescriptor getData(Form form) {
-        return new AccountDescriptor(form.getFirstValue("name"));
-
+        AccountDescriptor accountDescriptor = new AccountDescriptor(form.getFirstValue("name"));
+        accountDescriptor.setUsername(form.getFirstValue("username"));
+        accountDescriptor.setPassword(form.getFirstValue("password"));
+        accountDescriptor.setHost(form.getFirstValue("host"));
+        return accountDescriptor;
     }
 
     @Override

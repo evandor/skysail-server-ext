@@ -13,6 +13,7 @@ public class AccountsResource extends ListServerResource2<AccountDescriptor> {
 
     @Override
     protected List<AccountDescriptor> getData() {
+        registerLinkedPage(new AddAccountPage());
         MyApplication application = (MyApplication) getApplication();
         EntityManagerFactory emf = application.getEmf();
         EntityManager em = emf.createEntityManager();
