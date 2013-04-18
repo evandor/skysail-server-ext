@@ -7,6 +7,7 @@
 		class="de.twenty11.skysail.server.ext.jgit.internal.Configuration"
 		init-method="activate" destroy-method="deactivate">
 		<property name="componentProvider" ref="componentProviderRef" />
+        <property name="emf" ref="emfRef" />
 	</bean>
 
 	<service ref="setup"
@@ -14,6 +15,10 @@
 
 	<reference id="componentProviderRef"
 		interface="de.twenty11.skysail.server.services.ComponentProvider" />
+
+    <reference id="emfRef"
+               interface="javax.persistence.EntityManagerFactory"
+               filter="(osgi.unit.name=JGitPU)" />
 
 </blueprint>
 

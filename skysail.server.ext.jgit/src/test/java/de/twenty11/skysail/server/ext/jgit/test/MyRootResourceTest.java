@@ -26,7 +26,7 @@ public class MyRootResourceTest {
 
     @Before
     public void setUp() throws Exception {
-        application = new MyApplication(null, null);
+        application = new MyApplication(null, null, emf);
         application.createInboundRoot();
         rootResource = new MyRootResource();
         rootResource.setApplication(application);

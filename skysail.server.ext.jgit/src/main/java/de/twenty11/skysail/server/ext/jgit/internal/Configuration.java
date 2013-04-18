@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.server.services.ApplicationProvider;
 import de.twenty11.skysail.server.services.ComponentProvider;
 
+import javax.persistence.EntityManagerFactory;
 import java.io.File;
 import java.io.IOException;
 
@@ -23,34 +24,11 @@ public class Configuration implements ApplicationProvider {
     private Component component;
     private MyApplication application;
     private Repository defaultRepository = null;
+    private EntityManagerFactory emf;
 
     public void activate() {
         logger.info("Activating Configuration Component for Skysail Bookmarks Extension");
-        component = componentProvider.getComponent();
-        FileRepositoryBuilder builder = new FileRepositoryBuilder();
-        try {
-            defaultRepository = builder.setGitDir(new File("C:\\tmp\\gittest"))
-                    .readEnvironment() // scan environment GIT_* variables
-                    //.findGitDir() // scan up the file system tree
-                    .build();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            defaultRepository.create(false);
-        } catch (IllegalStateException e) {
-            // Rep already exists
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-        Git git = new Git(defaultRepository);
-        AddCommand add = git.add();
-        try {
-            add.addFilepattern(".").call();
-        } catch (GitAPIException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-        application = new MyApplication(component.getContext(), defaultRepository);
+        application = new MyApplication(component.getContext(), defaultRepository, emf);
     }
 
     public void deactivate() {
@@ -58,6 +36,11 @@ public class Configuration implements ApplicationProvider {
         application = null;
 
     }
+
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
 
     public void setComponentProvider(ComponentProvider componentProvider) {
         this.componentProvider = componentProvider;
