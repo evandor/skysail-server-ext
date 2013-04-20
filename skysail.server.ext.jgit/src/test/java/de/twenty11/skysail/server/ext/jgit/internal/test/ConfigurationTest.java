@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +31,8 @@ public class ConfigurationTest {
     @Before
     public void createConfiguration() throws Exception {
         Mockito.when(componentProvider.getComponent()).thenReturn(component);
+        EntityManagerFactory emf = Mockito.mock(EntityManagerFactory.class);
+        configuration.setEmf(emf);
     }
 
     @Test

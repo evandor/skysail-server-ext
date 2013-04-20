@@ -1,11 +1,12 @@
 package de.twenty11.skysail.server.ext.jgit;
 
-import de.twenty11.skysail.common.commands.Command;
-import org.eclipse.jgit.api.Git;
+import java.io.File;
+import java.io.IOException;
+
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
 
-import java.io.IOException;
+import de.twenty11.skysail.common.commands.Command;
 
 public class CreateLocalRepositoryCommand implements Command {
 
@@ -26,9 +27,9 @@ public class CreateLocalRepositoryCommand implements Command {
     }
 
     @Override
-    // TODO
     public boolean applicable() {
-        return true;
+        String path = repositoryDescriptor.getPath() + ".git";
+        return !new File(path).exists();
     }
 
     @Override
@@ -37,8 +38,6 @@ public class CreateLocalRepositoryCommand implements Command {
             String path = repositoryDescriptor.getPath();
             FileRepository localRepo = null;
             try {
-                //localRepo = new FileRepository(path + "/.git");
-                //Git git = new Git(localRepo);
                 Repository newRepo = new FileRepository(path + ".git");
                 newRepo.create();
             } catch (IOException e) {

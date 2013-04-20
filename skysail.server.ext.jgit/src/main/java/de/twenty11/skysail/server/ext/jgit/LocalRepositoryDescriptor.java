@@ -1,17 +1,20 @@
 package de.twenty11.skysail.server.ext.jgit;
 
-import de.twenty11.skysail.common.Presentable;
-import de.twenty11.skysail.common.PresentableHeader;
-import de.twenty11.skysail.common.forms.Field;
-import de.twenty11.skysail.common.forms.Form;
-import org.codehaus.jackson.annotate.JsonIgnore;
+import java.util.Collections;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.Map;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import de.twenty11.skysail.common.Presentable;
+import de.twenty11.skysail.common.PresentableHeader;
+import de.twenty11.skysail.common.forms.Field;
+import de.twenty11.skysail.common.forms.Form;
 
 @Form(name = "LocalRepositoryForm")
 @Entity
@@ -36,24 +39,30 @@ public class LocalRepositoryDescriptor implements Presentable {
     private String path;
 
     public LocalRepositoryDescriptor() {
-        //To change body of created methods use File | Settings | File Templates.
+        // To change body of created methods use File | Settings | File Templates.
     }
 
-    public LocalRepositoryDescriptor(String name) {
+    public LocalRepositoryDescriptor(String name, String path) {
         this.name = name;
+        this.path = path;
     }
 
     public String getPath() {
         return path;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public PresentableHeader getHeader() {
-        return new PresentableHeader.Builder(name).build();
+        return new PresentableHeader.Builder(name).setLink("repos/" + name).build();
     }
 
     @Override
     public Map<String, Object> getContent() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return Collections.emptyMap();
     }
+
 }

@@ -11,7 +11,7 @@ mvn:de.twentyeleven.skysail/skysail.common.um/0.0.4-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1@nostart
 
 mvn:de.twentyeleven.skysail/skysail.server/0.2.13-SNAPSHOT@update
-mvn:de.twentyeleven.skysail/skysail.server.ext.jgit/0.0.1-SNAPSHOT@update
+###mvn:de.twentyeleven.skysail/skysail.server.ext.jgit/0.0.1-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.17-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.server.ext.osgimonitor/0.1.9-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.server.restlet/0.0.1@update@nostart

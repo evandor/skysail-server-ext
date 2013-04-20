@@ -7,9 +7,12 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -26,7 +29,7 @@ public class MyRootResourceTest {
 
     @Before
     public void setUp() throws Exception {
-        application = new MyApplication(null, null, emf);
+        application = new MyApplication(null, Mockito.mock(EntityManagerFactory.class));
         application.createInboundRoot();
         rootResource = new MyRootResource();
         rootResource.setApplication(application);
