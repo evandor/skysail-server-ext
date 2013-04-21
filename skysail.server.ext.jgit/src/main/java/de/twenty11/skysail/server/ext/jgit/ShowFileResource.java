@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.descriptors.FileDescriptor;
 import de.twenty11.skysail.server.ext.jgit.internal.MyApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource2;
@@ -16,20 +18,26 @@ import de.twenty11.skysail.server.restlet.UniqueResultServerResource2;
 @Presentation(preferred = PresentationStyle.ACE_EDITOR)
 public class ShowFileResource extends UniqueResultServerResource2<FileDescriptor> {
 
-    private String id;
+    private File file;
 
     @Override
     protected void doInit() throws ResourceException {
-        id = (String) getRequest().getAttributes().get("id");
-    }
-
-    @Override
-    protected FileDescriptor getData() {
+        String id = (String) getRequest().getAttributes().get("id");
         LocalRepositoryDescriptor repositoryDescriptor = ((MyApplication) getApplication()).getRepository()
                 .getLocalRepositoryDescriptor(id);
         String rootPath = repositoryDescriptor.getPath(); // /tmp/test
         String filepath = rootPath + "/" + getReference().getRemainingPart();
-        File file = new File(filepath);
+        file = new File(filepath);
+    }
+
+    @Override
+    @Get("html|json")
+    public SkysailResponse<FileDescriptor> getEntity() {
+        return getEntity("Content of " + file.getName());
+    }
+
+    @Override
+    protected FileDescriptor getData() {
         if (!file.isFile()) {
             throw new IllegalStateException(file.toString() + " is not a file");
         }
