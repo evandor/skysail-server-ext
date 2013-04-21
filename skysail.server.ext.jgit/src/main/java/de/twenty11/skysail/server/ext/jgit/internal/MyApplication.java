@@ -8,9 +8,11 @@ import org.restlet.routing.Template;
 
 import de.twenty11.skysail.server.directory.SkysailDirectory;
 import de.twenty11.skysail.server.ext.jgit.AddLocalRepositoryResource;
+import de.twenty11.skysail.server.ext.jgit.ListDirResource;
 import de.twenty11.skysail.server.ext.jgit.LocalRepositoriesResource;
 import de.twenty11.skysail.server.ext.jgit.LocalRepositoryResource;
 import de.twenty11.skysail.server.ext.jgit.MyRootResource;
+import de.twenty11.skysail.server.ext.jgit.ShowFileResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
@@ -45,7 +47,8 @@ public class MyApplication extends SkysailApplication {
         router.attach(new RouteBuilder("/repos/", AddLocalRepositoryResource.class).setVisible(false));
         router.attach(new RouteBuilder("/repos/{id}", LocalRepositoryResource.class).setVisible(false));
         router.attach(new RouteBuilder("/repos/{id}/cloneform", CloneFormResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/repos/{id}/listdir/", directory).setVisible(false));
+        router.attach(new RouteBuilder("/repos/{id}/listdir/", ListDirResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/repos/{id}/showfile/", ShowFileResource.class).setVisible(false));
         // @formatter:on
     }
 
