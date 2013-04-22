@@ -113,6 +113,16 @@ public class LogViewerHandler extends TailerListenerAdapter implements Atmospher
     }
 
     @Override
+    public void onRequest(AtmosphereResource resource) throws IOException {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void onStateChange(AtmosphereResourceEvent event) throws IOException {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public void destroy() {
         tailer.stop();
     }
