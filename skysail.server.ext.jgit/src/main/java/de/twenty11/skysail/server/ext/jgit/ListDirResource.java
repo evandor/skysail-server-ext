@@ -39,30 +39,31 @@ public class ListDirResource extends ListServerResource2<DirectoryDescriptor> {
         if (contents == null) {
             return Collections.emptyList();
         }
+        boolean pomFileFound = false;
         for (String filename : contents) {
+            if (filename.equals("pom.xml")) {
+                pomFileFound = true;
+            }
             String link = getReference().getRemainingPart();
             boolean isFile = new File(filepath + "/" + filename).isFile();
-            // if (link != null && !StringUtils.isBlank(link)) {
-            // link += "/" + filename;
-            // } else {
             if (isFile) {
                 link = getReference().getBaseRef() + "../showfile/" + link + "/" + filename;
             } else {
                 link = getReference().getBaseRef() + link + "/" + filename;
             }
-
-            // }
             result.add(new DirectoryDescriptor(filename, link));
+        }
+        if (pomFileFound) {
+            addLinkedPageForMavenExecution();
         }
         return result;
     }
 
-    // private List<DirectoryDescriptor> getContentsForFile(File file) {
-    // List<DirectoryDescriptor> result = new ArrayList<DirectoryDescriptor>();
-    // DirectoryDescriptor fileDescriptor = new DirectoryDescriptor(file.getName(), file.getPath());
-    // fileDescriptor.setFileContent("hi");
-    // result.add(fileDescriptor);
-    // return result;
-    // }
+    private void addLinkedPageForMavenExecution() {
+        // if (cloneCommand.applicable()) {
+        registerLinkedPage(new ExecuteMavenPage(repositoryDescriptor));
+        // }
+
+    }
 
 }
