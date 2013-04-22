@@ -17,7 +17,7 @@ public class ExecuteMavenPage implements LinkedPage {
 
     @Override
     public String getHref() {
-        return repositoryDescriptor.getName() + "/cloneform";
+        return repositoryDescriptor.getName() + "/maven";
     }
 
     @Override
