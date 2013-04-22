@@ -16,20 +16,24 @@ public class LocalRepositoryResource extends UniqueResultServerResource2<LocalRe
 
     private String key;
     private String action;
+    private LocalRepositoryDescriptor result;
 
     @Override
     protected void doInit() throws ResourceException {
         key = (String) getRequest().getAttributes().get("id");
         Form form = new Form(getRequest().getEntity());
         action = form.getFirstValue("action");
+        MyApplication app = (MyApplication) getApplication();
+        result = app.getRepository().getLocalRepositoryDescriptor(key);
     }
 
     @Override
     protected LocalRepositoryDescriptor getData() {
-        MyApplication app = (MyApplication) getApplication();
-        LocalRepositoryDescriptor result = app.getRepository().getLocalRepositoryDescriptor(key);
         registerCommand("create", new CreateLocalRepositoryCommand(result));
-        registerLinkedPage(new ClonePage(result));
+        CloneIntoLocalRepositoryCommand cloneCommand = new CloneIntoLocalRepositoryCommand(result, null);
+        if (cloneCommand.applicable()) {
+            registerLinkedPage(new ClonePage(result));
+        }
         return result;
     }
 

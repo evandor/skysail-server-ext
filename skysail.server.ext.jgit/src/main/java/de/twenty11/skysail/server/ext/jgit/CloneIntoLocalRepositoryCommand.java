@@ -34,20 +34,23 @@ public class CloneIntoLocalRepositoryCommand implements Command {
 
     @Override
     public boolean applicable() {
+        CreateLocalRepositoryCommand createCommand = new CreateLocalRepositoryCommand(repositoryDescriptor);
+        if (createCommand.applicable()) {
+            return false;
+        }
         String path = repositoryDescriptor.getPath() + ".git";
         if (!new File(path).exists()) {
             return false;
         }
-        if (entity == null || StringUtils.isBlank(entity.getRemotePath())) {
-            return false;
-        }
-
         return true;
     }
 
     @Override
     public void execute() {
         if (applicable()) {
+            if (entity == null || StringUtils.isBlank(entity.getRemotePath())) {
+                return;
+            }
             String path = repositoryDescriptor.getPath();
             String remotePath = entity.getRemotePath();
             logger.info("Attempting git cloning from '{}' into '{}'", remotePath, path);
