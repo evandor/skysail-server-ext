@@ -1,6 +1,7 @@
 Include-Resource: {maven-resources}
 Meta-Persistence: META-INF/persistence.xml
 Import-Package: javax.persistence;jpa="2.0";version="1.1.0",\
+ org.apache.commons.exec,\
  de.twenty11.skysail.common,\
  de.twenty11.skysail.common.commands,\
  de.twenty11.skysail.common.forms,\

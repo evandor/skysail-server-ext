@@ -12,7 +12,7 @@
 
 	<artifactId>skysail.server.ext.dbviewer</artifactId>
 	<version>0.0.17-SNAPSHOT</version>
-	<name>SKYSAIL :: server :: ext :: dbviewer - dbviever server app</name>
+	<name>SKYSAIL :: server :: ext :: dbviewer</name>
 	<packaging>bundle</packaging>
 
 	<scm>
