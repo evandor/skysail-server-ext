@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.quartz;
 
+import java.util.List;
+
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 
@@ -42,6 +44,12 @@ public class StartCommand implements Command {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<String> executionMessages() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

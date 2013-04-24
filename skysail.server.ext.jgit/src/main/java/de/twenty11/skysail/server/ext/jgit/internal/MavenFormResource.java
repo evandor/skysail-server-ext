@@ -12,8 +12,6 @@ import de.twenty11.skysail.server.ext.jgit.ExecuteMavenCommand;
 import de.twenty11.skysail.server.ext.jgit.LocalRepositoryDescriptor;
 import de.twenty11.skysail.server.restlet.AddServerResource;
 
-import java.io.File;
-
 @Presentation(preferred = PresentationStyle.EDIT)
 public class MavenFormResource extends AddServerResource<MavenFormDescriptor> {
 
@@ -24,18 +22,19 @@ public class MavenFormResource extends AddServerResource<MavenFormDescriptor> {
     protected void doInit() throws ResourceException {
         String id = (String) getRequest().getAttributes().get("id");
         repositoryDescriptor = ((MyApplication) getApplication()).getRepository().getLocalRepositoryDescriptor(id);
-        path = repositoryDescriptor.getPath() + File.pathSeparator + getReference().getRemainingPart();
+        path = repositoryDescriptor.getPath() + getReference().getRemainingPart();
     }
 
     @Override
     @Get("html")
     public FormResponse<MavenFormDescriptor> createForm() {
-        return new FormResponse<MavenFormDescriptor>(new MavenFormDescriptor(), "../maven/");
+        return new FormResponse<MavenFormDescriptor>(new MavenFormDescriptor(), "../maven"
+                + getReference().getRemainingPart());
     }
 
     @Override
     public MavenFormDescriptor getData(Form form) {
-        return new MavenFormDescriptor(form.getFirstValue("command"),path);
+        return new MavenFormDescriptor(form.getFirstValue("command"), path);
     }
 
     @Override

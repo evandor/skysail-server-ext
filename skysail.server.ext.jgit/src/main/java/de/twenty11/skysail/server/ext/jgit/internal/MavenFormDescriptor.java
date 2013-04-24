@@ -29,4 +29,9 @@ public class MavenFormDescriptor {
     public String getWorkingDir() {
         return workingDir;
     }
+
+    @Override
+    public String toString() {
+        return workingDir + "> " + command;
+    }
 }

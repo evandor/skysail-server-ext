@@ -2,10 +2,12 @@ package de.twenty11.skysail.server.ext.jgit;
 
 import org.restlet.data.Form;
 import org.restlet.representation.Representation;
+import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.commands.Command;
+import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
@@ -28,12 +30,35 @@ public class LocalRepositoryResource extends UniqueResultServerResource2<LocalRe
     }
 
     @Override
+    @Get("html|json")
+    public SkysailResponse<LocalRepositoryDescriptor> getEntity() {
+        return getEntity("local git repository " + key);
+    }
+
+    @Override
     protected LocalRepositoryDescriptor getData() {
         registerCommand("create", new CreateLocalRepositoryCommand(result));
         CloneIntoLocalRepositoryCommand cloneCommand = new CloneIntoLocalRepositoryCommand(result, null);
         if (cloneCommand.applicable()) {
             registerLinkedPage(new ClonePage(result));
         }
+        // registerCommand("showfiles", new ShowFilesCommand());
+        registerLinkedPage(new LinkedPage() {
+            @Override
+            public boolean applicable() {
+                return !(getReference().getRemainingPart().length() > 0);
+            }
+
+            @Override
+            public String getHref() {
+                return key + "/listdir/";
+            }
+
+            @Override
+            public String getLinkText() {
+                return "Show Files...";
+            }
+        });
         return result;
     }
 

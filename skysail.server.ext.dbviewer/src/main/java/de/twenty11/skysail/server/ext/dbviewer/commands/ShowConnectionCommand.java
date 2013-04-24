@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.dbviewer.commands;
 
+import java.util.List;
+
 import de.twenty11.skysail.common.commands.Command;
 
 public class ShowConnectionCommand implements Command {
@@ -24,6 +26,12 @@ public class ShowConnectionCommand implements Command {
     @Override
     public void execute() {
 
+    }
+
+    @Override
+    public List<String> executionMessages() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

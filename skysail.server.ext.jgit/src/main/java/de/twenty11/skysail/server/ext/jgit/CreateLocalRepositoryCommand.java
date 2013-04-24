@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.jgit;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
@@ -45,5 +46,11 @@ public class CreateLocalRepositoryCommand implements Command {
             }
 
         }
+    }
+
+    @Override
+    public List<String> executionMessages() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

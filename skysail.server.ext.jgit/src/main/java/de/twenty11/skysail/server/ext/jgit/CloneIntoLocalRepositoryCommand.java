@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.jgit;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.jgit.api.Git;
@@ -38,8 +39,8 @@ public class CloneIntoLocalRepositoryCommand implements Command {
         if (createCommand.applicable()) {
             return false;
         }
-        String path = repositoryDescriptor.getPath() + ".git";
-        if (!new File(path).exists()) {
+        String path = repositoryDescriptor.getPath();// + ".git";
+        if (new File(path).exists()) {
             return false;
         }
         return true;
@@ -61,5 +62,11 @@ public class CloneIntoLocalRepositoryCommand implements Command {
             }
 
         }
+    }
+
+    @Override
+    public List<String> executionMessages() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

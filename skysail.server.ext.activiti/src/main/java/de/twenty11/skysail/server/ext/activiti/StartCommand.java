@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.activiti;
 
+import java.util.List;
+
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.repository.ProcessDefinition;
 
@@ -33,6 +35,12 @@ public class StartCommand implements Command {
     @Override
     public void execute() {
         runtimeService.startProcessInstanceById(processDefinition.getId());
+    }
+
+    @Override
+    public List<String> executionMessages() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

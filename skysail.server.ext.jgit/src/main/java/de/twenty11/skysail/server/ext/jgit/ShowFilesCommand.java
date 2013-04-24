@@ -1,19 +1,19 @@
-package de.twenty11.skysail.server.ext.dbviewer.commands;
+package de.twenty11.skysail.server.ext.jgit;
 
 import java.util.List;
 
 import de.twenty11.skysail.common.commands.Command;
 
-public class AddConnectionCommand implements Command {
+public class ShowFilesCommand implements Command {
 
     @Override
     public String getName() {
-        return "Add Connection";
+        return "Show Files";
     }
 
     @Override
     public String getDescription() {
-        return "Adds a new Connection";
+        return "shows contents of this directory";
     }
 
     @Override

@@ -47,9 +47,9 @@ public class ListDirResource extends ListServerResource2<DirectoryDescriptor> {
             String link = getReference().getRemainingPart();
             boolean isFile = new File(filepath + "/" + filename).isFile();
             if (isFile) {
-                link = getReference().getBaseRef() + "../showfile/" + link + "/" + filename;
+                link = getReference().getBaseRef() + "../showfile/" + link + filename;
             } else {
-                link = getReference().getBaseRef() + link + "/" + filename;
+                link = getReference().getBaseRef() + link + filename;
             }
             result.add(new DirectoryDescriptor(filename, link));
         }

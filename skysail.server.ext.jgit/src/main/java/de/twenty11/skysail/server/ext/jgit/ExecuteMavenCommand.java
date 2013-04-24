@@ -1,16 +1,22 @@
 package de.twenty11.skysail.server.ext.jgit;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecuteResultHandler;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
+import org.apache.commons.exec.ExecuteWatchdog;
+import org.apache.commons.exec.Executor;
+import org.apache.commons.exec.OS;
+import org.apache.commons.exec.PumpStreamHandler;
 
 import de.twenty11.skysail.common.commands.Command;
 import de.twenty11.skysail.server.ext.jgit.internal.MavenFormDescriptor;
-import org.apache.commons.exec.*;
-
 
 public class ExecuteMavenCommand implements Command {
 
@@ -18,7 +24,7 @@ public class ExecuteMavenCommand implements Command {
     private MavenFormDescriptor entity;
     private ExecuteWatchdog watchdog;
     private PrintResultHandler resultHandler;
-
+    private ByteArrayOutputStream outputStream;
 
     public ExecuteMavenCommand(LocalRepositoryDescriptor repositoryDescriptor, MavenFormDescriptor entity) {
         this.repositoryDescriptor = repositoryDescriptor;
@@ -53,27 +59,37 @@ public class ExecuteMavenCommand implements Command {
 
     private void executeMaven() throws IOException {
         int exitValue;
-        //Map map = new HashMap();
-        //map.put("file", file);
-        CommandLine commandLine = new CommandLine("mvn.bat");
+        // Map map = new HashMap();
+        // map.put("file", file);
+        CommandLine commandLine = new CommandLine(resolveCmdForOS("mvn"));
         commandLine.addArgument(entity.getCommand());
-        //commandLine.setSubstitutionMap(map);
+        // commandLine.setSubstitutionMap(map);
 
         Executor executor = new DefaultExecutor();
         executor.setExitValue(1);
         executor.setWorkingDirectory(new File(entity.getWorkingDir()));
+        outputStream = new ByteArrayOutputStream();
+        executor.setStreamHandler(new PumpStreamHandler(outputStream, System.err, System.in));
 
-        watchdog = new ExecuteWatchdog(15000);
+        watchdog = new ExecuteWatchdog(15 * 60 * 1000);
         executor.setWatchdog(watchdog);
 
-        if (true) { //printInBackground) {
-            System.out.println("[print] Executing non-blocking print job  ...");
-            resultHandler = new PrintResultHandler(watchdog);
-            executor.execute(commandLine, resultHandler);
+        System.out.println("[print] Executing non-blocking print job  ...");
+        resultHandler = new PrintResultHandler(watchdog);
+        executor.execute(commandLine, resultHandler);
+
+        System.out.println(outputStream.toString());
+    }
+
+    private String resolveCmdForOS(String cmd) {
+        if (OS.isFamilyWindows()) {
+            return cmd + ".bat";
+        } else if (OS.isFamilyUnix()) {
+            return cmd;
+        } else if (OS.isFamilyOpenVms()) {
+            return cmd + ".dcl";
         } else {
-            System.out.println("[print] Executing blocking print job  ...");
-            exitValue = executor.execute(commandLine);
-            resultHandler = new PrintResultHandler(exitValue);
+            throw new IllegalStateException("Execution not supported for this OS");
         }
     }
 
@@ -104,4 +120,16 @@ public class ExecuteMavenCommand implements Command {
         }
     }
 
+    @Override
+    public List<String> executionMessages() {
+        // try {
+        // outputStream.flush();
+        // } catch (IOException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+        String[] lines = outputStream.toString().split("\\n");
+        outputStream.reset();
+        return Arrays.asList(lines);
+    }
 }

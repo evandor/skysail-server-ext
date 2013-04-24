@@ -1,6 +1,6 @@
 package de.twenty11.skysail.server.ext.jgit;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.Entity;
@@ -61,8 +61,10 @@ public class LocalRepositoryDescriptor implements Presentable {
     }
 
     @Override
+    @JsonIgnore
     public Map<String, Object> getContent() {
-        return Collections.emptyMap();
+        Map<String, Object> results = new HashMap<String, Object>();
+        results.put("path", path);
+        return results;
     }
-
 }
