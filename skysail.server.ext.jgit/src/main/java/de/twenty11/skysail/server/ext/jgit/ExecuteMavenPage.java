@@ -4,10 +4,10 @@ import de.twenty11.skysail.common.navigation.LinkedPage;
 
 public class ExecuteMavenPage implements LinkedPage {
 
-    private LocalRepositoryDescriptor repositoryDescriptor;
+    private String path;
 
-    public ExecuteMavenPage(LocalRepositoryDescriptor result) {
-        this.repositoryDescriptor = result;
+    public ExecuteMavenPage(String path) {
+        this.path = path;
     }
 
     @Override
@@ -17,7 +17,7 @@ public class ExecuteMavenPage implements LinkedPage {
 
     @Override
     public String getHref() {
-        return repositoryDescriptor.getName() + "/maven";
+        return "../maven/" + path;
     }
 
     @Override

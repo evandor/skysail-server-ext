@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.ext.jgit;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -44,13 +45,7 @@ public class ExecuteMavenCommand implements Command {
         if (applicable()) {
             try {
                 executeMaven();
-
-                // repositoryDescriptor.
-                //Process exec = Runtime.getRuntime().exec("mvn -version");
-                //InputStream errorStream = exec.getErrorStream();
-                //OutputStream outputStream = exec.getOutputStream();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -60,12 +55,13 @@ public class ExecuteMavenCommand implements Command {
         int exitValue;
         //Map map = new HashMap();
         //map.put("file", file);
-        CommandLine commandLine = new CommandLine("mvn");
-        commandLine.addArgument("-version");
+        CommandLine commandLine = new CommandLine("mvn.bat");
+        commandLine.addArgument(entity.getCommand());
         //commandLine.setSubstitutionMap(map);
 
         Executor executor = new DefaultExecutor();
         executor.setExitValue(1);
+        executor.setWorkingDirectory(new File(entity.getWorkingDir()));
 
         watchdog = new ExecuteWatchdog(15000);
         executor.setWatchdog(watchdog);

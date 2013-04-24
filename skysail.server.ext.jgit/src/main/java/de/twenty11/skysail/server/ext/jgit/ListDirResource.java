@@ -54,14 +54,14 @@ public class ListDirResource extends ListServerResource2<DirectoryDescriptor> {
             result.add(new DirectoryDescriptor(filename, link));
         }
         if (pomFileFound) {
-            addLinkedPageForMavenExecution();
+            addLinkedPageForMavenExecution(getReference().getRemainingPart());
         }
         return result;
     }
 
-    private void addLinkedPageForMavenExecution() {
+    private void addLinkedPageForMavenExecution(String remainingPart) {
         // if (cloneCommand.applicable()) {
-        registerLinkedPage(new ExecuteMavenPage(repositoryDescriptor));
+        registerLinkedPage(new ExecuteMavenPage(remainingPart));
         // }
 
     }
