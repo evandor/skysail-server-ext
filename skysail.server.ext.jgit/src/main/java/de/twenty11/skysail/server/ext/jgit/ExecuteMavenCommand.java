@@ -122,12 +122,7 @@ public class ExecuteMavenCommand implements Command {
 
     @Override
     public List<String> executionMessages() {
-        // try {
         // outputStream.flush();
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
         String[] lines = outputStream.toString().split("\\n");
         outputStream.reset();
         return Arrays.asList(lines);

@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.jgit.internal;
 
+import java.util.GregorianCalendar;
+
 import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
@@ -39,8 +41,9 @@ public class MavenFormResource extends AddServerResource<MavenFormDescriptor> {
 
     @Override
     public SkysailResponse<MavenFormDescriptor> addEntity(MavenFormDescriptor entity) {
-        new ExecuteMavenCommand(repositoryDescriptor, entity).execute();
+        ExecuteMavenCommand command = new ExecuteMavenCommand(repositoryDescriptor, entity);
+        ((MyApplication) getApplication()).addExecutedCommand(new GregorianCalendar().getTimeInMillis(), command);
+        command.execute();
         return new SkysailResponse<MavenFormDescriptor>();
     }
-
 }
