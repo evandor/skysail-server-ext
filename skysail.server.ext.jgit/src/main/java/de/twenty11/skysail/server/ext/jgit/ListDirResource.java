@@ -55,6 +55,23 @@ public class ListDirResource extends ListServerResource2<DirectoryDescriptor> {
         }
         if (pomFileFound) {
             addLinkedPageForMavenExecution(getReference().getRemainingPart());
+
+            // ModelBuilder builder = new DefaultModelBuilder();
+            // ModelBuildingRequest req = new DefaultModelBuildingRequest();
+            // req.setProcessPlugins(false);
+            // req.setPomFile(file);
+            //
+            // req.setModelResolver(new org.apache.maven.repository.internal.DefaultModelResolver(basedir,
+            // pathTranslator));
+            // req.setValidationLevel(ModelBuildingRequest.VALIDATION_LEVEL_MINIMAL);
+            //
+            // Model model;
+            // try {
+            // model = builder.build(req).getEffectiveModel();
+            // } catch (ModelBuildingException e) {
+            //
+            // }
+
         }
         return result;
     }

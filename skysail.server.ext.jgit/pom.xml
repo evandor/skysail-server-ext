@@ -52,11 +52,29 @@
 			<version>2.3.1.201302201838-r</version>
 		</dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-exec</artifactId>
-            <version>1.1</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-exec</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>org.apache.maven.maven-model-builder</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>org.apache.maven.maven-aether-provider</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-aether</artifactId>
+			<version>0.7.17</version>
+		</dependency>
 
 		<!-- testing with pax exam -->
 		<dependency>
