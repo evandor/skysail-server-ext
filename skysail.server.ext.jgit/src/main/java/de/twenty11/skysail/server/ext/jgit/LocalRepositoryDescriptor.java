@@ -57,7 +57,7 @@ public class LocalRepositoryDescriptor implements Presentable {
 
     @Override
     public PresentableHeader getHeader() {
-        return new PresentableHeader.Builder(name).setLink("repos/" + name).build();
+        return new PresentableHeader.Builder(name).setLink("repos/" + name + "/listdir/").build();
     }
 
     @Override

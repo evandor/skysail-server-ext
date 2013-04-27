@@ -10,7 +10,6 @@ import org.restlet.routing.Router;
 import org.restlet.routing.Template;
 
 import de.twenty11.skysail.common.commands.Command;
-import de.twenty11.skysail.server.directory.SkysailDirectory;
 import de.twenty11.skysail.server.ext.jgit.AddLocalRepositoryResource;
 import de.twenty11.skysail.server.ext.jgit.ExecuteMavenCommand;
 import de.twenty11.skysail.server.ext.jgit.ListDirResource;
@@ -39,8 +38,7 @@ public class MyApplication extends SkysailApplication {
 
     protected void attach() {
 
-        SkysailDirectory directory = new SkysailDirectory(getContext(), "file:///tmp");
-
+        // make sure to match proper resource even if request url contains add. information
         router.setDefaultMatchingMode(Template.MODE_STARTS_WITH);
         router.setRoutingMode(Router.MODE_LAST_MATCH);
 
@@ -62,6 +60,7 @@ public class MyApplication extends SkysailApplication {
         return this.repository;
     }
 
+    @SuppressWarnings("unchecked")
     public void addExecutedCommand(long timeInMillis, ExecuteMavenCommand command) {
         Map<Long, Command> executedCommands = (Map<Long, Command>) getContext().getAttributes().get(
                 "skysail.executedCommands");
