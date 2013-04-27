@@ -59,18 +59,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>org.apache.maven.maven-model-builder</artifactId>
-			<version>3.0.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>org.apache.maven.maven-aether-provider</artifactId>
-			<version>3.0.4</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.jcabi</groupId>
 			<artifactId>jcabi-aether</artifactId>
 			<version>0.7.17</version>

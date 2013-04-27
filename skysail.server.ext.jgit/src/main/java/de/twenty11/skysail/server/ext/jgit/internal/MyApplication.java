@@ -53,7 +53,8 @@ public class MyApplication extends SkysailApplication {
         router.attach(new RouteBuilder("/repos/{id}/listdir/", ListDirResource.class).setVisible(false));
         router.attach(new RouteBuilder("/repos/{id}/showfile/", ShowFileResource.class).setVisible(false));
         router.attach(new RouteBuilder("/repos/{id}/maven", MavenFormResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/repos/{id}/executed", ExecutedCommandResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/repos/{id}/executed", ExecutedCommandsResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/repos/{id}/executed/{timestamp}", ExecutedCommandResource.class).setVisible(false));
         // @formatter:on
     }
 
