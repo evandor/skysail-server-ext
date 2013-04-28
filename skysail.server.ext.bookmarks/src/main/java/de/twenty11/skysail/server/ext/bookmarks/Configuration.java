@@ -1,4 +1,6 @@
-package de.twenty11.skysail.server.ext.bookmarks.internal;
+package de.twenty11.skysail.server.ext.bookmarks;
+
+import javax.persistence.EntityManagerFactory;
 
 import org.restlet.Application;
 import org.restlet.Component;
@@ -13,12 +15,17 @@ public class Configuration implements ApplicationProvider {
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
     private ComponentProvider componentProvider;
     private Component component;
-    private MyApplication application;
+    private BookmarkApplication application;
+    private EntityManagerFactory emf;
 
     public void activate() {
         logger.info("Activating Configuration Component for Skysail Bookmarks Extension");
         component = componentProvider.getComponent();
-        application = new MyApplication(component.getContext());
+        application = new BookmarkApplication(component.getContext(), emf);
+    }
+
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
     }
 
     public void deactivate() {

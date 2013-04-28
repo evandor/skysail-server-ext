@@ -1,4 +1,7 @@
-Import-Package:	de.twenty11.skysail.common;version="[0.2.0, 1.0.0)",\
+Include-Resource: {maven-resources}
+Meta-Persistence: META-INF/persistence.xml
+Export-Package: de.twenty11.skysail.server.ext.bookmarks;version="0.1.0"
+Import-Package: javax.persistence;jpa="2.0";version="1.1.0",\
+ de.twenty11.skysail.common;version="[0.2.0, 1.0.0)",\
  *
 Bundle-SymbolicName: skysail.server.ext.bookmarks
-Include-Resource: {maven-resources}
