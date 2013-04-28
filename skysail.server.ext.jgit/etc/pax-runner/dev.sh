@@ -19,7 +19,7 @@ http://download.eclipse.org/rt/eclipselink/maven.repo,\
 https://maven.alfresco.com/nexus/content/groups/public/ \
 --vmOptions="\
  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
- -Dfelix.fileinstall.dir=../config,../../../target \
+ -Dfelix.fileinstall.dir=../config,../../../target,../../../../skysail.server.ext.bookmarks/target,../../../../skysail.server.ext.quartz/target,../../../../skysail.server.ext.regprox/target \
  -Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg \
  -Dfelix.fileinstall.noInitialDelay=true \
  -Dfelix.fileinstall.poll=1000 \

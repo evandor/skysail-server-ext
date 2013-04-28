@@ -2,6 +2,8 @@
 
 scan-file:bundledefs/core.setup
 scan-file:bundledefs/blueprint.setup
+scan-file:bundledefs/quartz.setup
+scan-file:bundledefs/regprox.setup
 scan-file:bundledefs/jgit.setup
 scan-file:bundledefs/db.setup
 scan-file:bundledefs/logging.setup

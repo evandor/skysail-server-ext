@@ -23,7 +23,6 @@ public class AddLocalRepositoryResource extends AddServerResource<LocalRepositor
     @Override
     public SkysailResponse<LocalRepositoryDescriptor> addEntity(LocalRepositoryDescriptor entity) {
         MyApplication app = (MyApplication) getApplication();
-
         app.getRepository().addLocalRepositoryDescriptor(entity);
         return new SuccessResponse<LocalRepositoryDescriptor>();
 
