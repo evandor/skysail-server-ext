@@ -64,7 +64,7 @@ public class MyRootResource extends ListServerResource2<Bookmark> {
 
             @Override
             public String getHref() {
-                return ((BookmarkApplication) getApplication()).getLinkTo(getReference(), AddBookmarkResource.class);
+                return ((BookmarkApplication) getApplication()).getLinkTo(getRootRef(), AddBookmarkResource.class);
             }
 
             @Override
