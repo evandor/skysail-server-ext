@@ -15,9 +15,9 @@ import de.twenty11.skysail.common.PresentableHeader;
 import de.twenty11.skysail.common.forms.Field;
 import de.twenty11.skysail.common.forms.Form;
 
-@Form(name = "BookmarkForm")
+@Form(name = "FolderForm")
 @Entity
-public class Bookmark implements Presentable {
+public class Folder implements Presentable {
 
     @Id
     @GeneratedValue
@@ -29,13 +29,11 @@ public class Bookmark implements Presentable {
     @Field
     protected String name;
 
-    public Bookmark() {
-        // TODO Auto-generated constructor stub
+    public Folder() {
     }
 
-    public Bookmark(String name, String url) {
+    public Folder(String name) {
         this.name = name;
-        this.url = url;
     }
 
     public int getPid() {
@@ -46,13 +44,10 @@ public class Bookmark implements Presentable {
         return name;
     }
 
-    @Field
-    private String url;
-
     @Override
     @JsonIgnore
     public PresentableHeader getHeader() {
-        return new PresentableHeader.Builder(name + " -> " + url).setLink(url, "_blank").build();
+        return new PresentableHeader.Builder(name).build();
     }
 
     @Override

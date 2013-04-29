@@ -26,7 +26,7 @@ public class AddBookmarkResource extends AddServerResource<Bookmark> {
     @Override
     public SkysailResponse<Bookmark> addEntity(Bookmark entity) {
         BookmarkApplication app = (BookmarkApplication) getApplication();
-        app.getRepository().addBookmark(entity);
+        app.getRepository().add(entity);
         return new SuccessResponse<Bookmark>();
     }
 
