@@ -19,8 +19,8 @@ public class BookmarkApplication extends SkysailApplication {
     private BookmarkRepository repository;
 
     /**
-     * @param staticPathTemplate
-     * @param bundleContext
+     * @param componentContext
+     * @param emf
      */
     public BookmarkApplication(Context componentContext, EntityManagerFactory emf) {
         super(componentContext == null ? null : componentContext.createChildContext());
