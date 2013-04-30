@@ -5,8 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.ext.bookmarks.repository.BookmarkRepository;
+import de.twenty11.skysail.server.ext.bookmarks.repository.FolderRepository;
 import de.twenty11.skysail.server.ext.bookmarks.resources.AddBookmarkResource;
-import de.twenty11.skysail.server.ext.bookmarks.resources.MyRootResource;
+import de.twenty11.skysail.server.ext.bookmarks.resources.AddFolderResource;
+import de.twenty11.skysail.server.ext.bookmarks.resources.BookmarksResource;
 import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
@@ -16,7 +18,8 @@ import de.twenty11.skysail.server.restlet.SkysailApplication;
  */
 public class BookmarkApplication extends SkysailApplication {
 
-    private BookmarkRepository repository;
+    private BookmarkRepository bookmarkRepository;
+    private FolderRepository folderRepository;
 
     /**
      * @param componentContext
@@ -27,21 +30,26 @@ public class BookmarkApplication extends SkysailApplication {
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("bookmarks");
-        repository = new BookmarkRepository(emf);
+        bookmarkRepository = new BookmarkRepository(emf);
+        folderRepository = new FolderRepository(emf);
 
     }
 
     protected void attach() {
         // @formatter:off
-        router.attach(new RouteBuilder("", MyRootResource.class).setVisible(false));
+        router.attach(new RouteBuilder("", BookmarksResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bookmark/", AddBookmarkResource.class).setVisible(false));
-//        router.attach(new RouteBuilder("/folder/", AddBookmarkResource.class).setText("Bookmarks Manager"));
+        router.attach(new RouteBuilder("/folder/", AddFolderResource.class).setVisible(false));
         
         // @formatter:on
     }
 
-    public BookmarkRepository getRepository() {
-        return repository;
+    public BookmarkRepository getBookmarkRepository() {
+        return bookmarkRepository;
+    }
+
+    public FolderRepository getFolderRepository() {
+        return folderRepository;
     }
 
 }

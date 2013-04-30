@@ -21,14 +21,14 @@
 //
 //public class MyRootResourceTest {
 //
-//    private MyRootResource rootResource;
+//    private BookmarksResource rootResource;
 //    private BookmarkApplication application;
 //
 //    @Before
 //    public void setUp() throws Exception {
 //        application = new BookmarkApplication(null, null);
 //        application.createInboundRoot();
-//        rootResource = new MyRootResource();
+//        rootResource = new BookmarksResource();
 //        rootResource.setApplication(application);
 //    }
 //

@@ -22,18 +22,21 @@ public class Folder implements Presentable {
     @Id
     @GeneratedValue
     @JsonIgnore
-    protected int pid;// primary key for db
+    private int pid;// primary key for db
 
     @NotNull(message = "Name is mandatory")
     @Size(min = 1, message = "name  must not be empty")
     @Field
-    protected String name;
+    private String name;
+
+    private Folder parent;
 
     public Folder() {
     }
 
-    public Folder(String name) {
+    public Folder(String name, Folder parent) {
         this.name = name;
+        this.parent = parent;
     }
 
     public int getPid() {
@@ -42,6 +45,10 @@ public class Folder implements Presentable {
 
     public String getName() {
         return name;
+    }
+
+    public Folder getParent() {
+        return parent;
     }
 
     @Override
