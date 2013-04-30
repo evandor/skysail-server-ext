@@ -1,16 +1,16 @@
 package de.twenty11.skysail.server.ext.bookmarks.resources;
 
 import org.restlet.data.Form;
+import org.restlet.representation.Representation;
+import org.restlet.resource.ClientResource;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.FormResponse;
-import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.bookmarks.BookmarkApplication;
 import de.twenty11.skysail.server.ext.bookmarks.domain.Folder;
-import de.twenty11.skysail.server.restlet.AddServerResource;
+import de.twenty11.skysail.server.restlet.AddServerResource2;
 
-public class AddFolderResource extends AddServerResource<Folder> {
+public class AddFolderResource extends AddServerResource2<Folder> {
 
     @Override
     @Get("html")
@@ -26,10 +26,17 @@ public class AddFolderResource extends AddServerResource<Folder> {
     }
 
     @Override
-    public SkysailResponse<Folder> addEntity(Folder entity) {
+    public Representation addEntity(Folder entity) {
         BookmarkApplication app = (BookmarkApplication) getApplication();
         app.getFolderRepository().add(entity);
-        return new SuccessResponse<Folder>();
+        // getResponse().redirectTemporary(new Reference(getReferrerRef().getParentRef()));
+
+        ClientResource cr = new ClientResource("riap://application");
+        cr.setChallengeResponse(getChallengeResponse());
+        Representation representation = cr.get();
+        return representation;
+        // getResponse().setLocationRef(new Reference(getReferrerRef().getParentRef()));
+        // return new SuccessResponse<Bookmark>();
     }
 
 }

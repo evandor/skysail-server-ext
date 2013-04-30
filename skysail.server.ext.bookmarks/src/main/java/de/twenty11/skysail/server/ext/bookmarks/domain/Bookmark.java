@@ -22,12 +22,17 @@ public class Bookmark implements Presentable {
     @Id
     @GeneratedValue
     @JsonIgnore
-    protected int pid;// primary key for db
+    private int pid;// primary key for db
 
     @NotNull(message = "Name is mandatory")
     @Size(min = 1, message = "name  must not be empty")
     @Field
-    protected String name;
+    private String name;
+
+    private Folder folder;
+
+    @Field
+    private String url;
 
     public Bookmark() {
         // TODO Auto-generated constructor stub
@@ -46,8 +51,9 @@ public class Bookmark implements Presentable {
         return name;
     }
 
-    @Field
-    private String url;
+    public Folder getFolder() {
+        return folder;
+    }
 
     @Override
     @JsonIgnore
