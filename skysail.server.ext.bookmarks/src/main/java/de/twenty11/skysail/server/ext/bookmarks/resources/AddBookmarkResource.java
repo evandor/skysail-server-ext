@@ -1,16 +1,17 @@
 package de.twenty11.skysail.server.ext.bookmarks.resources;
 
+import java.util.List;
+
 import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.ext.bookmarks.BookmarkApplication;
 import de.twenty11.skysail.server.ext.bookmarks.domain.Bookmark;
-import de.twenty11.skysail.server.restlet.AddServerResource;
+import de.twenty11.skysail.server.restlet.AddServerResource2;
 
-public class AddBookmarkResource extends AddServerResource<Bookmark> {
+public class AddBookmarkResource extends AddServerResource2<Bookmark> {
 
     @Override
     @Get("html")
@@ -24,10 +25,10 @@ public class AddBookmarkResource extends AddServerResource<Bookmark> {
     }
 
     @Override
-    public SkysailResponse<Bookmark> addEntity(Bookmark entity) {
+    public SkysailResponse<List<Bookmark>> addEntity(Bookmark entity) {
         BookmarkApplication app = (BookmarkApplication) getApplication();
         app.getBookmarkRepository().add(entity);
-        return new SuccessResponse<Bookmark>();
+        return new BookmarksResource(this).getEntities();
     }
 
 }
