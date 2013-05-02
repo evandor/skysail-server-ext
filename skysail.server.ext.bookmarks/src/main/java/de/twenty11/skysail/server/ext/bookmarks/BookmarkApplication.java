@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.bookmarks;
 
 import javax.persistence.EntityManagerFactory;
 
+import de.twenty11.skysail.server.ext.bookmarks.resources.BookmarksAndFoldersResource;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.ext.bookmarks.repository.BookmarkRepository;
@@ -37,10 +38,11 @@ public class BookmarkApplication extends SkysailApplication {
 
     protected void attach() {
         // @formatter:off
-        router.attach(new RouteBuilder("", BookmarksResource.class).setVisible(false));
+        router.attach(new RouteBuilder("", BookmarksAndFoldersResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bookmark/", AddBookmarkResource.class).setVisible(false));
         router.attach(new RouteBuilder("/folder/", AddFolderResource.class).setVisible(false));
-        
+        //router.attach(new RouteBuilder("/baf/", BookmarksAndFoldersResource.class).setVisible(false));
+
         // @formatter:on
     }
 

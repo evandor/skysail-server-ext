@@ -13,6 +13,7 @@
 java $JAVA_OPTS -cp .:bin/pax-runner-1.8.5.jar org.ops4j.pax.runner.Run \
 --log=DEBUG \
 --org.ops4j.pax.url.mvn.repositories=\
+http://repo1.maven.org/maven2,\
 https://oss.sonatype.org/content/groups/public,\
 https://repository.apache.org/content/groups/public/,\
 http://download.eclipse.org/rt/eclipselink/maven.repo,\

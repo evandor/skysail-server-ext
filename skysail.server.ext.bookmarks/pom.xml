@@ -35,6 +35,10 @@
 					</instructions>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+            </plugin>
 		</plugins>
 	</build>
 
@@ -80,7 +84,6 @@
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<!-- testing with pax exam - done -->
 

@@ -23,4 +23,16 @@ mvn:org.eclipse.persistence/org.eclipse.persistence.antlr/3.2.0.v201206041011
 mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.4.1
 mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.4.1
 mvn:org.eclipse.persistence/org.eclipse.persistence.jpa.jpql/2.4.1
-mvn:org.eclipse.persistence/org.eclipse.persistence.asm/3.3.1.v201206041142 
+mvn:org.eclipse.persistence/org.eclipse.persistence.asm/3.3.1.v201206041142
+
+### ------------------
+### Query DSL
+### ------------------
+
+mvn:com.mysema.querydsl/querydsl-core/3.1.0
+mvn:com.mysema.querydsl/querydsl-jpa/3.1.0
+mvn:com.google.guava/guava/13.0.1
+mvn:com.mysema.commons/mysema-commons-lang/0.2.4
+#mvn:javax.annotation/javax.annotation/1.1.0.v201105051105
+mvn:com.google.code.findbugs/annotations/2.0.1
+mvn:javax.inject/com.springsource.javax.inject/1.0.0
