@@ -6,14 +6,13 @@ import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.selfdescription.ResourceDetails;
-import de.twenty11.skysail.common.selfdescription.RestfulRoot;
-import de.twenty11.skysail.server.restlet.ListServerResource;
+import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 /**
  * Restlet Root Resource for dbViewer application.
  * 
  */
-public class OsgiMonitorRootResource extends ListServerResource<ResourceDetails> implements RestfulRoot {
+public class OsgiMonitorRootResource<T extends ResourceDetails> extends ListServerResource2<ResourceDetails> {
 
     public OsgiMonitorRootResource() {
         setAutoDescribing(false);
@@ -22,9 +21,14 @@ public class OsgiMonitorRootResource extends ListServerResource<ResourceDetails>
     }
 
     @Override
-    @Get("html|json")
-    public SkysailResponse<List<ResourceDetails>> getMethods() {
-        return getEntities(allMethods(), "skysail osgimonitor application (x.y.z-SNAPSHOT): listing all entry points");
+    @Get("html|json|csv")
+    public SkysailResponse<List<ResourceDetails>> getEntities() {
+        return getEntities("All entry points for osgimonitor");
+    }
+
+    @Override
+    protected List<ResourceDetails> getData() {
+        return allMethods();
     }
 
 }
