@@ -16,7 +16,7 @@ import de.twenty11.skysail.common.forms.IgnoreValuesProvider;
 public class TriggerDescriptor extends AbstractPresentable {
 
     public TriggerDescriptor(JobDetail jobDetail) {
-        instanceToInspect = jobDetail;
+        setInstanceToInspect(jobDetail);
     }
 
     public TriggerDescriptor() {
