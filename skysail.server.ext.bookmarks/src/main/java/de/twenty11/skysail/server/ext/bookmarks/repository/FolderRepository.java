@@ -2,7 +2,7 @@ package de.twenty11.skysail.server.ext.bookmarks.repository;
 
 import javax.persistence.EntityManagerFactory;
 
-import de.twenty11.skysail.server.SkysailRepository;
+import de.twenty11.skysail.server.core.SkysailRepository;
 import de.twenty11.skysail.server.ext.bookmarks.domain.Folder;
 
 public class FolderRepository extends SkysailRepository<Folder> {

@@ -4,7 +4,8 @@ import javax.persistence.EntityManagerFactory;
 
 import com.mysema.query.Tuple;
 import com.mysema.query.jpa.impl.JPAQuery;
-import de.twenty11.skysail.server.SkysailRepository;
+
+import de.twenty11.skysail.server.core.SkysailRepository;
 import de.twenty11.skysail.server.ext.bookmarks.domain.*;
 
 import java.util.ArrayList;
