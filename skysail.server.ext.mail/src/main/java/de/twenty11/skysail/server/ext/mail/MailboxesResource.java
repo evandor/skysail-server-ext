@@ -19,8 +19,8 @@ import org.restlet.resource.ResourceException;
 
 import com.sun.mail.pop3.POP3SSLStore;
 
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.mail.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 public class MailboxesResource extends ListServerResource2<MailboxDescriptor> {
 

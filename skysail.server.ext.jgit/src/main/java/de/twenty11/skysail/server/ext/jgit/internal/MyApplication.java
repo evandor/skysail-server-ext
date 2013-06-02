@@ -10,6 +10,7 @@ import org.restlet.routing.Router;
 import org.restlet.routing.Template;
 
 import de.twenty11.skysail.common.commands.Command;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.jgit.AddLocalRepositoryResource;
 import de.twenty11.skysail.server.ext.jgit.ExecuteMavenCommand;
 import de.twenty11.skysail.server.ext.jgit.ListDirResource;
@@ -17,7 +18,6 @@ import de.twenty11.skysail.server.ext.jgit.LocalRepositoriesResource;
 import de.twenty11.skysail.server.ext.jgit.LocalRepositoryResource;
 import de.twenty11.skysail.server.ext.jgit.MyRootResource;
 import de.twenty11.skysail.server.ext.jgit.ShowFileResource;
-import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**

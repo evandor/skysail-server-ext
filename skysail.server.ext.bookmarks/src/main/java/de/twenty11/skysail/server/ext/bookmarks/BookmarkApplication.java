@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.bookmarks;
 
 import javax.persistence.EntityManagerFactory;
 
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.bookmarks.resources.BookmarksAndFoldersResource;
 import org.restlet.Context;
 
@@ -10,7 +11,6 @@ import de.twenty11.skysail.server.ext.bookmarks.repository.FolderRepository;
 import de.twenty11.skysail.server.ext.bookmarks.resources.AddBookmarkResource;
 import de.twenty11.skysail.server.ext.bookmarks.resources.AddFolderResource;
 import de.twenty11.skysail.server.ext.bookmarks.resources.BookmarksResource;
-import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**

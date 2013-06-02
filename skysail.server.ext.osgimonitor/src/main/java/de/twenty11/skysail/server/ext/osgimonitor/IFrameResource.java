@@ -6,7 +6,7 @@ import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.restlet.SkysailServerResource2;
+import de.twenty11.skysail.server.core.restlet.SkysailServerResource2;
 
 /**
  * 

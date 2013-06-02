@@ -11,8 +11,8 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.commands.Command;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource2;
 import de.twenty11.skysail.server.ext.activiti.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.UniqueResultServerResource2;
 
 public class ProcessResource extends UniqueResultServerResource2<ProcessDescriptor> {
 

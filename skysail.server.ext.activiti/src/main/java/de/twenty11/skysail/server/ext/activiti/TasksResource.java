@@ -9,8 +9,8 @@ import org.activiti.engine.task.Task;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.activiti.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 public class TasksResource extends ListServerResource2<TaskDescriptor> {
 

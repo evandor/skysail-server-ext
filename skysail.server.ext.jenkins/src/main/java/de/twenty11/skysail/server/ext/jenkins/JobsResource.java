@@ -16,8 +16,8 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.jenkins.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 @Presentation(preferred = PresentationStyle.TABLE)
 public class JobsResource extends ListServerResource2<JobsDetails> {

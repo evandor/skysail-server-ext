@@ -11,9 +11,9 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource2;
 import de.twenty11.skysail.server.descriptors.FileDescriptor;
 import de.twenty11.skysail.server.ext.jgit.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.UniqueResultServerResource2;
 
 @Presentation(preferred = PresentationStyle.ACE_EDITOR)
 public class ShowFileResource extends UniqueResultServerResource2<FileDescriptor> {

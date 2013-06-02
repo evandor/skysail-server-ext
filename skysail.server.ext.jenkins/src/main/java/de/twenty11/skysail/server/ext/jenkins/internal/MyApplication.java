@@ -5,11 +5,11 @@ import javax.persistence.EntityManagerFactory;
 
 import org.restlet.Context;
 
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.jenkins.AddJenkinsResource;
 import de.twenty11.skysail.server.ext.jenkins.JenkinsResource;
 import de.twenty11.skysail.server.ext.jenkins.JobsResource;
 import de.twenty11.skysail.server.ext.jenkins.MyRootResource;
-import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
 

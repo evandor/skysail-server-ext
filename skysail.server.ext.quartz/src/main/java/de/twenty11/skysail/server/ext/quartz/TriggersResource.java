@@ -6,8 +6,8 @@ import java.util.List;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.quartz.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 public class TriggersResource extends ListServerResource2<TriggerDescriptor> {
 

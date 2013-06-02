@@ -31,6 +31,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.common.ext.dbviewer.ConnectionDetails;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.dbviewer.AddConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ColumnsResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
@@ -41,7 +42,6 @@ import de.twenty11.skysail.server.ext.dbviewer.DataResource;
 import de.twenty11.skysail.server.ext.dbviewer.RootResource;
 import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
-import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**

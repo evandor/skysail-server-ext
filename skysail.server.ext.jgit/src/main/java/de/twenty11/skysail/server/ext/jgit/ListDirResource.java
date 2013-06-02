@@ -9,8 +9,8 @@ import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.jgit.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 public class ListDirResource extends ListServerResource2<DirectoryDescriptor> {
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.twenty11.skysail.common.commands.Command;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 
 public class ExecutedCommandsResource extends ListServerResource2<ExecutionContext> {
 

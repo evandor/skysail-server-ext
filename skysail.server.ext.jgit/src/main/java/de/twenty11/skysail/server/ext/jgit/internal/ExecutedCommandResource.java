@@ -5,7 +5,7 @@ import java.util.Map;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.commands.Command;
-import de.twenty11.skysail.server.restlet.UniqueResultServerResource2;
+import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource2;
 
 public class ExecutedCommandResource extends UniqueResultServerResource2<String> {
 

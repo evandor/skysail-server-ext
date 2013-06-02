@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.mail.internal.MyApplication;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 public class AccountsResource extends ListServerResource2<AccountDescriptor> {
 

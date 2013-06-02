@@ -4,12 +4,12 @@ import javax.persistence.EntityManagerFactory;
 
 import org.restlet.Context;
 
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.mail.AccountResource;
 import de.twenty11.skysail.server.ext.mail.AccountsResource;
 import de.twenty11.skysail.server.ext.mail.AddAccountResource;
 import de.twenty11.skysail.server.ext.mail.MailboxesResource;
 import de.twenty11.skysail.server.ext.mail.MyRootResource;
-import de.twenty11.skysail.server.restlet.RouteBuilder;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**

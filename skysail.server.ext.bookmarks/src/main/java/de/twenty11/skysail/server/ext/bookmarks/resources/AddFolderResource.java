@@ -7,10 +7,10 @@ import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.AddServerResource2;
 import de.twenty11.skysail.server.ext.bookmarks.BookmarkApplication;
 import de.twenty11.skysail.server.ext.bookmarks.domain.Bookmark;
 import de.twenty11.skysail.server.ext.bookmarks.domain.Folder;
-import de.twenty11.skysail.server.restlet.AddServerResource2;
 
 public class AddFolderResource extends AddServerResource2<Folder> {
 

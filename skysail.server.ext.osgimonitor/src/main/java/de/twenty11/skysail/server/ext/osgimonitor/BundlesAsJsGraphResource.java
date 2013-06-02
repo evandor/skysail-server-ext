@@ -22,8 +22,8 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.graphs.EdgeProvider;
 import de.twenty11.skysail.common.graphs.NodeProvider;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.SkysailServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
-import de.twenty11.skysail.server.restlet.SkysailServerResource2;
 
 /**
  * 

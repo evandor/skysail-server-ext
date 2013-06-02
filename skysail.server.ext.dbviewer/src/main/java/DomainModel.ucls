@@ -29,7 +29,7 @@
       <operations public="true" package="true" protected="true" private="false"/>    
     </display>  
   </class>  
-  <class id="4" corner="BOTTOM_RIGHT" language="java" name="de.twenty11.skysail.server.restlet.SkysailServerResource2" 
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="de.twenty11.skysail.server.core.restlet.SkysailServerResource2" 
     project="skysail.server" 
     file="/skysail.server/src/main/java/de/twenty11/skysail/server/restlet/SkysailServerResource2.java" binary="false">    
     <position height="-1" width="-1" x="1109" y="295"/>    
