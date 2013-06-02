@@ -16,11 +16,10 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
 public class RootResource extends ListServerResource<ResourceDetails> implements RestfulRoot {
 
     public RootResource() {
-        setAutoDescribing(false);
         setName("dbviewer root resource");
         setDescription("The root resource of the dbviewer application");
     }
-    
+
     @Override
     @Get("html|json")
     public SkysailResponse<List<ResourceDetails>> getMethods() {

@@ -5,7 +5,6 @@ import java.util.List;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
-import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.bookmarks.BookmarkApplication;
 import de.twenty11.skysail.server.ext.bookmarks.domain.Bookmark;
@@ -18,7 +17,6 @@ import de.twenty11.skysail.server.restlet.ListServerResource2;
 public class BookmarksResource extends ListServerResource2<Bookmark> {
 
     public BookmarksResource() {
-        setAutoDescribing(false);
         setName("bookmarks root resource");
         setDescription("The root resource of the bookmarks application");
     }

@@ -1,14 +1,14 @@
 package de.twenty11.skysail.server.ext.bookmarks.resources;
 
-import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.bookmarks.BookmarkApplication;
-import de.twenty11.skysail.server.ext.bookmarks.domain.Bookmark;
-import de.twenty11.skysail.server.ext.bookmarks.domain.BookmarkOrFolder;
-import de.twenty11.skysail.server.restlet.ListServerResource2;
+import java.util.List;
+
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
-import java.util.List;
+import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.bookmarks.BookmarkApplication;
+import de.twenty11.skysail.server.ext.bookmarks.domain.BookmarkOrFolder;
+import de.twenty11.skysail.server.restlet.ListServerResource2;
 
 /**
  * Restlet Root Resource for dbViewer application.
@@ -17,7 +17,6 @@ import java.util.List;
 public class BookmarksAndFoldersResource extends ListServerResource2<BookmarkOrFolder> {
 
     public BookmarksAndFoldersResource() {
-        setAutoDescribing(false);
         setName("bookmarks root resource");
         setDescription("The root resource of the bookmarks application");
     }

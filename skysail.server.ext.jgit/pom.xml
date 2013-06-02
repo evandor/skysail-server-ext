@@ -58,12 +58,6 @@
 			<version>1.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.jcabi</groupId>
-			<artifactId>jcabi-aether</artifactId>
-			<version>0.7.17</version>
-		</dependency>
-
 		<!-- testing with pax exam -->
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>

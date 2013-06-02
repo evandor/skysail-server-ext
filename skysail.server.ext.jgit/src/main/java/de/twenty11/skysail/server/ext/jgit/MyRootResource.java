@@ -34,7 +34,6 @@ public class MyRootResource<T extends ResourceDetails> extends ListServerResourc
     }
 
     public MyRootResource() {
-        setAutoDescribing(false);
         setName("jgit root resource");
         setDescription("The root resource of the jgit application");
     }

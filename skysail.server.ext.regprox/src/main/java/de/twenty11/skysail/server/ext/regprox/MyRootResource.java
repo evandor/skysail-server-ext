@@ -12,16 +12,14 @@ import org.restlet.resource.ServerResource;
 public class MyRootResource extends ServerResource {
 
     public MyRootResource() {
-        // setAutoDescribing(false);
         // setName("regprox root resource");
         // setDescription("The root resource of the regprox application");
         getVariants().add(new Variant(MediaType.TEXT_HTML));
     }
-    
+
     @Get
     public String getDefaultPage() {
         return "hi";
     }
-
 
 }

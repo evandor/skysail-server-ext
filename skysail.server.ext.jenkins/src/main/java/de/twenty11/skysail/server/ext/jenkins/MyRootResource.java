@@ -16,7 +16,6 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
 public class MyRootResource extends ListServerResource<ResourceDetails> implements RestfulRoot {
 
     public MyRootResource() {
-        setAutoDescribing(false);
         setName("remote jenkins root resource");
         setDescription("The root resource of the remote jenkins application");
     }

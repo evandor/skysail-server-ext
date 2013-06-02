@@ -15,7 +15,6 @@ import de.twenty11.skysail.server.restlet.ListServerResource2;
 public class OsgiMonitorRootResource<T extends ResourceDetails> extends ListServerResource2<ResourceDetails> {
 
     public OsgiMonitorRootResource() {
-        setAutoDescribing(false);
         setName("osgimonitor root resource");
         setDescription("The root resource of the osgimonitor application");
     }
