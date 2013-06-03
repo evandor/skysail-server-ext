@@ -15,7 +15,7 @@
  * 
  */
 
-package de.twenty11.skysail.server.ext.osgimonitor.internal;
+package de.twenty11.skysail.server.ext.osgimonitor;
 
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;

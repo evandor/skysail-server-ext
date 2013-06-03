@@ -27,7 +27,7 @@ import org.restlet.security.MapVerifier;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 
 public class BaseTests {
 

@@ -6,7 +6,6 @@ import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.ext.osgimonitor.HeaderDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
 /**

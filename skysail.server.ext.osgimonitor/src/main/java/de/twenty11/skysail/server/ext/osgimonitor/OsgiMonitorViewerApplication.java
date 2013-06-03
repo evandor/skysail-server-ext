@@ -15,20 +15,12 @@
  * 
  */
 
-package de.twenty11.skysail.server.ext.osgimonitor.internal;
+package de.twenty11.skysail.server.ext.osgimonitor;
 
 import org.osgi.framework.BundleContext;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
-import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsD3GraphResource;
-import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
-import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
-import de.twenty11.skysail.server.ext.osgimonitor.HeaderResource;
-import de.twenty11.skysail.server.ext.osgimonitor.IFrameResource;
-import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorRootResource;
-import de.twenty11.skysail.server.ext.osgimonitor.ServicesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**

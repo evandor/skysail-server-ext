@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor.internal.test;
+package de.twenty11.skysail.server.ext.osgimonitor;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -23,8 +23,8 @@ import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 import org.restlet.Context;
 
-import de.twenty11.skysail.server.ext.osgimonitor.internal.Configuration;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.Configuration;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
 import de.twenty11.skysail.server.services.ComponentProvider;
 

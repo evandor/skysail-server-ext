@@ -17,7 +17,6 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulServices;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**

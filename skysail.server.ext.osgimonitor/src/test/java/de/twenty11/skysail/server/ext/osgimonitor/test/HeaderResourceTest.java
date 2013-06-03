@@ -6,7 +6,8 @@ import de.twenty11.skysail.common.ext.osgimonitor.HeaderDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.HeaderResource;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Before;
 import org.junit.Ignore;

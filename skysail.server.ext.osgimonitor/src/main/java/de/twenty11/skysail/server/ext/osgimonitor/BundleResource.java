@@ -21,7 +21,6 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.StartCommand;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.StopCommand;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.UpdateCommand;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
 /**

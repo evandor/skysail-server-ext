@@ -12,7 +12,7 @@ import org.osgi.framework.BundleContext;
 import org.restlet.Request;
 
 import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
-import de.twenty11.skysail.server.ext.osgimonitor.internal.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 
 public class BundlesAsGraphResourceTest extends BaseTests {
     
