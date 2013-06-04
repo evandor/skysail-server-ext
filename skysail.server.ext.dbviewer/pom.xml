@@ -25,8 +25,7 @@
 	</scm>
 
 	<properties>
-		<skysail.common.version>[0.3.16, 1.0)</skysail.common.version>
-		<skysail.server.version>[0.2.10, 1.0)</skysail.server.version>
+		<skysail.server.version>[0.2.13-SNAPSHOT, 1.0)</skysail.server.version>
 	</properties>
 
 	<build>
@@ -195,22 +194,6 @@
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
 			<version>${skysail.server.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>skysail.server</artifactId>
-			<version>${skysail.server.version}</version>
-			<scope>test</scope>
-			<type>test-jar</type>
-		</dependency>
-
-		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>skysail.common</artifactId>
-			<version>${skysail.common.version}</version>
-			<scope>test</scope>
-			<type>test-jar</type>
 		</dependency>
 
 		<dependency>
