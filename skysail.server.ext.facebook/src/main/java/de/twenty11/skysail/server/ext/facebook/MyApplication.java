@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.facebook.internal;
+package de.twenty11.skysail.server.ext.facebook;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -6,21 +6,15 @@ import javax.persistence.EntityManagerFactory;
 import org.restlet.Context;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.ext.facebook.MyRootResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
- * @author carsten
+ * The restlet application defined in this bundle.
  * 
  */
 public class MyApplication extends SkysailApplication {
 
     private EntityManagerFactory emf;
-
-    // non-arg constructor needed for scr
-    public MyApplication() {
-        this(null, null);
-    }
 
     /**
      * @param staticPathTemplate
