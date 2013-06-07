@@ -31,7 +31,7 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
         super(componentContext == null ? null : componentContext.createChildContext());
         setDescription("RESTful skysail.server.ext.facebook bundle");
         setOwner("twentyeleven");
-        setName("skysail.server.ext.facebook");
+        setName("facebook");
         this.emf = emf;
     }
 
