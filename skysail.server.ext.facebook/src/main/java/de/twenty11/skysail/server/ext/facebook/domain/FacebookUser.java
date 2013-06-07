@@ -9,6 +9,14 @@ import org.codehaus.jackson.JsonNode;
 import de.twenty11.skysail.server.structures.composite.Component;
 import de.twenty11.skysail.server.structures.composite.Composite;
 
+/**
+ * A facebook user in the context of the skysail.server.ext.facebook bundle is essentially a container for some
+ * high-level attributes (like name and id) and a list of other, related components (playing the role of "friends",
+ * "posts" and so on).
+ * 
+ * The provided constructor creates a new instance from a json representation
+ * 
+ */
 public class FacebookUser implements Composite {
 
     private String name;
@@ -24,8 +32,9 @@ public class FacebookUser implements Composite {
         }
     }
 
+    // TODO
     private void checkForErrors(JsonNode jsonRootNode) {
-        JsonNode jobs = jsonRootNode.path("errors");
+        JsonNode errors = jsonRootNode.path("errors");
         // Iterator<JsonNode> ite = jobs.getElements();
         // while (ite.hasNext()) {
         // JsonNode next = ite.next();

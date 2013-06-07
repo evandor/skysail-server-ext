@@ -8,13 +8,12 @@ import org.restlet.Context;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.facebook.MyRootResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
-import de.twenty11.skysail.server.services.ApplicationProvider;
 
 /**
  * @author carsten
  * 
  */
-public class MyApplication extends SkysailApplication implements ApplicationProvider {
+public class MyApplication extends SkysailApplication {
 
     private EntityManagerFactory emf;
 

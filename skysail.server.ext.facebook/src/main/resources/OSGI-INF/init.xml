@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
-	name="de.twenty11.skysail.server.ext.facebook.internal.Configuration">
+	name="de.twenty11.skysail.server.ext.facebook.BundleInitializer">
 
 	<implementation
-		class="de.twenty11.skysail.server.ext.facebook.internal.Configuration" />
+		class="de.twenty11.skysail.server.ext.facebook.BundleInitializer" />
 
 	<service>
 		<provide interface="de.twenty11.skysail.server.services.ApplicationProvider" />

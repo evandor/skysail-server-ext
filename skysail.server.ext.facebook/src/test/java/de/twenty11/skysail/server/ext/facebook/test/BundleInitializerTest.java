@@ -11,16 +11,16 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 
-import de.twenty11.skysail.server.ext.facebook.internal.Configuration;
+import de.twenty11.skysail.server.ext.facebook.BundleInitializer;
 import de.twenty11.skysail.server.services.ComponentProvider;
 
-public class ConfigurationTest {
+public class BundleInitializerTest {
 
     private TestConfiguration configuration;
     private ComponentContext componentContext;
     private ComponentProvider componentProvider = Mockito.mock(ComponentProvider.class);
 
-    private class TestConfiguration extends Configuration {
+    private class TestConfiguration extends BundleInitializer {
         @Override
         protected void activate(ComponentContext componentContext) throws ConfigurationException {
             super.activate(componentContext);

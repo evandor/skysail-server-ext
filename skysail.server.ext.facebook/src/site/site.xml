@@ -15,11 +15,7 @@
 
     <menu name="skysail.server">
       <item name="Introduction" href="index.html"/>
-      <item name="Links" href="links.html"/>      
-      <item name="Changelog" href="changelog.html"/>
-      <item name="Skysail Server Developer Setup" href="setup.html"/>
-      
-      
+      <item name="Domain" href="domain.html"/>      
     </menu>
 
     <menu ref="reports"/>
