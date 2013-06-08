@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.facebook;
+package de.twenty11.skysail.server.ext.facebook.resources;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import de.twenty11.skysail.server.core.restlet.ListServerResource2;
  * Restlet Root Resource for dbViewer application.
  * 
  */
-public class MyRootResource extends ListServerResource2<ResourceDetails> {
+public class FacebookRootResource extends ListServerResource2<ResourceDetails> {
 
-    public MyRootResource() {
+    public FacebookRootResource() {
         setName("osgimonitor root resource");
         setDescription("The root resource of the osgimonitor application");
     }
@@ -22,7 +22,7 @@ public class MyRootResource extends ListServerResource2<ResourceDetails> {
     @Override
     @Get("html|json|csv")
     public SkysailResponse<List<ResourceDetails>> getEntities() {
-        return getEntities("All entry points for osgimonitor");
+        return getEntities("All entry points for facebook");
     }
 
     @Override

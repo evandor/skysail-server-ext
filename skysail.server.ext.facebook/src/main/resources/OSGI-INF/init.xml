@@ -17,6 +17,14 @@
  		policy="static" 
  	/>
  	
+    <reference 
+        bind="setServerConfiguration" 
+        cardinality="1..1" 
+        interface="de.twenty11.skysail.server.config.ServerConfiguration" 
+        name="ServerConfiguration" 
+        policy="static"/>
+ 	
+ 	
  	<reference bind="setEntityManager" cardinality="1..1" 
 		interface="javax.persistence.EntityManagerFactory" name="EntityManagerProvider" 
 		policy="static"/>	

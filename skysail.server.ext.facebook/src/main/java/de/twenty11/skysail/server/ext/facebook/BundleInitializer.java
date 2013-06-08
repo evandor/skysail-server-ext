@@ -9,6 +9,7 @@ import org.restlet.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.services.ApplicationProvider;
 import de.twenty11.skysail.server.services.ComponentProvider;
 
@@ -24,17 +25,18 @@ public class BundleInitializer implements ApplicationProvider {
     private static Logger logger = LoggerFactory.getLogger(BundleInitializer.class);
     private ComponentProvider componentProvider;
     private Component component;
-    private MyApplication application;
+    private FacebookApplication application;
     private EntityManagerFactory emf;
+    private ServerConfiguration config;
 
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
-        logger.info("Activating BundleInitializer Component for Skysail Facebook Extension");
+        logger.info("Creating Application for Skysail Facebook Extension");
         component = componentProvider.getComponent();
-        application = new MyApplication(component.getContext(), emf);
+        application = new FacebookApplication(component.getContext(), emf);
     }
 
     protected void deactivate(ComponentContext componentContext) {
-        logger.info("Deactivating BundleInitializer Component for Skysail Faceboook Extension");
+        logger.info("Deactivating Application for Skysail Faceboook Extension");
         component.getDefaultHost().detach(application);
         application = null;
     }
@@ -50,6 +52,10 @@ public class BundleInitializer implements ApplicationProvider {
 
     public synchronized void setEntityManager(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+
+    public void setServerConfiguration(ServerConfiguration config) {
+        this.config = config;
     }
 
 }

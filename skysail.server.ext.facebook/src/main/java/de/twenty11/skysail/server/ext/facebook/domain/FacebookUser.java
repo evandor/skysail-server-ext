@@ -2,10 +2,15 @@ package de.twenty11.skysail.server.ext.facebook.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
+import de.twenty11.skysail.common.Presentable;
+import de.twenty11.skysail.common.PresentableHeader;
 import de.twenty11.skysail.server.structures.composite.Component;
 import de.twenty11.skysail.server.structures.composite.Composite;
 
@@ -17,7 +22,7 @@ import de.twenty11.skysail.server.structures.composite.Composite;
  * The provided constructor creates a new instance from a json representation
  * 
  */
-public class FacebookUser implements Composite {
+public class FacebookUser implements Composite, Presentable {
 
     private String name;
 
@@ -27,9 +32,8 @@ public class FacebookUser implements Composite {
 
     public FacebookUser(JsonNode jsonRootNode) {
         checkForErrors(jsonRootNode);
-        if (jsonRootNode.get("id") != null) {
-            this.id = jsonRootNode.get("id").asText();
-        }
+        this.id = getFromJson(jsonRootNode, "id");
+        this.name = getFromJson(jsonRootNode, "name");
     }
 
     // TODO
@@ -72,4 +76,27 @@ public class FacebookUser implements Composite {
     public String toString() {
         return "ID '" + this.id + "'";
     }
+
+    @Override
+    @JsonIgnore
+    public PresentableHeader getHeader() {
+        return new PresentableHeader.Builder("Meheader").build();
+    }
+
+    @Override
+    @JsonIgnore
+    public Map<String, Object> getContent() {
+        Map<String, Object> results = new HashMap<String, Object>();
+        results.put("id", id);
+        results.put("name", name);
+        return results;
+    }
+
+    private String getFromJson(JsonNode jsonRootNode, String attribute) {
+        if (jsonRootNode.get(attribute) != null) {
+            return jsonRootNode.get(attribute).asText();
+        }
+        return null;
+    }
+
 }
