@@ -11,6 +11,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource2;
+import de.twenty11.skysail.server.ext.facebook.FacebookApplication;
 import de.twenty11.skysail.server.ext.facebook.domain.FacebookUser;
 import de.twenty11.skysail.server.ext.facebook.util.LinkUtils;
 
@@ -64,7 +65,15 @@ public class MeResource extends UniqueResultServerResource2<FacebookUser> {
     private void getTokenInCaseOfLoginRequest() {
         Parameter code = getRequest().getResourceRef().getQueryAsForm().getFirst("code");
         if (code != null) {
-            token = LinkUtils.getFacebookAccessToken(code.getValue());
+            FacebookApplication facebookApp = (FacebookApplication) getApplication();
+            String appSecret = facebookApp.getConfigForKey("facebookAppSecret");
+            token = LinkUtils.getFacebookAccessToken(code.getValue(), appSecret);
+            if (token != null) {
+                String[] split = token.split("=");
+                if (split.length == 1 && split[0].equals("access_token")) {
+                    facebookApp.setAccessToken(getRequest().getChallengeResponse().getIdentifier(), split[1]);
+                }
+            }
         }
     }
 

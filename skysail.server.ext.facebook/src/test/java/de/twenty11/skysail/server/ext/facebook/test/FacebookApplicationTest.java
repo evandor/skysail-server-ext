@@ -11,16 +11,16 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 
-import de.twenty11.skysail.server.ext.facebook.BundleInitializer;
+import de.twenty11.skysail.server.ext.facebook.FacebookApplication;
 import de.twenty11.skysail.server.services.ComponentProvider;
 
-public class BundleInitializerTest {
+public class FacebookApplicationTest {
 
-    private TestConfiguration configuration;
+    private TestFacebookApplication configuration;
     private ComponentContext componentContext;
     private ComponentProvider componentProvider = Mockito.mock(ComponentProvider.class);
 
-    private class TestConfiguration extends BundleInitializer {
+    private class TestFacebookApplication extends FacebookApplication {
         @Override
         protected void activate(ComponentContext componentContext) throws ConfigurationException {
             super.activate(componentContext);
@@ -34,11 +34,10 @@ public class BundleInitializerTest {
 
     @Before
     public void setUp() {
-        configuration = new TestConfiguration();
+        configuration = new TestFacebookApplication();
         componentContext = Mockito.mock(ComponentContext.class);
         Component component = Mockito.mock(Component.class);
         Mockito.when(componentProvider.getComponent()).thenReturn(component);
-        configuration.setComponentProvider(componentProvider);
     }
 
     @Test

@@ -16,24 +16,19 @@ public class LinkUtils {
         return loginLink + "?client_id=" + facebookAppId + "&redirect_uri=" + redirectUrl;
     }
 
-    public static String getFacebookAccessToken(String fb_code) {
+    public static String getFacebookAccessToken(String fb_code, String appSecret) {
         // @formatter:off
         String getAccessTokenLink = accessTokenLink 
                 + "?client_id=" + facebookAppId 
                 + "&redirect_uri=" + redirectUrl
-                + "&client_secret=" + getAppSecret() 
+                + "&client_secret=" + appSecret 
                 + "&code=" + fb_code;
         // @formatter:on
         try {
-            new HttpUtils().get(getAccessTokenLink);
+            return new HttpUtils().get(getAccessTokenLink);
         } catch (Exception e) {
             logger.warn("got exception '{}' trying to access '{}'", e.getMessage(), getAccessTokenLink);
             return null;
         }
-        return null;
-    }
-
-    private static String getAppSecret() {
-        return "1";
     }
 }
