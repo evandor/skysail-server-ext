@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -6,6 +6,7 @@ import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.ext.osgimonitor.HeaderDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
 /**

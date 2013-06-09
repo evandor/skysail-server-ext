@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor.test;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -11,14 +11,14 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.restlet.Request;
 
-import de.twenty11.skysail.server.ext.osgimonitor.BundlesAsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
 
 public class BundlesAsGraphResourceTest extends BaseTests {
-    
+
     private BundlesAsGraphResource resource;
 
-	@Before
+    @Before
     public void setUp() throws Exception {
         OsgiMonitorViewerApplication spy = setUpRestletApplication();
         BundleContext context = mock(BundleContext.class);

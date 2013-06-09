@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +20,7 @@ import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
 import de.twenty11.skysail.common.graphs.Graph;
 import de.twenty11.skysail.common.graphs.NodeProvider;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**

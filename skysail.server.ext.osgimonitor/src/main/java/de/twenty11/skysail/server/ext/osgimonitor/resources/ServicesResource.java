@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +17,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.ext.osgimonitor.RestfulServices;
 import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**

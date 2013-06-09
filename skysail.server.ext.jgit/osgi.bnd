@@ -10,6 +10,7 @@ Import-Package: javax.persistence;jpa="2.0";version="1.1.0",\
  de.twenty11.skysail.common.selfdescription,\
  de.twenty11.skysail.server.directory,\
  de.twenty11.skysail.server.restlet,\
+ de.twenty11.skysail.server.core.restlet,\
  de.twenty11.skysail.server.services,\
  javax.validation.constraints,\
  org.apache.commons.lang,\

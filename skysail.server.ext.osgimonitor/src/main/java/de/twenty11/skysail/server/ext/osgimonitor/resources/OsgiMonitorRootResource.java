@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import java.util.List;
 

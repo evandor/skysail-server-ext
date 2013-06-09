@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import java.util.Arrays;
 
@@ -18,6 +18,7 @@ import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundle;
 import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.StartCommand;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.StopCommand;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.UpdateCommand;

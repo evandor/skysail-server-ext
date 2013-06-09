@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor.test;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -20,14 +20,14 @@ import org.restlet.Request;
 import org.restlet.representation.Representation;
 
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
-import de.twenty11.skysail.server.ext.osgimonitor.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
 
 public class BundlesResourceTest extends BaseTests {
-    
+
     private BundlesResource resource;
 
-	@Before
+    @Before
     public void setUp() throws Exception {
         OsgiMonitorViewerApplication spy = setUpRestletApplication();
         BundleContext context = mock(BundleContext.class);
@@ -56,14 +56,14 @@ public class BundlesResourceTest extends BaseTests {
         assertThat(bundles.size(), is(equalTo(1)));
         assertThat(bundles.get(0).getVersion(), is(equalTo("1.2.3.qualifier")));
         assertThat(bundles.get(0).getState(), is(equalTo("Active")));
-       
+
     }
 
     @Test
     @Ignore
     public void gives_error_message_for_post_when_location_doesnt_start_with_prefix() throws Exception {
-    	Representation answer = resource.install("wrongLocation");
-    	assertThat(answer.getText(), is(equalTo("location didn't start with 'prefix'")));
+        Representation answer = resource.install("wrongLocation");
+        assertThat(answer.getText(), is(equalTo("location didn't start with 'prefix'")));
     }
 
 }

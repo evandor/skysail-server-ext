@@ -1,4 +1,4 @@
-package de.twenty11.skysail.server.ext.osgimonitor.test;
+package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -7,12 +7,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import de.twenty11.skysail.common.commands.Command;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -27,26 +24,26 @@ import org.restlet.representation.Representation;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
 import de.twenty11.skysail.common.responses.SkysailResponse;
-import de.twenty11.skysail.server.ext.osgimonitor.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
 
 public class BundleResourceTest extends BaseTests {
-    
+
     private BundleResource bundleResource;
     private Bundle bundle;
 
-	@Before
+    @Before
     public void setUp() throws Exception {
-        
+
         OsgiMonitorViewerApplication spy = setUpRestletApplication();
         BundleContext bundleContext = mock(BundleContext.class);
         bundle = mock(Bundle.class);
         when(bundle.getBundleId()).thenReturn(99l);
         when(bundle.getSymbolicName()).thenReturn("symbolic");
         when(bundle.getLastModified()).thenReturn(111l);
-		when(bundleContext.getBundle(99l)).thenReturn(bundle);
+        when(bundleContext.getBundle(99l)).thenReturn(bundle);
         when(bundle.getVersion()).thenReturn(new Version("1.0.0"));
-		when(spy.getBundleContext()).thenReturn(bundleContext);
+        when(spy.getBundleContext()).thenReturn(bundleContext);
 
         Context context = mock(Context.class);
         when(context.getAttributes()).thenReturn(new ConcurrentHashMap<String, Object>());
@@ -55,18 +52,18 @@ public class BundleResourceTest extends BaseTests {
         Request request = mock(Request.class);
         ConcurrentMap<String, Object> attributes = new ConcurrentHashMap<String, Object>();
         attributes.putIfAbsent("bundleId", "99");
-		when(request.getAttributes()).thenReturn(attributes);
-		bundleResource.init(context, request, null);
+        when(request.getAttributes()).thenReturn(attributes);
+        bundleResource.init(context, request, null);
     }
-    
+
     @Test
     public void getBundle_returns_bundleDetails_for_bundleId_from_request() throws Exception {
-    	SkysailResponse<BundleDetails> bundle = bundleResource.getBundle();
-    	BundleDescriptor details = bundle.getData();
-    	assertThat(details.getBundleId(), is(equalTo(99l)));
+        SkysailResponse<BundleDetails> bundle = bundleResource.getBundle();
+        BundleDescriptor details = bundle.getData();
+        assertThat(details.getBundleId(), is(equalTo(99l)));
     }
-    
-    @Test 
+
+    @Test
     @Ignore
     // TODO
     public void canIssue_GET_request() throws Exception {
@@ -77,8 +74,8 @@ public class BundleResourceTest extends BaseTests {
         SkysailResponse<BundleDetails> skysailResponse = mapper.readValue(entity.getText(),
                 new TypeReference<SkysailResponse<BundleDetails>>() {
                 });
-        //assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
-       
+        // assertThat(skysailResponse.getMessage(), skysailResponse.getSuccess(), is(true));
+
     }
 
     @Test
