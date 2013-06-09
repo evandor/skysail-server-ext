@@ -13,7 +13,6 @@ import org.restlet.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.facebook.resources.FacebookRootResource;
 import de.twenty11.skysail.server.ext.facebook.resources.MeResource;
@@ -27,7 +26,6 @@ import de.twenty11.skysail.server.services.ApplicationProvider;
 public class FacebookApplication extends SkysailApplication implements ApplicationProvider {
 
     private EntityManagerFactory emf;
-    private ServerConfiguration config;
     private Map<String, String> facebookLogins = new HashMap<String, String>();
 
     private static Logger logger = LoggerFactory.getLogger(FacebookApplication.class);
@@ -83,16 +81,16 @@ public class FacebookApplication extends SkysailApplication implements Applicati
         this.emf = emf;
     }
 
-    public void setServerConfiguration(ServerConfiguration config) {
-        this.config = config;
+    public void setAccessToken(String identifier, String token) {
+        facebookLogins.put(identifier, token);
     }
 
-    public String getConfigForKey(String key) {
-        return this.config.getConfigForKey(key);
+    public String getAccessToken(String identifier) {
+        return facebookLogins.get(identifier);
     }
 
-    public void setAccessToken(String identifier, String string) {
-        facebookLogins.put(identifier, string);
+    public void logoutUser(String currentUser) {
+        facebookLogins.remove(currentUser);
     }
 
 }

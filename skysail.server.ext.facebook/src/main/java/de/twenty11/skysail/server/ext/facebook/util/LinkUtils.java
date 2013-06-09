@@ -16,7 +16,7 @@ public class LinkUtils {
         return loginLink + "?client_id=" + facebookAppId + "&redirect_uri=" + redirectUrl;
     }
 
-    public static String getFacebookAccessToken(String fb_code, String appSecret) {
+    public static String queryForFacebookAccessToken(String fb_code, String appSecret) {
         // @formatter:off
         String getAccessTokenLink = accessTokenLink 
                 + "?client_id=" + facebookAppId 

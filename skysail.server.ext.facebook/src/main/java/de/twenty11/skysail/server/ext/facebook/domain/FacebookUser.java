@@ -3,6 +3,7 @@ package de.twenty11.skysail.server.ext.facebook.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,16 +25,24 @@ import de.twenty11.skysail.server.structures.composite.Composite;
  */
 public class FacebookUser implements Composite, Presentable {
 
-    private String name;
-
-    private String id;
+    private Map<String, Object> attributes = new HashMap<String, Object>();
 
     private List<Component> components = new ArrayList<Component>();
 
     public FacebookUser(JsonNode jsonRootNode) {
         checkForErrors(jsonRootNode);
-        this.id = getFromJson(jsonRootNode, "id");
-        this.name = getFromJson(jsonRootNode, "name");
+        // this.id = getFromJson(jsonRootNode, "id");
+        // this.name = getFromJson(jsonRootNode, "name");
+        // this.firstName = getFromJson(jsonRootNode, "first_name");
+        addAttributes(jsonRootNode);
+    }
+
+    private void addAttributes(JsonNode jsonRootNode) {
+        Iterator<String> fieldNames = jsonRootNode.getFieldNames();
+        while (fieldNames.hasNext()) {
+            String key = fieldNames.next();
+            attributes.put(key, jsonRootNode.get(key).asText());
+        }
     }
 
     // TODO
@@ -69,12 +78,12 @@ public class FacebookUser implements Composite, Presentable {
     }
 
     public String getId() {
-        return id;
+        return attributes.get("id") == null ? "" : attributes.get("id").toString();
     }
 
     @Override
     public String toString() {
-        return "ID '" + this.id + "'";
+        return "ID '" + getId() + "'";
     }
 
     @Override
@@ -86,17 +95,7 @@ public class FacebookUser implements Composite, Presentable {
     @Override
     @JsonIgnore
     public Map<String, Object> getContent() {
-        Map<String, Object> results = new HashMap<String, Object>();
-        results.put("id", id);
-        results.put("name", name);
-        return results;
-    }
-
-    private String getFromJson(JsonNode jsonRootNode, String attribute) {
-        if (jsonRootNode.get(attribute) != null) {
-            return jsonRootNode.get(attribute).asText();
-        }
-        return null;
+        return attributes;
     }
 
 }
