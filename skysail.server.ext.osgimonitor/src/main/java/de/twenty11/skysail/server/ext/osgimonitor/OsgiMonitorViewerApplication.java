@@ -17,9 +17,6 @@
 
 package de.twenty11.skysail.server.ext.osgimonitor;
 
-import org.osgi.framework.BundleContext;
-import org.restlet.Context;
-
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesAsD3GraphResource;
@@ -30,32 +27,20 @@ import de.twenty11.skysail.server.ext.osgimonitor.resources.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.OsgiMonitorRootResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServicesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
+import de.twenty11.skysail.server.services.ApplicationProvider;
 
 /**
  * @author carsten
  * 
  */
-public class OsgiMonitorViewerApplication extends SkysailApplication {
+public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider {
 
     // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication() {
-        this(null, null);
-    }
-
-    public OsgiMonitorViewerApplication(Context componentContext) {
-        this(null, componentContext);
-    }
-
-    /**
-     * @param staticPathTemplate
-     * @param bundleContext
-     */
-    public OsgiMonitorViewerApplication(BundleContext bundleContext, Context componentContext) {
-        super(componentContext == null ? null : componentContext.createChildContext());
+        super(null, null);
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setName("osgimonitor");
-        setBundleContext(bundleContext);
     }
 
     protected void attach() {

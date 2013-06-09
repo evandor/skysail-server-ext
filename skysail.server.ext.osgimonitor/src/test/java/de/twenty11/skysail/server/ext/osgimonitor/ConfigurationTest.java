@@ -23,8 +23,6 @@ import org.osgi.service.component.ComponentContext;
 import org.restlet.Component;
 import org.restlet.Context;
 
-import de.twenty11.skysail.server.ext.osgimonitor.Configuration;
-import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
 import de.twenty11.skysail.server.services.ComponentProvider;
 
@@ -47,23 +45,24 @@ public class ConfigurationTest {
     private TestConfiguration testConfiguration = new TestConfiguration();
     private Component component = new Component();
 
-    private class TestConfiguration extends Configuration {
+    private class TestConfiguration extends OsgiMonitorViewerApplication {
         @Override
         protected void activate(ComponentContext componentContext) throws ConfigurationException {
             super.activate(componentContext);
         }
+
         @Override
         protected void deactivate(ComponentContext componentContext) {
-        	super.deactivate(componentContext);
+            super.deactivate(componentContext);
         }
     }
 
     @Before
     public void createConfiguration() throws Exception {
-		OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication(bundleContext, context);
+        OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication();
 
-        Mockito.when(bundleContext.registerService(anyString(), anyObject(), (Dictionary<?, ?>) isNull()))
-                .thenReturn(serviceRegistration);
+        Mockito.when(bundleContext.registerService(anyString(), anyObject(), (Dictionary<?, ?>) isNull())).thenReturn(
+                serviceRegistration);
         Mockito.when(componentContext.getBundleContext()).thenReturn(bundleContext);
         Mockito.when(componentProvider.getComponent()).thenReturn(component);
         Mockito.when(applicationProvider.getApplication()).thenReturn(application);
@@ -71,7 +70,6 @@ public class ConfigurationTest {
 
     @Test
     public void can_activate_component() throws Exception {
-        testConfiguration.setComponentProvider(componentProvider);
         testConfiguration.activate(componentContext);
         // assertThat(testConfiguration.getApplication().getName(), is(equalTo("osgimonitor")));
     }
@@ -79,7 +77,6 @@ public class ConfigurationTest {
     @Test
     @Ignore
     public void can_deactivate_component() throws Exception {
-        testConfiguration.setComponentProvider(componentProvider);
         testConfiguration.activate(componentContext);
         testConfiguration.deactivate(componentContext);
         // assertThat(testConfiguration.getApplication(), is(nullValue()));
@@ -88,7 +85,6 @@ public class ConfigurationTest {
     @Test
     @Ignore
     public void can_deal_with_new_application() throws Exception {
-        testConfiguration.setComponentProvider(componentProvider);
         testConfiguration.activate(componentContext);
         // testConfiguration.setApplicationProvider(applicationProvider);
         assertThat(component.getDefaultHost().getRoutes().size(), is(equalTo(1)));
@@ -97,7 +93,6 @@ public class ConfigurationTest {
     @Test
     @Ignore
     public void can_remove_added_application() throws Exception {
-        testConfiguration.setComponentProvider(componentProvider);
         testConfiguration.activate(componentContext);
         // testConfiguration.setApplicationProvider(applicationProvider);
         // testConfiguration.unsetApplicationProvider(applicationProvider);

@@ -6,9 +6,6 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.component.ComponentContext;
-import org.restlet.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,29 +34,12 @@ public class FacebookApplication extends SkysailApplication implements Applicati
         setName("facebook");
     }
 
-    protected void activate(ComponentContext componentContext) throws ConfigurationException {
-        logger.info("Activating Application for Skysail Facebook Extension");
-        // component = componentProvider.getComponent();
-        // application = new FacebookApplication(component.getContext(), emf);
-    }
-
-    protected void deactivate(ComponentContext componentContext) {
-        logger.info("Deactivating Application for Skysail Facebook Extension");
-        // component.getDefaultHost().detach(application);
-        // application = null;
-    }
-
     protected void attach() {
         // @formatter:off
         router.attach(new RouteBuilder("", FacebookRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/me", MeResource.class).setText("Me").setVisible(true));
         router.attach(new RouteBuilder("/me/friends", FriendsResource.class).setVisible(false));
         // @formatter:on
-    }
-
-    @Override
-    public Application getApplication() {
-        return this;
     }
 
     public EntityManager getEntityManager() {

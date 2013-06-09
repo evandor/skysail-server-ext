@@ -36,14 +36,13 @@ public class BaseTests {
     protected ObjectMapper mapper = new ObjectMapper();
 
     private ComponentContext componentContextMock = mock(ComponentContext.class);
-    
-    protected OsgiMonitorViewerApplication setUpRestletApplication()
-            throws ClassNotFoundException {
-    	
+
+    protected OsgiMonitorViewerApplication setUpRestletApplication() throws ClassNotFoundException {
+
         MapVerifier secretVerifier = new MapVerifier();
         secretVerifier.getLocalSecrets().put("testadmin", "testpassword".toCharArray());
         // OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContextMock, secretVerifier);
-        osgiMonitorViewerApplication = new OsgiMonitorViewerApplication(null);
+        osgiMonitorViewerApplication = new OsgiMonitorViewerApplication();
         osgiMonitorViewerApplication.setVerifier(secretVerifier);
 
         OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
@@ -52,7 +51,6 @@ public class BaseTests {
         // addMappings();
         return spy;
     }
-
 
     // private void addMappings() throws ClassNotFoundException {
     // Map<String, String> urlMapping = new OsgiMonitorUrlMapper().provideUrlMapping();
@@ -121,7 +119,7 @@ public class BaseTests {
     protected void assertDefaults(org.restlet.Response response) {
         assertEquals(200, response.getStatus().getCode());
         assertThat(response.isEntityAvailable(), is(true));
-        //assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
+        // assertThat(response.getEntity().getMediaType(), is(MediaType.APPLICATION_JSON));
     }
 
 }
