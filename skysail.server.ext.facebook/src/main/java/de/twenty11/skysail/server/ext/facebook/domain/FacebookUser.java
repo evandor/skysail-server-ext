@@ -29,12 +29,10 @@ public class FacebookUser implements Composite, Presentable {
 
     private List<Component> components = new ArrayList<Component>();
 
-    public FacebookUser(JsonNode jsonRootNode) {
+    public FacebookUser(JsonNode jsonRootNode, String token) {
         checkForErrors(jsonRootNode);
-        // this.id = getFromJson(jsonRootNode, "id");
-        // this.name = getFromJson(jsonRootNode, "name");
-        // this.firstName = getFromJson(jsonRootNode, "first_name");
         addAttributes(jsonRootNode);
+        attributes.put("[token]", token);
     }
 
     private void addAttributes(JsonNode jsonRootNode) {
@@ -48,13 +46,6 @@ public class FacebookUser implements Composite, Presentable {
     // TODO
     private void checkForErrors(JsonNode jsonRootNode) {
         JsonNode errors = jsonRootNode.path("errors");
-        // Iterator<JsonNode> ite = jobs.getElements();
-        // while (ite.hasNext()) {
-        // JsonNode next = ite.next();
-        // results.add(new JobsDetails(next.path("name").getTextValue(), next.path("url").getTextValue(), next
-        // .path("color").getTextValue()));
-        // }
-        //
     }
 
     @Override
@@ -89,7 +80,7 @@ public class FacebookUser implements Composite, Presentable {
     @Override
     @JsonIgnore
     public PresentableHeader getHeader() {
-        return new PresentableHeader.Builder("Meheader").build();
+        return new PresentableHeader.Builder("Friends").setLink("me/friends").build();
     }
 
     @Override

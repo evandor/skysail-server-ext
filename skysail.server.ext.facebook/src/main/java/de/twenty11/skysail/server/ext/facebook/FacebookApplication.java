@@ -9,12 +9,12 @@ import javax.persistence.EntityManagerFactory;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.restlet.Application;
-import org.restlet.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.facebook.resources.FacebookRootResource;
+import de.twenty11.skysail.server.ext.facebook.resources.FriendsResource;
 import de.twenty11.skysail.server.ext.facebook.resources.MeResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
@@ -37,18 +37,6 @@ public class FacebookApplication extends SkysailApplication implements Applicati
         setName("facebook");
     }
 
-    /**
-     * @param staticPathTemplate
-     * @param bundleContext
-     */
-    public FacebookApplication(Context componentContext, EntityManagerFactory emf) {
-        super(componentContext == null ? null : componentContext.createChildContext());
-        setDescription("RESTful skysail.server.ext.facebook bundle");
-        setOwner("twentyeleven");
-        setName("facebook");
-        this.emf = emf;
-    }
-
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Application for Skysail Facebook Extension");
         // component = componentProvider.getComponent();
@@ -65,6 +53,7 @@ public class FacebookApplication extends SkysailApplication implements Applicati
         // @formatter:off
         router.attach(new RouteBuilder("", FacebookRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/me", MeResource.class).setText("Me").setVisible(true));
+        router.attach(new RouteBuilder("/me/friends", FriendsResource.class).setVisible(false));
         // @formatter:on
     }
 

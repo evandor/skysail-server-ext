@@ -51,7 +51,7 @@ public class MeResource extends UniqueResultServerResource2<FacebookUser> {
         JsonNode jsonRootNode;
         try {
             jsonRootNode = mapper.readTree(new URL(meOnFacebookUrl));
-            return new FacebookUser(jsonRootNode);
+            return new FacebookUser(jsonRootNode, facebookApp.getAccessToken(currentUser));
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

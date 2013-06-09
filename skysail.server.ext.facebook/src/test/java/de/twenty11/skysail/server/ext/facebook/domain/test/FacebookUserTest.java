@@ -37,7 +37,7 @@ public class FacebookUserTest {
     @Test
     public void testFacebookAccess() throws Exception {
         JsonNode jsonRootNode = mapper.readTree(new URL(meOnFBLink));
-        FacebookUser me = new FacebookUser(jsonRootNode);
+        FacebookUser me = new FacebookUser(jsonRootNode, null);
         assertThat(me.getId(), equalTo("1395451850"));
     }
 
