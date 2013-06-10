@@ -48,8 +48,6 @@ public class SkysailServerExtensionOsgiIT {
         SkysailServerExtensionOsgiSetup setup = new SkysailServerExtensionOsgiSetup();
         List<Option> options = setup.getOptions(EnumSet.copyOf(dependencies));
 
-        // _this_ bundle from target directory
-        // TODO proper naming!
         String currentBundleSource = "file:target/skysail.server.ext.facebook-" + setup.getProjectVersion() + ".jar";
         logger.info("adding {} to tests...", currentBundleSource);
         options.add(bundle(currentBundleSource));
@@ -62,11 +60,17 @@ public class SkysailServerExtensionOsgiIT {
     }
 
     @Test
-    public void shouldFindSomeBundlesInActiveState() {
+    public void should_find_ServerBundle_in_active_State() {
         Bundle bundle = OsgiTestingUtils.getBundleForSymbolicName(context, "skysail.server");
         assertTrue(bundle != null);
         assertTrue(bundle.getState() == 32);
+    }
 
+    @Test
+    public void should_find_FacebookBundle_in_active_State() {
+        Bundle bundle = OsgiTestingUtils.getBundleForSymbolicName(context, "skysail.server.ext.facebook");
+        assertTrue(bundle != null);
+        assertTrue(bundle.getState() == 32);
     }
 
     @Test
