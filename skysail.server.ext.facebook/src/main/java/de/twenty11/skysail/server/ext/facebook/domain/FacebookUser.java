@@ -9,9 +9,9 @@ import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.common.Presentable;
-import de.twenty11.skysail.common.PresentableHeader;
+import de.twenty11.skysail.common.Presentable2;
 import de.twenty11.skysail.server.structures.composite.Component;
 import de.twenty11.skysail.server.structures.composite.Composite;
 
@@ -23,7 +23,7 @@ import de.twenty11.skysail.server.structures.composite.Composite;
  * The provided constructor creates a new instance from a json representation
  * 
  */
-public class FacebookUser implements Composite, Presentable {
+public class FacebookUser implements Composite, Presentable2 {
 
     private Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -79,14 +79,9 @@ public class FacebookUser implements Composite, Presentable {
 
     @Override
     @JsonIgnore
-    public PresentableHeader getHeader() {
-        return new PresentableHeader.Builder("Friends").setLink("me/friends").build();
+    public String getHtml() {
+        ST html = new ST("Facebook User <id>");
+        html.add("id", getId());
+        return html.render();
     }
-
-    @Override
-    @JsonIgnore
-    public Map<String, Object> getContent() {
-        return attributes;
-    }
-
 }
