@@ -1,0 +1,23 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0">
+
+	<ext:property-placeholder />
+
+	<bean id="skysailApp"
+		class="de.twenty11.skysail.server.ext.notes.NotesApplication"
+		init-method="activate" destroy-method="deactivate">
+		<!-- <property name="componentProvider" ref="componentProviderRef" /> -->
+		<property name="emf" ref="emfRef" />
+	</bean>
+
+	<service ref="skysailApp"
+		interface="de.twenty11.skysail.server.services.ApplicationProvider" />
+
+	<!-- <reference id="componentProviderRef"
+		interface="de.twenty11.skysail.server.services.ComponentProvider" /> -->
+
+	<reference id="emfRef" interface="javax.persistence.EntityManagerFactory"
+		filter="(osgi.unit.name=NotesPU)" />
+
+</blueprint>
+

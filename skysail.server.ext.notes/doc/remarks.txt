@@ -1,3 +1,0 @@
-META-INF folder comes from genmodel -> Generate code
-
-Eclipse target must be set correctly

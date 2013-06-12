@@ -1,7 +1,6 @@
 package de.twenty11.skysail.server.ext.facebook.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +12,6 @@ import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.common.Presentable2;
 import de.twenty11.skysail.server.structures.composite.Component;
-import de.twenty11.skysail.server.structures.composite.Composite;
 
 /**
  * A facebook user in the context of the skysail.server.ext.facebook bundle is essentially a container for some
@@ -23,7 +21,7 @@ import de.twenty11.skysail.server.structures.composite.Composite;
  * The provided constructor creates a new instance from a json representation
  * 
  */
-public class FacebookUser implements Composite, Presentable2 {
+public class FacebookUser implements Presentable2 {
 
     private Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -46,26 +44,6 @@ public class FacebookUser implements Composite, Presentable2 {
     // TODO
     private void checkForErrors(JsonNode jsonRootNode) {
         JsonNode errors = jsonRootNode.path("errors");
-    }
-
-    @Override
-    public Component visit() {
-        return this;
-    }
-
-    @Override
-    public void add(Component component) {
-        this.components.add(component);
-    }
-
-    @Override
-    public void remove(Component component) {
-        this.components.remove(component);
-    }
-
-    @Override
-    public List<Component> getChildren() {
-        return Collections.unmodifiableList(components);
     }
 
     public String getId() {
