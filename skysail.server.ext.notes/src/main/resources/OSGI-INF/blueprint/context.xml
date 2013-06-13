@@ -5,9 +5,9 @@
 
 	<bean id="skysailApp"
 		class="de.twenty11.skysail.server.ext.notes.NotesApplication"
-		init-method="activate" destroy-method="deactivate">
+		>
 		<!-- <property name="componentProvider" ref="componentProviderRef" /> -->
-		<property name="emf" ref="emfRef" />
+		<property name="entityManager" ref="emfRef" />
 	</bean>
 
 	<service ref="skysailApp"

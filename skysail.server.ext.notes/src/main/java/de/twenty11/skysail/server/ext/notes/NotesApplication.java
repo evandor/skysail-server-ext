@@ -3,7 +3,6 @@ package de.twenty11.skysail.server.ext.notes;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import org.slf4j.Logger;
@@ -21,16 +20,16 @@ import de.twenty11.skysail.server.services.ApplicationProvider;
  */
 public class NotesApplication extends SkysailApplication implements ApplicationProvider {
 
-    private EntityManagerFactory emf;
+    private EntityManagerFactory enitityManagerFactory;
     private Map<String, String> facebookLogins = new HashMap<String, String>();
 
     private static Logger logger = LoggerFactory.getLogger(NotesApplication.class);
 
     public NotesApplication() {
         super(null, null);
-        setDescription("RESTful skysail.server.ext.facebook bundle");
+        setDescription("RESTful skysail.server.ext.notes bundle");
         setOwner("twentyeleven");
-        setName("facebook");
+        setName("notes");
     }
 
     protected void attach() {
@@ -40,12 +39,8 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         // @formatter:on
     }
 
-    public EntityManager getEntityManager() {
-        return this.emf != null ? this.emf.createEntityManager() : null;
-    }
-
     public synchronized void setEntityManager(EntityManagerFactory emf) {
-        this.emf = emf;
+        this.enitityManagerFactory = emf;
     }
 
     public void setAccessToken(String identifier, String token) {

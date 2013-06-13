@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.ext.notes.itest;
 
-
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 
 import java.util.EnumSet;
@@ -40,9 +39,17 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
         options.add(mavenBundle("org.hibernate", "hibernate-validator", "4.3.0.Final"));
         options.add(mavenBundle("javax.validation", "com.springsource.javax.validation", "1.0.0.GA"));
         options.add(mavenBundle("org.jboss.logging", "jboss-logging", "3.1.2.GA"));
-        
-        options.add(mavenBundle("org.apache.httpcomponents","httpclient-osgi","4.2.5"));
-        options.add(mavenBundle("org.apache.httpcomponents","httpcore-osgi","4.2.4"));
+
+        options.add(mavenBundle("org.apache.httpcomponents", "httpclient-osgi", "4.2.5"));
+        options.add(mavenBundle("org.apache.httpcomponents", "httpcore-osgi", "4.2.4"));
+
+        // blueprint
+        options.add(mavenBundle("org.apache.aries.blueprint", "org.apache.aries.blueprint", "0.3.1"));
+        options.add(mavenBundle("org.apache.aries.proxy", "org.apache.aries.proxy", "0.3"));
+        options.add(mavenBundle("org.apache.aries", "org.apache.aries.util", "0.3"));
+        options.add(mavenBundle("org.apache.servicemix.bundles", "org.apache.servicemix.bundles.asm", "2.2.3_5"));
+
+        options.add(mavenBundle("de.twentyeleven.skysail", "org.antlr.stringtemplate-osgi", "4.0.2"));
 
         logger.info("using options from {} for tests", this.getClass());
 

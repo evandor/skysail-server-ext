@@ -67,7 +67,7 @@ public class SkysailServerExtensionOsgiIT {
     }
 
     @Test
-    public void should_find_FacebookBundle_in_active_State() {
+    public void should_find_Bundle_in_active_State() {
         Bundle bundle = OsgiTestingUtils.getBundleForSymbolicName(context, "skysail.server.ext.notes");
         assertTrue(bundle != null);
         assertTrue(bundle.getState() == 32);

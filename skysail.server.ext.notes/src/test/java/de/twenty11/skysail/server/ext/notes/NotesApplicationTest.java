@@ -14,7 +14,7 @@ import org.restlet.Component;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.services.ComponentProvider;
 
-public class FacebookApplicationTest {
+public class NotesApplicationTest {
 
     private TestFacebookApplication configuration;
     private ComponentContext componentContext;
