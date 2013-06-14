@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.notes.resources.FacebookRootResource;
 import de.twenty11.skysail.server.ext.notes.resources.MeResource;
@@ -41,6 +42,10 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
     public synchronized void setEntityManager(EntityManagerFactory emf) {
         this.enitityManagerFactory = emf;
+    }
+
+    public void setServerConfiguration(ServerConfiguration sc) {
+        super.setServerConfiguration(sc);
     }
 
     public void setAccessToken(String identifier, String token) {

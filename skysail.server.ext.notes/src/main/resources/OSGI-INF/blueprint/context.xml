@@ -8,6 +8,7 @@
 		>
 		<!-- <property name="componentProvider" ref="componentProviderRef" /> -->
 		<property name="entityManager" ref="emfRef" />
+		<property name="serverConfiguration" ref="serverConfig" />
 	</bean>
 
 	<service ref="skysailApp"
@@ -18,6 +19,11 @@
 
 	<reference id="emfRef" interface="javax.persistence.EntityManagerFactory"
 		filter="(osgi.unit.name=NotesPU)" />
+		
+	<!-- ext:proxy-method="classes" -->	
+	<reference id="serverConfig" interface="de.twenty11.skysail.server.config.ServerConfiguration" 
+	   
+	/>	
 
 </blueprint>
 

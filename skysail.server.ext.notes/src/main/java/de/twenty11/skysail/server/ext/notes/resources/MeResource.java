@@ -8,8 +8,6 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource2;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Note;
-import de.twenty11.skysail.server.ext.notes.links.LoginLink;
-import de.twenty11.skysail.server.ext.notes.links.LogoutLink;
 
 /**
  * A resource representing "me" as a facebook user.
@@ -34,8 +32,8 @@ public class MeResource extends UniqueResultServerResource2<Note> {
     @Override
     @Get("html|json")
     public SkysailResponse<Note> getEntity() {
-        registerLinkedPage(new LoginLink(facebookApp, currentUser));
-        registerLinkedPage(new LogoutLink(facebookApp, currentUser));
+        // registerLinkedPage(new LoginLink(facebookApp, currentUser));
+        // registerLinkedPage(new LogoutLink(facebookApp, currentUser));
         return getEntity("Me on Facebook");
     }
 
