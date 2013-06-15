@@ -17,6 +17,8 @@
 
 package de.twenty11.skysail.server.ext.dbviewer.internal;
 
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -90,7 +92,18 @@ public class DbViewerApplication extends SkysailApplication {
     }
 
     public EntityManager getEntityManager() {
-        return this.emf != null ? this.emf.createEntityManager() : null;
+
+        if (this.emf == null) {
+            return null;
+        }
+        Map<String, Object> properties = emf.getProperties();
+        properties.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
+        properties.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost/skysailosgi");
+        properties.put("javax.persistence.jdbc.user", "root");
+        properties.put("javax.persistence.jdbc.password", "websphere");
+        // properties.put("eclipselink.ddl-generation", "create-tables");
+
+        return this.emf.createEntityManager();
     }
 
     public DataSource getDataSource(String connectionName, ChallengeResponse challengeResponse) throws Exception {

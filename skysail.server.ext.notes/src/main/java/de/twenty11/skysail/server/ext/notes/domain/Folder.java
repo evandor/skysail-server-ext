@@ -7,17 +7,22 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang.Validate;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.skysail.common.Presentable2;
+import de.twenty11.skysail.common.forms.Field;
+import de.twenty11.skysail.common.forms.Form;
 
 /**
  * 
  */
 @Entity
+@Form(name = "folderform")
 public class Folder extends Component implements Presentable2 {
 
     @Id
@@ -25,6 +30,9 @@ public class Folder extends Component implements Presentable2 {
     @JsonIgnore
     private int pid;// primary key for db
 
+    @Field
+    @NotNull(message = "Name is mandatory")
+    @Size(min = 1, message = "name  must not be empty")
     private String folderName;
 
     private List<Component> components = new ArrayList<Component>();
