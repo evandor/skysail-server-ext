@@ -15,12 +15,12 @@ import org.osgi.framework.ServiceReference;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
-import de.twenty11.skysail.common.ext.osgimonitor.ServiceReferenceDetails;
 import de.twenty11.skysail.common.graphs.Graph;
 import de.twenty11.skysail.common.graphs.NodeProvider;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDetails;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.ServiceReferenceDetails;
 import de.twenty11.skysail.server.restlet.ListServerResource;
 
 /**

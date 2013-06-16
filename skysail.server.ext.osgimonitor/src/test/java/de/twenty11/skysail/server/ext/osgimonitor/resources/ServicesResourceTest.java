@@ -17,8 +17,8 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 import org.restlet.representation.Representation;
 
-import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.ServiceDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
 
 public class ServicesResourceTest extends BaseTests {

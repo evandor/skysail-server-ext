@@ -15,12 +15,11 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
-import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundles;
 import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
-import de.twenty11.skysail.server.restlet.ListServerResource;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDescriptor;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDetails;
 
 /**
  * Restlet Resource class for handling Bundles.
@@ -32,7 +31,7 @@ import de.twenty11.skysail.server.restlet.ListServerResource;
  * 
  */
 @Presentation(preferred = PresentationStyle.TABLE)
-public class BundlesResource extends ListServerResource<BundleDescriptor> implements RestfulBundles {
+public class BundlesResource extends ListServerResource2<BundleDescriptor> {
 
     private List<Bundle> bundles;
 
@@ -55,8 +54,18 @@ public class BundlesResource extends ListServerResource<BundleDescriptor> implem
 
     @Override
     @Get("html|json|csv")
-    public SkysailResponse<List<BundleDescriptor>> getBundles() {
-        return getEntities(allBundles(), augmentWithFilterMsg("all Bundles"));
+    public SkysailResponse<List<BundleDescriptor>> getEntities() {
+        return super.getEntities("listing all bundles");
+    }
+
+    // @Get("html|json|csv")
+    // public SkysailResponse<List<BundleDescriptor>> getBundles() {
+    // return getEntities(allBundles(), augmentWithFilterMsg("all Bundles"));
+    // }
+
+    @Override
+    protected List<BundleDescriptor> getData() {
+        return allBundles();
     }
 
     @Post

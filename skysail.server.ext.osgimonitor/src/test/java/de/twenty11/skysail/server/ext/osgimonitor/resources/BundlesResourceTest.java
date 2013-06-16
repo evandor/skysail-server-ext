@@ -19,8 +19,8 @@ import org.osgi.framework.Version;
 import org.restlet.Request;
 import org.restlet.representation.Representation;
 
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
 
 public class BundlesResourceTest extends BaseTests {

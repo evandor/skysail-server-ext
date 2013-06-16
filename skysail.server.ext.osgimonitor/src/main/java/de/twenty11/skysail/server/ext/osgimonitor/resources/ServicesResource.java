@@ -10,12 +10,16 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
+import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.common.ext.osgimonitor.ServiceDescriptor;
+import de.twenty11.skysail.common.Presentation;
+import de.twenty11.skysail.common.PresentationStyle;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.ServiceDescriptor;
 
 /**
  * Restlet Resource class for handling OSGi Services.
@@ -25,6 +29,7 @@ import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
  * The managed entity is of type {@link ServiceDescriptor}, providing details.
  * 
  */
+@Presentation(preferred = PresentationStyle.LIST2)
 public class ServicesResource extends ListServerResource2<ServiceDescriptor> { // implements RestfulServices {
 
     private List<ServiceReference> services = Collections.emptyList();
@@ -49,15 +54,15 @@ public class ServicesResource extends ListServerResource2<ServiceDescriptor> { /
     }
 
     @Override
+    @Get("html|json|csv")
+    public SkysailResponse<List<ServiceDescriptor>> getEntities() {
+        return getEntities("listing of all services");
+    }
+
+    @Override
     protected List<ServiceDescriptor> getData() {
         return allServices();
     }
-
-    // @Override
-    // @Get("html|json")
-    // public SkysailResponse<List<ServiceDescriptor>> getServices() {
-    // return getEntities(allServices(), "all Services");
-    // }
 
     @Post
     public Representation install(String location) {
@@ -74,6 +79,7 @@ public class ServicesResource extends ListServerResource2<ServiceDescriptor> { /
             ServiceDescriptor descriptor = new ServiceDescriptor(sr, getReference());
             result.add(descriptor);
         }
+        Collections.sort(result);
         return result;
     }
 

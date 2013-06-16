@@ -13,8 +13,6 @@ import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.commands.Command;
-import de.twenty11.skysail.common.ext.osgimonitor.BundleDetails;
-import de.twenty11.skysail.common.ext.osgimonitor.RestfulBundle;
 import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.FailureResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
@@ -22,13 +20,14 @@ import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.StartCommand;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.StopCommand;
 import de.twenty11.skysail.server.ext.osgimonitor.commands.UpdateCommand;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDetails;
 import de.twenty11.skysail.server.restlet.UniqueResultServerResource;
 
 /**
  * Restlet Resource class for handling a Bundle.
  * 
  */
-public class BundleResource extends UniqueResultServerResource<BundleDetails> implements RestfulBundle {
+public class BundleResource extends UniqueResultServerResource<BundleDetails> {
 
     private String bundleId;
     private String action;
@@ -45,7 +44,6 @@ public class BundleResource extends UniqueResultServerResource<BundleDetails> im
         action = form.getFirstValue("action");
     }
 
-    @Override
     @Get("html|json")
     public SkysailResponse<BundleDetails> getBundle() {
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
