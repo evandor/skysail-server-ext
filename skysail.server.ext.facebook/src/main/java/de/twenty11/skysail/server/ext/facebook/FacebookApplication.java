@@ -28,7 +28,7 @@ public class FacebookApplication extends SkysailApplication implements Applicati
     private static Logger logger = LoggerFactory.getLogger(FacebookApplication.class);
 
     public FacebookApplication() {
-        super(null);
+        super();
         setDescription("RESTful skysail.server.ext.facebook bundle");
         setOwner("twentyeleven");
         setName("facebook");

@@ -21,7 +21,8 @@ public class MyApplication extends SkysailApplication {
     private EntityManagerFactory emf;
 
     public MyApplication(Context componentContext, EntityManagerFactory emf) {
-        super(componentContext == null ? null : componentContext.createChildContext());
+        super();
+        setContext(getContext().createChildContext());
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("mail");

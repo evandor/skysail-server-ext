@@ -29,7 +29,10 @@ public class MyApplication extends SkysailApplication {
     private DbRepository repository;
 
     public MyApplication(Context componentContext, EntityManagerFactory emf) {
-        super(componentContext == null ? null : componentContext.createChildContext());
+        super();
+        if (getContext() != null) {
+            setContext(getContext().createChildContext());
+        }
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("jgit");

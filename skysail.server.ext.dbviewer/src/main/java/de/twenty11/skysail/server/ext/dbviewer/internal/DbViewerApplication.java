@@ -63,7 +63,7 @@ public class DbViewerApplication extends SkysailApplication {
      * @param emf
      */
     public DbViewerApplication(BundleContext bundleContext, Context componentContext, EntityManagerFactory emf) {
-        super(componentContext == null ? null : componentContext.createChildContext());
+        setContext(getContext().createChildContext());
         getLogger().info("Starting DbViewerApplication");
         setDescription("RESTful DbViewer OSGi bundle");
         setOwner("twentyeleven");

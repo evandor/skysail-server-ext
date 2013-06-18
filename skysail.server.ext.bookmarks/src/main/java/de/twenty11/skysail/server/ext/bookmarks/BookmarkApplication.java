@@ -2,15 +2,14 @@ package de.twenty11.skysail.server.ext.bookmarks;
 
 import javax.persistence.EntityManagerFactory;
 
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.ext.bookmarks.resources.BookmarksAndFoldersResource;
 import org.restlet.Context;
 
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.bookmarks.repository.BookmarkRepository;
 import de.twenty11.skysail.server.ext.bookmarks.repository.FolderRepository;
 import de.twenty11.skysail.server.ext.bookmarks.resources.AddBookmarkResource;
 import de.twenty11.skysail.server.ext.bookmarks.resources.AddFolderResource;
-import de.twenty11.skysail.server.ext.bookmarks.resources.BookmarksResource;
+import de.twenty11.skysail.server.ext.bookmarks.resources.BookmarksAndFoldersResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
@@ -27,7 +26,8 @@ public class BookmarkApplication extends SkysailApplication {
      * @param emf
      */
     public BookmarkApplication(Context componentContext, EntityManagerFactory emf) {
-        super(componentContext == null ? null : componentContext.createChildContext());
+        super();
+        setContext(getContext().createChildContext());
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("bookmarks");

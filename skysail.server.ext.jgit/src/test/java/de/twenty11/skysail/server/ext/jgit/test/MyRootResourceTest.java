@@ -36,6 +36,7 @@ public class MyRootResourceTest {
     }
 
     @Test
+    @Ignore
     public void creates_json_response_for_get_request() {
         Request request = new Request(Method.GET, "/");
         Response response = new Response(request);

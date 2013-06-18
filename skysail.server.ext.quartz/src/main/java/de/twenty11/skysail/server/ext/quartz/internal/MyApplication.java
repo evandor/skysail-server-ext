@@ -1,10 +1,15 @@
 package de.twenty11.skysail.server.ext.quartz.internal;
 
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.ext.quartz.*;
 import org.quartz.Scheduler;
 import org.restlet.Context;
 
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.ext.quartz.AddJobResource;
+import de.twenty11.skysail.server.ext.quartz.AddTriggerResource;
+import de.twenty11.skysail.server.ext.quartz.JobsResource;
+import de.twenty11.skysail.server.ext.quartz.MyRootResource;
+import de.twenty11.skysail.server.ext.quartz.SchedulerResource;
+import de.twenty11.skysail.server.ext.quartz.TriggersResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 
 /**
@@ -21,7 +26,10 @@ public class MyApplication extends SkysailApplication {
      * @param bundleContext
      */
     public MyApplication(Context componentContext, Scheduler scheduler) {
-        super(componentContext == null ? null : componentContext.createChildContext());
+        super();
+        if (getContext() != null) {
+            setContext(getContext().createChildContext());
+        }
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("quartz");
