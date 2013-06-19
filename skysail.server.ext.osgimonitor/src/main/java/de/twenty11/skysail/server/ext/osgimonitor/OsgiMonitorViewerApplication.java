@@ -37,7 +37,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
 
     // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication() {
-        super(null);
+        super();
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setName("osgimonitor");
