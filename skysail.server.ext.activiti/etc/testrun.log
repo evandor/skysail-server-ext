@@ -1,0 +1,593 @@
+DEBUG o.a.engine.impl.cfg.ProcessEngineConfigurationImpl - initializing datasource to db: jdbc:h2:mem:activiti
+DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Created connection 1644838203.
+DEBUG o.a.engine.impl.cfg.ProcessEngineConfigurationImpl - database product name: 'H2'
+DEBUG o.a.engine.impl.cfg.ProcessEngineConfigurationImpl - using database type: h2
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting SchemaOperationsProcessEngineBuild --------------------------------------------------------
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+INFO  org.activiti.engine.impl.db.DbSqlSession - performing create on engine with resource org/activiti/db/create/activiti.h2.create.engine.sql
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_GE_PROPERTY ( 
+NAME_ varchar(64), 
+VALUE_ varchar(300), 
+REV_ integer, 
+primary key (NAME_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: insert into ACT_GE_PROPERTY 
+values ('schema.version', '5.12', 1)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: insert into ACT_GE_PROPERTY 
+values ('schema.history', 'create(5.12)', 1)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: insert into ACT_GE_PROPERTY 
+values ('next.dbid', '1', 1)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_GE_BYTEARRAY ( 
+ID_ varchar(64), 
+REV_ integer, 
+NAME_ varchar(255), 
+DEPLOYMENT_ID_ varchar(64), 
+BYTES_ longvarbinary, 
+GENERATED_ bit, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RE_DEPLOYMENT ( 
+ID_ varchar(64), 
+NAME_ varchar(255), 
+CATEGORY_ varchar(255), 
+DEPLOY_TIME_ timestamp, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RE_MODEL ( 
+ID_ varchar(64) not null, 
+REV_ integer, 
+NAME_ varchar(255), 
+KEY_ varchar(255), 
+CATEGORY_ varchar(255), 
+CREATE_TIME_ timestamp, 
+LAST_UPDATE_TIME_ timestamp, 
+VERSION_ integer, 
+META_INFO_ varchar(4000), 
+DEPLOYMENT_ID_ varchar(64), 
+EDITOR_SOURCE_VALUE_ID_ varchar(64), 
+EDITOR_SOURCE_EXTRA_VALUE_ID_ varchar(64), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RU_EXECUTION ( 
+ID_ varchar(64), 
+REV_ integer, 
+PROC_INST_ID_ varchar(64), 
+BUSINESS_KEY_ varchar(255), 
+PARENT_ID_ varchar(64), 
+PROC_DEF_ID_ varchar(64), 
+SUPER_EXEC_ varchar(64), 
+ACT_ID_ varchar(255), 
+IS_ACTIVE_ bit, 
+IS_CONCURRENT_ bit, 
+IS_SCOPE_ bit, 
+IS_EVENT_SCOPE_ bit, 
+SUSPENSION_STATE_ integer, 
+CACHED_ENT_STATE_ integer, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RU_JOB ( 
+ID_ varchar(64) NOT NULL, 
+REV_ integer, 
+TYPE_ varchar(255) NOT NULL, 
+LOCK_EXP_TIME_ timestamp, 
+LOCK_OWNER_ varchar(255), 
+EXCLUSIVE_ boolean, 
+EXECUTION_ID_ varchar(64), 
+PROCESS_INSTANCE_ID_ varchar(64), 
+PROC_DEF_ID_ varchar(64), 
+RETRIES_ integer, 
+EXCEPTION_STACK_ID_ varchar(64), 
+EXCEPTION_MSG_ varchar(4000), 
+DUEDATE_ timestamp, 
+REPEAT_ varchar(255), 
+HANDLER_TYPE_ varchar(255), 
+HANDLER_CFG_ varchar(4000), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RE_PROCDEF ( 
+ID_ varchar(64) NOT NULL, 
+REV_ integer, 
+CATEGORY_ varchar(255), 
+NAME_ varchar(255), 
+KEY_ varchar(255) NOT NULL, 
+VERSION_ integer NOT NULL, 
+DEPLOYMENT_ID_ varchar(64), 
+RESOURCE_NAME_ varchar(4000), 
+DGRM_RESOURCE_NAME_ varchar(4000), 
+DESCRIPTION_ varchar(4000), 
+HAS_START_FORM_KEY_ bit, 
+SUSPENSION_STATE_ integer, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RU_TASK ( 
+ID_ varchar(64), 
+REV_ integer, 
+EXECUTION_ID_ varchar(64), 
+PROC_INST_ID_ varchar(64), 
+PROC_DEF_ID_ varchar(64), 
+NAME_ varchar(255), 
+PARENT_TASK_ID_ varchar(64), 
+DESCRIPTION_ varchar(4000), 
+TASK_DEF_KEY_ varchar(255), 
+OWNER_ varchar(255), 
+ASSIGNEE_ varchar(255), 
+DELEGATION_ varchar(64), 
+PRIORITY_ integer, 
+CREATE_TIME_ timestamp, 
+DUE_DATE_ timestamp, 
+SUSPENSION_STATE_ integer, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RU_IDENTITYLINK ( 
+ID_ varchar(64), 
+REV_ integer, 
+GROUP_ID_ varchar(255), 
+TYPE_ varchar(255), 
+USER_ID_ varchar(255), 
+TASK_ID_ varchar(64), 
+PROC_INST_ID_ varchar(64) null, 
+PROC_DEF_ID_ varchar(64), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RU_VARIABLE ( 
+ID_ varchar(64) not null, 
+REV_ integer, 
+TYPE_ varchar(255) not null, 
+NAME_ varchar(255) not null, 
+EXECUTION_ID_ varchar(64), 
+PROC_INST_ID_ varchar(64), 
+TASK_ID_ varchar(64), 
+BYTEARRAY_ID_ varchar(64), 
+DOUBLE_ double, 
+LONG_ bigint, 
+TEXT_ varchar(4000), 
+TEXT2_ varchar(4000), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_RU_EVENT_SUBSCR ( 
+ID_ varchar(64) not null, 
+REV_ integer, 
+EVENT_TYPE_ varchar(255) not null, 
+EVENT_NAME_ varchar(255), 
+EXECUTION_ID_ varchar(64), 
+PROC_INST_ID_ varchar(64), 
+ACTIVITY_ID_ varchar(64), 
+CONFIGURATION_ varchar(255), 
+CREATED_ timestamp not null, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_EXEC_BUSKEY on ACT_RU_EXECUTION(BUSINESS_KEY_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_TASK_CREATE on ACT_RU_TASK(CREATE_TIME_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_IDENT_LNK_USER on ACT_RU_IDENTITYLINK(USER_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_IDENT_LNK_GROUP on ACT_RU_IDENTITYLINK(GROUP_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_EVENT_SUBSCR_CONFIG_ on ACT_RU_EVENT_SUBSCR(CONFIGURATION_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_VARIABLE_TASK_ID on ACT_RU_VARIABLE(TASK_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_ATHRZ_PROCEDEF on ACT_RU_IDENTITYLINK(PROC_DEF_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_GE_BYTEARRAY 
+add constraint ACT_FK_BYTEARR_DEPL 
+foreign key (DEPLOYMENT_ID_) 
+references ACT_RE_DEPLOYMENT
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RE_PROCDEF 
+add constraint ACT_UNIQ_PROCDEF 
+unique (KEY_,VERSION_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_EXECUTION 
+add constraint ACT_FK_EXE_PROCINST 
+foreign key (PROC_INST_ID_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_EXECUTION 
+add constraint ACT_FK_EXE_PARENT 
+foreign key (PARENT_ID_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_EXECUTION 
+add constraint ACT_FK_EXE_SUPER 
+foreign key (SUPER_EXEC_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_EXECUTION 
+add constraint ACT_FK_EXE_PROCDEF 
+foreign key (PROC_DEF_ID_) 
+references ACT_RE_PROCDEF (ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_EXECUTION 
+add constraint ACT_UNIQ_RU_BUS_KEY 
+unique(PROC_DEF_ID_, BUSINESS_KEY_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_IDENTITYLINK 
+add constraint ACT_FK_TSKASS_TASK 
+foreign key (TASK_ID_) 
+references ACT_RU_TASK
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_IDENTITYLINK 
+add constraint ACT_FK_ATHRZ_PROCEDEF 
+foreign key (PROC_DEF_ID_) 
+references ACT_RE_PROCDEF
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_IDENTITYLINK 
+add constraint ACT_FK_IDL_PROCINST 
+foreign key (PROC_INST_ID_) 
+references ACT_RU_EXECUTION (ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_TASK 
+add constraint ACT_FK_TASK_EXE 
+foreign key (EXECUTION_ID_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_TASK 
+add constraint ACT_FK_TASK_PROCINST 
+foreign key (PROC_INST_ID_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_TASK 
+add constraint ACT_FK_TASK_PROCDEF 
+foreign key (PROC_DEF_ID_) 
+references ACT_RE_PROCDEF
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_VARIABLE 
+add constraint ACT_FK_VAR_EXE 
+foreign key (EXECUTION_ID_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_VARIABLE 
+add constraint ACT_FK_VAR_PROCINST 
+foreign key (PROC_INST_ID_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_VARIABLE 
+add constraint ACT_FK_VAR_BYTEARRAY 
+foreign key (BYTEARRAY_ID_) 
+references ACT_GE_BYTEARRAY
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_JOB 
+add constraint ACT_FK_JOB_EXCEPTION 
+foreign key (EXCEPTION_STACK_ID_) 
+references ACT_GE_BYTEARRAY
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RU_EVENT_SUBSCR 
+add constraint ACT_FK_EVENT_EXEC 
+foreign key (EXECUTION_ID_) 
+references ACT_RU_EXECUTION
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RE_MODEL 
+add constraint ACT_FK_MODEL_SOURCE 
+foreign key (EDITOR_SOURCE_VALUE_ID_) 
+references ACT_GE_BYTEARRAY (ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RE_MODEL 
+add constraint ACT_FK_MODEL_SOURCE_EXTRA 
+foreign key (EDITOR_SOURCE_EXTRA_VALUE_ID_) 
+references ACT_GE_BYTEARRAY (ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_RE_MODEL 
+add constraint ACT_FK_MODEL_DEPLOYMENT 
+foreign key (DEPLOYMENT_ID_) 
+references ACT_RE_DEPLOYMENT (ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - activiti db schema create for component engine successful
+INFO  org.activiti.engine.impl.db.DbSqlSession - performing create on history with resource org/activiti/db/create/activiti.h2.create.history.sql
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_HI_PROCINST ( 
+ID_ varchar(64) not null, 
+PROC_INST_ID_ varchar(64) not null, 
+BUSINESS_KEY_ varchar(255), 
+PROC_DEF_ID_ varchar(64) not null, 
+START_TIME_ timestamp not null, 
+END_TIME_ timestamp, 
+DURATION_ bigint, 
+START_USER_ID_ varchar(255), 
+START_ACT_ID_ varchar(255), 
+END_ACT_ID_ varchar(255), 
+SUPER_PROCESS_INSTANCE_ID_ varchar(64), 
+DELETE_REASON_ varchar(4000), 
+primary key (ID_), 
+unique (PROC_INST_ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_HI_ACTINST ( 
+ID_ varchar(64) not null, 
+PROC_DEF_ID_ varchar(64) not null, 
+PROC_INST_ID_ varchar(64) not null, 
+EXECUTION_ID_ varchar(64) not null, 
+ACT_ID_ varchar(255) not null, 
+TASK_ID_ varchar(64), 
+CALL_PROC_INST_ID_ varchar(64), 
+ACT_NAME_ varchar(255), 
+ACT_TYPE_ varchar(255) not null, 
+ASSIGNEE_ varchar(64), 
+START_TIME_ timestamp not null, 
+END_TIME_ timestamp, 
+DURATION_ bigint, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_HI_TASKINST ( 
+ID_ varchar(64) not null, 
+PROC_DEF_ID_ varchar(64), 
+TASK_DEF_KEY_ varchar(255), 
+PROC_INST_ID_ varchar(64), 
+EXECUTION_ID_ varchar(64), 
+NAME_ varchar(255), 
+PARENT_TASK_ID_ varchar(64), 
+DESCRIPTION_ varchar(4000), 
+OWNER_ varchar(255), 
+ASSIGNEE_ varchar(255), 
+START_TIME_ timestamp not null, 
+CLAIM_TIME_ timestamp, 
+END_TIME_ timestamp, 
+DURATION_ bigint, 
+DELETE_REASON_ varchar(4000), 
+PRIORITY_ integer, 
+DUE_DATE_ timestamp, 
+FORM_KEY_ varchar(255), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_HI_VARINST ( 
+ID_ varchar(64) not null, 
+PROC_INST_ID_ varchar(64), 
+EXECUTION_ID_ varchar(64), 
+TASK_ID_ varchar(64), 
+NAME_ varchar(255) not null, 
+VAR_TYPE_ varchar(100), 
+REV_ integer, 
+BYTEARRAY_ID_ varchar(64), 
+DOUBLE_ double, 
+LONG_ bigint, 
+TEXT_ varchar(4000), 
+TEXT2_ varchar(4000), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_HI_DETAIL ( 
+ID_ varchar(64) not null, 
+TYPE_ varchar(255) not null, 
+TIME_ timestamp not null, 
+NAME_ varchar(255), 
+PROC_INST_ID_ varchar(64), 
+EXECUTION_ID_ varchar(64), 
+TASK_ID_ varchar(64), 
+ACT_INST_ID_ varchar(64), 
+VAR_TYPE_ varchar(255), 
+REV_ integer, 
+BYTEARRAY_ID_ varchar(64), 
+DOUBLE_ double, 
+LONG_ bigint, 
+TEXT_ varchar(4000), 
+TEXT2_ varchar(4000), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_HI_COMMENT ( 
+ID_ varchar(64) not null, 
+TYPE_ varchar(255), 
+TIME_ timestamp not null, 
+USER_ID_ varchar(255), 
+TASK_ID_ varchar(64), 
+PROC_INST_ID_ varchar(64), 
+ACTION_ varchar(255), 
+MESSAGE_ varchar(4000), 
+FULL_MSG_ longvarbinary, 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_HI_ATTACHMENT ( 
+ID_ varchar(64) not null, 
+REV_ integer, 
+USER_ID_ varchar(255), 
+NAME_ varchar(255), 
+DESCRIPTION_ varchar(4000), 
+TYPE_ varchar(255), 
+TASK_ID_ varchar(64), 
+PROC_INST_ID_ varchar(64), 
+URL_ varchar(4000), 
+CONTENT_ID_ varchar(64), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_PRO_INST_END on ACT_HI_PROCINST(END_TIME_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_PRO_I_BUSKEY on ACT_HI_PROCINST(BUSINESS_KEY_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_ACT_INST_START on ACT_HI_ACTINST(START_TIME_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_ACT_INST_END on ACT_HI_ACTINST(END_TIME_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_DETAIL_PROC_INST on ACT_HI_DETAIL(PROC_INST_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_DETAIL_ACT_INST on ACT_HI_DETAIL(ACT_INST_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_DETAIL_TIME on ACT_HI_DETAIL(TIME_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_DETAIL_NAME on ACT_HI_DETAIL(NAME_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_DETAIL_TASK_ID on ACT_HI_DETAIL(TASK_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_PROCVAR_PROC_INST on ACT_HI_VARINST(PROC_INST_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_PROCVAR_NAME_TYPE on ACT_HI_VARINST(NAME_, VAR_TYPE_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_ACT_INST_PROCINST on ACT_HI_ACTINST(PROC_INST_ID_, ACT_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_HI_PROCINST 
+add constraint ACT_UNIQ_HI_BUS_KEY 
+unique(PROC_DEF_ID_, BUSINESS_KEY_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create index ACT_IDX_HI_ACT_INST_EXEC on ACT_HI_ACTINST(EXECUTION_ID_, ACT_ID_)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - activiti db schema create for component history successful
+INFO  org.activiti.engine.impl.db.DbSqlSession - performing create on identity with resource org/activiti/db/create/activiti.h2.create.identity.sql
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_ID_GROUP ( 
+ID_ varchar(64), 
+REV_ integer, 
+NAME_ varchar(255), 
+TYPE_ varchar(255), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_ID_MEMBERSHIP ( 
+USER_ID_ varchar(64), 
+GROUP_ID_ varchar(64), 
+primary key (USER_ID_, GROUP_ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_ID_USER ( 
+ID_ varchar(64), 
+REV_ integer, 
+FIRST_ varchar(255), 
+LAST_ varchar(255), 
+EMAIL_ varchar(255), 
+PWD_ varchar(255), 
+PICTURE_ID_ varchar(64), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_ID_INFO ( 
+ID_ varchar(64), 
+REV_ integer, 
+USER_ID_ varchar(64), 
+TYPE_ varchar(64), 
+KEY_ varchar(255), 
+VALUE_ varchar(255), 
+PASSWORD_ longvarbinary, 
+PARENT_ID_ varchar(255), 
+primary key (ID_) 
+)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_ID_MEMBERSHIP 
+add constraint ACT_FK_MEMB_GROUP 
+foreign key (GROUP_ID_) 
+references ACT_ID_GROUP
+DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: alter table ACT_ID_MEMBERSHIP 
+add constraint ACT_FK_MEMB_USER 
+foreign key (USER_ID_) 
+references ACT_ID_USER
+DEBUG org.activiti.engine.impl.db.DbSqlSession - activiti db schema create for component identity successful
+DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary:
+DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committing...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sql session...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- SchemaOperationsProcessEngineBuild finished --------------------------------------------------------
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+INFO  org.activiti.engine.impl.ProcessEngineImpl - ProcessEngine default created
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting DeployCmd --------------------------------------------------------
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting GetNextIdBlockCmd --------------------------------------------------------
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.entity.PropertyEntity.selectProperty - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.entity.PropertyEntity.selectProperty - ==>  Preparing: select * from ACT_GE_PROPERTY where NAME_ = ? 
+DEBUG o.a.e.i.p.entity.PropertyEntity.selectProperty - ==> Parameters: next.dbid(String)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary:
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   update PropertyEntity[next.dbid]
+DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
+DEBUG org.activiti.engine.impl.db.DbSqlSession - updating: 
+DEBUG o.a.e.i.p.entity.PropertyEntity.updateProperty - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.entity.PropertyEntity.updateProperty - ==>  Preparing: update ACT_GE_PROPERTY SET REV_ = ?, VALUE_ = ? where NAME_ = ? and REV_ = ? 
+DEBUG o.a.e.i.p.entity.PropertyEntity.updateProperty - ==> Parameters: 2(Integer), 101(String), next.dbid(String), 1(Integer)
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committing...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sql session...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- GetNextIdBlockCmd finished --------------------------------------------------------
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.bpmn.deployer.BpmnDeployer - Processing deployment null
+INFO  org.activiti.engine.impl.bpmn.deployer.BpmnDeployer - Processing resource MyProcess2.bpmn20.xml
+DEBUG o.a.engine.impl.bpmn.parser.handler.ProcessParseHandler - Parsing process myProcess
+DEBUG o.a.e.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity startevent1
+DEBUG o.a.e.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity endevent1
+DEBUG o.a.e.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity scripttask1
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ?) 
+DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ==> Parameters: myProcess(String), myProcess(String)
+DEBUG o.a.e.i.p.entity.JobEntity.selectJobsByConfiguration - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.entity.JobEntity.selectJobsByConfiguration - ==>  Preparing: select * from ACT_RU_JOB where HANDLER_TYPE_ = ? and HANDLER_CFG_ = ? 
+DEBUG o.a.e.i.p.entity.JobEntity.selectJobsByConfiguration - ==> Parameters: timer-start-event(String), myProcess(String)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary:
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert DeploymentEntity[1]
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ResourceEntity[2]
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ResourceEntity[3]
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ProcessDefinitionEntity[myProcess:1:4]
+DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: DeploymentEntity[1]
+DEBUG o.a.e.i.p.entity.DeploymentEntity.insertDeployment - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.entity.DeploymentEntity.insertDeployment - ==>  Preparing: insert into ACT_RE_DEPLOYMENT(ID_, NAME_, CATEGORY_, DEPLOY_TIME_) values(?, ?, ?, ?) 
+DEBUG o.a.e.i.p.entity.DeploymentEntity.insertDeployment - ==> Parameters: 1(String), null, null, 2013-06-19 06:30:21.457(Timestamp)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[2]
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==> Parameters: 2(String), MyProcess2.bpmn20.xml(String), java.io.ByteArrayInputStream@66c8e4de(ByteArrayInputStream), 1(String), false(Boolean)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[3]
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==> Parameters: 3(String), MyProcess2.myProcess.png(String), java.io.ByteArrayInputStream@1faac07d(ByteArrayInputStream), 1(String), true(Boolean)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ProcessDefinitionEntity[myProcess:1:4]
+DEBUG o.a.e.i.p.e.P.insertProcessDefinition - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.P.insertProcessDefinition - ==>  Preparing: insert into ACT_RE_PROCDEF(ID_, REV_, CATEGORY_, NAME_, KEY_, VERSION_, DEPLOYMENT_ID_, RESOURCE_NAME_, DGRM_RESOURCE_NAME_, DESCRIPTION_, HAS_START_FORM_KEY_, SUSPENSION_STATE_) values (?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+DEBUG o.a.e.i.p.e.P.insertProcessDefinition - ==> Parameters: myProcess:1:4(String), http://www.activiti.org/test(String), My process(String), myProcess(String), 1(Integer), 1(String), MyProcess2.bpmn20.xml(String), MyProcess2.myProcess.png(String), null, false(Boolean), 1(Integer)
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committing...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sql session...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- DeployCmd finished --------------------------------------------------------
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting StartProcessInstanceCmd --------------------------------------------------------
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ?) 
+DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ==> Parameters: myProcess(String), myProcess(String)
+DEBUG o.a.engine.impl.persistence.entity.ExecutionEntity - initializing ProcessInstance[5]
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: FULL
+DEBUG o.a.e.impl.pvm.runtime.AtomicOperationActivityExecute - ProcessInstance[5] executes Activity(startevent1): org.activiti.engine.impl.bpmn.behavior.NoneStartEventActivityBehavior
+DEBUG o.a.engine.impl.bpmn.behavior.BpmnActivityBehavior - Leaving activity 'startevent1'
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG o.a.e.i.p.r.AtomicOperationTransitionNotifyListenerTake - ProcessInstance[5] takes transition (startevent1)--flow1-->(scripttask1)
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG o.a.e.impl.pvm.runtime.AtomicOperationActivityExecute - ProcessInstance[5] executes Activity(scripttask1): org.activiti.engine.impl.bpmn.behavior.ScriptTaskActivityBehavior
+DEBUG o.a.engine.impl.bpmn.behavior.BpmnActivityBehavior - Leaving activity 'scripttask1'
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG o.a.e.i.p.r.AtomicOperationTransitionNotifyListenerTake - ProcessInstance[5] takes transition (scripttask1)--flow2-->(endevent1)
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG o.a.e.impl.pvm.runtime.AtomicOperationActivityExecute - ProcessInstance[5] executes Activity(endevent1): org.activiti.engine.impl.bpmn.behavior.NoneEndEventActivityBehavior
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT
+DEBUG o.a.engine.impl.persistence.entity.ExecutionEntity - destroying ProcessInstance[5]
+DEBUG org.activiti.engine.impl.history.HistoryManager - Current history level: AUDIT, level required: ACTIVITY
+DEBUG o.a.e.i.p.e.I.selectIdentityLinksByProcessInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.I.selectIdentityLinksByProcessInstance - ==>  Preparing: select * from ACT_RU_IDENTITYLINK where PROC_INST_ID_ = ? 
+DEBUG o.a.e.i.p.e.I.selectIdentityLinksByProcessInstance - ==> Parameters: 5(String)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary:
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert HistoricProcessInstanceEntity[5]
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert HistoricActivityInstanceEntity[6]
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert HistoricVariableInstanceEntity[7]
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert HistoricActivityInstanceEntity[8]
+DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert HistoricActivityInstanceEntity[9]
+DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricProcessInstanceEntity[5]
+DEBUG o.a.e.i.p.e.H.insertHistoricProcessInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.H.insertHistoricProcessInstance - ==>  Preparing: insert into ACT_HI_PROCINST ( ID_, PROC_INST_ID_, BUSINESS_KEY_, PROC_DEF_ID_, START_TIME_, END_TIME_, DURATION_, START_USER_ID_, START_ACT_ID_, END_ACT_ID_, SUPER_PROCESS_INSTANCE_ID_, DELETE_REASON_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+DEBUG o.a.e.i.p.e.H.insertHistoricProcessInstance - ==> Parameters: 5(String), 5(String), null, myProcess:1:4(String), 2013-06-19 06:30:24.725(Timestamp), 2013-06-19 06:30:29.681(Timestamp), 4956(Long), null, startevent1(String), endevent1(String), null, null
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricActivityInstanceEntity[6]
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, CALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 6(String), myProcess:1:4(String), 5(String), 5(String), startevent1(String), null, null, Start(String), startEvent(String), null, 2013-06-19 06:30:24.725(Timestamp), 2013-06-19 06:30:24.82(Timestamp), 95(Long)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricVariableInstanceEntity[7]
+DEBUG o.a.e.i.p.e.H.insertHistoricVariableInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.H.insertHistoricVariableInstance - ==>  Preparing: insert into ACT_HI_VARINST (ID_, PROC_INST_ID_, EXECUTION_ID_, TASK_ID_, NAME_, REV_, VAR_TYPE_, BYTEARRAY_ID_, DOUBLE_, LONG_ , TEXT_, TEXT2_) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+DEBUG o.a.e.i.p.e.H.insertHistoricVariableInstance - ==> Parameters: 7(String), 5(String), 5(String), null, isbn(String), 0(Integer), string(String), null, null, null, 123456(String), null
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricActivityInstanceEntity[8]
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, CALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 8(String), myProcess:1:4(String), 5(String), 5(String), scripttask1(String), null, null, Script Task(String), scriptTask(String), null, 2013-06-19 06:30:24.82(Timestamp), 2013-06-19 06:30:29.68(Timestamp), 4860(Long)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricActivityInstanceEntity[9]
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, CALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 9(String), myProcess:1:4(String), 5(String), 5(String), endevent1(String), null, null, End(String), endEvent(String), null, 2013-06-19 06:30:29.68(Timestamp), 2013-06-19 06:30:29.68(Timestamp), 0(Long)
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committing...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sql session...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- StartProcessInstanceCmd finished --------------------------------------------------------
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting ProcessInstanceQueryImpl --------------------------------------------------------
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.E.selectProcessInstanceByQueryCriteria - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG o.a.e.i.p.e.E.selectProcessInstanceByQueryCriteria - ==>  Preparing: select RES.* , P.KEY_ as ProcessDefinitionKey, P.ID_ as ProcessDefinitionId from ACT_RU_EXECUTION RES inner join ACT_RE_PROCDEF P on RES.PROC_DEF_ID_ = P.ID_ WHERE RES.PARENT_ID_ is null and P.KEY_ = ? order by RES.ID_ asc LIMIT ? OFFSET ? 
+DEBUG o.a.e.i.p.e.E.selectProcessInstanceByQueryCriteria - ==> Parameters: bookorder(String), 2147483647(Integer), 0(Integer)
+DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary:
+DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committing...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sql session...
+DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- ProcessInstanceQueryImpl finished --------------------------------------------------------
+DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     

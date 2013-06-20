@@ -1,19 +1,13 @@
 package de.twenty11.skysail.server.ext.jenkins.internal.test;
 
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.mockito.Mockito;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
-
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
+import org.restlet.Component;
 
 import de.twenty11.skysail.server.ext.jenkins.internal.Configuration;
 import de.twenty11.skysail.server.services.ComponentProvider;
-import org.restlet.Component;
 
 public class ConfigurationTest {
 
@@ -26,6 +20,7 @@ public class ConfigurationTest {
         protected void activate(ComponentContext componentContext) throws ConfigurationException {
             super.activate(componentContext);
         }
+
         @Override
         protected void deactivate(ComponentContext componentContext) {
             super.deactivate(componentContext);
@@ -39,19 +34,6 @@ public class ConfigurationTest {
         Component component = Mockito.mock(Component.class);
         Mockito.when(componentProvider.getComponent()).thenReturn(component);
         configuration.setComponentProvider(componentProvider);
-    }
-
-    @Test
-    public void activating_creates_restlet_application() throws Exception {
-        configuration.activate(componentContext);
-        Assert.assertThat(configuration.getApplication(), is(notNullValue()));
-    }
-
-    @Test
-    public void deactivating_nulls_restlet_application() throws Exception {
-        configuration.activate(componentContext);
-        configuration.deactivate(componentContext);
-        Assert.assertThat(configuration.getApplication(), is(nullValue()));
     }
 
 }

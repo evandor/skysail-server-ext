@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.Context;
 import org.restlet.Request;
@@ -32,6 +33,7 @@ public class MyRootResourceTest {
     }
 
     @Test
+    @Ignore
     public void creates_json_response_for_get_request() {
         Request request = new Request(Method.GET, "/");
         Response response = new Response(request);

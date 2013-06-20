@@ -25,7 +25,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     private static Logger logger = LoggerFactory.getLogger(NotesApplication.class);
 
     public NotesApplication() {
-        super(null);
+        super();
         logger.info("Instanciating new NotesApplication");
         setDescription("RESTful skysail.server.ext.notes bundle");
         setOwner("twentyeleven");

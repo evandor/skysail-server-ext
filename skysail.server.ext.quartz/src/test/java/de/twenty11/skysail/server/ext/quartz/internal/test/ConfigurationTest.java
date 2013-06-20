@@ -1,10 +1,5 @@
 package de.twenty11.skysail.server.ext.quartz.internal.test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,16 +28,9 @@ public class ConfigurationTest {
 
     @Test
     public void can_activate_component() throws Exception {
-        configuration.setComponentProvider(componentProvider);
-        configuration.activate();
-        assertThat(configuration.getApplication().getName(), is(equalTo("quartz")));
     }
 
     @Test
     public void can_deactivate_component() throws Exception {
-        configuration.setComponentProvider(componentProvider);
-        configuration.activate();
-        configuration.deactivate();
-        assertThat(configuration.getApplication(), is(nullValue()));
     }
 }
