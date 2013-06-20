@@ -59,37 +59,6 @@ public class ServiceDescriptor implements Serializable, Comparable<ServiceDescri
         this.providingBundle = providingBundle;
     }
 
-    // @JsonIgnore
-    // @Override
-    // public PresentableHeader getHeader() {
-    // return new PresentableHeader.Builder("#" + serviceId + ": " + this.stringRep).build();
-    // }
-    //
-    // @JsonIgnore
-    // @Override
-    // public Map<String, Object> getContent() {
-    // return new BeanMap(this);
-    // // Map<String, Object> result = new HashMap<String, Object>();
-    // // result.put("provided by", providingBundle);
-    // // result.put("used by", usingBundles);
-    // // for (String property : this.properties.keySet()) {
-    // // result.put(property, properties.get(property));
-    // // }
-    // // return result;
-    // }
-
-    // @JsonIgnore
-    // public String getHtml() {
-    // ST html = new ST("#map.keys:{k| <tr><td style='width:300px;'><b>#k#</b></td><td>#map.(k)#</td></tr>}#\n", '#',
-    // '#');
-    // properties.put("provided by", providingBundle);
-    // properties.put("used by", usingBundles);
-    // html.add("map", properties);
-    //
-    // return "<table class='table table-hover table-bordered'>\n<tr><th colspan=2 style='background-color:#F5F5F5;'>"
-    // + serviceId + " " + this.stringRep + "</th></tr>\n" + html.render() + "</table>\n";
-    // }
-
     @Override
     public int compareTo(ServiceDescriptor other) {
         return serviceId.compareTo(other.getServiceId());
@@ -116,6 +85,11 @@ public class ServiceDescriptor implements Serializable, Comparable<ServiceDescri
                 properties.put(key, sr.getProperty(key));
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return serviceId + " [" + ((Object[]) properties.get("objectClass"))[0] + "]";
     }
 
 }
