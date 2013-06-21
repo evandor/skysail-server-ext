@@ -1,11 +1,11 @@
-
-accordion(map) ::= <<
+accordion(list) ::= <<
   <div class="accordion" id="accordion2">
-      $map:accordionGroup()$
+      $list:{ element | $accordionGroup(element,i)$}$
   </div>
 >>
 
-accordionGroup() ::= <<
+accordionGroup(element,i) ::= <<
+
     <div class="accordion-group">
         <div class="accordion-heading">
             hlink1&nbsp;<a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
@@ -13,8 +13,24 @@ accordionGroup() ::= <<
         </div>
         <div id="collapse$i$" class="accordion-body collapse">
             <div class="accordion-inner">
-                    ***
+                    $table(element)$
             </div>
         </div> 
     </div>
+    
 >>
+
+table(map)  ::= <<
+    <table class='table table-hover table-bordered'>
+        <tr><th colspan=2 style='background-color:#F5F5F5;'></th></tr>
+        $mapIteration(map)$
+    </table>
+>>
+
+mapIteration(map) ::= <<
+            $map.keys:{key| $asRow(map,key,i)$}$
+>>
+
+asRow(map,k,i)      ::= "<tr><td><b>$k$</b></td><td>$map.(k)$</td></tr>"
+
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"

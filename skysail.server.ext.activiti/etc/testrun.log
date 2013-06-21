@@ -1,14 +1,14 @@
 DEBUG o.a.engine.impl.cfg.ProcessEngineConfigurationImpl - initializing datasource to db: jdbc:h2:mem:activiti
 DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Created connection 1644838203.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Created connection 1836684604.
 DEBUG o.a.engine.impl.cfg.ProcessEngineConfigurationImpl - database product name: 'H2'
 DEBUG o.a.engine.impl.cfg.ProcessEngineConfigurationImpl - using database type: h2
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1836684604 to pool.
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting SchemaOperationsProcessEngineBuild --------------------------------------------------------
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1836684604 from pool.
 INFO  org.activiti.engine.impl.db.DbSqlSession - performing create on engine with resource org/activiti/db/create/activiti.h2.create.engine.sql
 DEBUG org.activiti.engine.impl.db.DbSqlSession - SQL: create table ACT_GE_PROPERTY ( 
 NAME_ varchar(64), 
@@ -430,7 +430,7 @@ DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sq
 DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1836684604 to pool.
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- SchemaOperationsProcessEngineBuild finished --------------------------------------------------------
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 INFO  org.activiti.engine.impl.ProcessEngineImpl - ProcessEngine default created
@@ -439,7 +439,7 @@ DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting DeployC
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting GetNextIdBlockCmd --------------------------------------------------------
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1836684604 from pool.
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.entity.PropertyEntity.selectProperty - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.entity.PropertyEntity.selectProperty - ==>  Preparing: select * from ACT_GE_PROPERTY where NAME_ = ? 
@@ -457,7 +457,7 @@ DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Conne
 DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1836684604 to pool.
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- GetNextIdBlockCmd finished --------------------------------------------------------
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 DEBUG org.activiti.engine.impl.bpmn.deployer.BpmnDeployer - Processing deployment null
@@ -467,7 +467,7 @@ DEBUG o.a.e.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity
 DEBUG o.a.e.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity endevent1
 DEBUG o.a.e.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity scripttask1
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1836684604 from pool.
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ?) 
@@ -484,15 +484,15 @@ DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: DeploymentEntity[1]
 DEBUG o.a.e.i.p.entity.DeploymentEntity.insertDeployment - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.entity.DeploymentEntity.insertDeployment - ==>  Preparing: insert into ACT_RE_DEPLOYMENT(ID_, NAME_, CATEGORY_, DEPLOY_TIME_) values(?, ?, ?, ?) 
-DEBUG o.a.e.i.p.entity.DeploymentEntity.insertDeployment - ==> Parameters: 1(String), null, null, 2013-06-19 06:30:21.457(Timestamp)
+DEBUG o.a.e.i.p.entity.DeploymentEntity.insertDeployment - ==> Parameters: 1(String), null, null, 2013-06-21 06:11:35.397(Timestamp)
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[2]
 DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
-DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==> Parameters: 2(String), MyProcess2.bpmn20.xml(String), java.io.ByteArrayInputStream@66c8e4de(ByteArrayInputStream), 1(String), false(Boolean)
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==> Parameters: 2(String), MyProcess2.bpmn20.xml(String), java.io.ByteArrayInputStream@5675b3ee(ByteArrayInputStream), 1(String), false(Boolean)
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[3]
 DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
-DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==> Parameters: 3(String), MyProcess2.myProcess.png(String), java.io.ByteArrayInputStream@1faac07d(ByteArrayInputStream), 1(String), true(Boolean)
+DEBUG o.a.e.i.p.entity.ResourceEntity.insertResource - ==> Parameters: 3(String), MyProcess2.myProcess.png(String), java.io.ByteArrayInputStream@4977fa9a(ByteArrayInputStream), 1(String), true(Boolean)
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ProcessDefinitionEntity[myProcess:1:4]
 DEBUG o.a.e.i.p.e.P.insertProcessDefinition - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.P.insertProcessDefinition - ==>  Preparing: insert into ACT_RE_PROCDEF(ID_, REV_, CATEGORY_, NAME_, KEY_, VERSION_, DEPLOYMENT_ID_, RESOURCE_NAME_, DGRM_RESOURCE_NAME_, DESCRIPTION_, HAS_START_FORM_KEY_, SUSPENSION_STATE_) values (?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
@@ -503,13 +503,13 @@ DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Conne
 DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1836684604 to pool.
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- DeployCmd finished --------------------------------------------------------
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting StartProcessInstanceCmd --------------------------------------------------------
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1836684604 from pool.
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.P.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ?) 
@@ -547,11 +547,11 @@ DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricProcessInstanceEntity[5]
 DEBUG o.a.e.i.p.e.H.insertHistoricProcessInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.H.insertHistoricProcessInstance - ==>  Preparing: insert into ACT_HI_PROCINST ( ID_, PROC_INST_ID_, BUSINESS_KEY_, PROC_DEF_ID_, START_TIME_, END_TIME_, DURATION_, START_USER_ID_, START_ACT_ID_, END_ACT_ID_, SUPER_PROCESS_INSTANCE_ID_, DELETE_REASON_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
-DEBUG o.a.e.i.p.e.H.insertHistoricProcessInstance - ==> Parameters: 5(String), 5(String), null, myProcess:1:4(String), 2013-06-19 06:30:24.725(Timestamp), 2013-06-19 06:30:29.681(Timestamp), 4956(Long), null, startevent1(String), endevent1(String), null, null
+DEBUG o.a.e.i.p.e.H.insertHistoricProcessInstance - ==> Parameters: 5(String), 5(String), null, myProcess:1:4(String), 2013-06-21 06:11:39.692(Timestamp), 2013-06-21 06:11:43.729(Timestamp), 4037(Long), null, startevent1(String), endevent1(String), null, null
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricActivityInstanceEntity[6]
 DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, CALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
-DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 6(String), myProcess:1:4(String), 5(String), 5(String), startevent1(String), null, null, Start(String), startEvent(String), null, 2013-06-19 06:30:24.725(Timestamp), 2013-06-19 06:30:24.82(Timestamp), 95(Long)
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 6(String), myProcess:1:4(String), 5(String), 5(String), startevent1(String), null, null, Start(String), startEvent(String), null, 2013-06-21 06:11:39.692(Timestamp), 2013-06-21 06:11:39.764(Timestamp), 72(Long)
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricVariableInstanceEntity[7]
 DEBUG o.a.e.i.p.e.H.insertHistoricVariableInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.H.insertHistoricVariableInstance - ==>  Preparing: insert into ACT_HI_VARINST (ID_, PROC_INST_ID_, EXECUTION_ID_, TASK_ID_, NAME_, REV_, VAR_TYPE_, BYTEARRAY_ID_, DOUBLE_, LONG_ , TEXT_, TEXT2_) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
@@ -559,24 +559,24 @@ DEBUG o.a.e.i.p.e.H.insertHistoricVariableInstance - ==> Parameters: 7(String), 
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricActivityInstanceEntity[8]
 DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, CALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
-DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 8(String), myProcess:1:4(String), 5(String), 5(String), scripttask1(String), null, null, Script Task(String), scriptTask(String), null, 2013-06-19 06:30:24.82(Timestamp), 2013-06-19 06:30:29.68(Timestamp), 4860(Long)
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 8(String), myProcess:1:4(String), 5(String), 5(String), scripttask1(String), null, null, Script Task(String), scriptTask(String), null, 2013-06-21 06:11:39.764(Timestamp), 2013-06-21 06:11:43.728(Timestamp), 3964(Long)
 DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: HistoricActivityInstanceEntity[9]
 DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==>  Preparing: insert into ACT_HI_ACTINST ( ID_, PROC_DEF_ID_, PROC_INST_ID_, EXECUTION_ID_, ACT_ID_, TASK_ID_, CALL_PROC_INST_ID_, ACT_NAME_, ACT_TYPE_, ASSIGNEE_, START_TIME_, END_TIME_, DURATION_ ) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
-DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 9(String), myProcess:1:4(String), 5(String), 5(String), endevent1(String), null, null, End(String), endEvent(String), null, 2013-06-19 06:30:29.68(Timestamp), 2013-06-19 06:30:29.68(Timestamp), 0(Long)
+DEBUG o.a.e.i.p.e.H.insertHistoricActivityInstance - ==> Parameters: 9(String), myProcess:1:4(String), 5(String), 5(String), endevent1(String), null, null, End(String), endEvent(String), null, 2013-06-21 06:11:43.728(Timestamp), 2013-06-21 06:11:43.728(Timestamp), 0(Long)
 DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committing...
 DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sql session...
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1836684604 to pool.
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- StartProcessInstanceCmd finished --------------------------------------------------------
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting ProcessInstanceQueryImpl --------------------------------------------------------
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Openning JDBC Connection
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1644838203 from pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1836684604 from pool.
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.E.selectProcessInstanceByQueryCriteria - ooo Using Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG o.a.e.i.p.e.E.selectProcessInstanceByQueryCriteria - ==>  Preparing: select RES.* , P.KEY_ as ProcessDefinitionKey, P.ID_ as ProcessDefinitionId from ACT_RU_EXECUTION RES inner join ACT_RE_PROCDEF P on RES.PROC_DEF_ID_ = P.ID_ WHERE RES.PARENT_ID_ is null and P.KEY_ = ? order by RES.ID_ asc LIMIT ? OFFSET ? 
@@ -588,6 +588,6 @@ DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - committing the ibatis sq
 DEBUG o.a.e.i.c.s.StandaloneMybatisTransactionContext - firing event committed...
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
 DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn0: url=jdbc:h2:mem:activiti user=SA]
-DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1644838203 to pool.
+DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1836684604 to pool.
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- ProcessInstanceQueryImpl finished --------------------------------------------------------
 DEBUG org.activiti.engine.impl.interceptor.LogInterceptor -                                                                                                     
