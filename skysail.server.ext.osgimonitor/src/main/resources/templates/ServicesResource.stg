@@ -1,3 +1,20 @@
-mapIteration(map) ::= "$map.keys:{key| $asRow(map,key)$}$"
-asRow(map,k)      ::= "<tr><td><b>$k$</b></td><td>$map.(k)$</td></tr>"
-header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [$map.properties.(objectClass)$]"
+
+accordion(map) ::= <<
+  <div class="accordion" id="accordion2">
+      $map:accordionGroup()$
+  </div>
+>>
+
+accordionGroup() ::= <<
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            hlink1&nbsp;<a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
+                data-parent="#accordion2" href="#collapse$i$"><i class="icon-zoom-in"></i></a>&nbsp;
+        </div>
+        <div id="collapse$i$" class="accordion-body collapse">
+            <div class="accordion-inner">
+                    ***
+            </div>
+        </div> 
+    </div>
+>>
