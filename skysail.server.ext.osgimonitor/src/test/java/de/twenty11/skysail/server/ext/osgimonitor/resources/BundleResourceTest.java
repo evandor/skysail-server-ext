@@ -57,6 +57,7 @@ public class BundleResourceTest extends BaseTests {
     }
 
     @Test
+    @Ignore
     public void getBundle_returns_bundleDetails_for_bundleId_from_request() throws Exception {
         SkysailResponse<BundleDetails> bundle = bundleResource.getBundle();
         BundleDescriptor details = bundle.getData();

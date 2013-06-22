@@ -8,7 +8,7 @@ accordionGroup(element,i) ::= <<
 
     <div class="accordion-group">
         <div class="accordion-heading">
-            hlink1&nbsp;<a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
+            $header(element)$&nbsp;<a class="accordion-toggle" data-toggle="collapse" style="display:inline;"
                 data-parent="#accordion2" href="#collapse$i$"><i class="icon-zoom-in"></i></a>&nbsp;
         </div>
         <div id="collapse$i$" class="accordion-body collapse">
@@ -33,4 +33,4 @@ mapIteration(map) ::= <<
 
 asRow(map,k,i)      ::= "<tr><td><b>$k$</b></td><td>$map.(k)$</td></tr>"
 
-header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b>$map.properties.objectClass$</b>]"
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> [<b><a href='services/$map.serviceId$'>$map.properties.objectClass$</a></b>]"

@@ -1,0 +1,13 @@
+ul(list) ::= <<
+  <ul>
+      $list:{ element | $li(element,i)$}$
+  </ul>
+>>
+
+li(element,i) ::= <<
+
+    <li>$header(element)$</li>
+    
+>>
+
+header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> <a href='services/$map.serviceId$'>$map.properties.objectClass$</a>"

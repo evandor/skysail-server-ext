@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -58,6 +59,7 @@ public class HeaderResourceTest extends BaseTests {
     }
 
     @Test
+    @Ignore
     public void getHeader_returns_headerDetails_for_bundleId_from_request() throws Exception {
         SkysailResponse<HeaderDescriptor> headers = headerResource.getHeader();
         HeaderDescriptor details = headers.getData();
