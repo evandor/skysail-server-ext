@@ -56,7 +56,7 @@ public class ServicesResource extends ListServerResource2<ServiceDescriptor> { /
     @Override
     @Get("html|json|csv")
     public SkysailResponse<List<ServiceDescriptor>> getEntities() {
-        return getEntities("listing of all services");
+        return getEntities("Listing of all services:");
     }
 
     @Override

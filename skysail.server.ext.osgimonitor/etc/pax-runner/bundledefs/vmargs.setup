@@ -1,8 +1,0 @@
--Dfelix.fileinstall.dir=../config 
--Dfelix.fileinstall.filter=skysail.*.jar|.*\\.cfg 
--Dfelix.fileinstall.noInitialDelay=true 
--Dfelix.fileinstall.poll=1000 
--Dfelix.fileinstall.log.level=4 
--Dlogback.configurationFile=../config/logback.xml 
--Dorg.apache.felix.log.storeDebug=true 
-

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.8.36</version>
+		<version>0.8.37-SNAPSHOT</version>
 		<relativePath />
 	</parent>
 
@@ -36,16 +36,16 @@
 				<filtering>true</filtering>
 			</resource>
 			<resource>
-                <filtering>true</filtering>
+				<filtering>true</filtering>
 				<directory>src/main/webapp</directory>
 			</resource>
-            <resource>
-                <directory>src/main/resources/</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>**/*.stg</include>
-                </includes>
-            </resource>
+			<resource>
+				<directory>src/main/resources/</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.stg</include>
+				</includes>
+			</resource>
 		</resources>
 
 		<plugins>
@@ -77,7 +77,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
@@ -86,44 +85,50 @@
 					<preparationGoals>site:site site:deploy</preparationGoals>
 				</configuration>
 			</plugin>
-
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.jacoco</groupId>
-										<artifactId>
-											jacoco-maven-plugin
-										</artifactId>
-										<versionRange>
-											[0.6.2.201302030002,)
-										</versionRange>
-										<goals>
-											<goal>prepare-agent</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<host>localhost</host>
+				<deployDir>/home/carsten/bundles</deployDir>
+				<deployUrl>file:///</deployUrl>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>2.8</version>
+						<executions>
+							<execution>
+								<id>copy</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${project.groupId}</groupId>
+											<artifactId>${project.artifactId}</artifactId>
+											<version>${project.version}</version>
+											<type>jar</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${user.home}/bundles</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+									<overWriteReleases>true</overWriteReleases>
+									<overWriteSnapshots>true</overWriteSnapshots>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<profile>
 			<!-- execute like "mvn install -P-sonar -DskipSlowTasks -DskipTests" -->
 			<id>slowTask</id>
@@ -134,83 +139,6 @@
 			</activation>
 			<build>
 				<plugins>
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>install phase</id>
-								<phase>install</phase>
-								<configuration>
-									<tasks>
-										<!-- delete zip file first to have an exact copy (even if files 
-											have been deleted in the sources) <delete file="target/skysail-dbviewer-${project.version}.zip" 
-											/> -->
-										<!-- -${project.version} -->
-										<zip destfile="target/skysail-osgimonitor.zip" encoding="UTF-8"
-											update="false" whenempty="create">
-											<zipfileset dir="etc/pax-runner" prefix="skysail-osgimonitor"
-												filemode="775">
-												<include name="run.bat" />
-												<include name="run.sh" />
-												<include name="run.composite" />
-												<include name="rund.sh" />
-												<include name="rund.setup" />
-												<include name="rund.composite" />
-											</zipfileset>
-											<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin"
-												filemode="775">
-												<include name="*.jar" />
-											</zipfileset>
-											<zipfileset dir="etc/pax-runner/bundledefs"
-												prefix="skysail-osgimonitor/bundledefs" filemode="775">
-												<include name="*.setup" />
-											</zipfileset>
-											<zipfileset dir="src/main/resources" prefix="skysail-osgimonitor/config">
-												<include name="logback.xml" />
-											</zipfileset>
-											<zipfileset dir="conf/prod" prefix="skysail-osgimonitor/config">
-												<include name="*.*" />
-											</zipfileset>
-										</zip>
-
-										<zip destfile="target/skysail-osgimonitor-${project.version}.zip"
-											encoding="UTF-8" update="false" whenempty="create">
-											<zipfileset dir="etc/pax-runner"
-												prefix="skysail-osgimonitor-${project.version}" filemode="775">
-												<include name="run.bat" />
-												<include name="run.sh" />
-												<include name="run.composite" />
-												<include name="rund.sh" />
-												<include name="rund.setup" />
-												<include name="rund.composite" />
-											</zipfileset>
-											<zipfileset dir="etc/pax-runner/bin" prefix="skysail-osgimonitor/bin"
-												filemode="775">
-												<include name="*.jar" />
-											</zipfileset>
-											<zipfileset dir="etc/pax-runner/bundledefs"
-												prefix="skysail-osgimonitor/bundledefs" filemode="775">
-												<include name="*.setup" />
-											</zipfileset>
-											<zipfileset dir="src/main/resources"
-												prefix="skysail-osgimonitor-${project.version}/conf">
-												<include name="logback.xml" />
-											</zipfileset>
-											<zipfileset dir="conf/prod"
-												prefix="skysail-osgimonitor-${project.version}/conf">
-												<include name="*.*" />
-											</zipfileset>
-										</zip>
-
-									</tasks>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>build-helper-maven-plugin</artifactId>
@@ -232,7 +160,6 @@
 							</execution>
 						</executions>
 					</plugin>
-
 				</plugins>
 			</build>
 		</profile>

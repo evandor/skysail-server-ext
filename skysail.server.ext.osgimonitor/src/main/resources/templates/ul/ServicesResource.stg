@@ -10,4 +10,4 @@ li(element,i) ::= <<
     
 >>
 
-header(map)       ::= "<i class='icon-play'></i>&nbsp;<b>$map.serviceId$</b> <a href='services/$map.serviceId$'>$map.properties.objectClass$</a>"
+header(map)       ::= "&nbsp;<a href='services/$map.serviceId$'>$map.properties.objectClass$</a>"

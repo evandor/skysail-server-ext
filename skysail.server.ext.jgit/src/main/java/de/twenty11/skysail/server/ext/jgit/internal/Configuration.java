@@ -19,13 +19,13 @@ public class Configuration implements ApplicationProvider {
     private EntityManagerFactory emf;
 
     public void activate() {
-        logger.info("Activating Configuration Component for Skysail Bookmarks Extension");
+        logger.info("Activating Configuration Component for Skysail JGit Extension");
         Component component = componentProvider.getComponent();
         application = new MyApplication(component.getContext(), emf);
     }
 
     public void deactivate() {
-        logger.info("Deactivating Configuration Component for Skysail Bookmarks Extension");
+        logger.info("Deactivating Configuration Component for Skysail JGit Extension");
         application = null;
 
     }
