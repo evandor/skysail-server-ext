@@ -29,7 +29,7 @@ public class MyRootResourceTest {
 
     @Before
     public void setUp() throws Exception {
-        application = new MyApplication(null, Mockito.mock(EntityManagerFactory.class));
+        application = new MyApplication();
         application.createInboundRoot();
         rootResource = new MyRootResource();
         rootResource.setApplication(application);

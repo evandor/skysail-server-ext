@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.Context;
 import org.restlet.routing.Router;
 import org.restlet.routing.Template;
@@ -19,16 +21,18 @@ import de.twenty11.skysail.server.ext.jgit.LocalRepositoryResource;
 import de.twenty11.skysail.server.ext.jgit.MyRootResource;
 import de.twenty11.skysail.server.ext.jgit.ShowFileResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
+import de.twenty11.skysail.server.services.ApplicationProvider;
 
 /**
  * @author carsten
  * 
  */
-public class MyApplication extends SkysailApplication {
+public class MyApplication extends SkysailApplication implements ApplicationProvider{
 
     private DbRepository repository;
+    private EntityManagerFactory emf;
 
-    public MyApplication(Context componentContext, EntityManagerFactory emf) {
+    public MyApplication() {
         super();
         if (getContext() != null) {
             setContext(getContext().createChildContext());
@@ -36,9 +40,19 @@ public class MyApplication extends SkysailApplication {
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("jgit");
-        repository = new Repository(emf);
+        //repository = new Repository(emf);
     }
-
+    
+    @Override
+    protected void activate(ComponentContext componentContext) throws ConfigurationException {
+        super.activate(componentContext);
+    }
+    
+    @Override
+    protected void deactivate(ComponentContext componentContext) {
+        super.deactivate(componentContext);
+    }
+    
     protected void attach() {
 
         // make sure to match proper resource even if request url contains add. information
@@ -59,7 +73,10 @@ public class MyApplication extends SkysailApplication {
         // @formatter:on
     }
 
-    public DbRepository getRepository() {
+    public synchronized DbRepository getRepository() {
+        if (this.repository == null) {
+            this.repository = new Repository(emf);
+        }
         return this.repository;
     }
 
@@ -73,4 +90,9 @@ public class MyApplication extends SkysailApplication {
         executedCommands.put(timeInMillis, command);
         getContext().getAttributes().put("skysail.executedCommands", executedCommands);
     }
+    
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
 }
