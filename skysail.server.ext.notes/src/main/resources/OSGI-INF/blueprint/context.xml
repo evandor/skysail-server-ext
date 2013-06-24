@@ -21,8 +21,8 @@
 	<reference id="emfRef" interface="javax.persistence.EntityManagerFactory"
 		filter="(osgi.unit.name=NotesPU)" />
 		
-	<!-- ext:proxy-method="classes" -->	
+	<!-- ext:proxy-method="classes" 
 	<reference id="serverConfig" interface="de.twenty11.skysail.server.config.ServerConfiguration" />	
-
+-->	
 </blueprint>
 
