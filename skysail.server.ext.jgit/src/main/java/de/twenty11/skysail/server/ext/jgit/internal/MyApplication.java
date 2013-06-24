@@ -33,24 +33,13 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
     private EntityManagerFactory emf;
 
     public MyApplication() {
-        super();
-        if (getContext() != null) {
-            setContext(getContext().createChildContext());
-        }
+//        if (getContext() != null) {
+//            setContext(getContext().createChildContext());
+//        }
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("jgit");
         //repository = new Repository(emf);
-    }
-    
-    @Override
-    protected void activate(ComponentContext componentContext) throws ConfigurationException {
-        super.activate(componentContext);
-    }
-    
-    @Override
-    protected void deactivate(ComponentContext componentContext) {
-        super.deactivate(componentContext);
     }
     
     protected void attach() {

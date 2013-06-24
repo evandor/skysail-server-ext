@@ -46,6 +46,10 @@ public class Folder extends Component implements Presentable2 {
     public static Folder createRoot(String folderName) {
         return new Folder(null, folderName);
     }
+    
+    public Folder() {
+        // needed for EclipseLink
+    }
 
     public Folder(Folder parent, String folderName) {
         Validate.notNull(folderName, "A folder needs a name");

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.restlet.resource.Get;
 
+import de.twenty11.skysail.common.Presentation;
+import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
@@ -14,6 +16,7 @@ import de.twenty11.skysail.server.ext.notes.domain.Component;
  * Restlet Root Resource for dbViewer application.
  * 
  */
+@Presentation(preferred = PresentationStyle.LIST2)
 public class NotesRootResource extends ListServerResource2<Component> {
 
     public NotesRootResource() {

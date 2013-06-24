@@ -4,11 +4,12 @@ import javax.persistence.EntityManagerFactory;
 
 import org.restlet.routing.Router;
 import org.restlet.routing.Template;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.ext.notes.domain.Folder;
+import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
+import de.twenty11.skysail.server.ext.notes.repos.FolderRepository;
 import de.twenty11.skysail.server.ext.notes.resources.AddFolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.FolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.NotesRootResource;
@@ -22,11 +23,9 @@ import de.twenty11.skysail.server.services.ApplicationProvider;
 public class NotesApplication extends SkysailApplication implements ApplicationProvider {
 
     private EntityManagerFactory enitityManagerFactory;
-    private static Logger logger = LoggerFactory.getLogger(NotesApplication.class);
+    private ComponentRepository<Folder> folderRepository;
 
     public NotesApplication() {
-        super();
-        logger.info("Instanciating new NotesApplication");
         setDescription("RESTful skysail.server.ext.notes bundle");
         setOwner("twentyeleven");
         setName("notes");
@@ -55,4 +54,11 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         super.setServerConfiguration(sc);
     }
 
+    public synchronized ComponentRepository<Folder> getFolderRepository() {
+        if (this.folderRepository == null) {
+            this.folderRepository = new FolderRepository(enitityManagerFactory);
+        }
+        return this.folderRepository;
+    }
+    
 }
