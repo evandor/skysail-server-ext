@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.ext.osgimonitor.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,27 +11,26 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 import org.restlet.data.Reference;
 
-public class ServiceDescriptor implements Serializable, Comparable<ServiceDescriptor> {
-
-    private static final long serialVersionUID = -557374476304687619L;
+public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
 
     private static final String SERVICE_ID_IDENTIFIER = "service.id";
 
     private Long serviceId = -1L;
-
     private Map<String, Object> properties = new HashMap<String, Object>();
-
     private BundleDescriptor providingBundle;
 
     @Transient
     private Map<String, String> links;
-
+    
     @Transient
     private List<BundleDescriptor> usingBundles = new ArrayList<BundleDescriptor>();
 
     @Transient
     private Reference reference;
 
+    /**
+     * Default constructor, needed for // TODO
+     */
     public ServiceDescriptor() {
     }
 
@@ -67,6 +65,11 @@ public class ServiceDescriptor implements Serializable, Comparable<ServiceDescri
     public Long getServiceId() {
         return serviceId;
     }
+    
+    @Override
+    public String toString() {
+        return serviceId + " [" + ((Object[]) properties.get("objectClass"))[0] + "]";
+    }
 
     private void handleUsingBundles(ServiceReference sr, Reference reference) {
         if (sr.getUsingBundles() != null) {
@@ -85,11 +88,6 @@ public class ServiceDescriptor implements Serializable, Comparable<ServiceDescri
                 properties.put(key, sr.getProperty(key));
             }
         }
-    }
-
-    @Override
-    public String toString() {
-        return serviceId + " [" + ((Object[]) properties.get("objectClass"))[0] + "]";
     }
 
 }

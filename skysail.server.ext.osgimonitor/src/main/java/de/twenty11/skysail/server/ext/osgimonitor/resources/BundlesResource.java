@@ -19,15 +19,9 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDescriptor;
-import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDetails;
 
 /**
- * Restlet Resource class for handling Bundles.
- * 
- * Provides a method to retrieve the existing connections and to add a new one.
- * 
- * The managed entity is of type {@link BundleDetails}, providing details (like jdbc url, username and password about
- * what is needed to actually connect to a datasource.
+ * Restlet Resource class for OSGi Bundles.
  * 
  */
 @Presentation(preferred = PresentationStyle.TABLE)
@@ -58,14 +52,16 @@ public class BundlesResource extends ListServerResource2<BundleDescriptor> {
         return super.getEntities("listing all bundles");
     }
 
-    // @Get("html|json|csv")
-    // public SkysailResponse<List<BundleDescriptor>> getBundles() {
-    // return getEntities(allBundles(), augmentWithFilterMsg("all Bundles"));
-    // }
-
     @Override
     protected List<BundleDescriptor> getData() {
-        return allBundles();
+        List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
+        for (Bundle bundle : bundles) {
+            BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle, null);
+            if (filterMatches(bundleDescriptor)) {
+                result.add(bundleDescriptor);
+            }
+        }
+        return result;
     }
 
     @Post
@@ -75,17 +71,6 @@ public class BundlesResource extends ListServerResource2<BundleDescriptor> {
             return new StringRepresentation("location didn't start with '" + prefix + "'");
         }
         return new StringRepresentation("success");
-    }
-
-    private List<BundleDescriptor> allBundles() {
-        List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
-        for (Bundle bundle : bundles) {
-            BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle, null);
-            if (filterMatches(bundleDescriptor)) {
-                result.add(bundleDescriptor);
-            }
-        }
-        return result;
     }
 
     @Override
