@@ -58,11 +58,12 @@ public class ConfigurationTest {
     }
 
     @Before
+    @Ignore
     public void createConfiguration() throws Exception {
         OsgiMonitorViewerApplication application = new OsgiMonitorViewerApplication();
 
-        Mockito.when(bundleContext.registerService(anyString(), anyObject(), (Dictionary<?, ?>) isNull())).thenReturn(
-                serviceRegistration);
+//        Mockito.when(bundleContext.registerService(anyString(), anyObject(), (Dictionary<?, ?>) isNull())).thenReturn(
+//                serviceRegistration);
         Mockito.when(componentContext.getBundleContext()).thenReturn(bundleContext);
         Mockito.when(componentProvider.getComponent()).thenReturn(component);
         Mockito.when(applicationProvider.getApplication()).thenReturn(application);
