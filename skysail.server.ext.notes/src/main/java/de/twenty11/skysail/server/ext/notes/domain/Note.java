@@ -39,6 +39,10 @@ public class Note extends Component {
         this.content = content;
     }
 
+    public int getPid() {
+        return pid;
+    }
+    
     public String getTitle() {
         return title;
     }

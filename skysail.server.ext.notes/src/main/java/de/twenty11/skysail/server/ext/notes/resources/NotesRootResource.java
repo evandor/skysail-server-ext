@@ -15,6 +15,7 @@ import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Component;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
+import de.twenty11.skysail.server.ext.notes.domain.Note;
 import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
 
 /**
@@ -77,15 +78,28 @@ public class NotesRootResource extends ListServerResource2<Component> {
     @Override
     protected List<Component> getData() {
         NotesApplication app = (NotesApplication)getApplication();
+        List<Component> result = new ArrayList<Component>();
+        addFolders(result, app);
+        addNotes(result, app);
+        return result;
+    }
+
+    private void addFolders(List<Component> result, NotesApplication app) {
         ComponentRepository<Folder> folderRepository = app.getFolderRepository();
         List<Folder> folders = folderRepository.getComponents();
         Collections.sort(folders);
-        List<Component> result = new ArrayList<Component>();
         for (Folder folder : folders) {
             result.add(folder);
         }
-        return result;
-        //return Collections.emptyList();
+    }
+
+    private void addNotes(List<Component> result, NotesApplication app) {
+        ComponentRepository<Note> notesRepository = app.getNotesRepository();
+        List<Note> notes = notesRepository.getComponents();
+        //Collections.sort(notes);
+        for (Note note : notes) {
+            result.add(note);
+        }
     }
 
 }
