@@ -8,9 +8,12 @@ import org.restlet.routing.Template;
 import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
+import de.twenty11.skysail.server.ext.notes.domain.Note;
 import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
 import de.twenty11.skysail.server.ext.notes.repos.FolderRepository;
+import de.twenty11.skysail.server.ext.notes.repos.NotesRepository;
 import de.twenty11.skysail.server.ext.notes.resources.AddFolderResource;
+import de.twenty11.skysail.server.ext.notes.resources.AddNoteResource;
 import de.twenty11.skysail.server.ext.notes.resources.FolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.NotesRootResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
@@ -24,6 +27,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
     private EntityManagerFactory enitityManagerFactory;
     private ComponentRepository<Folder> folderRepository;
+    private ComponentRepository<Note> notesRepository;
 
     public NotesApplication() {
         setDescription("RESTful skysail.server.ext.notes bundle");
@@ -41,6 +45,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         //router.attach(new RouteBuilder("/me", MeResource.class).setText("Me").setVisible(true));
        // router.attach(new RouteBuilder("/folders", FoldersResource.class).setText("Home").setVisible(true));
 //        router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setText("Home").setVisible(true));
+        router.attach(new RouteBuilder("/note", AddNoteResource.class).setVisible(false));
         router.attach(new RouteBuilder("/folder", AddFolderResource.class).setVisible(false));
         router.attach(new RouteBuilder("/folder/{id}", FolderResource.class).setVisible(false));
         // @formatter:on
@@ -60,5 +65,12 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         }
         return this.folderRepository;
     }
-    
+
+    public synchronized ComponentRepository<Note> getNotesRepository() {
+        if (this.notesRepository == null) {
+            this.notesRepository = new NotesRepository(enitityManagerFactory);
+        }
+        return this.notesRepository;
+    }
+
 }

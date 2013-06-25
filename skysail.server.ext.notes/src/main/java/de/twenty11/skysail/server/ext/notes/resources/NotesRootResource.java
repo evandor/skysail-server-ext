@@ -1,16 +1,21 @@
 package de.twenty11.skysail.server.ext.notes.resources;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.restlet.resource.Get;
+import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.navigation.LinkedPage;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
+import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Component;
+import de.twenty11.skysail.server.ext.notes.domain.Folder;
+import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
 
 /**
  * Restlet Root Resource for dbViewer application.
@@ -22,6 +27,11 @@ public class NotesRootResource extends ListServerResource2<Component> {
     public NotesRootResource() {
         setName("osgimonitor root resource");
         setDescription("The root resource of the osgimonitor application");
+    }
+    
+    @Override
+    protected void doInit() throws ResourceException {
+        super.doInit();
     }
 
     @Override
@@ -44,12 +54,38 @@ public class NotesRootResource extends ListServerResource2<Component> {
                 return true;
             }
         });
+        registerLinkedPage(new LinkedPage() {
+
+            @Override
+            public String getLinkText() {
+                return "new Note";
+            }
+
+            @Override
+            public String getHref() {
+                return "notes/note";
+            }
+
+            @Override
+            public boolean applicable() {
+                return true;
+            }
+        });
         return getEntities("Folders and Notes");
     }
 
     @Override
     protected List<Component> getData() {
-        return Collections.emptyList();
+        NotesApplication app = (NotesApplication)getApplication();
+        ComponentRepository<Folder> folderRepository = app.getFolderRepository();
+        List<Folder> folders = folderRepository.getComponents();
+        Collections.sort(folders);
+        List<Component> result = new ArrayList<Component>();
+        for (Folder folder : folders) {
+            result.add(folder);
+        }
+        return result;
+        //return Collections.emptyList();
     }
 
 }

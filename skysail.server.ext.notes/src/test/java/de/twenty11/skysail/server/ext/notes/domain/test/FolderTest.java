@@ -26,10 +26,10 @@ public class FolderTest {
     public void tearDown() throws Exception {
     }
 
-    @Test
-    public void should_provide_its_name_in_html_output() {
-        assertThat(root.getHtml(), containsString("rootfolder"));
-    }
+//    @Test
+//    public void should_provide_its_name_in_html_output() {
+//        assertThat(root.getHtml(), containsString("rootfolder"));
+//    }
 
     @Test
     public void subfolder_should_link_to_right_parent() {

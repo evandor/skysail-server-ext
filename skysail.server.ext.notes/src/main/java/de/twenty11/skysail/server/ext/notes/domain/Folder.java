@@ -12,9 +12,7 @@ import javax.validation.constraints.Size;
 
 import org.apache.commons.lang.Validate;
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.common.Presentable2;
 import de.twenty11.skysail.common.forms.Field;
 import de.twenty11.skysail.common.forms.Form;
 
@@ -23,30 +21,52 @@ import de.twenty11.skysail.common.forms.Form;
  */
 @Entity
 @Form(name = "folderform")
-public class Folder extends Component implements Presentable2 {
+public class Folder extends Component implements Comparable<Folder> {
+
+    private List<Component> components = new ArrayList<Component>();
+
+    private Folder parent;
 
     @Id
     @GeneratedValue
     @JsonIgnore
-    private int pid;// primary key for db
+    protected int pid;// primary key for db
+
+    public int getPid() {
+        return this.pid;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Folder other = (Folder) obj;
+        if (pid != other.getPid())
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + pid;
+        return result;
+    }
 
     @Field
     @NotNull(message = "Name is mandatory")
     @Size(min = 1, message = "name  must not be empty")
     private String folderName;
 
-    private List<Component> components = new ArrayList<Component>();
-
-    private Folder parent;
-
-    public int getPid() {
-        return this.pid;
-    }
-
     public static Folder createRoot(String folderName) {
         return new Folder(null, folderName);
     }
-    
+
     public Folder() {
         // needed for EclipseLink
     }
@@ -72,38 +92,17 @@ public class Folder extends Component implements Presentable2 {
         return Collections.unmodifiableList(components);
     }
 
-    @Override
-    @JsonIgnore
-    public String getHtml() {
-        ST html = new ST("<foldername>");
-        html.add("foldername", folderName);
-        return html.render();
-    }
-
     public Folder getParent() {
         return parent;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Folder other = (Folder) obj;
-        if (pid != other.pid)
-            return false;
-        return true;
+    public String getFolderName() {
+        return folderName;
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + pid;
-        return result;
+    public int compareTo(Folder other) {
+        return folderName.compareTo(other.getFolderName());
     }
 
 }

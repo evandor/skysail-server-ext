@@ -4,6 +4,7 @@
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="NotesPU" transaction-type="RESOURCE_LOCAL">
 		<class>de.twenty11.skysail.server.ext.notes.domain.Folder</class>
+		<class>de.twenty11.skysail.server.ext.notes.domain.Note</class>
 		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />

@@ -6,13 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
-import de.twenty11.skysail.server.ext.notes.domain.Folder;
+import de.twenty11.skysail.server.ext.notes.domain.Note;
 
-public class FolderRepository implements ComponentRepository<Folder> {
+public class NotesRepository implements ComponentRepository<Note> {
 
     private EntityManager entitiyManager;
 
-    public FolderRepository(EntityManagerFactory emf) {
+    public NotesRepository(EntityManagerFactory emf) {
         this.entitiyManager = emf.createEntityManager();
     }
 
@@ -20,27 +20,27 @@ public class FolderRepository implements ComponentRepository<Folder> {
      * @see de.twenty11.skysail.server.ext.notes.repos.ComponentRepository#getById(java.lang.Long)
      */
     @Override
-    public Folder getById(Long id) {
-        TypedQuery<Folder> query = entitiyManager
-                .createQuery("SELECT c FROM Folder c WHERE c.pid = :pid", Folder.class);
+    public Note getById(Long id) {
+        TypedQuery<Note> query = entitiyManager
+                .createQuery("SELECT c FROM Note c WHERE c.pid = :pid", Note.class);
         query.setParameter("pid", id);
-        return (Folder) query.getSingleResult();
+        return (Note) query.getSingleResult();
     }
 
     /* (non-Javadoc)
      * @see de.twenty11.skysail.server.ext.notes.repos.ComponentRepository#add(de.twenty11.skysail.server.ext.notes.domain.Folder)
      */
     @Override
-    public void add(Folder entity) {
+    public void add(Note entity) {
         entitiyManager.getTransaction().begin();
         entitiyManager.persist(entity);
         entitiyManager.getTransaction().commit();
     }
 
     @Override
-    public List<Folder> getComponents() {
-        TypedQuery<Folder> query = entitiyManager
-                .createQuery("SELECT c FROM Folder c", Folder.class);
+    public List<Note> getComponents() {
+        TypedQuery<Note> query = entitiyManager
+                .createQuery("SELECT c FROM Note c", Note.class);
         return query.getResultList();
     }
 
