@@ -1,0 +1,18 @@
+table(list) ::= <<
+  <table>
+    <tr>
+       <th>Package</th><th>provided by</th><th>in Package Version</th>
+    </tr>
+      $list:{ element | $li(element,i)$}$
+  </table>
+>>
+
+li(element,i) ::= <<
+	<tr>
+        <td>$element.attributes.("osgi.wiring.package")$</td>
+        <td>$element.attributes.("bundle-symbolic-name")$</td>
+        <td>$element.attributes.version$</td>
+    </tr>
+>>
+
+header(map)       ::= "&nbsp;<a href='services/$map.serviceId$'>aaa$map.properties.objectClass$</a>"

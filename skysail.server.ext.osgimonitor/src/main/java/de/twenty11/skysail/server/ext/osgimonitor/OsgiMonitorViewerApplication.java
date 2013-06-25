@@ -22,6 +22,7 @@ import de.twenty11.skysail.server.ext.osgimonitor.resources.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesAsD3GraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesAsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesResource;
+import de.twenty11.skysail.server.ext.osgimonitor.resources.CapabilitiesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.HeaderResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.OsgiMonitorRootResource;
@@ -57,6 +58,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/bundles/details/{bundleId}/headers", HeaderResource.class).setVisible(false));
         router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Services"));
         router.attach(new RouteBuilder("/services/{serviceId}", ServiceResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/capabilities", CapabilitiesResource.class).setText("Capabilities"));
         // @formatter:on
     }
 
