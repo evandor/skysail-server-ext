@@ -1,5 +1,5 @@
 table(list) ::= <<
-  <table>
+  <table class="table">
     <tr>
        <th>Package</th><th>provided by</th><th>in Package Version</th>
     </tr>

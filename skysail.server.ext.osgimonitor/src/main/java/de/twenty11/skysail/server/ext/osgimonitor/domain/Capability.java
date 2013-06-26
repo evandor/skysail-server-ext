@@ -5,7 +5,7 @@ import java.util.Map;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRevision;
 
-public class CapabilityDescriptor implements Comparable<CapabilityDescriptor> {
+public class Capability implements Comparable<Capability> {
 
     private Map<String, Object> attributes;
     private Map<String, String> directives;
@@ -15,10 +15,10 @@ public class CapabilityDescriptor implements Comparable<CapabilityDescriptor> {
     /**
      * Default constructor, needed for // TODO
      */
-    public CapabilityDescriptor() {
+    public Capability() {
     }
 
-    public CapabilityDescriptor(BundleCapability cap) {
+    public Capability(BundleCapability cap) {
         attributes = cap.getAttributes();
         cap.getClass();
         directives = cap.getDirectives();
@@ -42,7 +42,7 @@ public class CapabilityDescriptor implements Comparable<CapabilityDescriptor> {
     }
     
     @Override
-    public int compareTo(CapabilityDescriptor other) {
+    public int compareTo(Capability other) {
         return 0;//serviceId.compareTo(other.getServiceId());
     }
 

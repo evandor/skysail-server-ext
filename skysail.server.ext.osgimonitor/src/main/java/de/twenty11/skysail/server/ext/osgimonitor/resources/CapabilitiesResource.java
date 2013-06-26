@@ -16,20 +16,20 @@ import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
-import de.twenty11.skysail.server.ext.osgimonitor.domain.CapabilityDescriptor;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.Capability;
 
 @Presentation(preferred = PresentationStyle.LIST2)
-public class CapabilitiesResource extends ListServerResource2<CapabilityDescriptor> {
+public class CapabilitiesResource extends ListServerResource2<Capability> {
 
     @Override
     @Get("html|json|csv")
-    public SkysailResponse<List<CapabilityDescriptor>> getEntities() {
+    public SkysailResponse<List<Capability>> getEntities() {
         return getEntities("All Capabilities");
     }
     
     @Override
-    protected List<CapabilityDescriptor> getData() {
-        List<CapabilityDescriptor> result = new ArrayList<CapabilityDescriptor>();
+    protected List<Capability> getData() {
+        List<Capability> result = new ArrayList<Capability>();
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
         
         BundleContext bundleContext = app.getBundleContext();
@@ -40,7 +40,7 @@ public class CapabilitiesResource extends ListServerResource2<CapabilityDescript
         return result;
     }
 
-    private void addCapabilities(List<CapabilityDescriptor> result, Bundle bundle) {
+    private void addCapabilities(List<Capability> result, Bundle bundle) {
         BundleWiring bw = bundle.adapt(BundleWiring.class);
         if (bw == null) {
             return;
@@ -49,7 +49,7 @@ public class CapabilitiesResource extends ListServerResource2<CapabilityDescript
         
         
         for (BundleCapability cap : bw.getCapabilities(BundleRevision.PACKAGE_NAMESPACE)) {
-            result.add(new CapabilityDescriptor(cap));
+            result.add(new Capability(cap));
         }
     }
 
