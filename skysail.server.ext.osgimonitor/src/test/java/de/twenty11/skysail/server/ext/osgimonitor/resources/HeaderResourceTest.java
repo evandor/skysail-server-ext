@@ -58,12 +58,12 @@ public class HeaderResourceTest extends BaseTests {
         headerResource.init(context, request, null);
     }
 
-    @Test
-    @Ignore
-    public void getHeader_returns_headerDetails_for_bundleId_from_request() throws Exception {
-        SkysailResponse<HeaderDescriptor> headers = headerResource.getHeader();
-        HeaderDescriptor details = headers.getData();
-        assertThat(details.getContent().size(), is(equalTo(2)));
-    }
+//    @Test
+//    @Ignore
+//    public void getHeader_returns_headerDetails_for_bundleId_from_request() throws Exception {
+//        SkysailResponse<HeaderDescriptor> headers = headerResource.getHeader();
+//        HeaderDescriptor details = headers.getData();
+//        assertThat(details.getContent().size(), is(equalTo(2)));
+//    }
 
 }
