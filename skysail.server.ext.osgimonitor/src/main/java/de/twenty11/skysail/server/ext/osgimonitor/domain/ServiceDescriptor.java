@@ -35,7 +35,7 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
     }
 
     public ServiceDescriptor(ServiceReference sr, Reference reference) {
-        providingBundle = new BundleDescriptor(sr.getBundle(), reference);
+        providingBundle = new BundleDescriptor(sr.getBundle());
         this.reference = reference;
         handleUsingBundles(sr, reference);
         handlePropertyKeys(sr);
@@ -74,7 +74,7 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
     private void handleUsingBundles(ServiceReference sr, Reference reference) {
         if (sr.getUsingBundles() != null) {
             for (Bundle usingBundle : sr.getUsingBundles()) {
-                usingBundles.add(new BundleDescriptor(usingBundle, reference));
+                usingBundles.add(new BundleDescriptor(usingBundle));
             }
         }
     }

@@ -10,7 +10,6 @@ import org.apache.commons.beanutils.BeanMap;
 import org.codehaus.jackson.annotate.JsonSetter;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
-import org.restlet.data.Reference;
 
 import de.twenty11.skysail.common.Presentable;
 import de.twenty11.skysail.common.PresentableHeader;
@@ -34,21 +33,21 @@ public class BundleDescriptor implements Presentable, Serializable {
     @Transient
     private Map<String, String> links;
 
-    @Transient
-    private Reference reference;
+//    @Transient
+//    private Reference reference;
 
     public BundleDescriptor() {
     }
 
-    public BundleDescriptor(Bundle bundle, Reference reference) {
+    public BundleDescriptor(Bundle bundle) {
         this.bundleId = bundle.getBundleId();
         this.symbolicName = bundle.getSymbolicName();
         this.version = handleVersion(bundle.getVersion());
         this.lastModified = bundle.getLastModified();
         this.state = mapState(bundle.getState());
-        if (reference != null) {
-            this.reference = new Reference(reference.getBaseRef(), "bundles/details/" + this.bundleId);
-        }
+//        if (reference != null) {
+//            this.reference = new Reference(reference.getBaseRef(), "bundles/details/" + this.bundleId);
+//        }
     }
 
     private String mapState(int state) {
@@ -153,4 +152,8 @@ public class BundleDescriptor implements Presentable, Serializable {
         // return result;
     }
 
+    @Override
+    public String toString() {
+        return "bundles/details/" + this.bundleId;
+    }
 }

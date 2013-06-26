@@ -56,7 +56,7 @@ public class BundlesResource extends ListServerResource2<BundleDescriptor> {
     protected List<BundleDescriptor> getData() {
         List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
         for (Bundle bundle : bundles) {
-            BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle, null);
+            BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle);
             if (filterMatches(bundleDescriptor)) {
                 result.add(bundleDescriptor);
             }

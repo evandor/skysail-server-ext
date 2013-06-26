@@ -29,7 +29,7 @@ public class BundleDetails extends BundleDescriptor {
     }
 
     public BundleDetails(Bundle bundle) {
-        super(bundle, null);
+        super(bundle);
         getRegisteredServicesFromBundle(bundle);
         getUsedServicesFromBundle(bundle);
     }

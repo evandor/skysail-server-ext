@@ -49,7 +49,7 @@ public class CapabilitiesResource extends ListServerResource2<Capability> {
         
         
         for (BundleCapability cap : bw.getCapabilities(BundleRevision.PACKAGE_NAMESPACE)) {
-            result.add(new Capability(cap));
+            result.add(new Capability(cap, bundle));
         }
     }
 

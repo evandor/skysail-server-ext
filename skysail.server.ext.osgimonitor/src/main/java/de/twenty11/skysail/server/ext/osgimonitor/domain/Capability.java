@@ -2,15 +2,21 @@ package de.twenty11.skysail.server.ext.osgimonitor.domain;
 
 import java.util.Map;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRevision;
+
+import de.twenty11.skysail.common.navigation.Reference;
 
 public class Capability implements Comparable<Capability> {
 
     private Map<String, Object> attributes;
     private Map<String, String> directives;
     private String namespace;
+    //@Transient
     private BundleRevision revision;
+    private Reference bundleReference;
 
     /**
      * Default constructor, needed for // TODO
@@ -18,12 +24,13 @@ public class Capability implements Comparable<Capability> {
     public Capability() {
     }
 
-    public Capability(BundleCapability cap) {
+    public Capability(BundleCapability cap, Bundle bundle) {
         attributes = cap.getAttributes();
         cap.getClass();
         directives = cap.getDirectives();
         namespace = cap.getNamespace();
         revision = cap.getRevision();
+        this.bundleReference = new Reference(new BundleDescriptor(bundle));
     }
 
     public Map<String, Object> getAttributes() {
@@ -37,8 +44,14 @@ public class Capability implements Comparable<Capability> {
     public String getNamespace() {
         return namespace;
     }
+    
+    @JsonIgnore
     public BundleRevision getRevision() {
         return revision;
+    }
+    
+    public String getBundle() {
+        return bundleReference.toHtmlLink();
     }
     
     @Override

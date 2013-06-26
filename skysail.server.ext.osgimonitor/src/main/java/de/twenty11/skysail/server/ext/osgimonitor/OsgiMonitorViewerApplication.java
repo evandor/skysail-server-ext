@@ -60,7 +60,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/services", ServicesResource.class).setText("Services"));
         router.attach(new RouteBuilder("/services/{serviceId}", ServiceResource.class).setVisible(false));
         router.attach(new RouteBuilder("/capabilities", CapabilitiesResource.class).setText("Capabilities"));
-        router.attach(new RouteBuilder("/requirements", RequirementsResource.class).setText("Capabilities"));
+        router.attach(new RouteBuilder("/requirements", RequirementsResource.class).setText("Requirements"));
         // @formatter:on
     }
 
