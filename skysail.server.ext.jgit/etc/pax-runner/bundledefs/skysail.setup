@@ -4,7 +4,6 @@ mvn:de.twentyeleven.skysail/org.json-osgi/20080701
 mvn:de.twentyeleven.skysail/skysail.common/0.3.34-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.config.configadmin/0.0.2@3@update
 mvn:de.twentyeleven.skysail/skysail.common.ext.dbviewer/0.0.4-SNAPSHOT@update
-mvn:de.twentyeleven.skysail/skysail.common.ext.osgimonitor/0.0.9-SNAPSHOT@update
 mvn:de.twentyeleven.skysail/skysail.common.restlet/0.0.1@update
 
 mvn:de.twentyeleven.skysail/skysail.fragment.commons.dbcp/0.0.1@nostart

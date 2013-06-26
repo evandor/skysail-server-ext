@@ -22,7 +22,6 @@ public class SkysailServerExtOsgiMonitorOsgiSetup extends SkysailServerOsgiSetup
 
         List<Option> options = super.getOptions(optionSets);
 
-        //options.add(mavenBundle("de.twentyeleven.skysail", "skysail.common.ext.osgimonitor", "0.0.8-SNAPSHOT"));
         options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server", "0.2.12-SNAPSHOT"));
 
         // restassured:
