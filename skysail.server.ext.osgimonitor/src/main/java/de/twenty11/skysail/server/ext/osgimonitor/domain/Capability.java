@@ -18,15 +18,12 @@ public class Capability implements Comparable<Capability> {
     private BundleRevision revision;
     private Reference bundleReference;
 
-    /**
-     * Default constructor, needed for // TODO
-     */
     public Capability() {
+        // Default constructor, needed for // TODO
     }
 
     public Capability(BundleCapability cap, Bundle bundle) {
         attributes = cap.getAttributes();
-        cap.getClass();
         directives = cap.getDirectives();
         namespace = cap.getNamespace();
         revision = cap.getRevision();
