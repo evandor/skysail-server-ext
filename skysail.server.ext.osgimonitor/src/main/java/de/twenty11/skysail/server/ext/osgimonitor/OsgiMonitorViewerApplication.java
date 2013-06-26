@@ -23,7 +23,6 @@ import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesAsD3GraphReso
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesAsGraphResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.CapabilitiesResource;
-import de.twenty11.skysail.server.ext.osgimonitor.resources.HeaderResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.OsgiMonitorRootResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.RequirementsResource;

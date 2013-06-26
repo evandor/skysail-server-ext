@@ -1,5 +1,0 @@
-mvn:org.apache.pdfbox/pdfbox/1.8.0
-mvn:org.apache.pdfbox/fontbox/1.8.0
-mvn:org.apache.pdfbox/jempbox/1.8.0
-
-mvn:org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1
