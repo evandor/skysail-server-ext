@@ -172,18 +172,18 @@
 			<artifactId>skysail.server</artifactId>
 			<version>${skysail.server.version}</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.common.ext.osgimonitor</artifactId>
 			<version>[0.0.10-SNAPSHOT, 1.0.0)</version>
 		</dependency>
-
-		<dependency>
+ -->
+<!-- 		<dependency>
 			<groupId>org.eclipse.core</groupId>
 			<artifactId>org.eclipse.core.runtime</artifactId>
 			<version>3.6.0.v20100505</version>
 		</dependency>
-
+ -->
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>com.jayway.rest-assured-osgi</artifactId>
