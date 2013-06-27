@@ -41,7 +41,7 @@ public class SkysailServerExtOsgiMonitorOsgiSetup extends SkysailServerOsgiSetup
         // felix config admin
         // options.add(mavenBundle("org.apache.felix", "org.apache.felix.configadmin", "1.4.0"));
 
-        options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
+        options.add(mavenBundle("commons-dbcp", "commons-dbcp", "1.4"));
 
         // bean validation
         // options.add(mavenBundle("org.apache.bval", "org.apache.bval.bundle", "0.4"));

@@ -35,7 +35,7 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
         options.add(mavenBundle("org.codehaus.groovy", "groovy-all", "1.8.4"));
         options.add(mavenBundle("org.codehaus.jackson", "jackson-core-lgpl", "1.9.5"));
         // options.add(mavenBundle("mysql", "skysail.bundles.mysql-connector-java", "5.1.6"));
-        options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
+        options.add(mavenBundle("commons-dbcp", "commons-dbcp", "1.4"));
         options.add(mavenBundle("org.hibernate", "hibernate-validator", "4.3.0.Final"));
         options.add(mavenBundle("javax.validation", "com.springsource.javax.validation", "1.0.0.GA"));
         options.add(mavenBundle("org.jboss.logging", "jboss-logging", "3.1.2.GA"));
