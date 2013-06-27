@@ -1,10 +1,5 @@
 package de.twenty11.skysail.server.ext.osgimonitor.test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -28,6 +23,13 @@ import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.domain.ServiceDescriptor;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.hamcrest.Matchers.is;
+
+import static org.junit.Assert.assertEquals;
+
+import static org.mockito.Mockito.mock;
 
 public class BaseTests {
 

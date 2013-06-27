@@ -1,7 +1,5 @@
 package de.twenty11.skysail.server.ext.osgimonitor.itests;
 
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-
 import java.util.EnumSet;
 import java.util.List;
 
@@ -12,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.testing.utils.PaxExamOptionSet;
 import de.twenty11.skysail.common.testing.utils.SkysailCommonOsgiSetup;
 import de.twenty11.skysail.server.testing.utils.SkysailServerOsgiSetup;
+import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 
 public class SkysailServerExtOsgiMonitorOsgiSetup extends SkysailServerOsgiSetup {
 
