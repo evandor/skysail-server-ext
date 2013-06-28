@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.stringtemplate.v4.ST;
 
-import de.twenty11.skysail.common.Presentable2;
+import de.twenty11.skysail.common.Presentation;
+import de.twenty11.skysail.common.PresentationStyle;
 import de.twenty11.skysail.server.structures.composite.Component;
 
 /**
@@ -21,7 +20,8 @@ import de.twenty11.skysail.server.structures.composite.Component;
  * The provided constructor creates a new instance from a json representation
  * 
  */
-public class FacebookUser implements Presentable2 {
+@Presentation(preferred = PresentationStyle.LIST2)
+public class FacebookUser {
 
     private Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -49,17 +49,14 @@ public class FacebookUser implements Presentable2 {
     public String getId() {
         return attributes.get("id") == null ? "" : attributes.get("id").toString();
     }
+    
+    public String getName() {
+        return attributes.get("name") == null ? "" : attributes.get("name").toString();
+    }
 
     @Override
     public String toString() {
         return "ID '" + getId() + "'";
     }
 
-    @Override
-    @JsonIgnore
-    public String getHtml() {
-        ST html = new ST("Facebook User <id>");
-        html.add("id", getId());
-        return html.render();
-    }
 }

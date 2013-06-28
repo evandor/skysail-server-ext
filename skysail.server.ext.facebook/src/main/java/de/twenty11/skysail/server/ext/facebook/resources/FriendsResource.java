@@ -9,10 +9,14 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.common.Presentation;
+import de.twenty11.skysail.common.PresentationStyle;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.facebook.FacebookApplication;
 import de.twenty11.skysail.server.ext.facebook.domain.FacebookUser;
 
+@Presentation(preferred = PresentationStyle.LIST2)
 public class FriendsResource extends ListServerResource2<FacebookUser> {
 
     private ObjectMapper mapper = new ObjectMapper();
@@ -27,6 +31,11 @@ public class FriendsResource extends ListServerResource2<FacebookUser> {
         myFriendsOnFacebookUrl = "https://graph.facebook.com/1395451850/friends";
     }
 
+    @Override
+    public SkysailResponse<List<FacebookUser>> getEntities() {
+        return super.getEntities("Facebook Friends");
+    }
+    
     @Override
     protected List<FacebookUser> getData() {
         JsonNode jsonRootNode;
