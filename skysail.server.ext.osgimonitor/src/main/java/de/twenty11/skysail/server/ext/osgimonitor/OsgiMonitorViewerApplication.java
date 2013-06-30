@@ -25,17 +25,19 @@ import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.CapabilitiesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.OsgiMonitorRootResource;
+import de.twenty11.skysail.server.ext.osgimonitor.resources.RemoteBundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.RequirementsResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServiceResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServicesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
+import de.twenty11.skysail.server.services.MenuProvider;
 
 /**
  * @author carsten
  * 
  */
-public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider {
+public class OsgiMonitorViewerApplication extends SkysailApplication implements ApplicationProvider, MenuProvider {
 
     // non-arg constructor needed for scr
     public OsgiMonitorViewerApplication() {
@@ -43,9 +45,10 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setName("osgimonitor");
+        //addToMenu("main");
     }
 
-    protected void attach() {
+	protected void attach() {
         // @formatter:off
         router.attach(new RouteBuilder("", OsgiMonitorRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class).setVisible(false));
@@ -60,7 +63,15 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/services/{serviceId}", ServiceResource.class).setVisible(false));
         router.attach(new RouteBuilder("/capabilities", CapabilitiesResource.class).setText("Capabilities"));
         router.attach(new RouteBuilder("/requirements", RequirementsResource.class).setText("Requirements"));
+
+        router.attach(new RouteBuilder("/remotebundles", RemoteBundlesResource.class).setText("RemoteBundles"));
+        
         // @formatter:on
     }
+
+	@Override
+	public Object getMenu() {
+		return "main:OsgiMonitor";
+	}
 
 }

@@ -3,8 +3,14 @@
 
 	<ext:property-placeholder />
 
-	<bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+<!-- 	<bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
 		<property name="URL" value="jdbc:h2:tcp://localhost/activiti" />
+		<property name="user" value="sa" />
+		<property name="password" value="" />
+	</bean> -->
+
+	<bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+		<property name="URL" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000" />
 		<property name="user" value="sa" />
 		<property name="password" value="" />
 	</bean>

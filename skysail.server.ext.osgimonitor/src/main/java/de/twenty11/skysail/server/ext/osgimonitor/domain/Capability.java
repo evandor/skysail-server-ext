@@ -7,6 +7,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRevision;
 
+import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.common.navigation.Reference;
 
 public class Capability implements Comparable<Capability> {

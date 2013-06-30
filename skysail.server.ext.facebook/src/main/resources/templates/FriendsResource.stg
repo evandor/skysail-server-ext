@@ -33,7 +33,7 @@ mapIteration(map) ::= <<
 >>
 
 asRow(map,k,i)      ::= << 
-    <tr><td><b> $k$ </b></td><td>-$handleValue(map.(k))$-</td></tr>
+    <tr><td><b> $k$ </b></td><td> $handleValue(map.(k))$ </td></tr>
 >>
 
 handleValue(element) ::= <<

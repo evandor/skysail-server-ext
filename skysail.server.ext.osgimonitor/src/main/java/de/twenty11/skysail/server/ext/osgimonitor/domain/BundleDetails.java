@@ -14,6 +14,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 
 import de.twenty11.skysail.common.PresentableHeader;
+import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.common.graphs.EdgeProvider;
 import de.twenty11.skysail.common.graphs.NodeProvider;
 
@@ -159,29 +160,29 @@ public class BundleDetails extends BundleDescriptor {
     // return links;
     // }
 
-    @Override
-    public PresentableHeader getHeader() {
-        Color categoryColor = Color.WHITE;
-        if (state.equals("Active")) {
-            categoryColor = Color.decode("#0BB450");
-        }
-
-        return new PresentableHeader.Builder(bundleId + ": " + symbolicName + " (" + version + ")")
-                .setLink(String.valueOf(bundleId)).setImage("icon-th-large")
-                .setCategoryText(state).setCategoryColor(categoryColor).build();
-    }
-
-    @Override
-    public Map<String, Object> getContent() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-        Map<String, Object> result = new HashMap<String, Object>();
-        result.put("Symbolic Name", symbolicName);
-        result.put("Version", version);
-        result.put("Status", this.state);
-        result.put("Last Modification", sdf.format(new Date(this.lastModified)));
-        //result.put("Reference", this.reference);
-        return result;
-    }
+//    @Override
+//    public PresentableHeader getHeader() {
+//        Color categoryColor = Color.WHITE;
+//        if (state.equals("Active")) {
+//            categoryColor = Color.decode("#0BB450");
+//        }
+//
+//        return new PresentableHeader.Builder(bundleId + ": " + symbolicName + " (" + version + ")")
+//                .setLink(String.valueOf(bundleId)).setImage("icon-th-large")
+//                .setCategoryText(state).setCategoryColor(categoryColor).build();
+//    }
+//
+//    @Override
+//    public Map<String, Object> getContent() {
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+//        Map<String, Object> result = new HashMap<String, Object>();
+//        result.put("Symbolic Name", symbolicName);
+//        result.put("Version", version);
+//        result.put("Status", this.state);
+//        result.put("Last Modification", sdf.format(new Date(this.lastModified)));
+//        //result.put("Reference", this.reference);
+//        return result;
+//    }
 
 
 }

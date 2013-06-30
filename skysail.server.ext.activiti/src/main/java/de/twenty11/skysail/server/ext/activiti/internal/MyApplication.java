@@ -34,7 +34,9 @@ public class MyApplication extends SkysailApplication implements ApplicationProv
      */
     public MyApplication(Context componentContext, RepositoryService repositoryService, RuntimeService runtimeService) {
         super();
-        setContext(getContext().createChildContext());
+        if (getContext() != null) {
+            setContext(getContext().createChildContext());
+        }
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("activiti");

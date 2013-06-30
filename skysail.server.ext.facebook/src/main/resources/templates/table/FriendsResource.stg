@@ -1,7 +1,7 @@
 table(list) ::= <<
   <table class="table">
     <tr>
-       <th>Package</th><th>provided by</th><th>in Package Version</th>
+       <th>Name</th><th>Id</th><th>Picture</th>
     </tr>
       $list:{ element | $li(element,i)$}$
   </table>
@@ -9,9 +9,9 @@ table(list) ::= <<
 
 li(element,i) ::= <<
 	<tr>
-        <td>$element.attributes.("osgi.wiring.package")$</td>
-        <td>$element.attributes.("bundle-symbolic-name")$</td>
-        <td>$element.attributes.version$</td>
+        <td> $element.name$ </td>
+        <td> $element.id$ </td>
+        <td><a href='https://www.facebook.com/$element.id$' target='_blank'><img src="https://graph.facebook.com/$element.id$/picture"/></a></td>
     </tr>
 >>
 

@@ -27,7 +27,9 @@ public class BookmarkApplication extends SkysailApplication {
      */
     public BookmarkApplication(Context componentContext, EntityManagerFactory emf) {
         super();
-        setContext(getContext().createChildContext());
+        if (getContext() != null) {
+            setContext(getContext().createChildContext());
+        }
         setDescription("RESTful Jenkins bundle");
         setOwner("twentyeleven");
         setName("bookmarks");

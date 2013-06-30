@@ -13,8 +13,8 @@ import org.osgi.framework.Version;
 import org.restlet.Request;
 import org.restlet.representation.Representation;
 
+import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
-import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -52,15 +52,15 @@ public class BundlesResourceTest extends BaseTests {
         resource.init(spy.getContext(), request, null);
     }
 
-    @Test
-    @Ignore
-    public void returns_bundles_with_proper_values() throws Exception {
-        List<BundleDescriptor> bundles = getBundles();
-        assertThat(bundles.size(), is(equalTo(1)));
-        assertThat(bundles.get(0).getVersion(), is(equalTo("1.2.3.qualifier")));
-        assertThat(bundles.get(0).getState(), is(equalTo("Active")));
-
-    }
+//    @Test
+//    @Ignore
+//    public void returns_bundles_with_proper_values() throws Exception {
+//        List<BundleDescriptor> bundles = getBundles();
+//        assertThat(bundles.size(), is(equalTo(1)));
+//        assertThat(bundles.get(0).getVersion(), is(equalTo("1.2.3.qualifier")));
+//        assertThat(bundles.get(0).getState(), is(equalTo("Active")));
+//
+//    }
 
     @Test
     @Ignore

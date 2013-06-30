@@ -11,6 +11,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 import org.restlet.data.Reference;
 
+import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
+
 public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
 
     private static final String SERVICE_ID_IDENTIFIER = "service.id";
