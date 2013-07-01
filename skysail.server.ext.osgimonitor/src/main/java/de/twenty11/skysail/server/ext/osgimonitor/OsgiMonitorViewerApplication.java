@@ -17,6 +17,9 @@
 
 package de.twenty11.skysail.server.ext.osgimonitor;
 
+import java.util.Arrays;
+import java.util.List;
+
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundleResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesAsD3GraphResource;
@@ -31,6 +34,7 @@ import de.twenty11.skysail.server.ext.osgimonitor.resources.ServiceResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServicesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
+import de.twenty11.skysail.server.services.MenuEntry;
 import de.twenty11.skysail.server.services.MenuProvider;
 
 /**
@@ -70,8 +74,8 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
     }
 
 	@Override
-	public Object getMenu() {
-		return "main:OsgiMonitor";
+    public List<MenuEntry> getMenuEntries() {
+		return Arrays.asList(new MenuEntry("main", "Osgimonitor", "/osgimonitor"));
 	}
 
 }
