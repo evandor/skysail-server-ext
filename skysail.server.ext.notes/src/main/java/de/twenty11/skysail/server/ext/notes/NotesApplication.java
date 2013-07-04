@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.ext.notes;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
 
 import org.restlet.routing.Router;
@@ -18,12 +21,14 @@ import de.twenty11.skysail.server.ext.notes.resources.FolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.NotesRootResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
+import de.twenty11.skysail.server.services.MenuEntry;
+import de.twenty11.skysail.server.services.MenuProvider;
 
 /**
  * The restlet application defined in this bundle.
  * 
  */
-public class NotesApplication extends SkysailApplication implements ApplicationProvider {
+public class NotesApplication extends SkysailApplication implements ApplicationProvider, MenuProvider {
 
     private EntityManagerFactory enitityManagerFactory;
     private ComponentRepository<Folder> folderRepository;
@@ -71,6 +76,11 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
             this.notesRepository = new NotesRepository(enitityManagerFactory);
         }
         return this.notesRepository;
+    }
+
+    @Override
+    public List<MenuEntry> getMenuEntries() {
+        return Arrays.asList(new MenuEntry("main", "Notes", "notes"));
     }
 
 }

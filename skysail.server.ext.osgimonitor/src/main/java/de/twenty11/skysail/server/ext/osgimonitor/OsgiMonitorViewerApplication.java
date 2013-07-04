@@ -49,7 +49,6 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setName("osgimonitor");
-        //addToMenu("main");
     }
 
 	protected void attach() {

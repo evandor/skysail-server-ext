@@ -7,22 +7,21 @@
 
 	<!-- <ext:property-placeholder /> -->
 
-	<bean id="skysailApp"
-		class="de.twenty11.skysail.server.ext.notes.NotesApplication">
+	<bean id="rssApp"
+		class="de.twenty11.skysail.server.ext.rss.RssApplication">
 		<!-- <property name="componentProvider" ref="componentProviderRef" /> -->
-		<property name="entityManager" ref="emfRef" />
 		<property name="bundleContext" ref="blueprintBundleContext"/>
 	</bean>
 
-	<service ref="skysailApp"
+	<service ref="rssApp"
 		interface="de.twenty11.skysail.server.services.ApplicationProvider" />
 
-	<service ref="skysailApp"
+	<service ref="rssApp"
 		interface="de.twenty11.skysail.server.services.MenuProvider" />
 
-	<reference id="emfRef" interface="javax.persistence.EntityManagerFactory"
+<!-- 	<reference id="emfRef" interface="javax.persistence.EntityManagerFactory"
 		filter="(osgi.unit.name=NotesPU)" />
-		
+ -->		
 	<!-- ext:proxy-method="classes" 
 	<reference id="serverConfig" interface="de.twenty11.skysail.server.config.ServerConfiguration" />	
 -->	
