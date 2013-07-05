@@ -1,0 +1,107 @@
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#src_slsite_slresources_slDomain.atxa> a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node17to6lajex1 .
+
+_:node17to6lajex1 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain> ;
+	atxa-core:posX "85" ;
+	atxa-core:posY "-40" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Note> , <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Folder> , <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Component> .
+
+_:node17to6lajex1 atxa-core:contains _:node17tntip2nx348 .
+
+_:node17tntip2nx348 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Note> ;
+	atxa-core:posX "499" ;
+	atxa-core:posY "120" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Note> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Note.Note(String,String,)> .
+
+_:node17tntip2nx170 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node17tntip2nx348 ;
+	rdf:object _:node17tntip2nx347 ;
+	atxa-core:bendpoint _:node17tntip2nx911 .
+
+_:node17tntip2nx911 atxa-core:bpLocation "593,40" ;
+	atxa-core:bpIndex "0" .
+
+_:node17tntip2nx170 atxa-core:bendpoint _:node17tntip2nx912 .
+
+_:node17tntip2nx912 atxa-core:bpLocation "169,40" ;
+	atxa-core:bpIndex "1" .
+
+_:node17tntip2nx348 atxa-core:contains _:node17tntip2nx461 .
+
+_:node17tntip2nx461 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Note.Note(String,String,)> ;
+	atxa-core:posX "500" ;
+	atxa-core:posY "138" .
+
+_:node17to6lajex1 atxa-core:contains _:node17to6lajex2 .
+
+_:node17to6lajex2 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Folder> ;
+	atxa-core:posX "151" ;
+	atxa-core:posY "124" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Folder> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Folder.Folder(Folder,String,)> .
+
+_:node17tntip2nx154 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node17to6lajex2 ;
+	rdf:object _:node17tntip2nx347 ;
+	atxa-core:bendpoint _:node17tntip2nx913 .
+
+_:node17tntip2nx913 atxa-core:bpLocation "251,40" ;
+	atxa-core:bpIndex "0" .
+
+_:node17tntip2nx154 atxa-core:bendpoint _:node17tntip2nx914 .
+
+_:node17tntip2nx914 atxa-core:bpLocation "169,40" ;
+	atxa-core:bpIndex "1" .
+
+_:node17to6lajex2 atxa-core:contains _:node17tntip2nx458 .
+
+_:node17tntip2nx458 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Folder.Folder(Folder,String,)> ;
+	atxa-core:posX "152" ;
+	atxa-core:posY "142" .
+
+_:node17to6lajex1 atxa-core:contains _:node17tntip2nx347 .
+
+_:node17tntip2nx347 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Component> ;
+	atxa-core:posX "91" ;
+	atxa-core:posY "-15" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Component> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Component.Component()> .
+
+_:node17tntip2nx347 atxa-core:contains _:node17tntip2nx462 .
+
+_:node17tntip2nx462 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.skysail.server.ext.domain$Component.Component()> ;
+	atxa-core:posX "92" ;
+	atxa-core:posY "3" .
+
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#src_slsite_slresources_slDomain.atxa> a atxa-core:reloFile ;
+	atxa-core:contains _:node17tntip2nx461 , _:node17tntip2nx348 , _:node17tntip2nx458 , _:node17to6lajex2 , _:node17tntip2nx462 , _:node17tntip2nx347 , _:node17to6lajex1 , atxa-core:docRoot , _:node17tntip2nx461 , _:node17tntip2nx348 , _:node17tntip2nx458 , _:node17to6lajex2 , _:node17tntip2nx462 , _:node17tntip2nx347 , _:node17to6lajex1 , atxa-core:docRoot , _:node17tntip2nx170 , _:node17tntip2nx154 , _:node17tntip2nx170 , _:node17tntip2nx154 .
+

@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -9,18 +9,17 @@
 		<version>0.8.39</version>
 	</parent>
 
-	<artifactId>skysail.server.ext.rss</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
-	<name>SKYSAIL :: server :: ext :: rss</name>
+	<artifactId>skysail.server.ext.rsswriter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<scm>
 		<!-- read access -->
-		<connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
+		<connection>scm:git:git@github.com:evandor/skysail-build.git</connection>
 		<!-- write access -->
-		<url>scm:git:git@github.com:evandor/skysail-server-ext.git</url>
+		<url>scm:git:git@github.com:evandor/skysail-build.git</url>
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
-		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:evandor/skysail-build.git</developerConnection>
 	</scm>
 
 	<properties>
@@ -39,7 +38,6 @@
 			</resource>
 			<resource>
 				<directory>src/main/resources/</directory>
-				<filtering>false</filtering>
 				<includes>
 					<include>**/*.stg</include>
 				</includes>
@@ -165,16 +163,19 @@
 			<artifactId>skysail.server</artifactId>
 			<version>${skysail.server.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>rome</groupId>
-			<artifactId>rome</artifactId>
-			<version>1.0</version>
-		</dependency> -->
+
 		<dependency>
 			<groupId>org.restlet.osgi</groupId>
 			<artifactId>org.restlet.ext.atom</artifactId>
 			<version>2.1.0</version>
 		</dependency>
+
+<!-- 		<dependency>
+			<groupId>org.restlet.osgi</groupId>
+			<artifactId>org.restlet.ext.rome</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+ -->
 		<!-- testing with pax exam -->
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>

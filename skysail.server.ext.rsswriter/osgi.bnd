@@ -1,0 +1,3 @@
+Bundle-SymbolicName: skysail.server.ext.rsswriter
+Import-Package: *
+Service-Component: OSGI-INF/*.xml
