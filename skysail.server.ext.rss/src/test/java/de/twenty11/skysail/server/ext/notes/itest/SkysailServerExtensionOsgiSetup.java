@@ -50,7 +50,7 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
 
         options.add(mavenBundle("de.twentyeleven.skysail", "org.antlr.stringtemplate-osgi", "4.0.2"));
 
-        options.add(mavenBundle("rome", "rome", "1.0"));
+        options.add(mavenBundle("org.restlet.osgi", "org.restlet.ext.atom", "2.1.0"));
 
         logger.info("using options from {} for tests", this.getClass());
 

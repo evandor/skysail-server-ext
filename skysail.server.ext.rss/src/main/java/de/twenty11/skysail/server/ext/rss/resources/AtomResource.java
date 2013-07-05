@@ -18,7 +18,7 @@ public class AtomResource extends ListServerResource2<AtomFeed> {
         List<AtomFeed> result = new ArrayList<AtomFeed>();
         try {
             ClientResource mailClient = new ClientResource(
-                    "http://www.tagesschau.de/xml/tagesschau-meldungen/");
+                    "http://en.blog.wordpress.com/feed/atom/");
 
             Feed atomFeed = mailClient.get(Feed.class);
             System.out.println("\nAtom feed: " + atomFeed.getTitle() + "\n");
