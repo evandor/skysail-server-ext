@@ -1,12 +1,20 @@
 package de.twenty11.skysail.server.ext.notes;
 
 import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.osgi.service.cm.Configuration;
+import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.component.ComponentContext;
 import org.restlet.routing.Router;
 import org.restlet.routing.Template;
+
+import ch.qos.logback.classic.joran.action.ConfigurationAction;
 
 import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
@@ -33,6 +41,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     private EntityManagerFactory enitityManagerFactory;
     private ComponentRepository<Folder> folderRepository;
     private ComponentRepository<Note> notesRepository;
+    private ConfigurationAdmin configAdmin;
 
     public NotesApplication() {
         setDescription("RESTful skysail.server.ext.notes bundle");
@@ -62,6 +71,10 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
     public void setServerConfiguration(ServerConfiguration sc) {
         super.setServerConfiguration(sc);
+    }
+    
+    public void setConfigAdmin(ConfigurationAdmin configAdmin) {
+        this.configAdmin = configAdmin;
     }
 
     public synchronized ComponentRepository<Folder> getFolderRepository() {

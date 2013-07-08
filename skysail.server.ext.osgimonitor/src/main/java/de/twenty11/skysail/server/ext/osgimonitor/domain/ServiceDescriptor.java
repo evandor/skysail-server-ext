@@ -19,7 +19,7 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
 
     private Long serviceId = -1L;
     private Map<String, Object> properties = new HashMap<String, Object>();
-    private BundleDescriptor providingBundle;
+    private de.twenty11.skysail.common.navigation.Reference providingBundle;
 
     @Transient
     private Map<String, String> links;
@@ -37,7 +37,7 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
     }
 
     public ServiceDescriptor(ServiceReference sr, Reference reference) {
-        providingBundle = new BundleDescriptor(sr.getBundle());
+        providingBundle = new de.twenty11.skysail.common.navigation.Reference(new BundleDescriptor(sr.getBundle()));
         this.reference = reference;
         handleUsingBundles(sr, reference);
         handlePropertyKeys(sr);
@@ -51,14 +51,6 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
         this.properties = properties;
     }
 
-    public BundleDescriptor getProvidingBundle() {
-        return providingBundle;
-    }
-
-    public void setProvidingBundle(BundleDescriptor providingBundle) {
-        this.providingBundle = providingBundle;
-    }
-
     @Override
     public int compareTo(ServiceDescriptor other) {
         return serviceId.compareTo(other.getServiceId());
@@ -66,6 +58,10 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
 
     public Long getServiceId() {
         return serviceId;
+    }
+    
+    public String getProvidingBundle() {
+        return providingBundle.toHtmlLink();
     }
     
     @Override
