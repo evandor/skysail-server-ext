@@ -2,7 +2,12 @@
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
-	<persistence-unit name="NotesPU" transaction-type="RESOURCE_LOCAL">
+	
+	<!-- 
+		If you want to pass the jdbc parameters from the skysail configuration, by convention, the persistenceUnit must have 
+		a name like skysailApplication.getName() + "PU". 	
+	 -->
+	<persistence-unit name="SkysailPU" transaction-type="RESOURCE_LOCAL">
 		<class>de.twenty11.skysail.server.ext.notes.domain.Folder</class>
 		<class>de.twenty11.skysail.server.ext.notes.domain.Note</class>
 		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->

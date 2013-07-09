@@ -12,9 +12,13 @@
 		<!-- <property name="componentProvider" ref="componentProviderRef" /> -->
 		<property name="entityManager" ref="emfRef" />
 		<property name="bundleContext" ref="blueprintBundleContext"/>
+	</bean>
+	
+<!-- 	<bean id="configureDb"
+		class="de.twenty11.skysail.server.ext.notes.utils.ConfigureDb">
 		<property name="configAdmin" ref="configAdmin"/>
 	</bean>
-
+ -->
 	<service ref="skysailApp"
 		interface="de.twenty11.skysail.server.services.ApplicationProvider" />
 
@@ -22,7 +26,7 @@
 		interface="de.twenty11.skysail.server.services.MenuProvider" />
 
 	<reference id="emfRef" interface="javax.persistence.EntityManagerFactory"
-		filter="(osgi.unit.name=NotesPU)" />
+		filter="(osgi.unit.name=SkysailPU)" />
 		
 	<reference id="configAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" /> 
 	
