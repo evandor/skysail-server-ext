@@ -7,7 +7,7 @@
 		If you want to pass the jdbc parameters from the skysail configuration, by convention, the persistenceUnit must have 
 		a name like skysailApplication.getName() + "PU". 	
 	 -->
-	<persistence-unit name="SkysailPU" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="NotesPU" transaction-type="RESOURCE_LOCAL">
 		<class>de.twenty11.skysail.server.ext.notes.domain.Folder</class>
 		<class>de.twenty11.skysail.server.ext.notes.domain.Note</class>
 		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->

@@ -18,7 +18,7 @@
 
     <reference id="emfRef"
                interface="javax.persistence.EntityManagerFactory"
-               filter="(osgi.unit.name=SkysailPU)" />
+               filter="(osgi.unit.name=JGitPU)" />
 
 </blueprint>
 

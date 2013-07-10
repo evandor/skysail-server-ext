@@ -26,7 +26,7 @@
 		interface="de.twenty11.skysail.server.services.MenuProvider" />
 
 	<reference id="emfRef" interface="javax.persistence.EntityManagerFactory"
-		filter="(osgi.unit.name=SkysailPU)" />
+		filter="(osgi.unit.name=NotesPU)" />
 		
 	<reference id="configAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" /> 
 	
