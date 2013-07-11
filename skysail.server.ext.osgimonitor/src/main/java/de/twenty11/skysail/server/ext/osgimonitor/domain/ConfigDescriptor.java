@@ -1,6 +1,9 @@
 package de.twenty11.skysail.server.ext.osgimonitor.domain;
 
 import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.osgi.service.cm.Configuration;
 
@@ -33,8 +36,14 @@ public class ConfigDescriptor {
         return pid;
     }
 
-    public Dictionary getProperties() {
-        return properties;
+    public Map<String, String> getProperties() {
+        Map<String, String> result = new HashMap<String, String>();
+        Enumeration keys = this.properties.keys();
+        while (keys.hasMoreElements()) {
+            Object nextElement = keys.nextElement();
+            result.put(nextElement.toString(), this.properties.get(nextElement).toString());
+        }
+        return result;
     }
 
 }
