@@ -1,0 +1,138 @@
+INFO  org.ops4j.pax.exam.spi.DefaultExamSystem - Pax Exam System (Version: 2.4.0) created.
+DEBUG org.ops4j.store.intern.TemporaryStore - Storage Area is C:\Users\GRAEFCA\AppData\Local\Temp\1366902418510-0
+DEBUG org.ops4j.pax.exam.spi.PaxExamRuntime - Found TestContainerFactory: org.ops4j.pax.exam.nat.internal.NativeTestContainerFactory
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - using options from class de.twenty11.skysail.server.ext.dbviewer.itests.SkysailServerExtDbViewerOsgiSetup for tests
+INFO  d.t.skysail.server.testing.utils.SkysailServerOsgiSetup - using options from class de.twenty11.skysail.server.ext.dbviewer.itests.SkysailServerExtDbViewerOsgiSetup for tests
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - using options from class de.twenty11.skysail.server.ext.dbviewer.itests.SkysailServerExtDbViewerOsgiSetup for tests
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - BootDelegationOption{package='sun.*'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - org.ops4j.pax.exam.options.extra.CleanCachesOption@fec107
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.exam.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.exam.inject.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.extender.service.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.base.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.swissbox.core.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.swissbox.extender.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.swissbox.lifecycle.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.swissbox.framework.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.apache.geronimo.specs.atinject.link'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.slf4j', artifactId='slf4j-api', version='1.6.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='ch.qos.logback', artifactId='logback-core', version='0.9.29', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='ch.qos.logback', artifactId='logback-classic', version='0.9.29', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.slf4j', artifactId='jcl-over-slf4j', version='1.6.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - SystemPropertyOption{key='logback.configurationFile', value='file:H:\git\skysail-server-ext\skysail.server.ext.dbviewer/src/test/resources/logback-test.xml'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - org.ops4j.pax.exam.options.OptionalCompositeOption@132e13d
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - org.ops4j.pax.exam.options.OptionalCompositeOption@1617189
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - DefaultCompositeOption{options=[JUnitBundlesOption{url=mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.junit/4.9_2}, SystemPropertyOption{key='pax.exam.invoker', value='junit'}, UrlProvisionOption{url='RawUrlReference{url='link:classpath:META-INF/links/org.ops4j.pax.exam.invoker.junit.link'}'}]}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - FrameworkPropertyOption{key='osgi.console', value='6666'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.log', version='1.0.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.shell', version='1.4.3', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.gogo.runtime', version='0.10.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.gogo.shell', version='0.10.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.gogo.command', version='0.12.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='jgraphx-osgi', version='1.10.3.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='skysail.server.ext.osgideps', version='0.0.1-SNAPSHOT', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='commons-lang', artifactId='commons-lang', version='2.6', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='log4j', artifactId='log4j', version='1.2.17', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - SystemPropertyOption{key='org.ops4j.pax.url.mvn.repositories', value='https://oss.sonatype.org/content/groups/public,https://repository.apache.org/content/repositories/releases,http://download.eclipse.org/rt/eclipselink/maven.repo'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - FrameworkOption{name='equinox', version='3.6.2'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='skysail.common', version='null', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.restlet.osgi', artifactId='org.restlet.ext.xstream', version='2.1.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.restlet.osgi', artifactId='org.restlet.ext.jackson', version='2.1.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.restlet.osgi', artifactId='org.restlet.ext.wadl', version='2.1.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.restlet.osgi', artifactId='org.restlet.ext.xml', version='2.1.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.restlet.osgi', artifactId='org.restlet.ext.json', version='2.1.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.restlet.osgi', artifactId='org.restlet', version='2.1.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='org.json-osgi', version='20080701', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.osgi', artifactId='org.osgi.enterprise', version='4.2.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.scr', version='1.6.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='javax.validation', artifactId='com.springsource.javax.validation', version='1.0.0.GA', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.hibernate', artifactId='hibernate-validator', version='4.3.0.Final', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.jboss.logging', artifactId='jboss-logging', version='3.1.2.GA', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.configadmin', version='1.4.0 ', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.felix', artifactId='org.apache.felix.fileinstall', version='3.2.4', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - SystemPropertyOption{key='felix.fileinstall.noInitialDelay', value='true'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - SystemPropertyOption{key='felix.fileinstall.dir', value='./conf/dev/'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - SystemPropertyOption{key='felix.fileinstall.log.level', value='4'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.eclipse.persistence', artifactId='javax.persistence', version='2.0.3', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.eclipse.persistence', artifactId='org.eclipse.persistence.osgi', version='2.2.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.eclipse.persistence', artifactId='org.eclipse.persistence.core', version='2.2.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.eclipse.persistence', artifactId='org.eclipse.persistence.jpa', version='2.2.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.eclipse.persistence', artifactId='org.eclipse.persistence.asm', version='2.2.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.eclipse.persistence', artifactId='org.eclipse.persistence.osgi', version='2.2.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='com.thoughtworks.xstream', artifactId='com.springsource.com.thoughtworks.xstream', version='1.3.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='javax.xml.stream', artifactId='com.springsource.javax.xml.stream', version='1.0.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.xmlpull', artifactId='com.springsource.org.xmlpull', version='1.1.4.c', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.codehaus.jettison', artifactId='com.springsource.org.codehaus.jettison', version='1.0.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='commons-dbcp', artifactId='commons-dbcp', version='1.4', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='skysail.fragment.commons.dbcp', version='0.0.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='commons-pool', artifactId='commons-pool', version='1.6', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.codehaus.jackson', artifactId='jackson-core-lgpl', version='1.9.5', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.codehaus.jackson', artifactId='jackson-mapper-lgpl', version='1.9.5', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.pdfbox', artifactId='pdfbox', version='1.8.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.pdfbox', artifactId='fontbox', version='1.8.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.pdfbox', artifactId='jempbox', version='1.8.0', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='skysail.server', version='0.2.12-SNAPSHOT', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='com.jayway.rest-assured-osgi', version='1.6.2', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='org.hamcrest.hamcrest-all-osgi', version='1.3.0.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='de.twentyeleven.skysail', artifactId='org.ccil.cowan.tagsoup-osgi', version='1.2.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='commons-collections', artifactId='commons-collections', version='3.2.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.commons', artifactId='commons-lang3', version='3.1', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.httpcomponents', artifactId='httpcore-osgi', version='4.1.4', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.apache.httpcomponents', artifactId='httpclient-osgi', version='4.1.3', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.codehaus.groovy', artifactId='groovy-all', version='1.8.4', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.codehaus.jackson', artifactId='jackson-core-lgpl', version='1.9.5', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='mysql', artifactId='skysail.bundles.mysql-connector-java', version='5.1.6', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='commons-dbcp', artifactId='skysail.bundles.commons-dbcp', version='1.4', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.hibernate', artifactId='hibernate-validator', version='4.3.0.Final', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='javax.validation', artifactId='com.springsource.javax.validation', version='1.0.0.GA', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - MavenArtifactUrlReference{groupId='org.jboss.logging', artifactId='jboss-logging', version='3.1.2.GA', type='null'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - UrlProvisionOption{url='RawUrlReference{url='file:target/skysail.server.ext.dbviewer-0.0.17-SNAPSHOT.jar'}'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - SystemPropertyOption{key='jetty.home.bundle', value='skysail.server'}
+INFO  d.t.skysail.common.testing.utils.SkysailCommonOsgiSetup - SystemPropertyOption{key='ds.loglevel', value='4'}
+DEBUG org.ops4j.pax.exam.junit.JUnit4TestRunner - No User defined probe hook found
+DEBUG org.ops4j.pax.exam.spi.intern.DefaultTestAddress - NEW ADDRESS= PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a parent=null root=[TestAddress:PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a root:PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a] args=[Ljava.lang.Object;@10bc49d
+DEBUG org.ops4j.pax.exam.spi.intern.DefaultTestAddress - NEW ADDRESS= PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0 parent=null root=[TestAddress:PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0 root:PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0] args=[Ljava.lang.Object;@1c9b9ca
+DEBUG org.ops4j.store.intern.TemporaryStore - Storage Area is C:\Users\GRAEFCA\AppData\Local\Temp\tb
+DEBUG org.ops4j.pax.exam.spi.intern.TestProbeBuilderImpl - Top level dir . has been verified.
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - make()
+DEBUG org.ops4j.store.intern.TemporaryStore - Enter store()
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Creating manifest from added headers.
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0 = de.twenty11.skysail.server.ext.dbviewer.itests.SkysailServerExtDbviewerOsgiIT;test
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - DynamicImport-Package = *
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Ignore-Package = 
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - PaxExam-Executable = PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0,PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a,
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a = de.twenty11.skysail.server.ext.dbviewer.itests.SkysailServerExtDbviewerOsgiIT;testPostConnectionDetails
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Bundle-SymbolicName = PAXEXAM-PROBE-69712a64-7937-426a-bc50-29895b54d775
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource persistence.xml
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/ColumnsResourceTest.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/itests/SkysailServerExtDbViewerOsgiSetup.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$8.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource exam.properties
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/ConnectionResourceTest.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$1.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/DataResourceTest.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource META-INF/persistence.xml
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource logback-test.xml
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$6.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$7.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$2.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/SchemasResourceTest.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$4.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/itests/SkysailServerExtDbviewerOsgiIT.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$9.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$5.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/BaseTests$3.class
+DEBUG org.ops4j.pax.tinybundles.core.intern.RawBuilder - Copying resource de/twenty11/skysail/server/ext/dbviewer/test/ConstraintsResourceTest.class
+DEBUG org.ops4j.store.intern.TemporaryStore - Exit store(): ced48db267d3d4846b04e92ad9460227336ad4f3
+DEBUG org.ops4j.pax.exam.spi.DefaultExamReactor - Staging reactor with probes: 1 using strategy: org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory@1ea5671
+DEBUG org.ops4j.store.intern.TemporaryStore - Storage Area is C:\Users\GRAEFCA\AppData\Local\Temp\1366902419615-0
+DEBUG org.ops4j.pax.exam.spi.intern.DefaultTestAddress - NEW ADDRESS= PaxExam-9fe2c146-980f-4cb0-b74c-97f7ae32b1f8 parent=[TestAddress:PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0 root:PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0] root=[TestAddress:PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0 root:PaxExam-5b509fe3-e66f-4c77-ac1a-412d3de509e0] args=[Ljava.lang.Object;@1f6f296
+DEBUG org.ops4j.pax.exam.spi.intern.DefaultTestAddress - NEW ADDRESS= PaxExam-99e19854-c773-4c75-b681-36bee5ccc02e parent=[TestAddress:PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a root:PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a] root=[TestAddress:PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a root:PaxExam-e93e0e1d-d7ba-4751-b008-e64e9c263b6a] args=[Ljava.lang.Object;@1b09468
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.BootDelegationOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.FrameworkStartLevelOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.MavenArtifactProvisionOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.FrameworkPropertyOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.UrlProvisionOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.libraries.JUnitBundlesOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.SystemPropertyOption has not been recognized.

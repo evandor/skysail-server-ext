@@ -1,0 +1,7 @@
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.BootDelegationOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.FrameworkStartLevelOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.MavenArtifactProvisionOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.FrameworkPropertyOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.UrlProvisionOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.libraries.JUnitBundlesOption has not been recognized.
+WARN  org.ops4j.pax.exam.spi.DefaultExamSystem - Option org.ops4j.pax.exam.options.SystemPropertyOption has not been recognized.

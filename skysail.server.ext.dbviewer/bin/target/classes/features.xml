@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+
+	<!-- feature to be used with apache karaf -->
+    <feature name="skysail.server.ext.dbviewer.feature" version="0.0.17-SNAPSHOT">
+
+ 		<!-- skysail.server.osgi.bundles with dependecies -->
+        <bundle>mvn:de.twentyeleven.skysail/skysail.server.ext.dbviewer/0.0.17-SNAPSHOT</bundle>
+        
+        <bundle>mvn:commons-pool/commons-pool/1.5.4</bundle>
+        <bundle>mvn:commons-dbcp/commons-dbcp/1.4</bundle>
+        
+        <!-- for pax wicket -->
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/2.2_2</bundle>
+    </feature>
+   
+</features>
