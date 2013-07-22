@@ -6,8 +6,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import de.twenty11.skysail.common.forms.Field;
 import de.twenty11.skysail.common.forms.Form;
 
@@ -17,7 +15,6 @@ public class Note extends Component {
 
     @Id
     @GeneratedValue
-    @JsonIgnore
     private int pid;// primary key for db
 
     @Field
@@ -27,12 +24,12 @@ public class Note extends Component {
 
     @Field
     private String content;
-    
+
     private Folder parent;
 
     public Note() {
     }
-    
+
     public Note(Folder parent, String title, String content) {
         this.parent = parent;
         this.title = title;
@@ -42,12 +39,17 @@ public class Note extends Component {
     public int getPid() {
         return pid;
     }
-    
+
     public String getTitle() {
         return title;
     }
-    
+
     public String getContent() {
         return content;
+    }
+
+    @Override
+    public String toString() {
+        return getTitle();
     }
 }

@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
-import org.restlet.routing.Router;
-import org.restlet.routing.Template;
-
 import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
@@ -18,6 +15,8 @@ import de.twenty11.skysail.server.ext.notes.repos.NotesRepository;
 import de.twenty11.skysail.server.ext.notes.resources.AddFolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.AddNoteResource;
 import de.twenty11.skysail.server.ext.notes.resources.FolderResource;
+import de.twenty11.skysail.server.ext.notes.resources.NoteResource;
+import de.twenty11.skysail.server.ext.notes.resources.NotesResource;
 import de.twenty11.skysail.server.ext.notes.resources.NotesRootResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
@@ -40,17 +39,19 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         setName("notes");
     }
 
+    @Override
     protected void attach() {
         // make sure to match proper resource even if request url contains add. information
-        router.setDefaultMatchingMode(Template.MODE_STARTS_WITH);
-        router.setRoutingMode(Router.MODE_LAST_MATCH);
+        // router.setDefaultMatchingMode(Template.MODE_STARTS_WITH);
+        // router.setRoutingMode(Router.MODE_LAST_MATCH);
 
         // @formatter:off
         router.attach(new RouteBuilder("", NotesRootResource.class).setVisible(false));
-        //router.attach(new RouteBuilder("/me", MeResource.class).setText("Me").setVisible(true));
        // router.attach(new RouteBuilder("/folders", FoldersResource.class).setText("Home").setVisible(true));
 //        router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setText("Home").setVisible(true));
+        router.attach(new RouteBuilder("/notes", NotesResource.class).setVisible(false));
         router.attach(new RouteBuilder("/note", AddNoteResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setVisible(false));
         router.attach(new RouteBuilder("/folder", AddFolderResource.class).setVisible(false));
         router.attach(new RouteBuilder("/folder/{id}", FolderResource.class).setVisible(false));
         // @formatter:on
@@ -60,10 +61,11 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         this.enitityManagerFactory = emf;
     }
 
+    @Override
     public void setServerConfiguration(ServerConfiguration sc) {
         super.setServerConfiguration(sc);
     }
-    
+
     public synchronized ComponentRepository<Folder> getFolderRepository() {
         if (this.folderRepository == null) {
             this.folderRepository = new FolderRepository(enitityManagerFactory);
