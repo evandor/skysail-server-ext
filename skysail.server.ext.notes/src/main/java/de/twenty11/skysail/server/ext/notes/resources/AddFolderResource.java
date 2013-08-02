@@ -33,7 +33,7 @@ public class AddFolderResource extends AddServerResource2<Folder> {
     public SkysailResponse<List<Component>> addEntity(Folder entity) {
         NotesApplication app = (NotesApplication) getApplication();
         app.getFolderRepository().add(entity);
-        return new FoldersResource().getEntities();
+        return null;// new FoldersResource().getEntities();
     }
 
     // @Post("x-www-form-urlencoded:html")

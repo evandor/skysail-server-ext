@@ -10,6 +10,8 @@ public interface ComponentRepository<T extends Component> {
 
     public abstract void add(T entity);
 
+    public abstract void update(T entity);
+
     public abstract List<T> getComponents();
 
 }

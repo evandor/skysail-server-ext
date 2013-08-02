@@ -15,6 +15,7 @@ import de.twenty11.skysail.server.ext.notes.repos.NotesRepository;
 import de.twenty11.skysail.server.ext.notes.resources.AddFolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.AddNoteResource;
 import de.twenty11.skysail.server.ext.notes.resources.FolderResource;
+import de.twenty11.skysail.server.ext.notes.resources.FoldersResource;
 import de.twenty11.skysail.server.ext.notes.resources.NoteResource;
 import de.twenty11.skysail.server.ext.notes.resources.NotesResource;
 import de.twenty11.skysail.server.ext.notes.resources.NotesRootResource;
@@ -47,11 +48,12 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
         // @formatter:off
         router.attach(new RouteBuilder("", NotesRootResource.class).setVisible(false));
-       // router.attach(new RouteBuilder("/folders", FoldersResource.class).setText("Home").setVisible(true));
-//        router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setText("Home").setVisible(true));
+        // router.attach(new RouteBuilder("/folders", FoldersResource.class).setText("Home").setVisible(true));
+        // router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setText("Home").setVisible(true));
         router.attach(new RouteBuilder("/notes", NotesResource.class).setVisible(false));
         router.attach(new RouteBuilder("/note", AddNoteResource.class).setVisible(false));
         router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setVisible(false));
+        router.attach(new RouteBuilder("/folders", FoldersResource.class).setVisible(false));
         router.attach(new RouteBuilder("/folder", AddFolderResource.class).setVisible(false));
         router.attach(new RouteBuilder("/folder/{id}", FolderResource.class).setVisible(false));
         // @formatter:on

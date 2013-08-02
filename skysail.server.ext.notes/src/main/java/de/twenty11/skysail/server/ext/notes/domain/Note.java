@@ -1,8 +1,13 @@
 package de.twenty11.skysail.server.ext.notes.domain;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,17 +20,21 @@ public class Note extends Component {
 
     @Id
     @GeneratedValue
-    private int pid;// primary key for db
+    private Long pid;// primary key for db
 
     @Field
     @NotNull(message = "Title is mandatory")
     @Size(min = 1, message = "title must not be empty")
     private String title;
 
-    @Field
+    @Field(tag = "textarea")
+    @Column(columnDefinition = "CLOB")
     private String content;
 
     private Folder parent;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
     public Note() {
     }
@@ -34,9 +43,14 @@ public class Note extends Component {
         this.parent = parent;
         this.title = title;
         this.content = content;
+        this.created = new Date();
     }
 
-    public int getPid() {
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public Long getPid() {
         return pid;
     }
 
@@ -48,8 +62,13 @@ public class Note extends Component {
         return content;
     }
 
+    public Date getCreated() {
+        return created;
+    }
+
     @Override
     public String toString() {
         return getTitle();
     }
+
 }
