@@ -66,6 +66,10 @@ public class Note extends Component {
         return created;
     }
 
+    public Folder getParent() {
+        return parent;
+    }
+
     @Override
     public String toString() {
         return getTitle();
