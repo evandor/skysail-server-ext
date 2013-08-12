@@ -25,8 +25,10 @@ import org.restlet.resource.ClientResource;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 
 import static org.hamcrest.Matchers.containsString;
-
 import static org.junit.Assert.assertThat;
+import org.junit.Test;
+import org.restlet.data.Form;
+import org.restlet.resource.ClientResource;
 
 public class FoldersResourceIT extends IntegrationTestBase {
 
@@ -84,6 +86,7 @@ public class FoldersResourceIT extends IntegrationTestBase {
     public void should_trim_foldername_when_posting() throws Exception {
         form.add("folderName", " foldername ");
 
+
         cr.post(form);
 
         cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
@@ -99,5 +102,6 @@ public class FoldersResourceIT extends IntegrationTestBase {
 
         assertThat(resultFromPost, containsString("<success>false</success>"));
     }
+
 
 }
