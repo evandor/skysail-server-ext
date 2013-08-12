@@ -3,10 +3,12 @@ package de.twenty11.skysail.server.ext.rss.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.restlet.data.Form;
 import org.restlet.ext.atom.Entry;
 import org.restlet.ext.atom.Feed;
 import org.restlet.resource.ClientResource;
 
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.rss.domain.AtomFeed;
 
@@ -17,8 +19,7 @@ public class AtomResource extends ListServerResource2<AtomFeed> {
 
         List<AtomFeed> result = new ArrayList<AtomFeed>();
         try {
-            ClientResource mailClient = new ClientResource(
-                    "http://en.blog.wordpress.com/feed/atom/");
+            ClientResource mailClient = new ClientResource("http://en.blog.wordpress.com/feed/atom/");
 
             Feed atomFeed = mailClient.get(Feed.class);
             System.out.println("\nAtom feed: " + atomFeed.getTitle() + "\n");
@@ -44,6 +45,18 @@ public class AtomResource extends ListServerResource2<AtomFeed> {
             throw new RuntimeException(e);
         }
         return result;
+    }
+
+    @Override
+    public AtomFeed getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(AtomFeed entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

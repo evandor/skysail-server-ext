@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
 import java.util.List;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
@@ -28,6 +29,18 @@ public class OsgiMonitorRootResource<T extends ResourceDetails> extends ListServ
     @Override
     protected List<ResourceDetails> getData() {
         return allMethods();
+    }
+
+    @Override
+    public ResourceDetails getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(ResourceDetails entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

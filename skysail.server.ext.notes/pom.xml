@@ -1,190 +1,248 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>de.twentyeleven.skysail</groupId>
-		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.8.41-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>de.twentyeleven.skysail</groupId>
+        <artifactId>skysail.build.maven.parentPom</artifactId>
+        <version>0.8.41-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>skysail.server.ext.notes</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
-	<name>SKYSAIL :: server :: ext :: notes</name>
-	<packaging>bundle</packaging>
+    <artifactId>skysail.server.ext.notes</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>SKYSAIL :: server :: ext :: notes</name>
+    <packaging>bundle</packaging>
 
-	<scm>
-		<!-- read access -->
-		<connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
-		<!-- write access -->
-		<url>scm:git:git@github.com:evandor/skysail-server-ext.git</url>
-		<!-- A publicly browsable repository. For example, via ViewCVS. -->
-		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
-	</scm>
+    <scm>
+        <!-- read access -->
+        <connection>scm:git:git@github.com:evandor/skysail-server-ext.git</connection>
+        <!-- write access -->
+        <url>scm:git:git@github.com:evandor/skysail-server-ext.git</url>
+        <!-- A publicly browsable repository. For example, via ViewCVS. -->
+        <developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
+    </scm>
 
-	<properties>
-		<skysail.server.version>[0.3.0, 1.0)</skysail.server.version>
-	</properties>
+    <properties>
+        <skysail.server.version>[0.3.1-SNAPSHOT, 1.0)</skysail.server.version>
+    </properties>
 
-	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory> 
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<filtering>true</filtering>
-				<directory>src/main/webapp</directory>
-			</resource>
-			<resource>
-				<directory>src/main/resources/</directory>
-				<filtering>false</filtering>
-				<includes>
-					<include>**/*.stg</include>
-				</includes>
-			</resource>
-		</resources>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.stg</include>
+                </includes>
+            </resource>
+        </resources>
 
-		<plugins>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<_include>-osgi.bnd</_include>
-					</instructions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>filter</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>resources</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<configuration>
-					<workingDirectory>${project.build.directory}</workingDirectory>
-					<preparationGoals>site:site site:deploy</preparationGoals>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <_include>-osgi.bnd</_include>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>filter</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <workingDirectory>${project.build.directory}</workingDirectory>
+                    <preparationGoals>site:site site:deploy</preparationGoals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<profiles>
-		<profile>
-			<!-- execute like "mvn install -P-sonar -DskipSlowTasks -DskipTests" -->
-			<id>slowTask</id>
-			<activation>
-				<property>
-					<name>!skipSlowTasks</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>build-helper-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-artifacts</id>
-								<phase>package</phase>
-								<goals>
-									<goal>attach-artifact</goal>
-								</goals>
-								<configuration>
-									<artifacts>
-										<artifact>
-											<file>target/classes/features.xml</file>
-											<type>xml</type>
-										</artifact>
-									</artifacts>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <!-- execute like "mvn install -P-sonar -DskipSlowTasks -DskipTests" -->
+            <id>slowTask</id>
+            <activation>
+                <property>
+                    <name>!skipSlowTasks</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-artifacts</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>attach-artifact</goal>
+                                </goals>
+                                <configuration>
+                                    <artifacts>
+                                        <artifact>
+                                            <file>target/classes/features.xml</file>
+                                            <type>xml</type>
+                                        </artifact>
+                                    </artifacts>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
-	<dependencies>
-		<dependency>
-			<groupId>de.twentyeleven.skysail</groupId>
-			<artifactId>skysail.server</artifactId>
-			<version>${skysail.server.version}</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>skysail.server</artifactId>
+            <version>${skysail.server.version}</version>
+        </dependency>
 
-		<!-- testing with pax exam -->
-		<dependency>
-			<groupId>org.ops4j.pax.exam</groupId>
-			<artifactId>pax-exam-container-native</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.ops4j.pax.exam</groupId>
-			<artifactId>pax-exam-junit4</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.ops4j.pax.exam</groupId>
-			<artifactId>pax-exam-link-mvn</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.ops4j.pax.url</groupId>
-			<artifactId>pax-url-aether</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.apache.felix.framework</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- testing with pax exam - done -->
+        <!-- for tests -->
+        <dependency>
+            <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>skysail.server</artifactId>
+            <version>${skysail.server.version}</version>
+            <type>test-jar</type>
+        </dependency>
+                <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.core</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.8.2.2</version>
+            <scope>test</scope>
+        </dependency>
 
-		<!-- hamcrest <dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-integration</artifactId> 
-			<scope>test</scope> </dependency> -->
-	</dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.enterprise</artifactId>
+        </dependency>
+        
+        
+        
+        
+        
+        <!-- <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>test</scope>
+        </dependency>-->
+
+
+        <!-- testing with pax exam -->
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-container-native</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-junit4</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-link-mvn</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.url</groupId>
+            <artifactId>pax-url-aether</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- testing with pax exam - done -->
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- hamcrest <dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-integration</artifactId> 
+            <scope>test</scope> </dependency> -->
+    </dependencies>
 
 </project>

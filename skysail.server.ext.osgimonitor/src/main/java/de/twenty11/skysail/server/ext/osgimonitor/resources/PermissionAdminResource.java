@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.osgi.service.permissionadmin.PermissionAdmin;
 import org.osgi.service.permissionadmin.PermissionInfo;
+import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.domain.Permission;
@@ -43,6 +45,18 @@ public class PermissionAdminResource extends ListServerResource2<Permission> {
         for (PermissionInfo permissionInfo : permissions) {
             result.add(new Permission(location, permissionInfo));
         }
+    }
+
+    @Override
+    public Permission getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Permission entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
@@ -81,6 +82,18 @@ public class ListDirResource extends ListServerResource2<DirectoryDescriptor> {
         registerLinkedPage(new ExecuteMavenPage(remainingPart));
         // }
 
+    }
+
+    @Override
+    public DirectoryDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(DirectoryDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
@@ -24,7 +25,7 @@ public class JobsResource extends ListServerResource2<JobsDetails> {
 
     private String installationName;
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
 
     public JobsResource() {
         setName("jenkins installations");
@@ -44,7 +45,7 @@ public class JobsResource extends ListServerResource2<JobsDetails> {
 
     @Override
     protected List<JobsDetails> getData() {
-        MyApplication app = (MyApplication)getApplication();
+        MyApplication app = (MyApplication) getApplication();
         EntityManager em = app.getEntityManager();
         Query query = em.createQuery("SELECT c FROM JenkinsDetails c WHERE c.name = :name");
         query.setParameter("name", installationName);
@@ -66,6 +67,18 @@ public class JobsResource extends ListServerResource2<JobsDetails> {
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Override
+    public JobsDetails getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(JobsDetails entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

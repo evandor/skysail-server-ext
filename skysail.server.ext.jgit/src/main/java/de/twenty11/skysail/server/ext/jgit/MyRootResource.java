@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
@@ -53,6 +54,18 @@ public class MyRootResource<T extends ResourceDetails> extends ListServerResourc
     @Override
     protected List<ResourceDetails> getData() {
         return allMethods();
+    }
+
+    @Override
+    public ResourceDetails getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(ResourceDetails entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

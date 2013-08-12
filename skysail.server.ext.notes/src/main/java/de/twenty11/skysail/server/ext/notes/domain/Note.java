@@ -20,11 +20,13 @@ public class Note extends Component {
 
     @Id
     @GeneratedValue
-    private Long pid;// primary key for db
+    private Long pid;
 
     @Field
     @NotNull(message = "Title is mandatory")
     @Size(min = 1, message = "title must not be empty")
+    // TODO define business requirements
+    // TODO proper handling of special characters, XSS
     private String title;
 
     @Field(tag = "textarea")

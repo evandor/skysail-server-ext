@@ -6,6 +6,7 @@ import java.util.List;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
@@ -36,5 +37,17 @@ public class ProcessesResource extends ListServerResource2<ProcessDescriptor> {
             results.add(new ProcessDescriptor(processDefinition));
         }
         return results;
+    }
+
+    @Override
+    public ProcessDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(ProcessDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

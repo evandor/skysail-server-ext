@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.Presentation;
@@ -19,7 +20,7 @@ import de.twenty11.skysail.server.ext.facebook.domain.FacebookUser;
 @Presentation(preferred = PresentationStyle.LIST2)
 public class FriendsResource extends ListServerResource2<FacebookUser> {
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
     private String myFriendsOnFacebookUrl;
     private FacebookApplication facebookApp;
     private String currentUser;
@@ -35,7 +36,7 @@ public class FriendsResource extends ListServerResource2<FacebookUser> {
     public SkysailResponse<List<FacebookUser>> getEntities() {
         return super.getEntities("Facebook Friends");
     }
-    
+
     @Override
     protected List<FacebookUser> getData() {
         JsonNode jsonRootNode;
@@ -56,5 +57,17 @@ public class FriendsResource extends ListServerResource2<FacebookUser> {
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Override
+    public FacebookUser getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(FacebookUser entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

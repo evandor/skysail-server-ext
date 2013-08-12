@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
@@ -35,6 +36,18 @@ public class JenkinsResource extends ListServerResource2<JenkinsDetails> {
             }
         }
         return filteredResults;
+    }
+
+    @Override
+    public JenkinsDetails getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(JenkinsDetails entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

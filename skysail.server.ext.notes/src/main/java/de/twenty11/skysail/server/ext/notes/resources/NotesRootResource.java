@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
@@ -29,7 +30,7 @@ public class NotesRootResource extends ListServerResource2<Component> {
         setName("osgimonitor root resource");
         setDescription("The root resource of the osgimonitor application");
     }
-    
+
     @Override
     protected void doInit() throws ResourceException {
         super.doInit();
@@ -47,7 +48,7 @@ public class NotesRootResource extends ListServerResource2<Component> {
 
             @Override
             public String getHref() {
-                return "notes/folder";
+                return "notes" + NotesApplication.FOLDERS_FORM_PATH;
             }
 
             @Override
@@ -77,7 +78,7 @@ public class NotesRootResource extends ListServerResource2<Component> {
 
     @Override
     protected List<Component> getData() {
-        NotesApplication app = (NotesApplication)getApplication();
+        NotesApplication app = (NotesApplication) getApplication();
         List<Component> result = new ArrayList<Component>();
         addFolders(result, app);
         addNotes(result, app);
@@ -96,10 +97,22 @@ public class NotesRootResource extends ListServerResource2<Component> {
     private void addNotes(List<Component> result, NotesApplication app) {
         ComponentRepository<Note> notesRepository = app.getNotesRepository();
         List<Note> notes = notesRepository.getComponents();
-        //Collections.sort(notes);
+        // Collections.sort(notes);
         for (Note note : notes) {
             result.add(note);
         }
+    }
+
+    @Override
+    public Component getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Component entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

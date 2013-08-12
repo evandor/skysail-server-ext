@@ -3,6 +3,7 @@ package de.twentyeleven.skysail.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.restlet.data.Form;
 import org.restlet.ext.atom.Entry;
 import org.restlet.ext.atom.Feed;
 import org.restlet.ext.atom.Text;
@@ -112,6 +113,18 @@ public class RssFeedResource extends ListServerResource2<RssFeed> {
         List<RssFeed> result = new ArrayList<RssFeed>();
         // addNotes(result, app);
         return result;
+    }
+
+    @Override
+    public RssFeed getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(RssFeed entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

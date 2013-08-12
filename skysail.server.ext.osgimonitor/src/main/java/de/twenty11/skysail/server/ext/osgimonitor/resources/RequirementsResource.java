@@ -9,9 +9,11 @@ import org.osgi.framework.wiring.BundleRequirement;
 import org.osgi.framework.wiring.BundleRevision;
 import org.osgi.framework.wiring.BundleWire;
 import org.osgi.framework.wiring.BundleWiring;
+import org.restlet.data.Form;
 
 import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.domain.Requirement;
@@ -23,7 +25,7 @@ public class RequirementsResource extends ListServerResource2<Requirement> {
     protected List<Requirement> getData() {
         List<Requirement> result = new ArrayList<Requirement>();
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
-        
+
         BundleContext bundleContext = app.getBundleContext();
         Bundle[] bundles = bundleContext.getBundles();
         for (Bundle bundle : bundles) {
@@ -38,11 +40,22 @@ public class RequirementsResource extends ListServerResource2<Requirement> {
             return;
         }
         List<BundleWire> providedWires = bw.getProvidedWires(BundleRevision.PACKAGE_NAMESPACE);
-        
-        
+
         for (BundleRequirement cap : bw.getRequirements(BundleRevision.PACKAGE_NAMESPACE)) {
             result.add(new Requirement(cap));
         }
+    }
+
+    @Override
+    public Requirement getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Requirement entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

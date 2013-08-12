@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.jgit;
 
 import java.util.List;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.navigation.LinkedPage;
@@ -40,5 +41,17 @@ public class LocalRepositoriesResource extends ListServerResource2<LocalReposito
         MyApplication app = (MyApplication) getApplication();
         DbRepository rep = app.getRepository();
         return rep.getLocalRepositoryDescriptors();
+    }
+
+    @Override
+    public LocalRepositoryDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(LocalRepositoryDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
