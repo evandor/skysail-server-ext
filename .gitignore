@@ -2,5 +2,6 @@
 .svn/
 target/
 .classpath
+.project
 .settings/
 bin/
