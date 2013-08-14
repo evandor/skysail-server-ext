@@ -15,8 +15,11 @@
  */
 package de.twenty11.skysail.server.ext.notes.resources.test;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.restlet.data.Form;
+import org.restlet.data.MediaType;
+import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
@@ -27,20 +30,26 @@ import static org.junit.Assert.assertThat;
 
 public class FoldersResourceIT extends IntegrationTestBase {
 
+    private Form form;
+    private ClientResource cr;
+
+    @Override
+    @Before
+    public void setUp() {
+        super.setUp();
+        form = new Form();
+        cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
+    }
+
     @Test
     public void should_successfully_retrieve_the_folders_with_get_request() throws Exception {
-        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
-
         String json = cr.get().getText();
 
         assertThat(json, containsString("\"success\":true"));
-        // assertThat(json, containsString("\"data\":[]"));
     }
 
     @Test
     public void should_add_new_folder_with_post() throws Exception {
-        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
-        Form form = new Form();
         form.add("folderName", "foldername");
 
         cr.post(form);
@@ -48,6 +57,47 @@ public class FoldersResourceIT extends IntegrationTestBase {
         cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
         String json = cr.get().getText();
         assertThat(json, containsString("\"data\":[{\"parent\":null,\"folderName\":\"foldername\",\"children\":[]}]"));
+    }
+
+    @Test
+    public void should_prevent_folder_without_name_from_being_added() throws Exception {
+        form.add("folderName", "");
+
+        Representation post = cr.post(form, MediaType.APPLICATION_JSON);
+
+        assertThat(
+                post.getText(),
+                containsString("\"violations\":[{\"propertyPath\":\"folderName\",\"message\":\"name  must not be empty\"}]"));
+    }
+
+    @Test
+    public void should_return_xml_when_mediaType_is_set_to_xml() throws Exception {
+        form.add("folderName", "");
+
+        String resultFromPost = cr.post(form, MediaType.APPLICATION_XML).getText();
+
+        assertThat(resultFromPost, containsString("<success>false</success>"));
+        assertThat(resultFromPost, containsString("<message>name  must not be empty</message>"));
+    }
+
+    @Test
+    public void should_trim_foldername_when_posting() throws Exception {
+        form.add("folderName", " foldername ");
+
+        cr.post(form);
+
+        cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
+        String json = cr.get().getText();
+        assertThat(json, containsString("\"data\":[{\"parent\":null,\"folderName\":\"foldername\",\"children\":[]}]"));
+    }
+
+    @Test
+    public void should_sanitize_user_input() throws Exception {
+        form.add("folderName", " foldername<script></script> ");
+
+        String resultFromPost = cr.post(form, MediaType.APPLICATION_JSON).getText();
+
+        assertThat(resultFromPost, containsString("<success>false</success>"));
     }
 
 }

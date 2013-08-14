@@ -1,9 +1,6 @@
 package de.twenty11.skysail.server.ext.notes.resources;
 
 import java.util.List;
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
 
 import org.restlet.data.Form;
 import org.restlet.resource.Get;
@@ -12,7 +9,6 @@ import org.restlet.resource.Post;
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.AddServerResource2;
-import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Component;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
@@ -26,15 +22,6 @@ public class AddFolderResource extends AddServerResource2<Folder> {
     @Override
     @Get("html")
     public FormResponse<Folder> createForm() {
-
-        Set<ConstraintViolation<Folder>> violations = (Set<ConstraintViolation<Folder>>) getRequestAttributes().get(
-                ListServerResource2.CONSTRAINT_VIOLATIONS);
-        // Set<ConstraintViolation<Folder>> violations = (Set<ConstraintViolation<Folder>>) getContext().getAttributes()
-        // .get(ListServerResource2.CONSTRAINT_VIOLATIONS);
-        if (violations != null) {
-            // getContext().getAttributes().remove(ListServerResource2.CONSTRAINT_VIOLATIONS);
-
-        }
         FormResponse<Folder> formResponse = new FormResponse<Folder>(new Folder(null, ""),
                 NotesApplication.getPostNewFolderPath());
         formResponse.setMessage("Add a new folder");
