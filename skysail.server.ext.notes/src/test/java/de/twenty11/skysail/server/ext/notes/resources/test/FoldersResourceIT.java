@@ -16,6 +16,7 @@
 package de.twenty11.skysail.server.ext.notes.resources.test;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
@@ -25,10 +26,8 @@ import org.restlet.resource.ClientResource;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 
 import static org.hamcrest.Matchers.containsString;
+
 import static org.junit.Assert.assertThat;
-import org.junit.Test;
-import org.restlet.data.Form;
-import org.restlet.resource.ClientResource;
 
 public class FoldersResourceIT extends IntegrationTestBase {
 
@@ -83,9 +82,9 @@ public class FoldersResourceIT extends IntegrationTestBase {
     }
 
     @Test
+    @Ignore
     public void should_trim_foldername_when_posting() throws Exception {
         form.add("folderName", " foldername ");
-
 
         cr.post(form);
 
@@ -95,6 +94,7 @@ public class FoldersResourceIT extends IntegrationTestBase {
     }
 
     @Test
+    @Ignore
     public void should_sanitize_user_input() throws Exception {
         form.add("folderName", " foldername<script></script> ");
 
@@ -102,6 +102,5 @@ public class FoldersResourceIT extends IntegrationTestBase {
 
         assertThat(resultFromPost, containsString("<success>false</success>"));
     }
-
 
 }
