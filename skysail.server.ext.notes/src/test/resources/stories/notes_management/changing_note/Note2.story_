@@ -1,0 +1,5 @@
+Scenario: Changing a Folder
+
+Given the user wants to change a Folder
+When the user changes a new folder
+Then the folder should have been changed

@@ -1,6 +1,5 @@
-Scenario: Creating a new Folder
+Scenario: Posting new Folder with browser
 
 Given the user wants to add a new Folder
-When the user adds a new folder
-Then the folder should have been added
-
+When the user submits the form with the foldername 'foldername'
+Then the request is successful

@@ -99,40 +99,7 @@
     </build>
 
     <profiles>
-        <profile>
-            <!-- execute like "mvn install -P-sonar -DskipSlowTasks -DskipTests" -->
-            <id>slowTask</id>
-            <activation>
-                <property>
-                    <name>!skipSlowTasks</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>build-helper-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-artifacts</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>attach-artifact</goal>
-                                </goals>
-                                <configuration>
-                                    <artifacts>
-                                        <artifact>
-                                            <file>target/classes/features.xml</file>
-                                            <type>xml</type>
-                                        </artifact>
-                                    </artifacts>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+            <!-- execute like "mvn install -P -sonar -DskipSlowTasks -DskipTests" -->
     </profiles>
 
 
