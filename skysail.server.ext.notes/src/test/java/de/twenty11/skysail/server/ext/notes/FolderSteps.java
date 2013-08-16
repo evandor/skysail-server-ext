@@ -23,13 +23,10 @@ public class FolderSteps extends AcceptanceTests {
         super.setUp();
         form = new Form();
         cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
-
     }
 
     @Given("the user wants to add a new Folder")
-    public void aaa() {
-
-    }
+    public void aaa() {}
 
     @When("the user adds a new folder")
     public void bbb() {
