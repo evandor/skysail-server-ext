@@ -34,6 +34,7 @@ public class NoteResource extends UniqueResultServerResource2<Note> {
         return app.getNotesRepository().getById(noteId);
     }
 
+    @Override
     public Note getData(Form form) {
         return new Note(null, form.getFirstValue("title"), form.getFirstValue("content"));
     }
@@ -75,6 +76,12 @@ public class NoteResource extends UniqueResultServerResource2<Note> {
         EntityDetailsResponse response = new EntityDetailsResponse(entity, "note");
         response.setMessage("note entity details");
         return response;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Note entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -19,7 +19,6 @@ public class ProcessResource extends UniqueResultServerResource2<ProcessDescript
     private String id;
     private String action;
 
-
     @Override
     @Get("html|json")
     public SkysailResponse<ProcessDescriptor> getEntity() {
@@ -54,5 +53,17 @@ public class ProcessResource extends UniqueResultServerResource2<ProcessDescript
         }
         setMessage("Success");
         return getEntity();
+    }
+
+    @Override
+    public ProcessDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(ProcessDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

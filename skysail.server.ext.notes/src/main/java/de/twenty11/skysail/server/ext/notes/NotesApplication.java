@@ -12,7 +12,6 @@ import de.twenty11.skysail.server.ext.notes.domain.Note;
 import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
 import de.twenty11.skysail.server.ext.notes.repos.FolderRepository;
 import de.twenty11.skysail.server.ext.notes.repos.NotesRepository;
-import de.twenty11.skysail.server.ext.notes.resources.AddFolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.AddNoteResource;
 import de.twenty11.skysail.server.ext.notes.resources.FolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.FoldersResource;
@@ -32,7 +31,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
     public static final String APP_NAME = "notes";
     public static final String FOLDERS_PATH = "/folders";
-    public static final String FOLDERS_FORM_PATH = "/foldersForm";
+    public static final String FOLDERS_FORM_PATH = FOLDERS_PATH + "/?media=htmlform";
 
     private EntityManagerFactory enitityManagerFactory;
     private ComponentRepository<Folder> folderRepository;
@@ -55,19 +54,21 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         router.attach(new RouteBuilder("/notes", NotesResource.class).setVisible(false));
         router.attach(new RouteBuilder("/note", AddNoteResource.class).setVisible(false));
         router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setVisible(false));
+        
         router.attach(new RouteBuilder(FOLDERS_PATH, FoldersResource.class).setVisible(false));
+        router.attach(new RouteBuilder(FOLDERS_PATH + "/", FolderResource.class).setVisible(false));
         router.attach(new RouteBuilder(FOLDERS_PATH + "/{id}", FolderResource.class).setVisible(false));
-        router.attach(new RouteBuilder(FOLDERS_FORM_PATH, AddFolderResource.class).setVisible(false));
+        
+        //router.attach(new RouteBuilder(FOLDERS_FORM_PATH, AddFolderResource.class).setVisible(false));
         // TODO router.attach(new RouteBuilder(FOLDERS_FORM_PATH + "/{id}", FolderResource.class).setVisible(false));
 
         //router.attach(new RouteBuilder("/folder", AddFolderResource.class).setVisible(false));
 
         // pattern: (path entity name always in plural):
         // "/folders"         XsResource    GET: all      POST: w/o id  PUT: with id DELETE: all OPTION: info
+        // "/folders/"        XResource     GET: htmlform POST: w/o id  PUT: with id DELETE: all OPTION: info
         // "/folders/{id}     XResource     GET: single   POST: with id PUT: w/o id  DELETE: #id OPTION: info
-        // "/foldersForm"     AddXResource  GET: htmlForm POST: ---     PUT: ---     DELETE: --- OPTION: ---
-        // "/foldersForm/{id} EditXResource GET: htmlForm POST: ---     PUT: ---     DELETE: --- OPTION: ---
-         
+        
         // @formatter:on
     }
 
@@ -100,6 +101,6 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     }
 
     public static String getPostNewFolderPath() {
-        return "/" + APP_NAME + FOLDERS_PATH;
+        return "/" + APP_NAME + FOLDERS_PATH + "/";
     }
 }
