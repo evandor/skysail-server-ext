@@ -23,7 +23,7 @@ public class FolderSteps extends AcceptanceTests {
     @BeforeScenario
     public void setUp() {
         super.setUp();
-        form = new Form();
+
     }
 
     @Given("the user wants to add a new Folder")
@@ -34,6 +34,7 @@ public class FolderSteps extends AcceptanceTests {
     @When("the user submits the form with the foldername $name")
     public void post(@Named("input") String input) throws Exception {
         cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
+        form = new Form();
         form.add("folderName", input);
         result = cr.post(form).getText();
     }
@@ -56,6 +57,7 @@ public class FolderSteps extends AcceptanceTests {
     @When("the user submits an ajax request with the foldername 'foldername'")
     public void postWithAjax(String name) throws Exception {
         cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "?media=json"));
+        form = new Form();
         form.add("folderName", name);
         result = cr.post(form).getText();
     }
