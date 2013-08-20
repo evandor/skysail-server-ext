@@ -17,7 +17,7 @@ import de.twenty11.skysail.server.ext.notes.domain.Folder;
  * inherits @Presentation(preferred = PresentationStyle.EDIT)
  * 
  */
-public class AddFolderResource extends AddServerResource2<Folder> {
+class AddFolderResource extends AddServerResource2<Folder> {
 
     @Override
     @Get("html")

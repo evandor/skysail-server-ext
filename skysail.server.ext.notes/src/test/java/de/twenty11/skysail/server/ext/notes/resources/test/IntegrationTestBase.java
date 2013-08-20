@@ -12,8 +12,6 @@ import de.twenty11.skysail.server.internal.SkysailComponent;
 
 public class IntegrationTestBase extends ResourceTestWithUnguardedAppication<NotesApplication> {
 
-    private NotesApplication application;
-
     private static Component component = new SkysailComponent();
 
     @BeforeClass
@@ -29,7 +27,7 @@ public class IntegrationTestBase extends ResourceTestWithUnguardedAppication<Not
 
     @Before
     public void setUp() {
-        application = (NotesApplication) setUpApplication(new NotesApplication());
+        NotesApplication application = (NotesApplication) setUpApplication(new NotesApplication());
         application.setEntityManager(getEmfForTests("NotesPU"));
         component.getDefaultHost().attach(application);
     }

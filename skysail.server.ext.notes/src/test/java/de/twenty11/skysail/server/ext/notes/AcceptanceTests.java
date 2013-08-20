@@ -9,8 +9,6 @@ import de.twenty11.skysail.server.internal.SkysailComponent;
 
 public class AcceptanceTests extends ResourceTestWithUnguardedAppication<NotesApplication> {
 
-    private NotesApplication application;
-
     private static Component component = new SkysailComponent();
 
     static {
@@ -29,7 +27,7 @@ public class AcceptanceTests extends ResourceTestWithUnguardedAppication<NotesAp
 
     @BeforeStory
     public void setUp() {
-        application = (NotesApplication) setUpApplication(new NotesApplication());
+        NotesApplication application = (NotesApplication) setUpApplication(new NotesApplication());
         application.setEntityManager(getEmfForTests("NotesPU"));
         component.getDefaultHost().attach(application);
     }
