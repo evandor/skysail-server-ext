@@ -54,4 +54,10 @@ public class NotesRepository implements ComponentRepository<Note> {
         TypedQuery<Note> query = entitiyManager.createQuery("SELECT c FROM Note c", Note.class);
         return query.getResultList();
     }
+
+    @Override
+    public void delete(Long folderId) {
+        // TODO Auto-generated method stub
+
+    }
 }

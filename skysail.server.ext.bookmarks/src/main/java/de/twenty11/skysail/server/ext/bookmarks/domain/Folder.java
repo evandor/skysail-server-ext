@@ -21,8 +21,7 @@ public class Folder implements Presentable {
 
     @Id
     @GeneratedValue
-    @JsonIgnore
-    private int pid;// primary key for db
+    private int pid;
 
     @NotNull(message = "Name is mandatory")
     @Size(min = 1, message = "name  must not be empty")

@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.notes.resources;
 
 import org.restlet.data.Form;
+import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
@@ -13,12 +14,16 @@ import de.twenty11.skysail.server.ext.notes.domain.Folder;
 
 public class FolderResource extends UniqueResultServerResource2<Folder> {
 
-    private String folderId;
+    private Long folderId;
+    private NotesApplication app;
+
+    public FolderResource() {
+        app = (NotesApplication) getApplication();
+    }
 
     @Override
     protected void doInit() throws ResourceException {
-        folderId = (String) getRequest().getAttributes().get("id");
-
+        folderId = new Long((String) getRequest().getAttributes().get("id"));
     }
 
     @Get("htmlform")
@@ -29,9 +34,14 @@ public class FolderResource extends UniqueResultServerResource2<Folder> {
         return formResponse;
     }
 
+    @Delete
+    public void deleteFolder() {
+        app.getFolderRepository().delete(folderId);
+    }
+
     @Override
     protected Folder getData() {
-        return null;
+        return app.getFolderRepository().getById(folderId);
     }
 
     @Override
@@ -41,7 +51,6 @@ public class FolderResource extends UniqueResultServerResource2<Folder> {
 
     @Override
     public SkysailResponse<?> addEntity(Folder entity) {
-        NotesApplication app = (NotesApplication) getApplication();
         app.getFolderRepository().add(entity);
         return new SuccessResponse<Folder>(entity);
     }

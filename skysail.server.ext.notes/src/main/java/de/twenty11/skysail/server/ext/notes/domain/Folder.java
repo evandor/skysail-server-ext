@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.apache.commons.lang.Validate;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import de.twenty11.skysail.common.forms.Field;
 import de.twenty11.skysail.common.forms.Form;
@@ -29,7 +28,6 @@ public class Folder extends Component implements Comparable<Folder> {
 
     @Id
     @GeneratedValue
-    @JsonIgnore
     protected int pid;// primary key for db
 
     public int getPid() {
@@ -105,4 +103,8 @@ public class Folder extends Component implements Comparable<Folder> {
         return folderName.compareTo(other.getFolderName());
     }
 
+    @Override
+    public String toString() {
+        return folderName;
+    }
 }

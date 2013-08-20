@@ -56,4 +56,11 @@ public class FolderRepository implements ComponentRepository<Folder> {
         return query.getResultList();
     }
 
+    @Override
+    public void delete(Long folderId) {
+        entitiyManager.getTransaction().begin();
+        entitiyManager.remove(getById(folderId));
+        entitiyManager.getTransaction().commit();
+    }
+
 }

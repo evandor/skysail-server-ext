@@ -25,7 +25,7 @@ Examples:
 
 Scenario: Posting valid new Folder with browser, retrieving json
 
-Given the user wants to add a new Folder
+Given the user wants to add a new Folder via ajax
 When the user submits an ajax request with the foldername 'foldername'
 Then the request is successful
 And the request has the media type json

@@ -14,4 +14,6 @@ public interface ComponentRepository<T extends Component> {
 
     public abstract List<T> getComponents();
 
+    public abstract void delete(Long folderId);
+
 }

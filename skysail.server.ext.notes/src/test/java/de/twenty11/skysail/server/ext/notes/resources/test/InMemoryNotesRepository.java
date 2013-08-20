@@ -34,4 +34,10 @@ public class InMemoryNotesRepository implements ComponentRepository<Note> {
     public List<Note> getComponents() {
         return Arrays.asList(db.values().toArray(new Note[db.values().size()]));
     }
+
+    @Override
+    public void delete(Long folderId) {
+        // TODO Auto-generated method stub
+
+    }
 }
