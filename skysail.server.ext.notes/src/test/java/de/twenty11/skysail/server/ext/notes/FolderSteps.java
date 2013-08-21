@@ -1,5 +1,6 @@
 package de.twenty11.skysail.server.ext.notes;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -15,6 +16,7 @@ import org.restlet.resource.ClientResource;
 import static org.hamcrest.Matchers.containsString;
 
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class FolderSteps extends AcceptanceTests {
 
@@ -61,7 +63,7 @@ public class FolderSteps extends AcceptanceTests {
         result = cr.post(form).getText();
     }
 
-    @When("the user submits an ajax request with the foldername 'foldername'")
+    @When("the user submits an ajax request with the foldername $name")
     public void postWithAjax(String name) throws Exception {
         cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "?media=json"));
         form = new Form();
@@ -98,6 +100,12 @@ public class FolderSteps extends AcceptanceTests {
 
     @Then("the request has the media type $mediaType")
     public void the_request_has_mediaType(String mediaType) {
+        try {
+            Map folderMap = mapper.readValue(result, Map.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Pending

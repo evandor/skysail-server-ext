@@ -11,4 +11,4 @@ Scenario: Providing foldername containing javascript
 
 Given the user wants to add a new Folder
 When the user submits the form with the foldername ' xss<script>alert("hi")</script> '
-Then the new Folder has the name 'xss'
+Then the request is not successful
