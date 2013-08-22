@@ -1,5 +1,4 @@
 Meta:
-@tag capability:a capability
 
 Narrative:
 

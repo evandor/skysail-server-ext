@@ -61,8 +61,17 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         
         // pattern: (path entity name always in plural):
         // "/folders"         XsResource    GET: all      POST: w/o id  PUT: with id DELETE: all OPTION: info
-        // "/folders/"        XResource     GET: htmlform POST: w/o id  PUT: with id DELETE: all OPTION: info
+        // "/folders/"        XResource     GET: ?htmlform POST: w/o id  PUT: with id DELETE: all OPTION: info
         // "/folders/{id}     XResource     GET: single   POST: with id PUT: w/o id  DELETE: #id OPTION: info
+        
+        // FolderResource  GET     (htmlform, html, json, ...)
+        //                 POST    with / w/o id
+        //                 PUT     with / w/o id
+        //                 DELETE  all / #id
+        // FoldersResource GET     (..., ...)
+        //                 POST    w/o id
+        //                 PUT     w/o id
+        //                 DELETE  all / #id
         
         // @formatter:on
     }

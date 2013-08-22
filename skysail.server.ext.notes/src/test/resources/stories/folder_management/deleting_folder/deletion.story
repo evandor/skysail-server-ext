@@ -14,4 +14,12 @@ And the user wants to delete this folder
 When the user submits a delete request for the folders id
 Then the folder is deleted
 
+Scenario: Deleting folder which contains notes
+
+Given the user has created a folder
+And the user has created a note inside that folder
+And the user wants to delete this folder
+When the user submits a delete request for the folders id
+Then the request is not successful
+
 
