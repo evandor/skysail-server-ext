@@ -34,7 +34,7 @@ public class RestSteps extends ScenarioSteps {
 
 	@Step
 	public String postFolder(String folderName) throws Exception {
-        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "/"));
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
         Form form = new Form();
         form.add("folderName", folderName);
         return cr.post(form).getText();
