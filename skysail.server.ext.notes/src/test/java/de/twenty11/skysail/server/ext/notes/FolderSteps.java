@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.thucydides.core.annotations.Steps;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
@@ -96,11 +97,10 @@ public class FolderSteps extends AcceptanceTests {
 
     @Then("the request has the media type $mediaType")
     public void the_request_has_mediaType(String mediaType) {
-        try {
-            Map folderMap = mapper.readValue(result, Map.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail();
+        if ("json".equals(mediaType.toLowerCase())) {
+        	jackson.assertResultIsValidJson(result);
+        } else {
+        	throw new NotImplementedException();
         }
     }
 

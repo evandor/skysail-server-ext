@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.ext.notes;
 
+import static org.junit.Assert.fail;
+
+import java.io.IOException;
 import java.util.Map;
 
 import net.thucydides.core.annotations.Step;
@@ -20,8 +23,19 @@ public class JacksonSteps extends ScenarioSteps {
 
 	@Step
 	public Integer getFromJson(String string, String result) throws Exception {
-        Map folderMap = mapper.readValue(result, Map.class);
-        return (Integer) ((Map) folderMap.get("data")).get("pid");
+        Map<?,?> folderMap = mapper.readValue(result, Map.class);
+        return (Integer) ((Map<?,?>) folderMap.get("data")).get("pid");
+	}
+
+	@Step
+	public void assertResultIsValidJson(String result) {
+        try {
+            mapper.readValue(result, Map.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail();
+        }
+		
 	}
 
 }
