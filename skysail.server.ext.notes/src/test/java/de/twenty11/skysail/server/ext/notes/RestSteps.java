@@ -37,6 +37,7 @@ public class RestSteps extends ScenarioSteps {
         ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH));
         Form form = new Form();
         form.add("folderName", folderName);
+        form.add("debug","true");
         return cr.post(form).getText();
 	}
 
