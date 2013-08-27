@@ -10,7 +10,7 @@ Scenario: Posting valid new Folder with browser
 Meta:
 @tags domain:a domain, iteration: iteration 1
 
-Given the user wants to add a new Folder
+Given the testuser Steve wants to add a new Folder
 When the user submits the form with the foldername <input>
 Then the request is successful
 And the new folder should have the name <foldername>

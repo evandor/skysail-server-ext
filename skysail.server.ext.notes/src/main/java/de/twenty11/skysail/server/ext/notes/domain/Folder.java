@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import de.twenty11.skysail.server.security.SkysailUser;
 import org.apache.commons.lang.Validate;
 
 import de.twenty11.skysail.common.forms.Field;
@@ -25,6 +26,8 @@ public class Folder extends Component implements Comparable<Folder> {
     private List<Component> components = new ArrayList<Component>();
 
     private Folder parent;
+
+    private SkysailUser creator;
 
     @Id
     @GeneratedValue

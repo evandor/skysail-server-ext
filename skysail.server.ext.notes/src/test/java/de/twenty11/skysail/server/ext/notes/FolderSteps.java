@@ -42,8 +42,10 @@ public class FolderSteps extends AcceptanceTests {
 
     // === GIVEN ===
 
-    @Given("the user wants to add a new Folder")
-    public void setResourcePathForPost() {}
+    @Given("the testuser $username wants to add a new Folder")
+    public void setResourcePathForPost(String name) {
+        rest.login(name, name);
+    }
 
     @Given ("the user wants to change a folder")
     public void userWantsToChangeFolder() {}

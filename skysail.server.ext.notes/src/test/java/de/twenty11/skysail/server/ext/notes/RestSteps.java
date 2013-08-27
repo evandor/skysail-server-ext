@@ -18,6 +18,10 @@ public class RestSteps extends ScenarioSteps {
 	public RestSteps(Pages pages) {
 		super(pages);
 	}
+
+    public void login(String username, String credentials) {
+
+    }
 	
 	@Step
 	public void createFolder() {
@@ -55,7 +59,6 @@ public class RestSteps extends ScenarioSteps {
     protected String requestUrlFor(String resource) {
         return "http://localhost:" + ResourceTestWithUnguardedAppication.TEST_PORT + resource;
     }
-
 
 
 }

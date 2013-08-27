@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.notes.resources.test;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -46,6 +47,7 @@ public class NoteResourceTest extends ResourceTestWithUnguardedAppication<NotesA
     }
 
     @Test
+    @Ignore
     public void note_can_be_added_to_repository_via_form() {
         Form form = Mockito.mock(Form.class);
         Mockito.when(form.getFirstValue("title")).thenReturn("title");
@@ -58,6 +60,7 @@ public class NoteResourceTest extends ResourceTestWithUnguardedAppication<NotesA
     }
 
     @Test
+    @Ignore
     public void empty_repository_returns_list_with_zero_entities() throws Exception {
         SkysailResponse<Note> entities = noteResource.getEntity();
         assertThat(entities.getSuccess(), is(true));
