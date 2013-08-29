@@ -1,5 +1,8 @@
 package de.twenty11.skysail.server.ext.notes.resources.test;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,10 +20,6 @@ import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
 import de.twenty11.skysail.server.ext.notes.resources.NoteResource;
 import de.twenty11.skysail.server.ext.notes.resources.NotesResource;
 
-import static org.hamcrest.Matchers.is;
-
-import static org.junit.Assert.assertThat;
-
 public class NoteResourceTest extends ResourceTestWithUnguardedAppication<NotesApplication> {
 
     private NoteResource noteResource;
@@ -30,7 +29,7 @@ public class NoteResourceTest extends ResourceTestWithUnguardedAppication<NotesA
 
     @Before
     public void setUp() throws Exception {
-        spy = setUpMockedApplication(new NotesApplication());
+        spy = (NotesApplication) setUpMockedApplication(new NotesApplication());
         noteResource = new NoteResource();
         notesResource = new NotesResource();
         setupNotesRepository();
