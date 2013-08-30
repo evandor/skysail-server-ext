@@ -7,14 +7,15 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import de.twenty11.skysail.server.security.SkysailUser;
 import org.apache.commons.lang.Validate;
 
 import de.twenty11.skysail.common.forms.Field;
 import de.twenty11.skysail.common.forms.Form;
+import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
  * 
@@ -27,7 +28,8 @@ public class Folder extends Component implements Comparable<Folder> {
 
     private Folder parent;
 
-    private SkysailUser creator;
+    @ManyToOne
+    private SkysailUser owner;
 
     @Id
     @GeneratedValue
@@ -104,6 +106,10 @@ public class Folder extends Component implements Comparable<Folder> {
     @Override
     public int compareTo(Folder other) {
         return folderName.compareTo(other.getFolderName());
+    }
+
+    public SkysailUser getOwner() {
+        return owner;
     }
 
     @Override

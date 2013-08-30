@@ -109,6 +109,11 @@
             <artifactId>skysail.server</artifactId>
             <version>${skysail.server.version}</version>
         </dependency>
+        <dependency>
+            <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>skysail.server.um</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
         
         <!-- thucydides -->
 		<dependency>
