@@ -1,5 +1,7 @@
 package de.twenty11.skysail.server.ext.notes.itest;
 
+import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+
 import java.util.EnumSet;
 import java.util.List;
 
@@ -10,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.testing.utils.PaxExamOptionSet;
 import de.twenty11.skysail.common.testing.utils.SkysailCommonOsgiSetup;
 import de.twenty11.skysail.server.testing.utils.SkysailServerOsgiSetup;
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 
 public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
 
@@ -22,6 +23,8 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
         List<Option> options = super.getOptions(optionSets);
 
         options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server", "0.3.1-SNAPSHOT"));
+        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server.um", "0.0.2-SNAPSHOT"));
+
         options.add(mavenBundle("de.twentyeleven.skysail", "com.jayway.rest-assured-osgi", "1.6.2"));
         options.add(mavenBundle("de.twentyeleven.skysail", "org.hamcrest.hamcrest-all-osgi", "1.3.0.1"));
         options.add(mavenBundle("de.twentyeleven.skysail", "org.ccil.cowan.tagsoup-osgi", "1.2.1"));
@@ -48,6 +51,9 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
         options.add(mavenBundle("org.apache.servicemix.bundles", "org.apache.servicemix.bundles.asm", "2.2.3_5"));
 
         options.add(mavenBundle("de.twentyeleven.skysail", "org.antlr.stringtemplate-osgi", "4.0.2"));
+
+        // for skysail.um
+        options.add(mavenBundle("org.eclipse.persistence", "org.eclipse.persistence.core", "2.4.2"));
 
         logger.info("using options from {} for tests", this.getClass());
 

@@ -6,11 +6,11 @@ import org.restlet.data.Form;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.core.restlet.ListServerResource2;
+import de.twenty11.skysail.server.core.restlet.ListServerResource;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
 
-public class FoldersResource extends ListServerResource2<Folder> {
+public class FoldersResource extends ListServerResource<Folder> {
 
     @Override
     protected List<Folder> getData() {

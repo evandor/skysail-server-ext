@@ -16,11 +16,12 @@ import de.twenty11.skysail.server.ext.notes.domain.Note;
 @Presentation(preferred = PresentationStyle.LIST2)
 public class NoteResource extends UniqueResultServerResource2<Note> {
 
-    private Long noteId;
+    private int noteId;
 
     @Override
     protected void doInit() throws ResourceException {
-        noteId = Long.valueOf((String) getRequest().getAttributes().get("id"));
+        // noteId = Long.valueOf((String) getRequest().getAttributes().get("id"));
+        noteId = Integer.valueOf((String) getRequest().getAttributes().get("id"));
     }
 
     @Override
@@ -31,7 +32,7 @@ public class NoteResource extends UniqueResultServerResource2<Note> {
     @Override
     protected Note getData() {
         NotesApplication app = (NotesApplication) getApplication();
-        return app.getNotesRepository().getById(noteId);
+        return app.getNotesRepository().getById(new Long(noteId));
     }
 
     @Override

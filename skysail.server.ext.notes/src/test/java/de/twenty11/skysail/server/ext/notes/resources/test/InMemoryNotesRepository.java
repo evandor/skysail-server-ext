@@ -21,13 +21,13 @@ public class InMemoryNotesRepository implements ComponentRepository<Note> {
     @Override
     public void add(Note entity) {
         Long pid = new Long(id++);
-        entity.setPid(pid);
+        entity.setPid(id);
         db.put(pid, entity);
     }
 
     @Override
     public void update(Note entity) {
-        db.put(entity.getPid(), entity);
+        db.put(Long.valueOf(entity.getPid()), entity);
     }
 
     @Override

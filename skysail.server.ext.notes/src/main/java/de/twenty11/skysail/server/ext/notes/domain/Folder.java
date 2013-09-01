@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +29,8 @@ public class Folder extends Component implements Comparable<Folder> {
 
     private Folder parent;
 
-    @ManyToOne
+    @ManyToOne()
+    @JoinColumn(name = "owner", nullable = false)
     private SkysailUser owner;
 
     @Id

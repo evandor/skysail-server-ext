@@ -6,12 +6,14 @@
 	<persistence-unit name="NotesPU" transaction-type="RESOURCE_LOCAL">
 		<class>de.twenty11.skysail.server.ext.notes.domain.Folder</class>
 		<class>de.twenty11.skysail.server.ext.notes.domain.Note</class>
+		<class>de.twenty11.skysail.server.um.domain.SkysailUser</class>
 		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:skysailDerbyDb;create=true" />
-            <!-- EclipseLink should create the database schema automatically -->
-            <property name="eclipselink.ddl-generation" value="create-tables" />
+            <!-- EclipseLink should create the database schema automatically: drop-and-create-tables (or just create-tables) -->
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+            <property name="eclipselink.logging.level" value="FINE"/>
         </properties>
 	</persistence-unit>
 </persistence>
