@@ -105,6 +105,6 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     }
 
     public static String getPostNewFolderPath() {
-        return "/" + APP_NAME + FOLDERS_PATH + "/";
+        return "/" + APP_NAME + FOLDERS_PATH;
     }
 }
