@@ -32,10 +32,12 @@ public class FoldersResource extends ListServerResource<Folder> {
     }
 
     @Override
-    public SkysailResponse<?> addEntity(Folder entity) {
+    public SkysailResponse<?> addEntity(List<Folder> entities) {
         NotesApplication app = (NotesApplication) getApplication();
-        app.getFolderRepository().add(entity);
-        return new SuccessResponse<Folder>(entity);
+        for (Folder folder : entities) {
+            app.getFolderRepository().add(folder);
+        }
+        return new SuccessResponse<Folder>(null);
     }
 
     @Get("htmlform")
