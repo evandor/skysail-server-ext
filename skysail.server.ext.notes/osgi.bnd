@@ -2,8 +2,10 @@ Bundle-SymbolicName: skysail.server.ext.notes
 Meta-Persistence: META-INF/persistence.xml
 Import-Package: javax.persistence;jpa="2.0";version="1.1.0",\
  de.twenty11.skysail.server.structures.composite;version="[0.1.0, 0.2)",\
- de.twenty11.skysail.server.um;version="[0.1.0,0.2)",\
+ de.twenty11.skysail.server.um.domain;version="[0.1.0, 0.2)",\
+ de.twenty11.skysail.server.um.services;version="[0.1.0, 0.2)",\
  org.eclipse.persistence.internal.jpa.rs.metadata.model,\
  *
+Export-Package: !*
 Skysail-PersistenceUnit: NotesPU
 Service-Component: OSGI-INF/*.xml

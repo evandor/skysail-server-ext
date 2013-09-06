@@ -12,6 +12,7 @@
 		<!-- <property name="componentProvider" ref="componentProviderRef" /> -->
 		<property name="entityManager" ref="emfRef" />
 		<property name="bundleContext" ref="blueprintBundleContext"/>
+		<property name="userManager" ref="userManager"/>
 	</bean>
 	
 <!-- 	<bean id="configureDb"
@@ -29,7 +30,9 @@
 		filter="(osgi.unit.name=NotesPU)" />
 		
 	<reference id="configAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" /> 
-	
+
+	<reference id="userManager" interface="de.twenty11.skysail.server.um.services.UserManager" />
+		
 	<!-- ext:proxy-method="classes" 
 	<reference id="serverConfig" interface="de.twenty11.skysail.server.config.ServerConfiguration" />	
 -->	

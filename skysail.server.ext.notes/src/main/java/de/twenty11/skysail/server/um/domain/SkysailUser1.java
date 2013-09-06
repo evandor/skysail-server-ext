@@ -33,7 +33,7 @@ import de.twenty11.skysail.common.forms.Field;
 @Entity
 @Table(name = "um_users")
 @NamedQuery(name = "findByName", query = "SELECT c FROM SkysailUser c WHERE c.username = :username")
-public class SkysailUser implements Serializable {
+public class SkysailUser1 implements Serializable {
 
     private static final long serialVersionUID = -3030387756527785881L;
 
@@ -50,11 +50,11 @@ public class SkysailUser implements Serializable {
 
     private List<SkysailRole> roles = new ArrayList<SkysailRole>();
 
-    public SkysailUser() {
+    public SkysailUser1() {
         roles.add(new SkysailRole("test"));
     }
 
-    public SkysailUser(String username, String password) {
+    public SkysailUser1(String username, String password) {
         this.username = username;
         this.password = password;
     }

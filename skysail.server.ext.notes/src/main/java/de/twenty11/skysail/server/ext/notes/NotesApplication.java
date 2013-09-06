@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
 import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
@@ -22,6 +25,8 @@ import de.twenty11.skysail.server.restlet.SkysailApplication;
 import de.twenty11.skysail.server.services.ApplicationProvider;
 import de.twenty11.skysail.server.services.MenuEntry;
 import de.twenty11.skysail.server.services.MenuProvider;
+import de.twenty11.skysail.server.um.domain.SkysailUser;
+import de.twenty11.skysail.server.um.services.UserManager;
 
 /**
  * The restlet application defined in this bundle.
@@ -36,6 +41,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     private EntityManagerFactory enitityManagerFactory;
     private ComponentRepository<Folder> folderRepository;
     private ComponentRepository<Note> notesRepository;
+    private UserManager userManager;
 
     public NotesApplication() {
         setDescription("RESTful skysail.server.ext.notes bundle");
@@ -83,6 +89,15 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     @Override
     public void setServerConfiguration(ServerConfiguration sc) {
         super.setServerConfiguration(sc);
+    }
+
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
+    }
+
+    public SkysailUser getCurrentUser() {
+        Subject subject = SecurityUtils.getSubject();
+        return userManager.findByUsername((String) subject.getPrincipal());
     }
 
     public synchronized ComponentRepository<Folder> getFolderRepository() {

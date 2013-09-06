@@ -25,6 +25,10 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 @Form(name = "folderform")
 public class Folder extends Component implements Comparable<Folder> {
 
+    @Id
+    @GeneratedValue
+    protected int pid;// primary key for db
+
     private List<Component> components = new ArrayList<Component>();
 
     private Folder parent;
@@ -32,10 +36,6 @@ public class Folder extends Component implements Comparable<Folder> {
     @ManyToOne()
     @JoinColumn(name = "owner", nullable = false)
     private SkysailUser owner;
-
-    @Id
-    @GeneratedValue
-    protected int pid;// primary key for db
 
     public int getPid() {
         return this.pid;
@@ -112,6 +112,10 @@ public class Folder extends Component implements Comparable<Folder> {
 
     public SkysailUser getOwner() {
         return owner;
+    }
+
+    public void setOwner(SkysailUser owner) {
+        this.owner = owner;
     }
 
     @Override
