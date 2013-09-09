@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -26,7 +28,8 @@ import de.twenty11.skysail.server.um.domain.SkysailUser;
 public class Folder extends Component implements Comparable<Folder> {
 
     @Id
-    @GeneratedValue
+    @TableGenerator(name = "TABLE_GEN", table = "SEQUENCE", pkColumnValue = "EXT_NOTES_SEQ")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
     protected int pid;// primary key for db
 
     private List<Component> components = new ArrayList<Component>();
