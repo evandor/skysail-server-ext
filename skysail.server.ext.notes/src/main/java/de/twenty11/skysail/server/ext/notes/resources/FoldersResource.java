@@ -26,6 +26,14 @@ public class FoldersResource extends ListServerResource<Folder> {
         return "Listing folders";
     }
 
+    @Get("htmlform")
+    public FormResponse<Folder> createForm() {
+        FormResponse<Folder> formResponse = new FormResponse<Folder>(new Folder(null, ""),
+                NotesApplication.getPostNewFolderPath());
+        formResponse.setMessage("Add a new folder");
+        return formResponse;
+    }
+
     @Override
     public List<Folder> getData() {
         return app.getFolderRepository().getComponents();
@@ -45,14 +53,6 @@ public class FoldersResource extends ListServerResource<Folder> {
             app.getFolderRepository().add(folder);
         }
         return new SuccessResponse<Folder>(null);
-    }
-
-    @Get("htmlform")
-    public FormResponse<Folder> createForm() {
-        FormResponse<Folder> formResponse = new FormResponse<Folder>(new Folder(null, ""),
-                NotesApplication.getPostNewFolderPath());
-        formResponse.setMessage("Add a new folder");
-        return formResponse;
     }
 
 }

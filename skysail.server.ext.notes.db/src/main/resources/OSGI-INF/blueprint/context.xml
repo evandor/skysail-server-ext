@@ -14,6 +14,10 @@
 
 	<reference id="notesEmfRef" interface="javax.persistence.EntityManagerFactory"
 		filter="(osgi.unit.name=NotesPU)" />
+		
+	<!-- <reference id="serverUserManagement" interface="de.twenty11.skysail.server.services.ServiceIsInitializedIndicator"
+		filter="(id=serverUserManagementFlywaySetup)"
+	/>	 -->
 			
 </blueprint>
 
