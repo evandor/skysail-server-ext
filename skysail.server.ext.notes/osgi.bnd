@@ -7,5 +7,6 @@ Import-Package: javax.persistence;jpa="2.0";version="1.1.0",\
  org.eclipse.persistence.internal.jpa.rs.metadata.model,\
  *
 Export-Package: !*
+Bundle-ActivationPolicy: lazy
 Skysail-PersistenceUnit: NotesPU
 Service-Component: OSGI-INF/*.xml
