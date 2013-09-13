@@ -7,6 +7,7 @@ import java.util.List;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
@@ -49,6 +50,18 @@ public class ServiceResource extends UniqueResultServerResource2<ServiceDescript
                 return serviceDescriptor;
             }
         }
+        return null;
+    }
+
+    @Override
+    public ServiceDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(ServiceDescriptor entity) {
+        // TODO Auto-generated method stub
         return null;
     }
 

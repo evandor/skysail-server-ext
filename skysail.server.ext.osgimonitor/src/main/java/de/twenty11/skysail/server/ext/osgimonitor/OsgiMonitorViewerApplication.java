@@ -24,7 +24,6 @@ import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesAsGraphResour
 import de.twenty11.skysail.server.ext.osgimonitor.resources.BundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.CapabilitiesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.IFrameResource;
-import de.twenty11.skysail.server.ext.osgimonitor.resources.OsgiMonitorRootResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.RequirementsResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServiceResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServicesResource;
@@ -47,8 +46,8 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
 
     protected void attach() {
         // @formatter:off
-        router.attach(new RouteBuilder("", OsgiMonitorRootResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class).setVisible(false));
+//        router.attach(new RouteBuilder("", OsgiMonitorRootResource.class).setVisible(false));
+//        router.attach(new RouteBuilder("/", OsgiMonitorRootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/bundles", BundlesResource.class).setText("Bundles"));
         router.attach(new RouteBuilder("/bundles/asGraph", IFrameResource.class).setText("Bundles as visualized Graph"));
         router.attach(new RouteBuilder("/bundles/asGraph/", BundlesAsGraphResource.class).setText("Json Graph representation"));

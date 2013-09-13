@@ -1,20 +1,15 @@
 package de.twenty11.skysail.server.ext.osgimonitor.domain;
 
-import java.awt.Color;
 import java.io.Serializable;
 import java.util.Map;
 
 import javax.persistence.Transient;
 
-import org.apache.commons.beanutils.BeanMap;
 import org.codehaus.jackson.annotate.JsonSetter;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
-import de.twenty11.skysail.common.Presentable;
-import de.twenty11.skysail.common.PresentableHeader;
-
-public class BundleDescriptor implements Presentable, Serializable {
+public class BundleDescriptor implements Serializable {
 
     public static final String SYMBOLIC_NAME = "symbolicName";
 
@@ -124,32 +119,6 @@ public class BundleDescriptor implements Presentable, Serializable {
 
     public String getVersion() {
         return version;
-    }
-
-    @Override
-    public PresentableHeader getHeader() {
-        Color categoryColor = Color.WHITE;
-        if (state.equals("Active")) {
-            categoryColor = Color.decode("#0BB450");
-        }
-
-        return new PresentableHeader.Builder(bundleId + ": " + symbolicName + " (" + version + ")")
-                .setLink("bundles/details/" + String.valueOf(bundleId)).setImage("icon-th-large")
-                .setCategoryText(state).setCategoryColor(categoryColor).build();
-    }
-
-    @Override
-    public Map<String, Object> getContent() {
-        return new BeanMap(this);
-        // SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-        // Map<String, Object> result = new HashMap<String, Object>();
-        // result.put("#", bundleId);
-        // result.put("Symbolic Name", symbolicName);
-        // result.put("Version", version);
-        // result.put("Status", this.state);
-        // result.put("Last Modification", sdf.format(new Date(this.lastModified)));
-        // result.put("Reference", this.reference);
-        // return result;
     }
 
     @Override

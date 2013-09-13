@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
@@ -76,6 +77,18 @@ public class BundlesResource extends ListServerResource2<BundleDescriptor> {
     @Override
     protected boolean match(BundleDescriptor object, String pattern) {
         return object.getSymbolicName().contains(pattern);
+    }
+
+    @Override
+    public BundleDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(BundleDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

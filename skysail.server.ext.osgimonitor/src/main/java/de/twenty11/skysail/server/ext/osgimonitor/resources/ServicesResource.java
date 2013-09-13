@@ -8,6 +8,7 @@ import java.util.List;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
+import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.Get;
@@ -75,6 +76,18 @@ public class ServicesResource extends ListServerResource2<ServiceDescriptor> {
             return new StringRepresentation("location didn't start with '" + prefix + "'");
         }
         return new StringRepresentation("success");
+    }
+
+    @Override
+    public ServiceDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(ServiceDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

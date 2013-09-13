@@ -9,6 +9,7 @@ import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRevision;
 import org.osgi.framework.wiring.BundleWire;
 import org.osgi.framework.wiring.BundleWiring;
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.Presentation;
@@ -51,6 +52,18 @@ public class CapabilitiesResource extends ListServerResource2<Capability> {
         for (BundleCapability cap : bw.getCapabilities(BundleRevision.PACKAGE_NAMESPACE)) {
             result.add(new Capability(cap, bundle));
         }
+    }
+
+    @Override
+    public Capability getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Capability entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
