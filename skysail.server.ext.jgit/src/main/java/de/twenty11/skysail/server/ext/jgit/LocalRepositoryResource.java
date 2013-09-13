@@ -85,4 +85,16 @@ public class LocalRepositoryResource extends UniqueResultServerResource2<LocalRe
         return new SkysailResponse<LocalRepositoryDescriptor>(getData());
     }
 
+    @Override
+    public LocalRepositoryDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(LocalRepositoryDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

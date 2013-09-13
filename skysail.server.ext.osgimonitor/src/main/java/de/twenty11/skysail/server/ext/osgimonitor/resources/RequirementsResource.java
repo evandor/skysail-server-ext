@@ -25,7 +25,7 @@ public class RequirementsResource extends ListServerResource2<Requirement> {
     protected List<Requirement> getData() {
         List<Requirement> result = new ArrayList<Requirement>();
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
-        
+
         BundleContext bundleContext = app.getBundleContext();
         Bundle[] bundles = bundleContext.getBundles();
         for (Bundle bundle : bundles) {
@@ -40,8 +40,7 @@ public class RequirementsResource extends ListServerResource2<Requirement> {
             return;
         }
         List<BundleWire> providedWires = bw.getProvidedWires(BundleRevision.PACKAGE_NAMESPACE);
-        
-        
+
         for (BundleRequirement cap : bw.getRequirements(BundleRevision.PACKAGE_NAMESPACE)) {
             result.add(new Requirement(cap));
         }

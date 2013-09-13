@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
@@ -64,6 +65,18 @@ public class ShowFileResource extends UniqueResultServerResource2<FileDescriptor
             }
         }
         return stringBuffer.toString();
+    }
+
+    @Override
+    public FileDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(FileDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

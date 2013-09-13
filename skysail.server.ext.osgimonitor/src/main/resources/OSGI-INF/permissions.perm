@@ -1,0 +1,2 @@
+(org.osgi.framework.PackagePermission "*" "IMPORT)
+(org.osgi.service.cm.ConfigurationPermission "CONFIGURE")

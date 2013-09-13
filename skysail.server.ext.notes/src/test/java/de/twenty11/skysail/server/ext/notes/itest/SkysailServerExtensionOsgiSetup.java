@@ -22,7 +22,9 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
 
         List<Option> options = super.getOptions(optionSets);
 
-        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server", "0.2.14-SNAPSHOT"));
+        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server", "0.3.1-SNAPSHOT"));
+        options.add(mavenBundle("de.twentyeleven.skysail", "skysail.server.um", "0.0.2-SNAPSHOT"));
+
         options.add(mavenBundle("de.twentyeleven.skysail", "com.jayway.rest-assured-osgi", "1.6.2"));
         options.add(mavenBundle("de.twentyeleven.skysail", "org.hamcrest.hamcrest-all-osgi", "1.3.0.1"));
         options.add(mavenBundle("de.twentyeleven.skysail", "org.ccil.cowan.tagsoup-osgi", "1.2.1"));
@@ -34,7 +36,7 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
         options.add(mavenBundle("org.codehaus.groovy", "groovy-all", "1.8.4"));
         options.add(mavenBundle("org.codehaus.jackson", "jackson-core-lgpl", "1.9.5"));
         // options.add(mavenBundle("mysql", "skysail.bundles.mysql-connector-java", "5.1.6"));
-        options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
+        options.add(mavenBundle("commons-dbcp", "commons-dbcp", "1.4"));
         options.add(mavenBundle("org.hibernate", "hibernate-validator", "4.3.0.Final"));
         options.add(mavenBundle("javax.validation", "com.springsource.javax.validation", "1.0.0.GA"));
         options.add(mavenBundle("org.jboss.logging", "jboss-logging", "3.1.2.GA"));
@@ -49,6 +51,9 @@ public class SkysailServerExtensionOsgiSetup extends SkysailServerOsgiSetup {
         options.add(mavenBundle("org.apache.servicemix.bundles", "org.apache.servicemix.bundles.asm", "2.2.3_5"));
 
         options.add(mavenBundle("de.twentyeleven.skysail", "org.antlr.stringtemplate-osgi", "4.0.2"));
+
+        // for skysail.um
+        options.add(mavenBundle("org.eclipse.persistence", "org.eclipse.persistence.core", "2.4.2"));
 
         logger.info("using options from {} for tests", this.getClass());
 

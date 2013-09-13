@@ -2,9 +2,11 @@ package de.twenty11.skysail.server.ext.jgit.internal;
 
 import java.util.Map;
 
+import org.restlet.data.Form;
 import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.commands.Command;
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource2;
 
 public class ExecutedCommandResource extends UniqueResultServerResource2<String> {
@@ -25,6 +27,18 @@ public class ExecutedCommandResource extends UniqueResultServerResource2<String>
             result.append(line + "<br>\n");
         }
         return result.toString();
+    }
+
+    @Override
+    public String getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(String entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.notes.resources;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
 
@@ -39,6 +40,18 @@ public class MeResource extends UniqueResultServerResource2<Note> {
 
     @Override
     protected Note getData() {
+        return null;
+    }
+
+    @Override
+    public Note getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Note entity) {
+        // TODO Auto-generated method stub
         return null;
     }
 

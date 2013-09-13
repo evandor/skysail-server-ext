@@ -1,11 +1,5 @@
 package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import java.util.List;
 
 import org.junit.Before;
@@ -20,6 +14,14 @@ import org.restlet.representation.Representation;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.domain.ServiceDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+
+import static org.junit.Assert.assertThat;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ServicesResourceTest extends BaseTests {
 

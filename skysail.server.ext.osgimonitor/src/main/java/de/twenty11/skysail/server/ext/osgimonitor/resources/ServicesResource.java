@@ -39,7 +39,7 @@ public class ServicesResource extends ListServerResource2<ServiceDescriptor> {
     }
 
     /**
-     * initializes the services collection from the bundleContext. 
+     * initializes the services collection from the bundleContext.
      */
     @Override
     protected void doInit() throws ResourceException {

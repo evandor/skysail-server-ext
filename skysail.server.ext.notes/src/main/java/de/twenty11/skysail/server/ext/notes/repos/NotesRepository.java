@@ -10,25 +10,30 @@ import de.twenty11.skysail.server.ext.notes.domain.Note;
 
 public class NotesRepository implements ComponentRepository<Note> {
 
-    private EntityManager entitiyManager;
+    private final EntityManager entitiyManager;
 
     public NotesRepository(EntityManagerFactory emf) {
         this.entitiyManager = emf.createEntityManager();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see de.twenty11.skysail.server.ext.notes.repos.ComponentRepository#getById(java.lang.Long)
      */
     @Override
     public Note getById(Long id) {
-        TypedQuery<Note> query = entitiyManager
-                .createQuery("SELECT c FROM Note c WHERE c.pid = :pid", Note.class);
+        TypedQuery<Note> query = entitiyManager.createQuery("SELECT c FROM Note c WHERE c.pid = :pid", Note.class);
         query.setParameter("pid", id);
-        return (Note) query.getSingleResult();
+        return query.getSingleResult();
     }
 
-    /* (non-Javadoc)
-     * @see de.twenty11.skysail.server.ext.notes.repos.ComponentRepository#add(de.twenty11.skysail.server.ext.notes.domain.Folder)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * de.twenty11.skysail.server.ext.notes.repos.ComponentRepository#add(de.twenty11.skysail.server.ext.notes.domain
+     * .Folder)
      */
     @Override
     public void add(Note entity) {
@@ -38,10 +43,21 @@ public class NotesRepository implements ComponentRepository<Note> {
     }
 
     @Override
+    public void update(Note entity) {
+        entitiyManager.getTransaction().begin();
+        entitiyManager.merge(entity);
+        entitiyManager.getTransaction().commit();
+    }
+
+    @Override
     public List<Note> getComponents() {
-        TypedQuery<Note> query = entitiyManager
-                .createQuery("SELECT c FROM Note c", Note.class);
+        TypedQuery<Note> query = entitiyManager.createQuery("SELECT c FROM Note c", Note.class);
         return query.getResultList();
     }
 
+    @Override
+    public void delete(Long folderId) {
+        // TODO Auto-generated method stub
+
+    }
 }

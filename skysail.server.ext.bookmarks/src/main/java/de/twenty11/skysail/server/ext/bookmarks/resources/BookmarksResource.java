@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.bookmarks.resources;
 
 import java.util.List;
 
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
@@ -37,6 +38,18 @@ public class BookmarksResource extends ListServerResource2<Bookmark> {
     protected List<Bookmark> getData() {
         BookmarkApplication app = (BookmarkApplication) getApplication();
         return app.getBookmarkRepository().getAll();
+    }
+
+    @Override
+    public Bookmark getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Bookmark entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

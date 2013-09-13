@@ -6,15 +6,19 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.apache.commons.lang.Validate;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import de.twenty11.skysail.common.forms.Field;
 import de.twenty11.skysail.common.forms.Form;
+import de.twenty11.skysail.server.um.domain.SkysailUser;
 
 /**
  * 
@@ -23,14 +27,18 @@ import de.twenty11.skysail.common.forms.Form;
 @Form(name = "folderform")
 public class Folder extends Component implements Comparable<Folder> {
 
+    @Id
+    @TableGenerator(name = "TABLE_GEN", table = "SEQUENCE", pkColumnValue = "EXT_NOTES_SEQ")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+    protected int pid;// primary key for db
+
     private List<Component> components = new ArrayList<Component>();
 
     private Folder parent;
 
-    @Id
-    @GeneratedValue
-    @JsonIgnore
-    protected int pid;// primary key for db
+    @ManyToOne()
+    @JoinColumn(name = "owner", nullable = false)
+    private SkysailUser owner;
 
     public int getPid() {
         return this.pid;
@@ -105,4 +113,16 @@ public class Folder extends Component implements Comparable<Folder> {
         return folderName.compareTo(other.getFolderName());
     }
 
+    public SkysailUser getOwner() {
+        return owner;
+    }
+
+    public void setOwner(SkysailUser owner) {
+        this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return folderName;
+    }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.NativeTaskQuery;
 import org.activiti.engine.task.Task;
+import org.restlet.data.Form;
 import org.restlet.resource.Get;
 
 import de.twenty11.skysail.common.responses.SkysailResponse;
@@ -31,6 +32,18 @@ public class TasksResource extends ListServerResource2<TaskDescriptor> {
             results.add(new TaskDescriptor(task));
         }
         return results;
+    }
+
+    @Override
+    public TaskDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(TaskDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -1,8 +1,5 @@
 package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -13,6 +10,8 @@ import org.restlet.Request;
 
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class BundlesAsGraphResourceTest extends BaseTests {
 

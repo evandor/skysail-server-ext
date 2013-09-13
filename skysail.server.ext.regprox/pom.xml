@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.8.36</version>
+		<version>0.8.39</version>
 	</parent>
 
 	<artifactId>skysail.server.ext.regprox</artifactId>
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
-			<version>[0.2.14-SNAPSHOT, 1.0)</version>
+			<version>[0.3.1-SNAPSHOT, 1.0)</version>
 		</dependency>
 
 		<dependency>
@@ -41,7 +41,6 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.7.1</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>com.google.http-client</groupId>

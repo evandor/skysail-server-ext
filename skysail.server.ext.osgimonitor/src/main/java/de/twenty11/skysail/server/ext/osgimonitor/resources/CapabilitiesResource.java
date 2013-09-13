@@ -27,12 +27,12 @@ public class CapabilitiesResource extends ListServerResource2<Capability> {
     public SkysailResponse<List<Capability>> getEntities() {
         return getEntities("All Capabilities");
     }
-    
+
     @Override
     protected List<Capability> getData() {
         List<Capability> result = new ArrayList<Capability>();
         OsgiMonitorViewerApplication app = (OsgiMonitorViewerApplication) getApplication();
-        
+
         BundleContext bundleContext = app.getBundleContext();
         Bundle[] bundles = bundleContext.getBundles();
         for (Bundle bundle : bundles) {
@@ -47,8 +47,7 @@ public class CapabilitiesResource extends ListServerResource2<Capability> {
             return;
         }
         List<BundleWire> providedWires = bw.getProvidedWires(BundleRevision.PACKAGE_NAMESPACE);
-        
-        
+
         for (BundleCapability cap : bw.getCapabilities(BundleRevision.PACKAGE_NAMESPACE)) {
             result.add(new Capability(cap, bundle));
         }

@@ -28,4 +28,5 @@ Import-Package: javax.persistence;jpa="2.0";version="1.1.0",\
  org.slf4j,\
  de.twenty11.skysail.server.descriptors;version="[0.0.1, 0.1.0)",\ 
  *
+Skysail-PersistenceUnit: JGitPU
 Bundle-SymbolicName: skysail.server.ext.jgit

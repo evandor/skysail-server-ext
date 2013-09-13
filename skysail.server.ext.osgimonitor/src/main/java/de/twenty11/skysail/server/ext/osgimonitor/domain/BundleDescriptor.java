@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonSetter;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
 public class BundleDescriptor implements Serializable {
@@ -29,21 +28,42 @@ public class BundleDescriptor implements Serializable {
     private Map<String, String> links;
 
 //    @Transient
-//    private Reference reference;
+//    private Map<String, String> links;
+//
+////    @Transient
+////    private Reference reference;
+//
+//    public BundleDescriptor() {
+//    }
+//
+//    public BundleDescriptor(Bundle bundle) {
+//        this.bundleId = bundle.getBundleId();
+//        this.symbolicName = bundle.getSymbolicName();
+//        this.version = handleVersion(bundle.getVersion());
+//        this.lastModified = bundle.getLastModified();
+//        this.state = mapState(bundle.getState());
+////        if (reference != null) {
+////            this.reference = new Reference(reference.getBaseRef(), "bundles/details/" + this.bundleId);
+////        }
+//    }
+//
+//    private String mapState(int state) {
+//        switch (state) {
+//        case 1:
+//            return "Uninstalled";
+//        case 2:
+//            return "Installed";
+//        case 4:
+//            return "Resolved";
+//        case 8:
+//            return "Starting";
+//        case 16:
+//            return "Stopping";
+//        case 32:
+//            return "Active";
+//        default:
+//            return "unknown state";
 
-    public BundleDescriptor() {
-    }
-
-    public BundleDescriptor(Bundle bundle) {
-        this.bundleId = bundle.getBundleId();
-        this.symbolicName = bundle.getSymbolicName();
-        this.version = handleVersion(bundle.getVersion());
-        this.lastModified = bundle.getLastModified();
-        this.state = mapState(bundle.getState());
-//        if (reference != null) {
-//            this.reference = new Reference(reference.getBaseRef(), "bundles/details/" + this.bundleId);
-//        }
-    }
 
     private String mapState(int state) {
         switch (state) {

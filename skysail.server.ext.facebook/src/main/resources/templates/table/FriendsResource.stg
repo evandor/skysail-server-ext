@@ -1,0 +1,18 @@
+table(list) ::= <<
+  <table class="table">
+    <tr>
+       <th>Name</th><th>Id</th><th>Picture</th>
+    </tr>
+      $list:{ element | $li(element,i)$}$
+  </table>
+>>
+
+li(element,i) ::= <<
+	<tr>
+        <td> $element.name$ </td>
+        <td> $element.id$ </td>
+        <td><a href='https://www.facebook.com/$element.id$' target='_blank'><img src="https://graph.facebook.com/$element.id$/picture"/></a></td>
+    </tr>
+>>
+
+header(map)       ::= "&nbsp;<a href='services/$map.serviceId$'>aaa$map.properties.objectClass$</a>"

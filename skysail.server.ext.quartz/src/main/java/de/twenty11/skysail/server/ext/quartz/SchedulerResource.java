@@ -52,4 +52,16 @@ public class SchedulerResource extends UniqueResultServerResource2<SchedulerDesc
         return getEntity();
     }
 
+    @Override
+    public SchedulerDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(SchedulerDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

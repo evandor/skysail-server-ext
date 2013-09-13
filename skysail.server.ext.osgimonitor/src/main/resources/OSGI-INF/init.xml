@@ -7,8 +7,9 @@
 
 	<service>
 		<provide interface="de.twenty11.skysail.server.services.ApplicationProvider" />
+		<provide interface="de.twenty11.skysail.server.services.MenuProvider" />
 	</service>
-	
+
     <reference 
         bind="setServerConfiguration" 
         cardinality="1..1" 
@@ -16,6 +17,18 @@
         name="ServerConfiguration" 
         policy="static"/>
     
-	
+	<reference 
+		bind="setConfigAdmin" 
+		cardinality="1..1"
+		interface="org.osgi.service.cm.ConfigurationAdmin" 
+		name="ConfigAdmin"
+		policy="static" />
+
+	<reference 
+		bind="setPermissionAdmin" 
+		cardinality="0..1"
+		interface="org.osgi.service.permissionadmin.PermissionAdmin" 
+		name="PermissionAdmin"
+		policy="dynamic" />
 
 </scr:component>

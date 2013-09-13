@@ -1,23 +1,54 @@
 package de.twenty11.skysail.server.ext.notes.resources;
 
+import org.restlet.data.Form;
+import org.restlet.resource.Delete;
 import org.restlet.resource.ResourceException;
 
+import de.twenty11.skysail.common.responses.SkysailResponse;
+import de.twenty11.skysail.common.responses.SuccessResponse;
 import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource2;
+import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
 
+/**
+ * takes care of ".../folders/" and ".../folders/{id}" requests.
+ * 
+ */
 public class FolderResource extends UniqueResultServerResource2<Folder> {
 
-    private String folderId;
+    private Long folderId;
+    private NotesApplication app;
+
+    public FolderResource() {
+        app = (NotesApplication) getApplication();
+    }
 
     @Override
     protected void doInit() throws ResourceException {
-        folderId = (String) getRequest().getAttributes().get("id");
+        if (getRequest().getAttributes().get("id") != null) {
+            folderId = new Long((String) getRequest().getAttributes().get("id"));
+        }
+    }
 
+    @Delete
+    public void deleteFolder() {
+        app.getFolderRepository().delete(folderId);
     }
 
     @Override
     protected Folder getData() {
-        return null;
+        return app.getFolderRepository().getById(folderId);
+    }
+
+    @Override
+    public Folder getData(Form form) {
+        return new Folder(null, form.getFirstValue("folderName"));
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(Folder entity) {
+        app.getFolderRepository().add(entity);
+        return new SuccessResponse<Folder>(entity);
     }
 
 }

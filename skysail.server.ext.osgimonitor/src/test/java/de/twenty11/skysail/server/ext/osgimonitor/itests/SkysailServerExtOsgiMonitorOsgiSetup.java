@@ -1,7 +1,5 @@
 package de.twenty11.skysail.server.ext.osgimonitor.itests;
 
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-
 import java.util.EnumSet;
 import java.util.List;
 
@@ -12,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.skysail.common.testing.utils.PaxExamOptionSet;
 import de.twenty11.skysail.common.testing.utils.SkysailCommonOsgiSetup;
 import de.twenty11.skysail.server.testing.utils.SkysailServerOsgiSetup;
+import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 
 public class SkysailServerExtOsgiMonitorOsgiSetup extends SkysailServerOsgiSetup {
 
@@ -41,7 +40,7 @@ public class SkysailServerExtOsgiMonitorOsgiSetup extends SkysailServerOsgiSetup
         // felix config admin
         // options.add(mavenBundle("org.apache.felix", "org.apache.felix.configadmin", "1.4.0"));
 
-        options.add(mavenBundle("commons-dbcp", "skysail.bundles.commons-dbcp", "1.4"));
+        options.add(mavenBundle("commons-dbcp", "commons-dbcp", "1.4"));
 
         // bean validation
         // options.add(mavenBundle("org.apache.bval", "org.apache.bval.bundle", "0.4"));

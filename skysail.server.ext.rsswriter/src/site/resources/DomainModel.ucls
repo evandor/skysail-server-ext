@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.3" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <interface id="1" language="java" name="de.twenty11.skysail.server.structures.composite.Component" 
+    project="skysail.server" 
+    file="/skysail.server/src/main/java/de/twenty11/skysail/server/structures/composite/Component.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="536" y="71"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="de.twenty11.skysail.server.ext.domain.MyEntity" 
+    project="skysail.server.ext.notes" 
+    file="/skysail.server.ext.notes/src/main/java/de/twenty11/skysail/server/ext/notes/domain/Note.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="169" width="197" x="52" y="35"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="de.twenty11.skysail.server.ext.domain.Folder" 
+    project="skysail.server.ext.notes" 
+    file="/skysail.server.ext.notes/src/main/java/de/twenty11/skysail/server/ext/notes/domain/Folder.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="258" y="394"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="de.twenty11.skysail.server.ext.domain.Component" 
+    project="skysail.server.ext.notes" 
+    file="/skysail.server.ext.notes/src/main/java/de/twenty11/skysail/server/ext/notes/domain/Component.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="79" width="197" x="246" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="5">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="6">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="7">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="8" name="components"/>      
+      <multiplicity id="9" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

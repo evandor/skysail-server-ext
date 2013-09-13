@@ -1,2 +1,4 @@
 /target
 /.settings
+/derby.log
+/skysail.server.ext.notes.iml

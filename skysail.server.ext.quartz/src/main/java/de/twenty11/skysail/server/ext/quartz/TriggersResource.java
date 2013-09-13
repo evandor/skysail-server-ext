@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
+import org.restlet.data.Form;
 
+import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.quartz.internal.MyApplication;
 
@@ -32,6 +34,18 @@ public class TriggersResource extends ListServerResource2<TriggerDescriptor> {
             e.printStackTrace();
         }
         return results;
+    }
+
+    @Override
+    public TriggerDescriptor getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(TriggerDescriptor entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

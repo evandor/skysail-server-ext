@@ -4,6 +4,7 @@ import java.net.URL;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.restlet.data.Form;
 import org.restlet.data.Parameter;
 import org.restlet.resource.Get;
 import org.restlet.resource.ResourceException;
@@ -74,6 +75,18 @@ public class MeResource extends UniqueResultServerResource2<FacebookUser> {
                 }
             }
         }
+    }
+
+    @Override
+    public FacebookUser getData(Form form) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SkysailResponse<?> addEntity(FacebookUser entity) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

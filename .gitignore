@@ -1,0 +1,7 @@
+### globale Ignore-Patterns
+.svn/
+target/
+.classpath
+.project
+.settings/
+bin/

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.twentyeleven.skysail</groupId>
 		<artifactId>skysail.build.maven.parentPom</artifactId>
-		<version>0.8.38-SNAPSHOT</version>
+		<version>0.8.39</version>
 	</parent>
 
 	<artifactId>skysail.server.ext.facebook</artifactId>
@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>
 			<artifactId>skysail.server</artifactId>
-			<version>[0.2.14-SNAPSHOT, 1.0)</version>
+			<version>[0.3.0, 1.0)</version>
 		</dependency>
 
 		<dependency>
@@ -110,4 +110,47 @@
 
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<host>localhost</host>
+				<deployDir>/home/carsten/bundles</deployDir>
+				<deployUrl>file:///</deployUrl>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>2.8</version>
+						<executions>
+							<execution>
+								<id>copy</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${project.groupId}</groupId>
+											<artifactId>${project.artifactId}</artifactId>
+											<version>${project.version}</version>
+											<type>jar</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${user.home}/bundles</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+									<overWriteReleases>true</overWriteReleases>
+									<overWriteSnapshots>true</overWriteSnapshots>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
 </project>

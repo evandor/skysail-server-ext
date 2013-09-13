@@ -9,6 +9,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 
+<<<<<<< HEAD
+=======
+import de.twenty11.skysail.common.PresentableHeader;
+import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
+>>>>>>> e3e0cb9860a8538b1fc71e1ff1d17f4183853132
 import de.twenty11.skysail.common.graphs.EdgeProvider;
 import de.twenty11.skysail.common.graphs.NodeProvider;
 
@@ -143,5 +148,6 @@ public class BundleDetails extends BundleDescriptor {
         }
         return serviceDetails;
     }
+
 
 }
