@@ -16,10 +16,10 @@ import org.restlet.resource.ResourceException;
 
 import de.twenty11.skysail.common.Presentation;
 import de.twenty11.skysail.common.PresentationStyle;
-import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.core.restlet.ListServerResource2;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDescriptor;
 
 /**
  * Restlet Resource class for OSGi Bundles.
@@ -57,10 +57,10 @@ public class BundlesResource extends ListServerResource2<BundleDescriptor> {
     protected List<BundleDescriptor> getData() {
         List<BundleDescriptor> result = new ArrayList<BundleDescriptor>();
         for (Bundle bundle : bundles) {
-            BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle);
-            if (filterMatches(bundleDescriptor)) {
-                result.add(bundleDescriptor);
-            }
+            // BundleDescriptor bundleDescriptor = new BundleDescriptor(bundle);
+            // if (filterMatches(bundleDescriptor)) {
+            // result.add(bundleDescriptor);
+            // }
         }
         return result;
     }

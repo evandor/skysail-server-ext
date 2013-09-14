@@ -19,17 +19,17 @@ import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 import org.restlet.security.MapVerifier;
 
-import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
+import de.twenty11.skysail.server.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.domain.ServiceDescriptor;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import static org.hamcrest.Matchers.is;
 
 import static org.junit.Assert.assertEquals;
 
 import static org.mockito.Mockito.mock;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.hamcrest.Matchers.is;
 
 public class BaseTests {
 

@@ -1,6 +1,5 @@
 package de.twenty11.skysail.server.ext.osgimonitor.resources;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -13,17 +12,16 @@ import org.osgi.framework.Version;
 import org.restlet.Request;
 import org.restlet.representation.Representation;
 
-import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.server.ext.osgimonitor.OsgiMonitorViewerApplication;
 import de.twenty11.skysail.server.ext.osgimonitor.test.BaseTests;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
 
 import static org.junit.Assert.assertThat;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 public class BundlesResourceTest extends BaseTests {
 

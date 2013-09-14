@@ -32,7 +32,6 @@ import de.twenty11.skysail.server.ext.osgimonitor.resources.CapabilitiesResource
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ConfigAdminResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.IFrameResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.PermissionAdminResource;
-import de.twenty11.skysail.server.ext.osgimonitor.resources.RemoteBundlesResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.RequirementsResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServiceResource;
 import de.twenty11.skysail.server.ext.osgimonitor.resources.ServicesResource;
@@ -76,7 +75,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
         router.attach(new RouteBuilder("/configadmin", ConfigAdminResource.class).setText("ConfigAdmin"));
         router.attach(new RouteBuilder("/permissionadmin", PermissionAdminResource.class).setText("PermissionAdmin"));
 
-        router.attach(new RouteBuilder("/remotebundles", RemoteBundlesResource.class).setText("RemoteBundles"));
+       // router.attach(new RouteBuilder("/remotebundles", RemoteBundlesResource.class).setText("RemoteBundles"));
         
         // @formatter:on
     }

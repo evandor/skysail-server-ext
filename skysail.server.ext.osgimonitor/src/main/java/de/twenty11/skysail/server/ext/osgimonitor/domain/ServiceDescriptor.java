@@ -11,8 +11,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 import org.restlet.data.Reference;
 
-import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
-
 public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
 
     private static final String SERVICE_ID_IDENTIFIER = "service.id";
@@ -37,7 +35,8 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
     }
 
     public ServiceDescriptor(ServiceReference sr, Reference reference) {
-        providingBundle = new de.twenty11.skysail.common.navigation.Reference(new BundleDescriptor(sr.getBundle()));
+        providingBundle = new de.twenty11.skysail.common.navigation.Reference(null);// new
+                                                                                    // BundleDescriptor(sr.getBundle()));
         this.reference = reference;
         handleUsingBundles(sr, reference);
         handlePropertyKeys(sr);
@@ -72,7 +71,7 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
     private void handleUsingBundles(ServiceReference sr, Reference reference) {
         if (sr.getUsingBundles() != null) {
             for (Bundle usingBundle : sr.getUsingBundles()) {
-                usingBundles.add(new BundleDescriptor(usingBundle));
+                usingBundles.add(null);// new BundleDescriptor(usingBundle));
             }
         }
     }

@@ -7,7 +7,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRevision;
 
-import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.common.navigation.Reference;
 
 public class Capability implements Comparable<Capability> {
@@ -28,7 +27,7 @@ public class Capability implements Comparable<Capability> {
         directives = cap.getDirectives();
         namespace = cap.getNamespace();
         revision = cap.getRevision();
-        this.bundleReference = new Reference(new BundleDescriptor(bundle));
+        this.bundleReference = new Reference(null);// new BundleDescriptor(bundle));
     }
 
     public Map<String, Object> getAttributes() {
