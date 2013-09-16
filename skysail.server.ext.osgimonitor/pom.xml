@@ -171,6 +171,12 @@
 			<artifactId>skysail.server</artifactId>
 			<version>${skysail.server.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>de.twentyeleven.skysail</groupId>
+			<artifactId>skysail.common.ext.osgimonitor</artifactId>
+			<version>0.1.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>de.twentyeleven.skysail</groupId>

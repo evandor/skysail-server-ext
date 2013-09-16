@@ -11,6 +11,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 import org.restlet.data.Reference;
 
+import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
+
 public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
 
     private static final String SERVICE_ID_IDENTIFIER = "service.id";
@@ -21,7 +23,7 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
 
     @Transient
     private Map<String, String> links;
-    
+
     @Transient
     private List<BundleDescriptor> usingBundles = new ArrayList<BundleDescriptor>();
 
@@ -58,11 +60,11 @@ public class ServiceDescriptor implements Comparable<ServiceDescriptor> {
     public Long getServiceId() {
         return serviceId;
     }
-    
+
     public String getProvidingBundle() {
         return providingBundle.toHtmlLink();
     }
-    
+
     @Override
     public String toString() {
         return serviceId + " [" + ((Object[]) properties.get("objectClass"))[0] + "]";

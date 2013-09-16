@@ -9,6 +9,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 
+import de.twenty11.skysail.common.ext.osgimonitor.domain.BundleDescriptor;
 import de.twenty11.skysail.common.graphs.EdgeProvider;
 import de.twenty11.skysail.common.graphs.NodeProvider;
 
@@ -18,12 +19,13 @@ public class BundleDetails extends BundleDescriptor {
 
     private List<ServiceReferenceDetails> servicesInUse = new ArrayList<ServiceReferenceDetails>();
 
-    public BundleDetails() {
-        // needed for javax.persistence
-        super();
-    }
+    // public BundleDetails() {
+    // // needed for javax.persistence
+    // super();
+    // }
 
     public BundleDetails(Bundle bundle) {
+        super(bundle);
         getRegisteredServicesFromBundle(bundle);
         getUsedServicesFromBundle(bundle);
     }
@@ -72,7 +74,7 @@ public class BundleDetails extends BundleDescriptor {
 
             @Override
             public String getNodeId() {
-                return Long.toString(bundleId);
+                return Long.toString(getBundleId());
             }
 
             @Override
@@ -142,6 +144,5 @@ public class BundleDetails extends BundleDescriptor {
         }
         return serviceDetails;
     }
-
 
 }

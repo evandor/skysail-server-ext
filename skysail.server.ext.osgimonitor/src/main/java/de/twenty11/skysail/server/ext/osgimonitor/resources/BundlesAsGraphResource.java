@@ -111,7 +111,7 @@ public class BundlesAsGraphResource extends ListServerResource<NodeProvider> {
         List<BundleDetails> result = new ArrayList<BundleDetails>();
         // List<Bundle> bundles = Activator.getBundles();
         for (Bundle bundle : bundles) {
-            BundleDetails bundleDetail = new BundleDetails();
+            BundleDetails bundleDetail = new BundleDetails(null);
             bundleDetail.setSymbolicName(bundle.getLocation());
             bundleDetail.setBundleId(bundle.getBundleId());
             // bundleDetail.setHeaders(getDetails(bundle.getHeaders()));
@@ -158,7 +158,7 @@ public class BundlesAsGraphResource extends ListServerResource<NodeProvider> {
             return details;
         }
         for (Bundle bundle : usingBundles) {
-            BundleDetails bundleDetails = new BundleDetails();
+            BundleDetails bundleDetails = new BundleDetails(null);
             bundleDetails.setBundleId(bundle.getBundleId());
             bundleDetails.setSymbolicName(bundle.getSymbolicName());
             bundleDetails.setVersion(bundle.getVersion());
