@@ -40,8 +40,6 @@ import de.twenty11.skysail.server.ext.dbviewer.ConnectionResource;
 import de.twenty11.skysail.server.ext.dbviewer.ConnectionsResource;
 import de.twenty11.skysail.server.ext.dbviewer.Constants;
 import de.twenty11.skysail.server.ext.dbviewer.ConstraintsResource;
-import de.twenty11.skysail.server.ext.dbviewer.DataResource;
-import de.twenty11.skysail.server.ext.dbviewer.RootResource;
 import de.twenty11.skysail.server.ext.dbviewer.SchemasResource;
 import de.twenty11.skysail.server.ext.dbviewer.TablesResource;
 import de.twenty11.skysail.server.restlet.SkysailApplication;
@@ -80,8 +78,8 @@ public class DbViewerApplication extends SkysailApplication {
         String table = Constants.TABLE_NAME;
 
         // @formatter:off
-        router.attach(new RouteBuilder("", RootResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/", RootResource.class).setVisible(false));
+//        router.attach(new RouteBuilder("", RootResource.class).setVisible(false));
+//        router.attach(new RouteBuilder("/", RootResource.class).setVisible(false));
         router.attach(new RouteBuilder("/connections", ConnectionsResource.class).setText("all Connections"));
         router.attach(new RouteBuilder("/connections/", AddConnectionResource.class).setText("add Connection"));
         router.attach(new RouteBuilder("/connections/{"+conn+"}", ConnectionResource.class).setVisible(false));
@@ -89,7 +87,7 @@ public class DbViewerApplication extends SkysailApplication {
         router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables", TablesResource.class).setVisible(false));
         router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/columns", ColumnsResource.class).setVisible(false));
         router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/constraints", ConstraintsResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class).setVisible(false));
+//        router.attach(new RouteBuilder("/connections/{"+conn+"}/schemas/{"+schema+"}/tables/{"+table+"}/data", DataResource.class).setVisible(false));
         // @formatter:on
     }
 
