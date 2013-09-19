@@ -7,16 +7,15 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRevision;
 
-import de.twenty11.skysail.common.navigation.Reference;
-
 public class Capability implements Comparable<Capability> {
 
     private Map<String, Object> attributes;
     private Map<String, String> directives;
     private String namespace;
-    //@Transient
+    // @Transient
     private BundleRevision revision;
-    private Reference bundleReference;
+
+    // private Reference bundleReference;
 
     public Capability() {
         // Default constructor, needed for // TODO
@@ -27,7 +26,7 @@ public class Capability implements Comparable<Capability> {
         directives = cap.getDirectives();
         namespace = cap.getNamespace();
         revision = cap.getRevision();
-        this.bundleReference = new Reference(null);// new BundleDescriptor(bundle));
+        // this.bundleReference = new Reference(null);// new BundleDescriptor(bundle));
     }
 
     public Map<String, Object> getAttributes() {
@@ -37,24 +36,23 @@ public class Capability implements Comparable<Capability> {
     public Map<String, String> getDirectives() {
         return directives;
     }
-    
+
     public String getNamespace() {
         return namespace;
     }
-    
+
     @JsonIgnore
     public BundleRevision getRevision() {
         return revision;
     }
-    
-    public String getBundle() {
-        return bundleReference.toHtmlLink();
-    }
-    
+
+    // public String getBundle() {
+    // return bundleReference.toHtmlLink();
+    // }
+
     @Override
     public int compareTo(Capability other) {
-        return 0;//serviceId.compareTo(other.getServiceId());
+        return 0;// serviceId.compareTo(other.getServiceId());
     }
-
 
 }
