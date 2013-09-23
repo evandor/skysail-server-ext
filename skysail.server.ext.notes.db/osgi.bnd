@@ -1,5 +1,4 @@
 Include-Resource: {maven-resources}
-Require-Bundle: skysail.server.um
 Import-Package: com.googlecode.flyway.core.api.migration.*;version="2.2.1",\
  *
 Export-Package: db.migration;version="0.0.1",

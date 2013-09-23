@@ -1,85 +1,91 @@
 package de.twenty11.skysail.server.ext.notes;
 
-import java.io.IOException;
-import java.util.Map;
-
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertThat;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.core.pages.Pages;
+import net.thucydides.core.steps.ScenarioSteps;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.restlet.data.Form;
-import org.restlet.resource.ClientResource;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import de.twenty11.skysail.server.ResourceTestWithUnguardedAppication.DummyAuthorizationService;
 
-public class FolderSteps extends AcceptanceTests {
+public class FolderSteps extends ScenarioSteps {
 
-    private Form form;
-    private ClientResource cr;
+    private static final long serialVersionUID = 406153759886583777L;
+
     private String result;
-    private ObjectMapper mapper = new ObjectMapper();
     private Integer id;
-    
+
+    public FolderSteps(Pages pages) {
+        super(pages);
+    }
+
     @Steps
     private RestSteps rest;
 
     @Steps
     private JacksonSteps jackson;
 
-    @Override
-    @BeforeScenario
-    public void setUp() {
-        super.setUp();
-    }
+    // @Override
+    // @BeforeScenario
+    // public void setUp() {
+    // super.setUp();
+    // }
 
     // === GIVEN ===
 
     @Given("the testuser $username wants to add a new Folder")
-    public void setResourcePathForPost(String name) {
-        rest.login(name, name);
+    public void userLogsIn(String name) {
+        DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
+        authorizationService.setUsernamePassword(name, name.toLowerCase());
     }
 
-    @Given ("the user wants to change a folder")
-    public void userWantsToChangeFolder() {}
+    @Given("the user wants to change a folder")
+    public void userWantsToChangeFolder() {
+    }
 
     @Given("the user wants to add a new Folder via ajax")
-    public void setResourcePathForPostWithAjax() {}
+    public void setResourcePathForPostWithAjax() {
+    }
 
     @Given("the user has created a folder")
-    public void createFolder() throws Exception {
-    	result = rest.postFolder("aFolder");
-    	id = jackson.getFromJson("pid", result);
+    public void createFolder() {
+        result = rest.postFolder("aFolder");
+        try {
+            id = jackson.getFromJson("pid", result);
+        } catch (Exception e) {
+            id = null;
+        }
     }
 
     @Given("the user wants to delete this folder")
-    public void setResoucePathForDelete() {}
+    public void setResoucePathForDelete() {
+    }
 
     // === WHEN ===
 
     @When("the user submits the form with the foldername $name")
-    public void post(@Named("input") String input) throws Exception {
-    	result = rest.postFolder(input);
+    public void post(@Named("input") String input) {
+        result = rest.postFolder(input);
     }
 
     @When("the user submits an ajax request with the foldername $name")
-    public void postWithAjax(String name) throws Exception {
-    	result = rest.postFolderWithAjax(name);
+    public void postWithAjax(String name) {
+        result = rest.postFolderWithAjax(name);
     }
 
     @When("the user submits a $method request for the folders id")
-    public void request(String method) throws Exception {
+    public void request(String method) {
         if ("delete".equals(method.toLowerCase())) {
-        	result = rest.deleteFolder(id);
+            result = rest.deleteFolder(id);
         } else if ("get".equals(method.toLowerCase())) {
-        	result = rest.getFolder(id);
+            result = rest.getFolder(id);
         }
     }
 
@@ -103,9 +109,9 @@ public class FolderSteps extends AcceptanceTests {
     @Then("the request has the media type $mediaType")
     public void the_request_has_mediaType(String mediaType) {
         if ("json".equals(mediaType.toLowerCase())) {
-        	jackson.assertResultIsValidJson(result);
+            jackson.assertResultIsValidJson(result);
         } else {
-        	throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 
@@ -122,7 +128,7 @@ public class FolderSteps extends AcceptanceTests {
     }
 
     @Then("the folder is deleted")
-    public void isDeleted() throws Exception {
+    public void isDeleted() {
         request("get");
         the_request_is_not_successful();
     }

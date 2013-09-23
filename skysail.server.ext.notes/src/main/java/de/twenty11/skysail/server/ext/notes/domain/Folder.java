@@ -1,9 +1,5 @@
 package de.twenty11.skysail.server.ext.notes.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +27,6 @@ public class Folder extends Component implements Comparable<Folder> {
     @TableGenerator(name = "TABLE_GEN", table = "SEQUENCE", pkColumnValue = "EXT_NOTES_SEQ")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
     protected int pid;// primary key for db
-
-    private List<Component> components = new ArrayList<Component>();
 
     private Folder parent;
 
@@ -83,21 +77,11 @@ public class Folder extends Component implements Comparable<Folder> {
         Validate.notNull(folderName, "A folder needs a name");
         this.parent = parent;
         this.folderName = folderName;
-        if (parent != null) {
-            parent.add(this);
-        }
+        this.parent = parent;
     }
 
     public static boolean isRootFolder(Folder folder) {
         return folder.parent == null;
-    }
-
-    private void add(Component component) {
-        this.components.add(component);
-    }
-
-    public List<Component> getChildren() {
-        return Collections.unmodifiableList(components);
     }
 
     public Folder getParent() {

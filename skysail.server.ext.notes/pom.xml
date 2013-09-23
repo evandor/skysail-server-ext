@@ -111,8 +111,19 @@
         </dependency>
         <dependency>
             <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>skysail.server.ext.notes.db</artifactId>
+            <version>0.0.4-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>de.twentyeleven.skysail</groupId>
             <artifactId>skysail.server.um</artifactId>
             <version>0.0.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>skysail.server.um.db</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        	<scope>test</scope>
         </dependency>
         
         <!-- thucydides -->

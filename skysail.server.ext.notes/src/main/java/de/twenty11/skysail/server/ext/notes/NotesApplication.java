@@ -10,7 +10,6 @@ import org.apache.shiro.subject.Subject;
 
 import de.twenty11.skysail.server.config.ServerConfiguration;
 import de.twenty11.skysail.server.core.restlet.RouteBuilder;
-import de.twenty11.skysail.server.ext.notes.domain.Folder;
 import de.twenty11.skysail.server.ext.notes.domain.Note;
 import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
 import de.twenty11.skysail.server.ext.notes.repos.FolderRepository;
@@ -39,7 +38,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     public static final String FOLDERS_FORM_PATH = FOLDERS_PATH + "?media=htmlform";
 
     private EntityManagerFactory enitityManagerFactory;
-    private ComponentRepository<Folder> folderRepository;
+    private FolderRepository folderRepository;
     private ComponentRepository<Note> notesRepository;
     private UserManager userManager;
 
@@ -99,7 +98,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         return userManager.findByUsername((String) subject.getPrincipal());
     }
 
-    public synchronized ComponentRepository<Folder> getFolderRepository() {
+    public synchronized FolderRepository getFolderRepository() {
         if (this.folderRepository == null) {
             this.folderRepository = new FolderRepository(enitityManagerFactory);
         }

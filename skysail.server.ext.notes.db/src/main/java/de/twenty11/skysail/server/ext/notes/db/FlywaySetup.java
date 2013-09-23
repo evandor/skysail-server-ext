@@ -26,23 +26,39 @@ import com.googlecode.flyway.core.Flyway;
 
 public class FlywaySetup {
 
+    // seems like I cannot use comma-separated locations here...
+    private static final String DEFAULT_LOCATIONS = "dbmig/server_ext_notes/other";
+
     private EntityManagerFactory enitityManagerFactory;
+    private Flyway flyway;
+
+    public FlywaySetup() {
+        flyway = new Flyway();
+        flyway.setLocations(DEFAULT_LOCATIONS);
+    }
 
     public void init() {
-        Flyway flyway = new Flyway();
 
         Map<?, ?> properties = (Map<?, ?>) enitityManagerFactory.getProperties().get("PUnitInfo");
 
         BasicDataSource bds = new BasicDataSource();
 
-        bds.setUrl((String) properties.get("driverUrl"));
-        bds.setPassword((String) properties.get("driverPassword"));
-        bds.setUsername((String) properties.get("driverUser"));
-        bds.setDriverClassName((String) properties.get("driverClassName"));
+        if (properties == null) { // test case
+            bds.setUrl((String) enitityManagerFactory.getProperties().get("javax.persistence.jdbc.url"));
+            bds.setPassword((String) enitityManagerFactory.getProperties().get("javax.persistence.jdbc.password"));
+            bds.setUsername((String) enitityManagerFactory.getProperties().get("javax.persistence.jdbc.user"));
+            bds.setDriverClassName((String) enitityManagerFactory.getProperties().get("javax.persistence.jdbc.driver"));
+
+        } else {
+            bds.setUrl((String) properties.get("driverUrl"));
+            bds.setPassword((String) properties.get("driverPassword"));
+            bds.setUsername((String) properties.get("driverUser"));
+            bds.setDriverClassName((String) properties.get("driverClassName"));
+        }
 
         flyway.setDataSource(bds);
         flyway.setTable("skysail_server_ext_notes_schema_version");
-        flyway.setLocations("dbmig/server_ext_notes/");
+        // flyway.setLocations();
 
         ClassLoader ccl = Thread.currentThread().getContextClassLoader();
         ClassLoader thisClassLoader = this.getClass().getClassLoader();
@@ -57,5 +73,9 @@ public class FlywaySetup {
 
     public synchronized void setEntityManager(EntityManagerFactory emf) {
         this.enitityManagerFactory = emf;
+    }
+
+    public void setLocation(String locations) {
+        flyway.setLocations(locations);
     }
 }
