@@ -32,12 +32,6 @@ public class FolderSteps extends ScenarioSteps {
     @Steps
     private JacksonSteps jackson;
 
-    // @Override
-    // @BeforeScenario
-    // public void setUp() {
-    // super.setUp();
-    // }
-
     // === GIVEN ===
 
     @Given("the testuser $username wants to add a new Folder")

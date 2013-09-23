@@ -7,6 +7,7 @@
 		<class>de.twenty11.skysail.server.ext.notes.domain.Folder</class>
 		<class>de.twenty11.skysail.server.ext.notes.domain.Note</class>
 		<class>de.twenty11.skysail.server.um.domain.SkysailUser</class>
+		<class>de.twenty11.skysail.server.um.domain.SkysailRole</class>
 		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
         <properties>
             <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
