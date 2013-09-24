@@ -53,7 +53,7 @@ public class SkysailServerExtensionOsgiIT {
         options.add(bundle(currentBundleSource));
 
         for (Option option : options) {
-            logger.debug(option.toString());
+            logger.info(option.toString());
         }
 
         return options.toArray(new Option[options.size()]);
