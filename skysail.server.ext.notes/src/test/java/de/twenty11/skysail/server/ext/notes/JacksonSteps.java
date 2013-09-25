@@ -13,29 +13,35 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class JacksonSteps extends ScenarioSteps {
 
-	private static final long serialVersionUID = 4578237950493407488L;
+    private static final long serialVersionUID = 4578237950493407488L;
 
     private ObjectMapper mapper = new ObjectMapper();
 
-	public JacksonSteps(Pages pages) {
-		super(pages);
-	}
+    public JacksonSteps(Pages pages) {
+        super(pages);
+    }
 
-	@Step
-	public Integer getFromJson(String string, String result) throws Exception {
-        Map<?,?> folderMap = mapper.readValue(result, Map.class);
-        return (Integer) ((Map<?,?>) folderMap.get("data")).get("pid");
-	}
+    @Step
+    public Integer getFromJson(String string, String result) {
+        Map<?, ?> folderMap;
+        try {
+            folderMap = mapper.readValue(result, Map.class);
+            return (Integer) ((Map<?, ?>) folderMap.get("data")).get("pid");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	@Step
-	public void assertResultIsValidJson(String result) {
+    @Step
+    public void assertResultIsValidJson(String result) {
         try {
             mapper.readValue(result, Map.class);
         } catch (IOException e) {
             e.printStackTrace();
             fail();
         }
-		
-	}
+
+    }
 
 }

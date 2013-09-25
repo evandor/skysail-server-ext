@@ -39,8 +39,10 @@ public class FolderSteps extends ScenarioSteps {
         authorizationService.setUsernamePassword(name, name.toLowerCase());
     }
 
-    @Given("the user wants to change a folder")
-    public void userWantsToChangeFolder() {
+    @Given("the testuser $username wants to change a folder")
+    public void userWantsToChangeFolder(String name) {
+        DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
+        authorizationService.setUsernamePassword(name, name.toLowerCase());
     }
 
     @Given("the testuser $username wants to add a new Folder via ajax")
@@ -64,6 +66,12 @@ public class FolderSteps extends ScenarioSteps {
     }
 
     // === WHEN ===
+
+    @When("the user opens the existing folder $name")
+    public void createFolder(@Named("input") String input) {
+        result = rest.postFolder(input);
+        id = jackson.getFromJson("pid", result);
+    }
 
     @When("the user submits the form with the foldername $name")
     public void post(@Named("input") String input) {
