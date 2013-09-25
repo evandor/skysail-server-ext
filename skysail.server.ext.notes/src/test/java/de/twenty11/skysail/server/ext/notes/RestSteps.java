@@ -40,7 +40,7 @@ public class RestSteps extends ScenarioSteps {
         ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "?media=json"));
         Form form = new Form();
         form.add("folderName", name);
-        return "error";// invokeAndHandleException(cr.post(form));
+        return invokeAndHandleException(cr.post(form));
     }
 
     @Step

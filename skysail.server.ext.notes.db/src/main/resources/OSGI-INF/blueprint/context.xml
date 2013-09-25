@@ -8,6 +8,7 @@
 	<!-- <ext:property-placeholder /> -->
 
 	<bean id="serverExtNotesFlywaySetup"
+		depends-on="serverUserManagementFlywaySetup"
 		class="de.twenty11.skysail.server.ext.notes.db.FlywaySetup" init-method="init">
 		<property name="entityManager" ref="notesEmfRef" />
 	</bean>

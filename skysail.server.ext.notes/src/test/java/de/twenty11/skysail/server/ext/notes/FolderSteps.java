@@ -44,8 +44,10 @@ public class FolderSteps extends ScenarioSteps {
     public void userWantsToChangeFolder() {
     }
 
-    @Given("the user wants to add a new Folder via ajax")
-    public void setResourcePathForPostWithAjax() {
+    @Given("the testuser $username wants to add a new Folder via ajax")
+    public void setResourcePathForPostWithAjax(String name) {
+        DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
+        authorizationService.setUsernamePassword(name, name.toLowerCase());
     }
 
     @Given("the user has created a folder")
@@ -85,7 +87,7 @@ public class FolderSteps extends ScenarioSteps {
 
     // === THEN ===
 
-    @Then("the request is successful")
+    @Then("the folder request is successful")
     public void the_request_is_successful() {
         assertThat(result, containsString("\"success\":true"));
     }
