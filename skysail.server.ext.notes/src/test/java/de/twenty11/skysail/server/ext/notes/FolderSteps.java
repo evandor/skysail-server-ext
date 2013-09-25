@@ -9,7 +9,6 @@ import net.thucydides.core.steps.ScenarioSteps;
 import org.apache.commons.lang.NotImplementedException;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -71,6 +70,11 @@ public class FolderSteps extends ScenarioSteps {
         result = rest.postFolder(input);
     }
 
+    @When("the user submits the form without foldername")
+    public void post() {
+        result = rest.postFolder("");
+    }
+
     @When("the user submits an ajax request with the foldername $name")
     public void postWithAjax(String name) {
         result = rest.postFolderWithAjax(name);
@@ -109,12 +113,6 @@ public class FolderSteps extends ScenarioSteps {
         } else {
             throw new NotImplementedException();
         }
-    }
-
-    @Pending
-    @Then("the new Folder has the name $name")
-    public void new_folder_has_name() {
-
     }
 
     @Then("the folder is returned")
