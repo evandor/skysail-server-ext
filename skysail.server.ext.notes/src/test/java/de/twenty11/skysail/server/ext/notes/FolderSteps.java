@@ -7,6 +7,7 @@ import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
 
 import org.apache.commons.lang.NotImplementedException;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -33,20 +34,8 @@ public class FolderSteps extends ScenarioSteps {
 
     // === GIVEN ===
 
-    @Given("the testuser $username wants to add a new Folder")
-    public void userLogsIn(String name) {
-        DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
-        authorizationService.setUsernamePassword(name, name.toLowerCase());
-    }
-
-    @Given("the testuser $username wants to change a folder")
-    public void userWantsToChangeFolder(String name) {
-        DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
-        authorizationService.setUsernamePassword(name, name.toLowerCase());
-    }
-
-    @Given("the testuser $username wants to add a new Folder via ajax")
-    public void setResourcePathForPostWithAjax(String name) {
+    @Given("the user $username is logged in")
+    public void loginAsUser(String name) {
         DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
         authorizationService.setUsernamePassword(name, name.toLowerCase());
     }
@@ -68,6 +57,7 @@ public class FolderSteps extends ScenarioSteps {
     // === WHEN ===
 
     @When("the user opens the existing folder $name")
+    @Alias("the user wants to delete his existing folder $name")
     public void createFolder(@Named("input") String input) {
         result = rest.postFolder(input);
         id = jackson.getFromJson("pid", result);

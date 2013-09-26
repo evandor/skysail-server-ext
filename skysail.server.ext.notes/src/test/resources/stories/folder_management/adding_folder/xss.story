@@ -9,6 +9,6 @@ I want to assign them to folders which I need to create.
 
 Scenario: Providing foldername containing javascript
 
-Given the user wants to add a new Folder
+Given the user Izzy is logged in
 When the user submits the form with the foldername ' xss<script>alert("hi")</script> '
 Then the request is not successful
