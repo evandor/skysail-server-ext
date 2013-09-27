@@ -35,7 +35,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
     public static final String APP_NAME = "notes";
     public static final String FOLDERS_PATH = "/folders";
-    public static final String FOLDERS_FORM_PATH = FOLDERS_PATH + "?media=htmlform";
+    public static final String FOLDERS_FORM_PATH = FOLDERS_PATH + "/?media=htmlform";
 
     private EntityManagerFactory enitityManagerFactory;
     private FolderRepository folderRepository;
@@ -61,6 +61,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setVisible(false));
         
         router.attach(new RouteBuilder(FOLDERS_PATH, FoldersResource.class).setSecuredByRole("admin").setVisible(false));
+        router.attach(new RouteBuilder(FOLDERS_PATH + "/", FolderResource.class).setSecuredByRole("admin").setVisible(false));
         router.attach(new RouteBuilder(FOLDERS_PATH + "/{id}", FolderResource.class).setVisible(false));
         
         // pattern: (path entity name always in plural):
@@ -118,6 +119,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     }
 
     public static String getPostNewFolderPath() {
-        return "/" + APP_NAME + FOLDERS_PATH;
+        // return "/" + APP_NAME + FOLDERS_PATH;// + "/";
+        return "/" + APP_NAME + FOLDERS_PATH + "/";
     }
 }

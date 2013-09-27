@@ -26,17 +26,17 @@ public class FoldersResource extends ListServerResource<Folder> {
         return "Listing folders";
     }
 
+    @Override
+    public List<Folder> getData() {
+        return app.getFolderRepository().getComponents();
+    }
+
     @Get("htmlform")
     public FormResponse<Folder> createForm() {
         FormResponse<Folder> formResponse = new FormResponse<Folder>(new Folder(null, ""),
                 NotesApplication.getPostNewFolderPath());
         formResponse.setMessage("Add a new folder");
         return formResponse;
-    }
-
-    @Override
-    public List<Folder> getData() {
-        return app.getFolderRepository().getComponents();
     }
 
     @Override

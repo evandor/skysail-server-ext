@@ -34,6 +34,11 @@ public class Folder extends Component implements Comparable<Folder> {
     @JoinColumn(name = "owner", nullable = false)
     private SkysailUser owner;
 
+    @Field
+    @NotNull(message = "Name is mandatory")
+    @Size(min = 1, message = "name  must not be empty")
+    private String folderName;
+
     public int getPid() {
         return this.pid;
     }
@@ -59,11 +64,6 @@ public class Folder extends Component implements Comparable<Folder> {
         result = prime * result + pid;
         return result;
     }
-
-    @Field
-    @NotNull(message = "Name is mandatory")
-    @Size(min = 1, message = "name  must not be empty")
-    private String folderName;
 
     public static Folder createRoot(String folderName) {
         return new Folder(null, folderName);
