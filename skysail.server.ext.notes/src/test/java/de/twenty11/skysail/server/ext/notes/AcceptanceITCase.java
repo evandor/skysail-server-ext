@@ -6,7 +6,8 @@ public class AcceptanceITCase extends ThucydidesJUnitStories {
     public AcceptanceITCase() {
         // findStoriesCalled("**/adding_folder/*.story");
         // findStoriesCalled("**/requesting_folder/*.story");
-        findStoriesCalled("**/altering_folder/validations.story");
+        // findStoriesCalled("**/altering_folder/validations.story");
+
         // findStoriesCalled("folder_management/**/*.story");
     }
 }
