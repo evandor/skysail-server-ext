@@ -52,7 +52,10 @@ public class FolderResource extends UniqueResultServerResource<Folder> {
 
     @Override
     public Folder getData(Form form) {
-        return new Folder(null, form.getFirstValue("folderName"));
+        Folder folder = new Folder(null, form.getFirstValue("folderName"));
+        folder.setOwner(app.getCurrentUser());
+        return folder;
+
     }
 
     @Override

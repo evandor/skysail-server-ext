@@ -37,7 +37,7 @@ public class RestSteps extends ScenarioSteps {
 
     @Step
     public String postFolderWithAjax(String name) {
-        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "?media=json"));
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "/?media=json"));
         Form form = new Form();
         form.add("folderName", name);
         return invokeAndHandleException(cr.post(form));
@@ -45,7 +45,7 @@ public class RestSteps extends ScenarioSteps {
 
     @Step
     public String postFolder(String folderName) {
-        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "?debug=true"));
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "/?debug=true"));
         Form form = new Form();
         form.add("folderName", folderName);
         return invokeAndHandleException(cr.post(form));
