@@ -4,7 +4,7 @@ import net.thucydides.jbehave.ThucydidesJUnitStories;
 
 public class AcceptanceITCase extends ThucydidesJUnitStories {
     public AcceptanceITCase() {
-        findStoriesCalled("folder_management/**/*.story");
+        // findStoriesCalled("folder_management/**/*.story");
 
         // findStoriesCalled("**/adding_folder/*.story");
         // findStoriesCalled("**/requesting_folder/*.story");

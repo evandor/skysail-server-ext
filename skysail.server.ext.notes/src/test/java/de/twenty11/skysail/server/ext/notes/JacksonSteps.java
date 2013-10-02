@@ -10,9 +10,7 @@ import net.thucydides.core.annotations.Step;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class JacksonSteps extends CommonSteps {
-
-    private static final long serialVersionUID = 4578237950493407488L;
+public class JacksonSteps {
 
     private ObjectMapper mapper = new ObjectMapper();
 

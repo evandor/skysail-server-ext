@@ -3,8 +3,6 @@ package de.twenty11.skysail.server.ext.notes;
 import java.io.IOException;
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.pages.Pages;
-import net.thucydides.core.steps.ScenarioSteps;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,13 +14,7 @@ import org.restlet.resource.ClientResource;
 
 import de.twenty11.skysail.server.ResourceTestWithUnguardedAppication;
 
-public class RestSteps extends ScenarioSteps {
-
-    private static final long serialVersionUID = -4407369914748239096L;
-
-    public RestSteps(Pages pages) {
-        super(pages);
-    }
+public class RestSteps {
 
     public void login(String username, String credentials) {
         Subject subject = SecurityUtils.getSubject();

@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.notes;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
+import net.thucydides.core.Thucydides;
 import net.thucydides.core.annotations.Steps;
 
 import org.apache.commons.lang.NotImplementedException;
@@ -11,12 +12,7 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-public class FolderSteps extends CommonSteps {
-
-    private static final long serialVersionUID = 406153759886583777L;
-
-    // private String result;
-    private Integer id;
+public class FolderSteps {
 
     @Steps
     private RestSteps rest;
@@ -26,20 +22,17 @@ public class FolderSteps extends CommonSteps {
 
     // === GIVEN ===
 
-    // @Given("the user $username is logged in")
-    // public void loginAsUser(String name) {
-    // DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
-    // authorizationService.setUsernamePassword(name, name.toLowerCase());
-    // }
-
+    @SuppressWarnings("unchecked")
     @Given("the user has created a folder")
     public void createFolder() {
-        result = rest.postFolder("aFolder");
+        String result = rest.postFolder("aFolder");
+        Integer id;
         try {
             id = jackson.getFromJson("pid", result);
         } catch (Exception e) {
             id = null;
         }
+        Thucydides.getCurrentSession().put("id", id);
     }
 
     @Given("the user wants to delete this folder")
@@ -48,34 +41,41 @@ public class FolderSteps extends CommonSteps {
 
     // === WHEN ===
 
+    @SuppressWarnings("unchecked")
     @When("the user opens the existing folder $name")
     @Alias("the user wants to delete his existing folder $name")
     public void createFolder(@Named("input") String input) {
-        result = rest.postFolder(input);
-        id = jackson.getFromJson("pid", result);
+        String result = rest.postFolder(input);
+        Thucydides.getCurrentSession().put("result", result);
+        Thucydides.getCurrentSession().put("id", jackson.getFromJson("pid", result));
     }
 
+    @SuppressWarnings("unchecked")
     @When("the user submits the form with the foldername $name")
     public void post(@Named("input") String input) {
-        result = rest.postFolder(input);
+        Thucydides.getCurrentSession().put("result", rest.postFolder(input));
     }
 
+    @SuppressWarnings("unchecked")
     @When("the user submits the form without foldername")
     public void post() {
-        result = rest.postFolder("");
+        Thucydides.getCurrentSession().put("result", rest.postFolder(""));
     }
 
+    @SuppressWarnings("unchecked")
     @When("the user submits an ajax request with the foldername $name")
     public void postWithAjax(String name) {
-        result = rest.postFolderWithAjax(name);
+        Thucydides.getCurrentSession().put("result", rest.postFolderWithAjax(name));
     }
 
+    @SuppressWarnings("unchecked")
     @When("the user submits a $method request for the folders id")
     public void request(String method) {
+        Integer id = (Integer) Thucydides.getCurrentSession().get("id");
         if ("delete".equals(method.toLowerCase())) {
-            result = rest.deleteFolder(id);
+            Thucydides.getCurrentSession().put("result", rest.deleteFolder(id));
         } else if ("get".equals(method.toLowerCase())) {
-            result = rest.getFolder(id);
+            Thucydides.getCurrentSession().put("result", rest.getFolder(id));
         }
     }
 
@@ -84,21 +84,25 @@ public class FolderSteps extends CommonSteps {
     @Then("the folder request is successful")
     @Alias("the request is successful")
     public void the_request_is_successful() {
+        String result = (String) Thucydides.getCurrentSession().get("result");
         assertThat(result, containsString("\"success\":true"));
     }
 
     @Then("the new folder should have the name $name")
     public void the_new_folder_should_have_the_name(@Named("foldername") String foldername) {
+        String result = (String) Thucydides.getCurrentSession().get("result");
         assertThat(result, containsString("\"folderName\":\"" + foldername + "\""));
     }
 
     @Then("the request is not successful")
     public void the_request_is_not_successful() {
+        String result = (String) Thucydides.getCurrentSession().get("result");
         assertThat(result, containsString("\"success\":false"));
     }
 
     @Then("the request has the media type $mediaType")
     public void the_request_has_mediaType(String mediaType) {
+        String result = (String) Thucydides.getCurrentSession().get("result");
         if ("json".equals(mediaType.toLowerCase())) {
             jackson.assertResultIsValidJson(result);
         } else {
@@ -108,12 +112,15 @@ public class FolderSteps extends CommonSteps {
 
     @Then("the folder is returned")
     public void requestFolder() {
+        Integer id = (Integer) Thucydides.getCurrentSession().get("id");
+        String result = (String) Thucydides.getCurrentSession().get("result");
         the_request_is_successful();
         assertThat(result, containsString("\"pid\":" + id));
     }
 
     @Then("the folder is deleted")
     public void isDeleted() {
+        String result = (String) Thucydides.getCurrentSession().get("result");
         request("get");
         the_request_is_successful();
         assertThat(result, containsString("\"data\":null"));
