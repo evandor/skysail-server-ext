@@ -66,7 +66,6 @@ public class FolderResource extends UniqueResultServerResource<Folder> {
 
     @Override
     public String getMessage(String key) {
-        // TODO Auto-generated method stub
         return null;
     }
 

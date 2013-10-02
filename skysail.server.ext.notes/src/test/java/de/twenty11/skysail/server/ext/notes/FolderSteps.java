@@ -3,8 +3,6 @@ package de.twenty11.skysail.server.ext.notes;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 import net.thucydides.core.annotations.Steps;
-import net.thucydides.core.pages.Pages;
-import net.thucydides.core.steps.ScenarioSteps;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.jbehave.core.annotations.Alias;
@@ -13,18 +11,12 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import de.twenty11.skysail.server.ResourceTestWithUnguardedAppication.DummyAuthorizationService;
-
-public class FolderSteps extends ScenarioSteps {
+public class FolderSteps extends CommonSteps {
 
     private static final long serialVersionUID = 406153759886583777L;
 
-    private String result;
+    // private String result;
     private Integer id;
-
-    public FolderSteps(Pages pages) {
-        super(pages);
-    }
 
     @Steps
     private RestSteps rest;
@@ -34,11 +26,11 @@ public class FolderSteps extends ScenarioSteps {
 
     // === GIVEN ===
 
-    @Given("the user $username is logged in")
-    public void loginAsUser(String name) {
-        DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
-        authorizationService.setUsernamePassword(name, name.toLowerCase());
-    }
+    // @Given("the user $username is logged in")
+    // public void loginAsUser(String name) {
+    // DummyAuthorizationService authorizationService = AcceptanceTests.getDummyAuthorizationService();
+    // authorizationService.setUsernamePassword(name, name.toLowerCase());
+    // }
 
     @Given("the user has created a folder")
     public void createFolder() {
@@ -90,6 +82,7 @@ public class FolderSteps extends ScenarioSteps {
     // === THEN ===
 
     @Then("the folder request is successful")
+    @Alias("the request is successful")
     public void the_request_is_successful() {
         assertThat(result, containsString("\"success\":true"));
     }
@@ -122,7 +115,8 @@ public class FolderSteps extends ScenarioSteps {
     @Then("the folder is deleted")
     public void isDeleted() {
         request("get");
-        the_request_is_not_successful();
+        the_request_is_successful();
+        assertThat(result, containsString("\"data\":null"));
     }
 
 }

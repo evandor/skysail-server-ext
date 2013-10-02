@@ -7,20 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.pages.Pages;
-import net.thucydides.core.steps.ScenarioSteps;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class JacksonSteps extends ScenarioSteps {
+public class JacksonSteps extends CommonSteps {
 
     private static final long serialVersionUID = 4578237950493407488L;
 
     private ObjectMapper mapper = new ObjectMapper();
-
-    public JacksonSteps(Pages pages) {
-        super(pages);
-    }
 
     @Step
     public Integer getFromJson(String element, String result) {

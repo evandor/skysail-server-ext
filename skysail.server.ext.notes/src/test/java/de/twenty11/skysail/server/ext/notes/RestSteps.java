@@ -52,6 +52,15 @@ public class RestSteps extends ScenarioSteps {
     }
 
     @Step
+    public String postNote(String titleIn, String contentIn) {
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.NOTES_PATH + "/?debug=true"));
+        Form form = new Form();
+        form.add("title", titleIn);
+        form.add("content", contentIn);
+        return invokeAndHandleException(cr.post(form));
+    }
+
+    @Step
     public String deleteFolder(Integer folderId) {
         ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "/" + folderId));
         return invokeAndHandleException(cr.delete());

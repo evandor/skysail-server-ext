@@ -14,7 +14,6 @@ import de.twenty11.skysail.server.ext.notes.domain.Note;
 import de.twenty11.skysail.server.ext.notes.repos.ComponentRepository;
 import de.twenty11.skysail.server.ext.notes.repos.FolderRepository;
 import de.twenty11.skysail.server.ext.notes.repos.NotesRepository;
-import de.twenty11.skysail.server.ext.notes.resources.AddNoteResource;
 import de.twenty11.skysail.server.ext.notes.resources.FolderResource;
 import de.twenty11.skysail.server.ext.notes.resources.FoldersResource;
 import de.twenty11.skysail.server.ext.notes.resources.NoteResource;
@@ -34,8 +33,12 @@ import de.twenty11.skysail.server.um.services.UserManager;
 public class NotesApplication extends SkysailApplication implements ApplicationProvider, MenuProvider {
 
     public static final String APP_NAME = "notes";
+
     public static final String FOLDERS_PATH = "/folders";
     public static final String FOLDERS_FORM_PATH = FOLDERS_PATH + "/?media=htmlform";
+
+    public static final String NOTES_PATH = "/notes";
+    public static final String NOTES_FORM_PATH = NOTES_PATH + "/?media=htmlform";
 
     private EntityManagerFactory enitityManagerFactory;
     private FolderRepository folderRepository;
@@ -56,10 +59,14 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
         // @formatter:off
         router.attach(new RouteBuilder("", NotesRootResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/notes", NotesResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/note", AddNoteResource.class).setVisible(false));
-        router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setVisible(false));
-        
+        //router.attach(new RouteBuilder("/notes", NotesResource.class).setVisible(false));
+        //router.attach(new RouteBuilder("/note", AddNoteResource.class).setVisible(false));
+        //router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setVisible(false));
+
+        router.attach(new RouteBuilder(NOTES_PATH, NotesResource.class).setSecuredByRole("admin").setVisible(false));
+        router.attach(new RouteBuilder(NOTES_PATH + "/", NoteResource.class).setSecuredByRole("admin").setVisible(false));
+        router.attach(new RouteBuilder(NOTES_PATH + "/{id}", NoteResource.class).setVisible(false));
+
         router.attach(new RouteBuilder(FOLDERS_PATH, FoldersResource.class).setSecuredByRole("admin").setVisible(false));
         router.attach(new RouteBuilder(FOLDERS_PATH + "/", FolderResource.class).setSecuredByRole("admin").setVisible(false));
         router.attach(new RouteBuilder(FOLDERS_PATH + "/{id}", FolderResource.class).setVisible(false));
@@ -119,7 +126,11 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     }
 
     public static String getPostNewFolderPath() {
-        // return "/" + APP_NAME + FOLDERS_PATH;// + "/";
         return "/" + APP_NAME + FOLDERS_PATH + "/";
     }
+
+    public static String getPostNewNotePath() {
+        return "/" + APP_NAME + NOTES_PATH + "/";
+    }
+
 }
