@@ -15,6 +15,9 @@ import org.jbehave.core.annotations.When;
 public class FolderSteps {
 
     @Steps
+    private CommonSteps common;
+
+    @Steps
     private RestSteps rest;
 
     @Steps
@@ -73,20 +76,14 @@ public class FolderSteps {
     public void request(String method) {
         Integer id = (Integer) Thucydides.getCurrentSession().get("id");
         if ("delete".equals(method.toLowerCase())) {
-            Thucydides.getCurrentSession().put("result", rest.deleteFolder(id));
+            rest.deleteFolder(id);
+            // Thucydides.getCurrentSession().put("result", );
         } else if ("get".equals(method.toLowerCase())) {
             Thucydides.getCurrentSession().put("result", rest.getFolder(id));
         }
     }
 
     // === THEN ===
-
-    @Then("the folder request is successful")
-    @Alias("the request is successful")
-    public void the_request_is_successful() {
-        String result = (String) Thucydides.getCurrentSession().get("result");
-        assertThat(result, containsString("\"success\":true"));
-    }
 
     @Then("the new folder should have the name $name")
     public void the_new_folder_should_have_the_name(@Named("foldername") String foldername) {
@@ -114,15 +111,15 @@ public class FolderSteps {
     public void requestFolder() {
         Integer id = (Integer) Thucydides.getCurrentSession().get("id");
         String result = (String) Thucydides.getCurrentSession().get("result");
-        the_request_is_successful();
+        common.the_request_is_successful();
         assertThat(result, containsString("\"pid\":" + id));
     }
 
     @Then("the folder is deleted")
     public void isDeleted() {
-        String result = (String) Thucydides.getCurrentSession().get("result");
         request("get");
-        the_request_is_successful();
+        common.the_request_is_successful();
+        String result = (String) Thucydides.getCurrentSession().get("result");
         assertThat(result, containsString("\"data\":null"));
     }
 

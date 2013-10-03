@@ -12,7 +12,7 @@ Meta:
 
 Given the user Linus is logged in
 When the user submits the form with the foldername <input>
-Then the folder request is successful
+Then the request is successful
 And the new folder should have the name <foldername>
 
 Examples:
@@ -26,5 +26,5 @@ Scenario: Posting valid new Folder with browser, retrieving json
 
 Given the user Izzy is logged in
 When the user submits an ajax request with the foldername aFolder
-Then the folder request is successful
+Then the request is successful
 And the request has the media type json

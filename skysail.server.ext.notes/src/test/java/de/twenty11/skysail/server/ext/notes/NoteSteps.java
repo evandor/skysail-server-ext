@@ -28,6 +28,18 @@ public class NoteSteps {
         Thucydides.getCurrentSession().put("result", result);
     }
 
+    @SuppressWarnings("unchecked")
+    @When("the user submits an ajax request with the title $title and the content $content")
+    public void postWithAjax(String title, String content) {
+        Thucydides.getCurrentSession().put("result", rest.postNoteWithAjax(title, content));
+    }
+
+    @SuppressWarnings("unchecked")
+    @When("the user submits the form without title")
+    public void post() {
+        Thucydides.getCurrentSession().put("result", rest.postNote("", "something"));
+    }
+
     // === THEN ===
 
     @Then("the new note should have the title $title and the content $content")
@@ -35,6 +47,12 @@ public class NoteSteps {
         String result = (String) Thucydides.getCurrentSession().get("result");
         assertThat(result, containsString("\"title\":\"" + title + "\""));
         assertThat(result, containsString("\"content\":\"" + content + "\""));
+    }
+
+    @Then("the new note should have the title $name")
+    public void the_new_folder_should_have_the_name(@Named("title") String title) {
+        String result = (String) Thucydides.getCurrentSession().get("result");
+        assertThat(result, containsString("\"title\":\"" + title + "\""));
     }
 
 }

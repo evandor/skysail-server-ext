@@ -44,15 +44,6 @@ public class RestSteps {
     }
 
     @Step
-    public String postNote(String titleIn, String contentIn) {
-        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.NOTES_PATH + "/?debug=true"));
-        Form form = new Form();
-        form.add("title", titleIn);
-        form.add("content", contentIn);
-        return invokeAndHandleException(cr.post(form));
-    }
-
-    @Step
     public String deleteFolder(Integer folderId) {
         ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "/" + folderId));
         return invokeAndHandleException(cr.delete());
@@ -62,6 +53,24 @@ public class RestSteps {
     public String getFolder(Integer folderId) {
         ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.FOLDERS_PATH + "/" + folderId));
         return invokeAndHandleException(cr.get());
+    }
+
+    @Step
+    public String postNote(String titleIn, String contentIn) {
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.NOTES_PATH + "/?debug=true"));
+        Form form = new Form();
+        form.add("title", titleIn);
+        form.add("content", contentIn);
+        return invokeAndHandleException(cr.post(form));
+    }
+
+    @Step
+    public String postNoteWithAjax(String title, String content) {
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.NOTES_PATH + "/?media=json"));
+        Form form = new Form();
+        form.add("title", title);
+        form.add("content", content);
+        return invokeAndHandleException(cr.post(form));
     }
 
     protected String requestUrlFor(String resource) {
