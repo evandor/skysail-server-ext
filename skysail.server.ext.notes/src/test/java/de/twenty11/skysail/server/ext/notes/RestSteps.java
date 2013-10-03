@@ -73,6 +73,18 @@ public class RestSteps {
         return invokeAndHandleException(cr.post(form));
     }
 
+    @Step
+    public String deleteNote(Integer noteId) {
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.NOTES_PATH + "/" + noteId));
+        return invokeAndHandleException(cr.delete());
+    }
+
+    @Step
+    public String getNote(Integer noteId) {
+        ClientResource cr = new ClientResource(requestUrlFor(NotesApplication.NOTES_PATH + "/" + noteId));
+        return invokeAndHandleException(cr.get());
+    }
+
     protected String requestUrlFor(String resource) {
         return "http://localhost:" + ResourceTestWithUnguardedAppication.TEST_PORT + resource;
     }

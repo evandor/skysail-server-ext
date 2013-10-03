@@ -9,13 +9,15 @@ I want to be able to change them.
 
 Scenario: Providing title with leading and trailing whitespace
 
-Given the user wants to change a note
-When the user submits the form with the title ' title '
-Then the new note has the title 'title'
+Given the user Izzy is logged in
+When the user opens the existing note mynote 
+And the user submits the form with the title mynote2 and the content contentIn 
+Then the new note should have the title mynote2
 
 Scenario: Providing empty title
 
-Given the user wants to change a note
-When the user submits the note with the foldername
+Given the user Linus is logged in
+When the user opens the existing note mynote 
+And the user submits the form without title
 Then the request is not successful
 

@@ -1,6 +1,7 @@
 package de.twenty11.skysail.server.ext.notes.resources;
 
 import org.restlet.data.Form;
+import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
@@ -56,6 +57,11 @@ public class NoteResource extends UniqueResultServerResource<Note> {
                 NotesApplication.getPostNewNotePath());
         formResponse.setMessage("Add a new folder");
         return formResponse;
+    }
+
+    @Delete
+    public void deleteNote() {
+        app.getNotesRepository().delete(noteId);
     }
 
     // @Override
