@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>skysail.server.ext.notes.db</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<name>SKYSAIL :: server :: ext :: notes :: db</name>
 	<packaging>bundle</packaging>
 
@@ -21,7 +21,7 @@
 		<url>scm:git:git@github.com:evandor/skysail-server-ext.git</url>
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
 		<developerConnection>scm:git:git@github.com:evandor/skysail-server-ext.git</developerConnection>
-		<tag>skysail.server.ext.notes.db-0.2.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
