@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="skysail Server">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.3.0</version>
+  </skin>
   <bannerLeft>
-    <name>Maven</name>
-    <src>http://maven.apache.org/images/apache-maven-project.png</src>
-    <href>http://maven.apache.org/</href>
+    <src>http://www.graefundpartner.de/img/GraefundPartner.png</src>
+    <href>http://www.graefundpartner.de</href>
   </bannerLeft>
   <bannerRight>
-    <src>http://maven.apache.org/images/maven-small.gif</src>
+	<name>skysail.server.ext.notes</name>
   </bannerRight>
   <body>
     <links>
       <item name="Skysail Home" href="http://www.twentyeleven.de/" />
     </links>
 
-    <menu name="skysail.server">
+    <menu name="skysail.server.ext.notes">
       <item name="Introduction" href="index.html"/>
       <item name="Domain" href="domain.html"/>      
     </menu>

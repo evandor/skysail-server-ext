@@ -1,14 +1,11 @@
 Core Domain Model of this bundle
 
- This pages describes the core model of the facebook bundle: 
+ This pages describes the core model of the skysail notes bundle: 
 
 [DomainModel.png] Domain Model 
 
 * Overview
 
- A FacebookUser essentially is a Composite and as such can contain other Components. The Interfaces of the composite pattern are
- definded in the skysail.server project.
-  
 * Glossary (Ubiquitous language)
  
  To be done 

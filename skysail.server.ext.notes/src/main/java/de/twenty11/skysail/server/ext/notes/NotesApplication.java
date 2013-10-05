@@ -59,9 +59,6 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
         // @formatter:off
         router.attach(new RouteBuilder("", NotesRootResource.class).setVisible(false));
-        //router.attach(new RouteBuilder("/notes", NotesResource.class).setVisible(false));
-        //router.attach(new RouteBuilder("/note", AddNoteResource.class).setVisible(false));
-        //router.attach(new RouteBuilder("/note/{id}", NoteResource.class).setVisible(false));
 
         router.attach(new RouteBuilder(NOTES_PATH, NotesResource.class).setSecuredByRole("admin").setVisible(false));
         router.attach(new RouteBuilder(NOTES_PATH + "/", NoteResource.class).setSecuredByRole("admin").setVisible(false));
