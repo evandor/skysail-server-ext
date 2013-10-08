@@ -32,7 +32,7 @@ public class NotesResource extends ListServerResource<Note> {
     @Get("htmlform")
     public FormResponse<Note> createForm() {
         FormResponse<Note> formResponse = new FormResponse<Note>(new Note(null, "", ""),
-                NotesApplication.getPostNewFolderPath());
+                NotesApplication.getPostNewNotePath());
         formResponse.setMessage("Add a new note");
         return formResponse;
     }

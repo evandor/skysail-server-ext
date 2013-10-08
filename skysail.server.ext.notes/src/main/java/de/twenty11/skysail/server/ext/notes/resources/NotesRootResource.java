@@ -65,7 +65,7 @@ public class NotesRootResource extends ListServerResource2<Component> {
 
             @Override
             public String getHref() {
-                return "notes/note";
+                return "notes/notes?media=htmlform";
             }
 
             @Override
