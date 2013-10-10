@@ -41,7 +41,7 @@ public class NoteResource extends EntityServerResource<Note> {
 
     @Override
     public Note getData() {
-        return app.getNotesRepository().getById(new Long(noteId));
+        return app.getNotesRepository().getById(Long.valueOf(noteId));
     }
 
     @Override
@@ -65,7 +65,6 @@ public class NoteResource extends EntityServerResource<Note> {
     }
 
     // @Override
-    // TODO check addNoteResource
     @Post("x-www-form-urlencoded:html")
     public EntityDetailsResponse addEntity2(Form form) {
 
@@ -76,7 +75,6 @@ public class NoteResource extends EntityServerResource<Note> {
         // }
         // return addEntity(entity);
 
-        NotesApplication app = (NotesApplication) getApplication();
         app.getNotesRepository().add(entity);
         // return new FoldersResource().getEntities();
         EntityDetailsResponse response = new EntityDetailsResponse(entity, "note");
