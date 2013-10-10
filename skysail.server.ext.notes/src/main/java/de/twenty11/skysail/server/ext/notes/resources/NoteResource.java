@@ -10,7 +10,7 @@ import de.twenty11.skysail.common.responses.EntityDetailsResponse;
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource;
+import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Note;
 
@@ -18,7 +18,7 @@ import de.twenty11.skysail.server.ext.notes.domain.Note;
  * takes care of ".../notes/" and ".../notes/{id}" requests.
  * 
  */
-public class NoteResource extends UniqueResultServerResource<Note> {
+public class NoteResource extends EntityServerResource<Note> {
 
     private Long noteId;
     private NotesApplication app;

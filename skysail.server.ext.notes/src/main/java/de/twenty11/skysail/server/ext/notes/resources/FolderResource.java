@@ -8,7 +8,7 @@ import org.restlet.resource.ResourceException;
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
-import de.twenty11.skysail.server.core.restlet.UniqueResultServerResource;
+import de.twenty11.skysail.server.core.restlet.EntityServerResource;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Folder;
 
@@ -16,7 +16,7 @@ import de.twenty11.skysail.server.ext.notes.domain.Folder;
  * takes care of ".../folders/" and ".../folders/{id}" requests.
  * 
  */
-public class FolderResource extends UniqueResultServerResource<Folder> {
+public class FolderResource extends EntityServerResource<Folder> {
 
     private Long folderId;
     private NotesApplication app;

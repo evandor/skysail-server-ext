@@ -2,6 +2,7 @@ package de.twenty11.skysail.server.ext.notes;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -46,6 +47,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     private UserManager userManager;
 
     public NotesApplication() {
+        getLogger().log(Level.WARNING, "hier");
         setDescription("RESTful skysail.server.ext.notes bundle");
         setOwner("twentyeleven");
         setName(APP_NAME);

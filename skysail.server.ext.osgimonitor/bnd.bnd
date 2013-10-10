@@ -3,10 +3,11 @@ Export-Package: !*
 Import-Package:	de.twenty11.skysail.common;version="[0.2.0, 1.0.0)",\
  de.twenty11.skysail.common.ext.osgimonitor.domain;version="[0.5.0,0.6)",\
  de.twenty11.skysail.common.ext.osgimonitor.extern;version="[0.0.1,1.0)",\
- de.twenty11.skysail.server.directory;version="[0.1.0, 1.0.0)",\
  de.twenty11.skysail.server.config;version="[0.1.1,0.2)",\
+ de.twenty11.skysail.server.core.restlet;version="[0.3.1,0.4)",\
+ de.twenty11.skysail.server.directory;version="[0.1.0, 1.0.0)",\
  de.twenty11.skysail.server.restlet;version="[0.2.3,0.4)",\
- de.twenty11.skysail.server.core.restlet;version="[0.3.0,0.4)",\
+ de.twenty11.skysail.server.core.restlet;version="[0.3.1,0.4)",\
  org.apache.commons.dbcp,\
  org.json,\
  org.osgi.framework.wiring; version="[1.0,2.0)",\

@@ -1,6 +1,7 @@
 Include-Resource: {maven-resources}
 Meta-Persistence: META-INF/persistence.xml
 Import-Package:	de.twenty11.skysail.common;version="[0.2.0, 1.0.0)",\
+ de.twenty11.skysail.server.core.restlet;version="[0.3.1,0.4)",\
  de.twenty11.skysail.server.config;version="[0.1.1,1.0.0)",\
  javax.persistence;jpa="2.0";version="1.1.0",\
  *
