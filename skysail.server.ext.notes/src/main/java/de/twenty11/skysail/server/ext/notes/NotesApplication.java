@@ -62,12 +62,13 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
         // @formatter:off
         router.attach(new RouteBuilder("", NotesRootResource.class).setVisible(false));
 
-        router.attach(new RouteBuilder(NOTES_PATH, NotesResource.class).setSecuredByRole("admin").setVisible(false));
-        router.attach(new RouteBuilder(NOTES_PATH + "/", NoteResource.class).setSecuredByRole("admin").setVisible(false));
+        //router.attach(new RouteBuilder(NOTES_PATH, NotesResource.class).setSecuredByRole("admin").setVisible(false));
+        router.attach(new RouteBuilder(NOTES_PATH, NotesResource.class).setVisible(false));
+        router.attach(new RouteBuilder(NOTES_PATH + "/", NoteResource.class).setVisible(false));
         router.attach(new RouteBuilder(NOTES_PATH + "/{id}", NoteResource.class).setVisible(false));
 
-        router.attach(new RouteBuilder(FOLDERS_PATH, FoldersResource.class).setSecuredByRole("admin").setVisible(false));
-        router.attach(new RouteBuilder(FOLDERS_PATH + "/", FolderResource.class).setSecuredByRole("admin").setVisible(false));
+        router.attach(new RouteBuilder(FOLDERS_PATH, FoldersResource.class).setVisible(false));
+        router.attach(new RouteBuilder(FOLDERS_PATH + "/", FolderResource.class).setVisible(false));
         router.attach(new RouteBuilder(FOLDERS_PATH + "/{id}", FolderResource.class).setVisible(false));
         
         // pattern: (path entity name always in plural):
@@ -107,14 +108,14 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
 
     public synchronized FolderRepository getFolderRepository() {
         if (this.folderRepository == null) {
-            this.folderRepository = new FolderRepository(enitityManagerFactory);
+            this.folderRepository = new FolderRepository(enitityManagerFactory, this);
         }
         return this.folderRepository;
     }
 
     public synchronized ComponentRepository<Note> getNotesRepository() {
         if (this.notesRepository == null) {
-            this.notesRepository = new NotesRepository(enitityManagerFactory);
+            this.notesRepository = new NotesRepository(enitityManagerFactory, this);
         }
         return this.notesRepository;
     }

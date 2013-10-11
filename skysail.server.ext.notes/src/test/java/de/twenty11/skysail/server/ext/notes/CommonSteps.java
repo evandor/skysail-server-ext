@@ -38,4 +38,10 @@ public class CommonSteps {
         assertThat(result, containsString("\"success\":true"));
     }
 
+    @Then("the request is not successful")
+    public void the_request_is_not_successful() {
+        String result = (String) Thucydides.getCurrentSession().get("result");
+        assertThat(result, containsString("\"success\":false"));
+    }
+
 }

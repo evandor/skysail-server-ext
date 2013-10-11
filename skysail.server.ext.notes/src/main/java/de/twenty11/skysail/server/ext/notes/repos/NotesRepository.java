@@ -6,13 +6,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
+import de.twenty11.skysail.server.ext.notes.NotesApplication;
 import de.twenty11.skysail.server.ext.notes.domain.Note;
 
 public class NotesRepository implements ComponentRepository<Note> {
 
     private final EntityManager entitiyManager;
+    private NotesApplication application;
 
-    public NotesRepository(EntityManagerFactory emf) {
+    public NotesRepository(EntityManagerFactory emf, NotesApplication application) {
+        this.application = application;
         this.entitiyManager = emf.createEntityManager();
     }
 
@@ -51,7 +54,8 @@ public class NotesRepository implements ComponentRepository<Note> {
 
     @Override
     public List<Note> getComponents() {
-        TypedQuery<Note> query = entitiyManager.createQuery("SELECT c FROM Note c", Note.class);
+        TypedQuery<Note> query = entitiyManager.createQuery("SELECT c FROM Note c WHERE c.owner = :owner", Note.class);
+        query.setParameter("owner", application.getCurrentUser());
         return query.getResultList();
     }
 

@@ -6,7 +6,7 @@ import net.thucydides.core.Thucydides;
 import net.thucydides.core.annotations.Steps;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -42,11 +42,19 @@ public class FolderSteps {
     public void setResoucePathForDelete() {
     }
 
+    @Given("the folder $foldername was created by $username")
+    public void folderWasCreatedBy(String foldername, String username) {
+        common.loginAsUser(username);
+        createFolder(foldername);
+        // common.logout();
+    }
+
     // === WHEN ===
 
     @SuppressWarnings("unchecked")
-    @When("the user opens the existing folder $name")
-    @Alias("the user wants to delete his existing folder $name")
+    @When("the user opens her existing folder $name")
+    @Aliases(values = { "the user opens his existing folder $name",
+            "the user wants to delete his existing folder $name" })
     public void createFolder(@Named("input") String input) {
         String result = rest.postFolder(input);
         Thucydides.getCurrentSession().put("result", result);
@@ -118,7 +126,7 @@ public class FolderSteps {
     @Then("the folder is deleted")
     public void isDeleted() {
         request("get");
-        common.the_request_is_successful();
+        common.the_request_is_not_successful();
         String result = (String) Thucydides.getCurrentSession().get("result");
         assertThat(result, containsString("\"data\":null"));
     }
