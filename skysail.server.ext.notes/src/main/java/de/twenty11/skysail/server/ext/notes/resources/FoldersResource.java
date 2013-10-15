@@ -27,28 +27,11 @@ public class FoldersResource extends ListServerResource<Folder> {
         return app.getFolderRepository().getComponents();
     }
 
-    // @Get("htmlform")
-    // public FormResponse<Folder> createForm() {
-    // FormResponse<Folder> formResponse = new FormResponse<Folder>(new Folder(null, ""),
-    // NotesApplication.getPostNewFolderPath());
-    // formResponse.setMessage("Add a new folder");
-    // return formResponse;
-    // }
-
     @Override
     public List<Folder> getData(Form form) {
         Folder folder = new Folder(null, form.getFirstValue("folderName"));
         folder.setOwner(app.getCurrentUser());
         return Arrays.asList(folder);
     }
-
-    // @Override
-    // public SkysailResponse<?> addEntity(List<Folder> entities) {
-    // NotesApplication app = (NotesApplication) getApplication();
-    // for (Folder folder : entities) {
-    // app.getFolderRepository().add(folder);
-    // }
-    // return new SuccessResponse<Folder>(null);
-    // }
 
 }

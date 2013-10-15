@@ -24,6 +24,10 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 import com.googlecode.flyway.core.Flyway;
 
+/**
+ * @author carsten
+ * 
+ */
 public class FlywaySetup {
 
     // seems like I cannot use comma-separated locations here...
