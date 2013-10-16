@@ -73,6 +73,41 @@ public class NotesRootResource extends ListServerResource2<Component> {
                 return true;
             }
         });
+        registerLinkedPage(new LinkedPage() {
+
+            @Override
+            public String getLinkText() {
+                return "Notes";
+            }
+
+            @Override
+            public String getHref() {
+                return "notes/notes";
+            }
+
+            @Override
+            public boolean applicable() {
+                return true;
+            }
+        });
+        registerLinkedPage(new LinkedPage() {
+
+            @Override
+            public String getLinkText() {
+                return "Folders";
+            }
+
+            @Override
+            public String getHref() {
+                return "notes/folders";
+            }
+
+            @Override
+            public boolean applicable() {
+                return true;
+            }
+        });
+
         return getEntities("Folders and Notes");
     }
 

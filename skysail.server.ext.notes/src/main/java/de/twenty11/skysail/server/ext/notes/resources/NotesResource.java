@@ -19,8 +19,6 @@ public class NotesResource extends ListServerResource<Note> {
     private NotesApplication app;
 
     public NotesResource() {
-        setName("notes");
-        setDescription("shows notes");
         app = (NotesApplication) getApplication();
     }
 
