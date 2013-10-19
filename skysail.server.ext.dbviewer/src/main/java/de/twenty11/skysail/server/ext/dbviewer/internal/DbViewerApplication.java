@@ -61,6 +61,7 @@ public class DbViewerApplication extends SkysailApplication {
      * @param emf
      */
     public DbViewerApplication(BundleContext bundleContext, Context componentContext, EntityManagerFactory emf) {
+        super("dbviewer");
         if (getContext() != null) {
             setContext(getContext().createChildContext());
         }

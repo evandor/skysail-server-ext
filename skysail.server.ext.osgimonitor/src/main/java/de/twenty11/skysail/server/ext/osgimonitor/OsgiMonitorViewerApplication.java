@@ -50,7 +50,7 @@ public class OsgiMonitorViewerApplication extends SkysailApplication implements 
     private PermissionAdmin permmissionAdmin;
 
     public OsgiMonitorViewerApplication() {
-        super();
+        super("osgimonitor");
         setDescription("RESTful OsgiMonitor bundle");
         setOwner("twentyeleven");
         setName("osgimonitor");

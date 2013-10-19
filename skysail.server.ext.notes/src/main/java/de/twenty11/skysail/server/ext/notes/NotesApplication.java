@@ -47,6 +47,7 @@ public class NotesApplication extends SkysailApplication implements ApplicationP
     private UserManager userManager;
 
     public NotesApplication() {
+        super(APP_NAME);
         getLogger().log(Level.WARNING, "hier");
         setDescription("RESTful skysail.server.ext.notes bundle");
         setOwner("twentyeleven");

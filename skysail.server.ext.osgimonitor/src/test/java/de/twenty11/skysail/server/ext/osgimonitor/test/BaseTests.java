@@ -43,7 +43,7 @@ public class BaseTests {
         secretVerifier.getLocalSecrets().put("testadmin", "testpassword".toCharArray());
         // OsgiMonitorComponent osgiMonitorComponent = new OsgiMonitorComponent(componentContextMock, secretVerifier);
         osgiMonitorViewerApplication = new OsgiMonitorViewerApplication();
-        osgiMonitorViewerApplication.setVerifier(secretVerifier);
+        // osgiMonitorViewerApplication.setVerifier(secretVerifier);
 
         OsgiMonitorViewerApplication spy = Mockito.spy(osgiMonitorViewerApplication);
         Application.setCurrent(spy);

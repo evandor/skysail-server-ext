@@ -32,18 +32,18 @@ import de.twenty11.skysail.server.services.ComponentProvider;
 
 public class Configuration implements ApplicationProvider {
 
-	private static Logger logger = LoggerFactory.getLogger(Configuration.class);
+    private static Logger logger = LoggerFactory.getLogger(Configuration.class);
     private ComponentProvider componentProvider;
     private Component component;
     private DbViewerApplication application;
     private ServiceRegistration currentApplicationService;
-	private EntityManagerFactory emf;
+    private EntityManagerFactory emf;
 
     protected void activate(ComponentContext componentContext) throws ConfigurationException {
         logger.info("Activating Configuration Component for Skysail Osgimonitor Extension");
         component = componentProvider.getComponent();
         application = new DbViewerApplication(componentContext.getBundleContext(), component.getContext(), emf);
-        application.setVerifier(componentProvider.getVerifier());
+        // application.setVerifier(componentProvider.getVerifier());
 
         currentApplicationService = componentContext.getBundleContext().registerService(
                 ApplicationProvider.class.getName(), this, null);
@@ -64,7 +64,7 @@ public class Configuration implements ApplicationProvider {
     public Application getApplication() {
         return application;
     }
-    
+
     public synchronized void setEntityManager(EntityManagerFactory emf) {
         this.emf = emf;
     }
