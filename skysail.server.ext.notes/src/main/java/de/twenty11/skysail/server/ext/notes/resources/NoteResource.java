@@ -3,10 +3,8 @@ package de.twenty11.skysail.server.ext.notes.resources;
 import org.restlet.data.Form;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
-import org.restlet.resource.Post;
 import org.restlet.resource.ResourceException;
 
-import de.twenty11.skysail.common.responses.EntityDetailsResponse;
 import de.twenty11.skysail.common.responses.FormResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.common.responses.SuccessResponse;
@@ -64,37 +62,18 @@ public class NoteResource extends EntityServerResource<Note> {
         app.getNotesRepository().delete(noteId);
     }
 
-    // @Override
-    @Post("x-www-form-urlencoded:html")
-    public EntityDetailsResponse addEntity2(Form form) {
-
-        Note entity = getData(form);
-        // Set<ConstraintViolation<T>> violations = validate(entity);
-        // if (violations.size() > 0) {
-        // return new ConstraintViolationsResponse(entity, violations);
-        // }
-        // return addEntity(entity);
-
-        app.getNotesRepository().add(entity);
-        // return new FoldersResource().getEntities();
-        EntityDetailsResponse response = new EntityDetailsResponse(entity, "note");
-        response.setMessage("note entity details");
-        return response;
-    }
-
-    // @Put("x-www-form-urlencoded:html")
-    // public EntityDetailsResponse put(Form form) {
+    // // @Override
+    // @Post("x-www-form-urlencoded:html")
+    // public EntityDetailsResponse addEntity2(Form form) {
     //
     // Note entity = getData(form);
-    // entity.setPid(noteId);
     // // Set<ConstraintViolation<T>> violations = validate(entity);
     // // if (violations.size() > 0) {
     // // return new ConstraintViolationsResponse(entity, violations);
     // // }
     // // return addEntity(entity);
     //
-    // NotesApplication app = (NotesApplication) getApplication();
-    // app.getNotesRepository().update(entity);
+    // app.getNotesRepository().add(entity);
     // // return new FoldersResource().getEntities();
     // EntityDetailsResponse response = new EntityDetailsResponse(entity, "note");
     // response.setMessage("note entity details");
@@ -104,6 +83,12 @@ public class NoteResource extends EntityServerResource<Note> {
     @Override
     public SkysailResponse<?> addEntity(Note entity) {
         app.getNotesRepository().add(entity);
+        return new SuccessResponse<Note>(entity);
+    }
+
+    @Override
+    public SkysailResponse<?> updateEntity(Note entity) {
+        app.getNotesRepository().update(entity);
         return new SuccessResponse<Note>(entity);
     }
 

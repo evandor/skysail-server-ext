@@ -65,6 +65,12 @@ public class FolderResource extends EntityServerResource<Folder> {
     }
 
     @Override
+    public SkysailResponse<?> updateEntity(Folder entity) {
+        app.getFolderRepository().update(entity);
+        return new SuccessResponse<Folder>(entity);
+    }
+
+    @Override
     public String getMessage(String key) {
         return null;
     }

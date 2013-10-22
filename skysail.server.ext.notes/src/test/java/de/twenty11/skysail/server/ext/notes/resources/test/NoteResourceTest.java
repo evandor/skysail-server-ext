@@ -9,9 +9,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.restlet.data.Form;
 
-import de.twenty11.skysail.common.responses.EntityDetailsResponse;
 import de.twenty11.skysail.common.responses.SkysailResponse;
 import de.twenty11.skysail.server.ResourceTestWithUnguardedAppication;
 import de.twenty11.skysail.server.ext.notes.NotesApplication;
@@ -45,19 +43,19 @@ public class NoteResourceTest extends ResourceTestWithUnguardedAppication<NotesA
         }).when(spy).getNotesRepository();
     }
 
-    @Test
-    @Ignore
-    public void note_can_be_added_to_repository_via_form() {
-        Form form = Mockito.mock(Form.class);
-        Mockito.when(form.getFirstValue("title")).thenReturn("title");
-        Mockito.when(form.getFirstValue("content")).thenReturn("content");
-        EntityDetailsResponse response = noteResource.addEntity2(form);
-        Note note = (Note) response.getEntity();
-
-        // notesResource.getEntities();
-        SkysailResponse<Note> entity = noteResource.getEntity();
-    }
-
+    // @Test
+    // @Ignore
+    // public void note_can_be_added_to_repository_via_form() {
+    // Form form = Mockito.mock(Form.class);
+    // Mockito.when(form.getFirstValue("title")).thenReturn("title");
+    // Mockito.when(form.getFirstValue("content")).thenReturn("content");
+    // EntityDetailsResponse response = noteResource.addEntity(form);
+    // Note note = (Note) response.getEntity();
+    //
+    // // notesResource.getEntities();
+    // SkysailResponse<Note> entity = noteResource.getEntity();
+    // }
+    //
     @Test
     @Ignore
     public void empty_repository_returns_list_with_zero_entities() throws Exception {
