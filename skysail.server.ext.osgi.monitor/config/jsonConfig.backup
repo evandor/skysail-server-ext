@@ -1,0 +1,11 @@
+[ {
+  "callbackClassName" : "CallbackA",
+  "methods" : [ {
+    "methodName" : "methodName",
+    "signature" : "signature",
+    "classname" : "classname"
+  } ]
+}, {
+  "callbackClassName" : "CallbackB",
+  "methods" : [ ]
+} ]

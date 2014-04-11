@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.4" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="de.twenty11.skysail.server.ext.osgi.monitor.agent.OsgiMonitorAgent" 
+    project="skysail.server.ext.osgi.monitor" 
+    file="/skysail.server.ext.osgi.monitor/src/de/twenty11/skysail/server/ext/osgi/monitor/agent/OsgiMonitorAgent.java" 
+    binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="144" y="0"/>    
+    <execution id="2">      
+      <position height="334" width="0" x="0" y="90"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="177" width="0" x="0" y="132"/>    
+    </execution>    
+    <execution id="6">      
+      <position height="21" width="234" x="5" y="382"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="21" width="0" x="0" y="184"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="21" width="0" x="0" y="236"/>    
+    </execution>  
+  </object>  
+  <object id="13" language="java" name="de.twenty11.skysail.server.ext.osgi.monitor.agent.OsgiFrameworkTransformer" 
+    project="skysail.server.ext.osgi.monitor" 
+    file="/skysail.server.ext.osgi.monitor/src/de/twenty11/skysail/server/ext/osgi/monitor/agent/OsgiFrameworkTransformer.java" 
+    binary="false" label="transformer" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="12">      
+      <position height="21" width="0" x="0" y="267"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="premain(java.lang.String,java.lang.instrument.Instrumentation):void">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="createCommandListenerThread():void">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" operation="defineCallbacks():de.twenty11.skysail.server.ext.osgi.monitor.agent.callback.Callbacks">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" 
+    operation="OsgiFrameworkTransformer(javassist.ClassPool,de.twenty11.skysail.server.ext.osgi.monitor.agent.callback.Callbacks,org.slf4j.Logger)">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>
+</sequence-diagram>

@@ -1,0 +1,2 @@
+Private-Package: de.twenty11.skysail.server.ext.osgi.monitor.gogo.commands
+Service-Component: *

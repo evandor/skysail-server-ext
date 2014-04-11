@@ -1,0 +1,25 @@
+[ 
+  {
+    "callbackClassName" : "de.twenty11.skysail.server.ext.osgi.monitor.agent.callback.bundle.BundleCallback",
+    "methods" : [ 
+	  {
+	    "methodName" : "start",
+	    "signature" : "()V",
+	    "classname" : "org.osgi.framework.Bundle"
+	  } 
+    ]
+  },
+  {
+    "callbackClassName" : "de.twenty11.skysail.server.ext.osgi.monitor.agent.callback.bundle.BundleCallback",
+    "methods" : [ 
+	  {
+	    "methodName" : "start",
+	    "signature" : "(I)V",
+	    "classname" : "org.osgi.framework.Bundle"
+	  } 
+    ]
+  },  
+  {
+    "callbackClassName" : "CallbackB",
+    "methods" : [ ]
+} ]
